@@ -1,0 +1,18 @@
+.navbar{
+    display: flex;
+    background-color: green;
+    color: white;
+}
+.logo{
+    width: 100px;
+    margin: 10px;
+}
+.links{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+a{
+    text-decoration: none;
+}
