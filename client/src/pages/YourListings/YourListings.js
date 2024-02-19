@@ -1,10 +1,10 @@
 import React from "react";
+import { ListingsLayout } from "../../components/ListingsLayout/ListingsLayout";
 
-//temporary page
 export function YourListings() {
     return (
         <div>
-            <h1>Here are your listings</h1>
+            <ListingsLayout/>
         </div>
     );
 }

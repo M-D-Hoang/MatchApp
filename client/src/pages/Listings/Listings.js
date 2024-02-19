@@ -3,7 +3,6 @@ import { ListingsSidebar } from "../../components/ListingsSidebar/ListingsSideba
 import { ListingsLayout } from "../../components/ListingsLayout/ListingsLayout";
 import "./style.css";
 
-//temporary page
 export function Listings() {
     return (
         <div className="listings-display">
