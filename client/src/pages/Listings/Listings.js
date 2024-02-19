@@ -1,10 +1,14 @@
 import React from "react";
+import { ListingsSidebar } from "../../components/ListingsSidebar/ListingsSidebar";
+import { ListingsLayout } from "../../components/ListingsLayout/ListingsLayout";
+import "./style.css";
 
 //temporary page
 export function Listings() {
     return (
-        <div>
-            <h1>Listings</h1>
+        <div className="listings-display">
+            <ListingsSidebar />
+            <ListingsLayout />
         </div>
     );
 }
