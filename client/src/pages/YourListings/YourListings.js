@@ -1,11 +1,10 @@
-//Page for Selling
 import React from "react";
 
 //temporary page
-export function Sell() {
+export function YourListings() {
     return (
         <div>
-            <h1>Add Your Listing</h1>
+            <h1>Here are your listings</h1>
         </div>
     );
 }
