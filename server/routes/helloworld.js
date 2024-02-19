@@ -4,39 +4,14 @@ const helloRouter = express.Router();
 import DB from '../db/db.js';
 const db = new DB();
 
-/*
-const userData = [
-  {
-    name: 'Joe',
-    comments: [],
-    picture:''
-  },
-  {
-    name: 'Billy Bob',
-    comments: ['hi this is my comment', 'wough'],
-    picture:''
-  },
-  {
-    name: 'Peter',
-    comments: ['yeag'],
-    picture:''
-  },
-];
-*/
-
-
 helloRouter.use('/users', async (req, res)=>{
-  //res.json({content:userData, response:200});
-
   try{
     const users = await db.readAllUsers();
     res.status(200).json({content:users, response:200});
   } catch{
-    res.status(500).send('Internal DB error');
+    res.status(500).send('Internal DB error. Could not read users');
   }
-
 });
-
 
 helloRouter.use('/helloworld', (req, res)=>{
   res.json({
@@ -51,7 +26,6 @@ helloRouter.post('/comment', async (req, res) => {
   console.log(req.body);
   try {
     await db.addComment(req.body.name, req.body.comment, req.body.dateTime);
-    // await db.addComment('23', 'sdsdd');
     return res.status(200).send({status:201, name:req.body.name, comment: req.body.comment});
   } catch (e) {
     res.status = 400;
@@ -71,6 +45,4 @@ helloRouter.use('/', (req, res)=>{
   });
 });
 
-
-//module.exports = helloRouter;
 export default helloRouter;

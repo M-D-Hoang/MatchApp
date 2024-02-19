@@ -23,7 +23,6 @@ const containerClient = blobService.getContainerClient(containerName);
 //DB Setup
 const db = new DB();
 
-    
 imageUploadRouter.use(
   //docs: https://www.npmjs.com/package/express-fileupload
   fileUpload({
@@ -32,7 +31,6 @@ imageUploadRouter.use(
 );
 
 imageUploadRouter.post('/image', async (req, res) =>{
-
   //env check
   if(AZURE_SAS === undefined || storageAccountName === undefined){
     res.status(500).json({
@@ -79,7 +77,6 @@ imageUploadRouter.use('/image', (req, res)=>{
     status:400
   });
 });
-
 
 imageUploadRouter.use('/', (req, res)=>{
   res.status = 404;
