@@ -5,7 +5,7 @@ import "./style.css";
 
 export function Listings() {
     return (
-        <div className="listings-display">
+        <div className="listings-page">
             <ListingsSidebar />
             <ListingsLayout />
         </div>
