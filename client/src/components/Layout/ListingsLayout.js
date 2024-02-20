@@ -1,5 +1,8 @@
 import React from "react";
-import "./style.css";
+import "./ListingsLayout.css";
+
+import { ItemCardRectangle } from "../../components/ItemCard/ItemCardRectangle";
+import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 
 export function ListingsLayout() {
     const [open, setOpen] = React.useState(false);
@@ -20,6 +23,18 @@ export function ListingsLayout() {
     const handleSortByLocation = () => {
         setOpen(false);
         // Handle sort
+    };
+
+    const renderListingsRectangle = () => {
+        return (
+            <div>
+                <ItemCardRectangle />
+                <ItemCardRectangle />
+                <ItemCardRectangle />
+                <ItemCardRectangle />
+                <ItemCardRectangle />
+            </div>
+        );
     };
 
     return (
@@ -43,7 +58,31 @@ export function ListingsLayout() {
                     ) : null}
                 </div>
             </div>
-            <div className="listings-display">Listings</div>
+            <div className="listings-display square">
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+                <ItemCardSquare />
+            </div>
+            {/* <div className="listings-display rectangle">
+                <ItemCardRectangle />
+                <ItemCardRectangle />
+                <ItemCardRectangle />
+                <ItemCardRectangle />
+                <ItemCardRectangle />
+                <ItemCardRectangle />
+            </div> */}
         </div>
     );
 }

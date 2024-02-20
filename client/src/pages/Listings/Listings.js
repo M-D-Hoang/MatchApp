@@ -1,7 +1,7 @@
 import React from "react";
 import { ListingsSidebar } from "../../components/ListingsSidebar/ListingsSidebar";
-import { ListingsLayout } from "../../components/ListingsLayout/ListingsLayout";
-import "./style.css";
+import { ListingsLayout } from "../../components/Layout/ListingsLayout";
+import "./Listings.css";
 
 export function Listings() {
     return (
