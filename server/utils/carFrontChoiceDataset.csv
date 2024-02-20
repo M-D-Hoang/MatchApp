@@ -1,0 +1,366 @@
+Make,Model,Drivetrain,Body Type
+Ferrari,812 Superfast,RWD,Coupe
+Ferrari,F8 Tributo,RWD,Coupe
+Ferrari,Roma,RWD,Coupe
+Ferrari,Portofino M,RWD,Convertible
+Ferrari,SF90 Stradale,AWD,Coupe
+Ferrari,488 Pista,RWD,Coupe
+Ferrari,GTC4Lusso,AWD,Hatchback
+Ferrari,488 GTB,RWD,Coupe
+Ferrari,California T,RWD,Convertible
+Ferrari,LaFerrari,RWD,Coupe
+Mahindra,XUV300,FWD,SUV
+Mahindra,Scorpio,RWD,SUV
+Mahindra,Thar,4WD,SUV
+Mahindra,Bolero,RWD,SUV
+Mahindra,Marazzo,FWD,MPV
+Mahindra,Alturas G4,AWD,SUV
+Toyota,RAV4,AWD,SUV
+Toyota,Highlander,AWD,SUV
+Toyota,4Runner,RWD,SUV
+Toyota,Tacoma,RWD,Pickup truck
+Toyota,Tundra,RWD,Pickup truck
+Ford,Mustang,RWD,Coupe
+Ford,F-150,RWD,Pickup Truck
+Ford,Explorer,AWD,SUV
+Ford,Escape,AWD,SUV
+Ford,Edge,AWD,SUV
+Ford,Ranger,RWD,Pickup Truck
+Ford,Bronco Sport,4WD,SUV
+Chevrolet,Camaro,RWD,Coupe
+Chevrolet,Corvette,RWD,Coupe
+Chevrolet,Spark,FWD,Hatchback
+Chevrolet,Bolt EV,FWD,Hatchback
+Chevrolet,Equinox,AWD,SUV
+Chevrolet,Suburban,RWD,SUV
+Chevrolet,Tahoe,RWD,SUV
+Chevrolet,Silverado 1500,RWD,Truck
+Chevrolet,Colorado,RWD,Truck
+Chevrolet,Silverado HD (2500/3500),RWD,
+Nissan,Altima,FWD,Sedan
+Nissan,Maxima,FWD,Sedan
+Nissan,Sentra,FWD,Sedan
+Nissan,Versa,FWD,Sedan
+Nissan,Rogue,FWD,SUV
+Nissan,Murano,FWD,SUV
+Nissan,Pathfinder,FWD,SUV
+Nissan,Armada,RWD,SUV
+Nissan,GT-R,AWD,Sports Car
+BMW,X1,FWD,SUV
+BMW,X3,AWD,SUV
+BMW,X5,AWD,SUV
+BMW,330i,RWD,Sedan
+BMW,530i,RWD,Sedan
+BMW,740i,RWD,Sedan
+BMW,M4,RWD,Coupe
+BMW,M8,AWD,Convertible
+Mercedes-Benz,C-Class,RWD,Sedan
+Mercedes-Benz,E-Class,RWD,Sedan
+Mercedes-Benz,S-Class,AWD,Sedan
+Mercedes-Benz,G-Class,AWD,SUV
+Mercedes-Benz,GLC-Class,RWD,SUV
+Audi,A3,FWD,Sedan
+Audi,A4,AWD,Sedan
+Audi,A5,AWD,Coupe
+Audi,Q3,AWD,SUV
+Audi,Q5,AWD,SUV
+Audi,Q7,AWD,SUV
+Volkswagen,Golf,AWD,Hatchback
+Volkswagen,Jetta,FWD,Sedan
+Volkswagen,Passat,FWD,Sedan
+Volkswagen,Atlas,AWD,SUV
+Volkswagen,Tiguan,AWD,SUV
+Porsche,718 Boxster,RWD,Convertible
+Porsche,718 Cayman,RWD,Coupe
+Porsche,911,AWD,Coupe/Convertible
+Porsche,Panamera,AWD,Sedan
+Porsche,Cayenne,AWD,SUV
+Porsche,Macan,AWD,SUV
+Rolls-Royce,Ghost,RWD,Sedan
+Rolls-Royce,Wraith,RWD,Coupe
+Rolls-Royce,Dawn,RWD,Convertible
+Rolls-Royce,Phantom,RWD,Sedan
+Rolls-Royce,Cullinan,AWD,SUV
+McLaren,540C,RWD,Coupe
+McLaren,570S,RWD,Coupe
+McLaren,570GT,RWD,Coupe
+McLaren,600LT,RWD,Coupe
+McLaren,720S,RWD,Coupe
+McLaren,Artura,RWD,Coupe
+Lexus,ES,FWD,Sedan
+Lexus,IS,RWD,Sedan
+Lexus,GS,AWD,Sedan
+Lexus,LS,AWD,Sedan
+Lexus,UX,AWD,SUV
+Lexus,NX,AWD,SUV
+Lexus,RX,AWD,SUV
+Lexus,GX,4WD,SUV
+Lexus,LX,4WD,SUV
+Hyundai,Elantra,FWD,Sedan
+Hyundai,Sonata,AWD,Sedan
+Hyundai,Tucson,AWD,SUV
+Hyundai,Santa Fe,AWD,SUV
+Hyundai,Kona,AWD,SUV
+Hyundai,Accent,FWD,Sedan
+Hyundai,Palisade,FWD,SUV
+Kia,Forte,FWD,Sedan
+Kia,Optima,FWD,Sedan
+Kia,Stinger,RWD,Sedan
+Kia,Sorento,FWD,SUV
+Kia,Soul,FWD,Hatchback
+Kia,Telluride,FWD,SUV
+Mazda,MX-5,RWD,Convertible
+Mazda,Mazda3,AWD,Sedan
+Mazda,Mazda6,FWD,Sedan
+Mazda,CX-3,AWD,SUV
+Mazda,CX-5,AWD,SUV
+Mazda,CX-9,AWD,SUV
+Subaru,Ascent,AWD,SUV
+Subaru,Impreza,AWD,Hatchback
+Subaru,Legacy,AWD,Sedan
+Subaru,Outback,AWD,Wagon
+Subaru,BRZ,RWD,Coupe
+Subaru,WRX,AWD,Sedan
+Subaru,Crosstrek,AWD,Wagon
+Subaru,Crosstrek Hybrid,AWD,Wagon
+Mitsubishi,Outlander,AWD,SUV
+Mitsubishi,Eclipse Cross,AWD,SUV
+Mitsubishi,Mirage,FWD,Hatchback
+Mitsubishi,Mirage G4,FWD,Sedan
+Mitsubishi,Outlander Sport,AWD,SUV
+Tesla,Model S,AWD,Sedan
+Tesla,Model 3,RWD,Sedan
+Tesla,Model X,AWD,SUV
+Tesla,Model Y,RWD,SUV
+Dodge,Challenger,RWD,Coupe
+Dodge,Charger,RWD,Sedan
+Dodge,Durango,RWD,SUV
+Dodge,Journey,AWD,SUV
+Dodge,RAM 1500,RWD,Truck
+Dodge,RAM 2500,RWD,Truck
+Dodge,RAM 3500,RWD,Truck
+Ram,1500,RWD,Truck
+Ram,2500,RWD,Truck
+Ram,3500,RWD,Truck
+Ram,TRX,RWD,Truck
+Volvo,XC40,AWD,SUV
+Volvo,XC60,AWD,SUV
+Volvo,XC90,AWD,SUV
+Volvo,S60,AWD,Sedan
+Volvo,V60,AWD,Wagon
+Volvo,C40 Recharge,FWD,SUV
+Volvo,XC40 Recharge,FWD,SUV
+Volvo,Polestar 2,RWD,Sedan
+Land Rover,Defender,RWD,SUV
+Land Rover,Discovery,RWD,SUV
+Land Rover,Discovery Sport,AWD,SUV
+Land Rover,Range Rover,RWD,SUV
+Land Rover,Range Rover Evoque,AWD,SUV
+Land Rover,Range Rover Sport,RWD,SUV
+Jaguar,I-PACE,RWD,SUV
+Jaguar,F-PACE,AWD,SUV
+Jaguar,F-TYPE,RWD,Coupe
+Jaguar,XE,RWD,Sedan
+Jaguar,XF,RWD,Sedan
+Fiat,500,FWD,Hatchback
+Fiat,500X,FWD,SUV
+Fiat,124 Spider,RWD,Convertible
+Alfa Romeo,Giulia,RWD,Sedan
+Alfa Romeo,Giulia Quadrifoglio,RWD,Sedan
+Alfa Romeo,Stelvio,AWD,SUV
+Alfa Romeo,Stelvio Quadrifoglio,AWD,SUV
+Peugeot,208,FWD,Hatchback
+Peugeot,2008,FWD,SUV
+Peugeot,308,FWD,Sedan
+Peugeot,3008,FWD,SUV
+Peugeot,508,RWD,Sedan
+Peugeot,5008,FWD,SUV
+Citroën,C1,FWD,Hatchback
+Citroën,C3,FWD,Hatchback
+Citroën,C3 Aircross,FWD,SUV
+Citroën,C4,FWD,Sedan
+Citroën,C5 Aircross,FWD,SUV
+Renault,Arkana,FWD,SUV
+Renault,Captur,FWD,SUV
+Renault,Clio,FWD,Hatchback
+Renault,Megane,FWD,Sedan
+Renault,Zoe,RWD,Hatchback
+Skoda,Fabia,FWD,Hatchback
+Skoda,Scala,FWD,Hatchback
+Skoda,Octavia,FWD,Sedan
+Skoda,Superb,FWD,Sedan
+Skoda,Karoq,FWD,SUV
+Skoda,Kodiaq,FWD,SUV
+Skoda,Enyaq iV,RWD,SUV
+SEAT,Arona,FWD,SUV
+SEAT,Ibiza,FWD,Hatchback
+SEAT,Leon,FWD,Sedan
+SEAT,Leon Sportstourer,FWD,Wagon
+SEAT,Tarraco,FWD,SUV
+SEAT,Mii,FWD,Hatchback
+SEAT,Born,RWD,Hatchback
+Opel/Vauxhall,Adam,FWD,Hatchback
+Opel/Vauxhall,Corsa,FWD,Hatchback
+Opel/Vauxhall,Astra,FWD,Sedan
+Opel/Vauxhall,Insignia,RWD,Sedan
+Opel/Vauxhall,Mokka,FWD,SUV
+Opel/Vauxhall,Grandland,FWD,SUV
+Opel/Vauxhall,Crossland,FWD,SUV
+Opel/Vauxhall,Combo,FWD,Van
+Opel/Vauxhall,Vivaro,FWD,Van
+Opel/Vauxhall,Movano,FWD,Van
+Mini,Cooper,FWD,Hatchback
+Mini,Cooper S,FWD,Hatchback
+Mini,John Cooper Works,FWD,Hatchback
+Mini,Cooper SE,RWD,Hatchback
+Mini,Countryman,FWD,SUV
+Mini,Clubman,AWD,Wagon
+Mini,Paceman,AWD,SUV
+Mini,Countryman John Cooper Works,AWD,SUV
+Saab,9-5,FWD,Sedan
+Saab,9-3,FWD,Sedan
+Saab,9-3 Convertible,FWD,Convertible
+Saab,9-5 SportCombi,AWD,Wagon
+Dodge,Grand Caravan,FWD,Van
+Dodge,Challenger SRT Demon,RWD,Coupe
+Dodge,Viper,RWD,Coupe
+Bugatti,Chiron,AWD,Coupe
+Bugatti,Veyron,AWD,Coupe
+Bugatti,EB 110,AWD,Coupe
+Bugatti,EB 110 SS,AWD,Coupe
+Maserati,Ghibli,RWD,Sedan
+Maserati,Quattroporte,RWD,Sedan
+Maserati,Levante,AWD,SUV
+Maserati,GranTurismo,RWD,Coupe
+Lancia,Stratos HF,RWD,Coupe
+Lancia,Delta Integrale,AWD,Hatchback
+Lancia,Thema 8.32,FWD,Sedan
+Lancia,Aurelia B24,RWD,Coupe
+Lancia,Fulvia,FWD,Coupe
+Pagani,Huayra,RWD,Coupe
+Pagani,Zonda,RWD,Coupe
+Pagani,Huayra BC,RWD,Coupe
+Pagani,Huayra R,RWD,Track Car
+Pagani,Huayra Imola,RWD,Coupe
+Koenigsegg,Gemera,AWD,4-seater
+Koenigsegg,Jesko,RWD,Coupe
+Koenigsegg,Regera,AWD,Coupe
+Koenigsegg,Agera RS,RWD,Coupe
+Koenigsegg,One:1,RWD,Coupe
+Koenigsegg,Agera S,RWD,Coupe
+Koenigsegg,Agera R,RWD,Coupe
+Koenigsegg,CCXR Trevita,RWD,Coupe
+Koenigsegg,CCX,RWD,Coupe
+Koenigsegg,CCXR,RWD,Coupe
+Koenigsegg,CC,RWD,Coupe
+Koenigsegg,CC8S,RWD,Coupe
+Genesis,G70,RWD,Sedan
+Genesis,G80,RWD,Sedan
+Genesis,GV70,RWD,SUV
+Genesis,GV80,AWD,SUV
+Genesis,GV90,AWD,SUV
+Polestar,Polestar 1,AWD,Coupe
+Polestar,Polestar 2,AWD,Crossover
+Polestar,Polestar 3,AWD,Sedan
+Lucid Motors,Lucid Air,AWD,Sedan
+Lucid Motors,Lucid Air Dream Edition Performance,AWD,Sedan
+Faraday Future,FF 91,AWD,SUV
+Faraday Future,FF 91,AWD,SUV
+Alpina,B3,AWD,Sedan
+Alpina,B4,AWD,Wagon
+Alpina,B5,AWD,Sedan
+Alpina,B7,AWD,Sedan
+Alpina,XB7,AWD,SUV
+Cadillac,CT4,RWD,Sedan
+Cadillac,CT4-V,AWD,Sedan
+Cadillac,CT5,RWD,Sedan
+Cadillac,CT5-V,AWD,Sedan
+Cadillac,CT5-V Blackwing,RWD,Sedan
+Cadillac,Escalade,AWD,SUV
+Cadillac,XT4,FWD,SUV
+Cadillac,XT5,FWD,SUV
+Cadillac,XT6,AWD,SUV
+Caterham,Seven 170,RWD,Sports car
+Caterham,Seven 270,RWD,Sports car
+Caterham,Seven 360,RWD,Sports car
+Caterham,Seven 420,RWD,Sports car
+Caterham,Seven 620,RWD,Sports car
+Chrysler,300,RWD,Sedan
+Chrysler,Pacifica,FWD,Minivan
+Chrysler,Voyager,FWD,Minivan
+Infiniti,QX50,FWD,SUV
+Infiniti,QX60,FWD,SUV
+Infiniti,QX80,AWD,SUV
+Infiniti,Q50,RWD,Sedan
+Infiniti,Q60,RWD,Coupe
+Infiniti,QX70,AWD,SUV
+Infiniti,QX70 Hybrid,AWD,SUV
+Isuzu,Ascender,AWD,SUV
+Isuzu,D-Max,4WD,Pickup Truck
+Isuzu,MU-X,4WD,SUV
+Isuzu,NPR,4WD,Truck
+Isuzu,NQR,4WD,Truck
+Isuzu,FTR,4WD,Truck
+Lotus,Emira,RWD,Sports car
+Lotus,Elise,RWD,Sports car
+Lotus,Exige,RWD,Sports car
+Morgan,Aero 8,RWD,Sports car
+Morgan,Plus 4,RWD,Sports car
+Morgan,Plus 6,RWD,Sports car
+Morgan,Roadster,RWD,Sports car
+Morgan,Super 3,RWD,Sports car
+Smart,Fortwo,FWD,City car
+Smart,Forfour,FWD,City car
+Suzuki,Across,AWD,SUV
+Suzuki,Baleno,FWD,Hatchback
+Suzuki,Celerio,FWD,Hatchback
+Suzuki,Ciaz,FWD,Sedan
+Suzuki,Jimny,4WD,SUV
+Suzuki,S-Cross,AWD,Crossover
+Suzuki,Swift,FWD,Hatchback
+Suzuki,Vitara,AWD,SUV
+Suzuki,XL7,AWD,SUV
+Zagato,Aston Martin DB4 GT Zagato,RWD,Coupé
+Zagato,Aston Martin V12 Zagato,RWD,Coupé
+Zagato,Alfa Romeo TZ3 Stradale,RWD,Coupé
+Zagato,Bentley Flying Spur Zagato,AWD,Saloon
+Zagato,Jaguar C-Type,RWD,Coupé
+Wiesmann,MF5,RWD,2-door sports car
+Wiesmann,GT MF4,RWD,2-door sports car
+Wiesmann,Roadster MF4,RWD,2-door sports car
+Lamborghini,Aventador,AWD,2-door sports car
+Lamborghini,Huracan,AWD,2-door sports car
+Lamborghini,Urus,AWD,5-door SUV
+Lamborghini,Sian,AWD,2-door sports car
+Lamborghini,Countach,RWD,2-door sports car
+Lamborghini,Diablo,RWD,2-door sports car
+Lamborghini,Murciélago,RWD,2-door sports car
+Lamborghini,Gallardo,RWD,2-door sports car
+Lamborghini,Espada,RWD,2-door grand tourer
+Lamborghini,Miura,RWD,2-door sports car
+Toyota,Camry,FWD,Sedan
+Toyota,Corolla,FWD,Sedan
+Toyota,Highlander,FWD,SUV
+Toyota,Prius,FWD,Hybrid
+Toyota,Mirai,RWD,Sedan
+Toyota,GR Supra,RWD,Sports car
+Toyota,86,RWD,Sports car
+Honda,Accord,FWD,Sedan
+Honda,Civic,FWD,Sedan
+Honda,CR-V,FWD,SUV
+Honda,HR-V,FWD,SUV
+Honda,Odyssey,FWD,Minivan
+Honda,Pilot,FWD,SUV
+Honda,Insight,FWD,Hybrid
+Honda,NSX,RWD,Sports car
+Honda,S2000,RWD,Sports car
+Renault,Koleos,FWD,SUV
+Renault,Megane,FWD,Sedan
+Tata Motors,Punch,FWD,SUV
+Tata Motors,Nexon,FWD,SUV
+Tata Motors,Harrier,AWD,SUV
+Tata Motors,Safari,AWD,SUV
+Tata Motors,Altroz,FWD,Hatchback
+Tata Motors,Tiago,FWD,Hatchback
+Tata Motors,Tigor,FWD,Sedan
+Tata Motors,Thar,AWD,SUV
