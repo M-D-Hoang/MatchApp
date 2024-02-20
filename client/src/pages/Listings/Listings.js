@@ -5,7 +5,7 @@ import {CarForm} from '../../components/Forms/CarForm.js';
 export function Listings() {
     return (
         <div>
-            <CarForm></CarForm>
+            <ItemForm/>
         </div>
     );
 }

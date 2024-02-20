@@ -5,12 +5,18 @@ export function CarForm(){
   
   const [image, setImage] = useState(null);
 
-  const submitItem = (e)=>{
+  const submitItem = async (e)=>{
     //do funny fetch thing, for now, alert the recieved form JSON
     e.preventDefault();
     const formData = new FormData(e.target);
     const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
-    alert(formJSON);
+    const resp = await fetch('/api/listing', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json",},
+      body: formJSON
+  });
+  const json = await resp.json();
+  alert(JSON.stringify(json))
   }
 
   function onImageChange(e){

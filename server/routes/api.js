@@ -5,26 +5,6 @@ import DB from '../db/db.js';
 const db = new DB();
 
 /*
-const userData = [
-  {
-    name: 'Joe',
-    comments: [],
-    picture:''
-  },
-  {
-    name: 'Billy Bob',
-    comments: ['hi this is my comment', 'wough'],
-    picture:''
-  },
-  {
-    name: 'Peter',
-    comments: ['yeag'],
-    picture:''
-  },
-];
-*/
-
-
 helloRouter.use('/users', async (req, res)=>{
   //res.json({content:userData, response:200});
 
@@ -62,6 +42,29 @@ helloRouter.post('/comment', async (req, res) => {
   }
 
 });
+*/
+
+helloRouter.post('/listing', async (req, res) => {
+  console.log(req.body);
+  //db is not implemented yet, for now, echo the body content
+  try {
+    //await db.addComment(req.body.name, req.body.comment, req.body.dateTime);
+   
+    return res.status(200).send({status:201, content:req.body});
+  } catch (e) {
+    res.status = 400;
+    res.json({
+      content:e.message,
+      status:400
+    });
+  }
+    
+  
+
+});
+
+
+
 
 helloRouter.use('/', (req, res)=>{
   res.json({
