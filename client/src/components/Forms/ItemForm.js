@@ -1,15 +1,7 @@
 import {useState} from 'react';
 import {ImagePreview} from './ImagePreview.js';
+import {updateListing} from './FormSubmit.js';
 
-async function updateListing(formData){
-  const resp = await fetch('/api/listing',{
-    method:'POST',
-    headers:{},
-    body:formData
-  });
-  const json = await resp.json();
-  return json;
-}
 
 export function ItemForm(){
   
@@ -19,8 +11,8 @@ export function ItemForm(){
       e.preventDefault();
       var formData = new FormData(e.target);
       formData.append('image',image);
-      console.log('a');
-      alert(JSON.stringify(await updateListing(formData)));
+      return await updateListing(formData)
+      
   };
   
 

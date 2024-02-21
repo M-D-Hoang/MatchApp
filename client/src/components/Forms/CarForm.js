@@ -1,25 +1,21 @@
 import {useState} from 'react';
 import {ImagePreview} from './ImagePreview.js';
+import {updateListing} from './FormSubmit.js';
 
 export function CarForm(){
   
   const [image, setImage] = useState(null);
 
-  const submitItem = async (e)=>{
-    //do funny fetch thing, for now, alert the recieved form JSON
+  const submitItem = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
-    const resp = await fetch('/api/listing', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json",},
-      body: formJSON
-  });
-  const json = await resp.json();
-  alert(JSON.stringify(json))
-  }
+    var formData = new FormData(e.target);
+    formData.append('image',image);
+    return await updateListing(formData)
+    
+};
 
-  function onImageChange(e){
+
+  async function onImageChange(e){
     const pickedFiles = e.target.files
     console.log("Image changed!")
     console.log(pickedFiles)
