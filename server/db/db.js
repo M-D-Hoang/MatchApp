@@ -24,17 +24,18 @@ export default class DB {
   }
 
   async readAllListings(){
-    return await Listing.find();
+    return await Listing.find().sort({ datePosted: -1 });
   }
 
   async readAllCarListings(){
-    return await CarListing.find();
+    return await CarListing.find().sort({ datePosted: -1 });
   }
 
   async createListing(listing){
     const listingRow = new Listing({
       ownerID: listing.ownerID,
       title: listing.title,
+      datePosted: Date.now(),
       description: listing.description,
       price: listing.price,
       imageURIs: listing.imageURIs,
@@ -49,6 +50,7 @@ export default class DB {
     const listingRow = new Listing({
       ownerID: listing.ownerID,
       title: listing.title,
+      datePosted: Date.now(),
       description: listing.description,
       price: listing.price,
       condition: listing.condition,
@@ -69,56 +71,6 @@ export default class DB {
     const update = { $set: {picture: imageURL} };
     await User.findOneAndUpdate({name:username}, update, {
       upsert:true
-    });
-  }
-
-  async createUser(user) {
-    const formattedComments = user.comments.map(comment => ({
-      text: comment.text,
-      time: comment.time
-    }));
-    
-    const userRow = new User({
-      name: user.name,
-      comments: formattedComments,
-      picture: user.picture
-    });
-    
-    await userRow.save();
-  }
-
-  // // BROKEN FOR NOW
-  // async createManyUsers(users) {
-  //   const userRows = [];
-  //   // make mongoose User objects
-  //   users.forEach(user => {
-  //     userRows.push(new User({
-  //       name: user.name,
-  //       comments: user.comments,
-  //       picture: user.picture
-  //     }));
-  //   });
-  //   // save each object to DB
-  //   userRows.forEach(async (userRow) => {
-  //     await userRow.save();
-  //   });
-  // }
-
-  //add a comment to user's comments array,
-  //if user not, exist, makes new user
-  //need to be tested
-  async addComment(user, comment, time) {
-    const update = {
-      $push: {
-        comments: {
-          text: comment,
-          time: time,
-        },
-      },
-    };
-
-    await User.findOneAndUpdate({ name: user }, update, {
-      upsert: true,
     });
   }
 }

@@ -5,6 +5,7 @@ const { Schema, model } = mongoose;
 const listingSchema = new Schema({
   ownerID: {type: String, required: true},
   title: {type: String, required: true},
+  datePosted: {type: Date, required: true},
   description: {type: String, required: false},
   price: {type: Number, required: true},
   imageURIs: {type: Array, required: false},
@@ -16,6 +17,7 @@ const listingSchema = new Schema({
 const carListingSchema = new Schema({
   ownerID: {type: String, required: true},
   title: {type: String, required: true},
+  datePosted: {type: Date, required: true},
   description: {type: String, required: false},
   price: {type: Number, required: true},
   condition: {type: String, required: false},
@@ -27,15 +29,5 @@ const carListingSchema = new Schema({
   imageURIs: {type: Array, required: false},
 });
 
-// const commentSchema = new Schema({
-//   text: String,
-//   time: String,
-// });
-
-// const userSchema = new Schema({
-//   name: String,
-//   comments: [commentSchema],
-//   picture: String,
-// });
 export const Listing = model('Listing', listingSchema);
 export const CarListing = model('CarListing', carListingSchema);

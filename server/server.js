@@ -2,11 +2,14 @@ import express from 'express';
 export const app = express();
 //Middleware imports
 import helloRouter from './routes/helloworld.js';
+import listingsRouter from './routes/listings.js';
 
 app.use(express.json());
 
-//at url /api/helloworld
-app.use('/api', helloRouter);
+//for testing only, we will remove it eventually
+app.use('/test-api', helloRouter);
+
+app.use('/api/listings', listingsRouter);
 
 app.use('/', express.static('../client/build/'));
 
