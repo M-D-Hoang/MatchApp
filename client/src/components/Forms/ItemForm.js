@@ -1,36 +1,30 @@
 import {useState} from 'react';
 import {ImagePreview} from './ImagePreview.js';
 
-async function postListing(formData){
-  console.log(formData);
+async function updateListing(formData){
   const resp = await fetch('/api/listing',{
-      method:'POST',
-      headers: {},
-      body:formData
+    method:'POST',
+    headers:{},
+    body:formData
   });
   const json = await resp.json();
   return json;
 }
 
-
 export function ItemForm(){
   
   const [image, setImage] = useState(null);
 
-  const submitItem = async (e)=>{
-    e.preventDefault();
-    console.log(e);
-    var formData = new FormData(e.form);
-    formData.append('image', image);
-   
-    const result = await postListing(formData);
-    alert(JSON.stringify(result));
-
+  const submitItem = async (e) => {
+      e.preventDefault();
+      var formData = new FormData(e.target);
+      formData.append('image',image);
+      console.log('a');
+      alert(JSON.stringify(await updateListing(formData)));
   };
   
-  
 
-  function onImageChange(e){
+  async function onImageChange(e){
     const pickedFiles = e.target.files
     console.log("Image changed!")
     console.log(pickedFiles)
@@ -44,7 +38,7 @@ export function ItemForm(){
 
    return (
     <div className="item-form">
-      <form onSubmit={submitItem}>
+      <form onSubmit={submitItem} >
         <label>Title: <input type="text" name="name"></input></label>
         <label>Description: <input type="text" name="description"></input></label>
         <label>Price: <input type="number" name="price"></input></label>
@@ -54,6 +48,7 @@ export function ItemForm(){
         <label>Category: <input type="text" name="category"></input></label>
         <input type="submit"></input>
       </form>
+      
       <ImagePreview src={image}/>
     </div>
   );
