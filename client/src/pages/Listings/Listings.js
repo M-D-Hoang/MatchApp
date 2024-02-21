@@ -1,11 +1,13 @@
 import React from "react";
-import {ItemForm} from '../../components/Forms/ItemForm.js';
-import {CarForm} from '../../components/Forms/CarForm.js';
-//temporary page
+import { ListingsSidebar } from "../../components/ListingsSidebar/ListingsSidebar";
+import { ListingsLayout } from "../../components/Layout/ListingsLayout";
+import "./Listings.css";
+
 export function Listings() {
     return (
-        <div>
-            <CarForm/>
+        <div className="listings-page">
+            <ListingsSidebar />
+            <ListingsLayout />
         </div>
     );
 }
