@@ -16,4 +16,3 @@ process.on('SIGINT', () => {
 });
 
 export default server;
-//module.exports = server;

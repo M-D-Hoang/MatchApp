@@ -20,6 +20,15 @@ helloRouter.use('/helloworld', (req, res)=>{
   });
 });
 
+helloRouter.use('/listings', async (req, res) => {
+  try {
+    const listings = await db.readAllListings();
+    res.status(200).json({content: listings, response: 200});
+  } catch {
+    res.status(500).send('Internal DB error. Could not read listings');
+  }
+});
+
 helloRouter.use('/upload', imageUploadRouter);
 
 helloRouter.post('/comment', async (req, res) => {

@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import User from './model/User.js';
+import { Listing, CarListing } from './model/Listing.js';
 
 dotenv.config();
 const dbUrl = process.env.ATLAS_URI;
@@ -22,9 +23,43 @@ export default class DB {
     return instance;
   }
 
-  async readAllUsers() {
-    const users = await User.find();
-    return users;
+  async readAllListings(){
+    return await Listing.find();
+  }
+
+  async readAllCarListings(){
+    return await CarListing.find();
+  }
+
+  async createListing(listing){
+    const listingRow = new Listing({
+      ownerID: listing.ownerID,
+      title: listing.title,
+      description: listing.description,
+      price: listing.price,
+      imageURIs: listing.imageURIs,
+      condition: listing.condition,
+      extraField: listing.extraField,
+      category: listing.category
+    });
+    await listingRow.save();
+  }
+
+  async createCarListing(listing){
+    const listingRow = new Listing({
+      ownerID: listing.ownerID,
+      title: listing.title,
+      description: listing.description,
+      price: listing.price,
+      condition: listing.condition,
+      make: listing.extraField,
+      model: listing.model,
+      bodyType: listing.bodyType,
+      mileage: listing.mileage,
+      transmission: listing.transmission,
+      imageURIs: listing.imageURIs
+    });
+    await listingRow.save();
   }
 
   async updateUserImage(username, imageURL){
@@ -52,22 +87,22 @@ export default class DB {
     await userRow.save();
   }
 
-  // BROKEN FOR NOW
-  async createManyUsers(users) {
-    const userRows = [];
-    // make mongoose User objects
-    users.forEach(user => {
-      userRows.push(new User({
-        name: user.name,
-        comments: user.comments,
-        picture: user.picture
-      }));
-    });
-    // save each object to DB
-    userRows.forEach(async (userRow) => {
-      await userRow.save();
-    });
-  }
+  // // BROKEN FOR NOW
+  // async createManyUsers(users) {
+  //   const userRows = [];
+  //   // make mongoose User objects
+  //   users.forEach(user => {
+  //     userRows.push(new User({
+  //       name: user.name,
+  //       comments: user.comments,
+  //       picture: user.picture
+  //     }));
+  //   });
+  //   // save each object to DB
+  //   userRows.forEach(async (userRow) => {
+  //     await userRow.save();
+  //   });
+  // }
 
   //add a comment to user's comments array,
   //if user not, exist, makes new user
