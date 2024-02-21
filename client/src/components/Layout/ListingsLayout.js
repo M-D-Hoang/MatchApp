@@ -3,6 +3,8 @@ import "./ListingsLayout.css";
 
 import { ItemCardRectangle } from "../../components/ItemCard/ItemCardRectangle";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
+import { DetailedView } from "../../components/DetailedView/DetailedViewLayout";
+
 
 export function ListingsLayout() {
     const [open, setOpen] = React.useState(false);
@@ -25,20 +27,9 @@ export function ListingsLayout() {
         // Handle sort
     };
 
-    const renderListingsRectangle = () => {
-        return (
-            <div>
-                <ItemCardRectangle />
-                <ItemCardRectangle />
-                <ItemCardRectangle />
-                <ItemCardRectangle />
-                <ItemCardRectangle />
-            </div>
-        );
-    };
-
     return (
         <div className="listings-layout">
+            <DetailedView />
             <div className="search-bar">
                 <input
                     type="text"
