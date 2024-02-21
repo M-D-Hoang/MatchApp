@@ -1,24 +1,34 @@
 import {useState} from 'react';
 import {ImagePreview} from './ImagePreview.js';
 
+async function postListing(formData){
+  console.log(formData);
+  const resp = await fetch('/api/listing',{
+      method:'POST',
+      headers: {},
+      body:formData
+  });
+  const json = await resp.json();
+  return json;
+}
+
 
 export function ItemForm(){
   
   const [image, setImage] = useState(null);
 
   const submitItem = async (e)=>{
-    //do funny fetch thing, for now, alert the recieved form JSON
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const formJSON = JSON.stringify(Object.fromEntries(formData.entries()));
-    const resp = await fetch('/api/listing', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json",},
-      body: formJSON
-  });
-  const json = await resp.json();
-  alert(JSON.stringify(json))
-  }
+    console.log(e);
+    var formData = new FormData(e.form);
+    formData.append('image', image);
+   
+    const result = await postListing(formData);
+    alert(JSON.stringify(result));
+
+  };
+  
+  
 
   function onImageChange(e){
     const pickedFiles = e.target.files
@@ -38,7 +48,7 @@ export function ItemForm(){
         <label>Title: <input type="text" name="name"></input></label>
         <label>Description: <input type="text" name="description"></input></label>
         <label>Price: <input type="number" name="price"></input></label>
-        <input type="file" name="image" accept="image/*" onChange={onImageChange}></input>
+        <label>Image: <input type="file" name="image" accept="image/*" onChange={onImageChange}></input></label>
         <label>Condition: <input type="text" name="condition"></input></label>
         <label>Extra: <input type="text" name="extra"></input></label>
         <label>Category: <input type="text" name="category"></input></label>
