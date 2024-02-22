@@ -24,18 +24,9 @@ const carListingSchema = new Schema({
   bodyType: {type: String, required: true},
   mileage: {type: Number, required: true},
   transmission: {type: String, required: true},
+  driveTrain: {type: String, required: true},
   imageURIs: {type: Array, required: false},
 });
 
-// const commentSchema = new Schema({
-//   text: String,
-//   time: String,
-// });
-
-// const userSchema = new Schema({
-//   name: String,
-//   comments: [commentSchema],
-//   picture: String,
-// });
 export const Listing = model('Listing', listingSchema);
 export const CarListing = model('CarListing', carListingSchema);

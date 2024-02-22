@@ -1,9 +1,10 @@
-function generateRandomUsername(prefix = "user") {
+function generateRandomUsername(prefix = 'user') {
   const randomNumber = Math.floor(Math.random() * 10000);
   return `${prefix}${randomNumber}`;
 }
 
-function generateRandomPassword(length = 12, includeUppercase = true, includeLowercase = true, includeNumbers = true, includeSpecialChars = true) {
+function generateRandomPassword(length = 12, includeUppercase = true, 
+  includeLowercase = true, includeNumbers = true, includeSpecialChars = true) {
   const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
   const numberChars = '0123456789';
@@ -18,8 +19,8 @@ function generateRandomPassword(length = 12, includeUppercase = true, includeLow
   if (includeSpecialChars) allChars += specialChars;
 
   for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * allChars.length);
-      password += allChars.charAt(randomIndex);
+    const randomIndex = Math.floor(Math.random() * allChars.length);
+    password += allChars.charAt(randomIndex);
   }
 
   return password;
@@ -30,13 +31,13 @@ function generateRandomEmail() {
   const domain = ['outlook.com', 'gmail.com', 'hotmail.com', 'yahoo.com'];
 
   const getRandomString = (length) => {
-      const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-      let result = '';
-      for (let i = 0; i < length; i++) {
-          const randomIndex = Math.floor(Math.random() * chars.length);
-          result += chars.charAt(randomIndex);
-      }
-      return result;
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * chars.length);
+      result += chars.charAt(randomIndex);
+    }
+    return result;
   };
 
   const localPart = getRandomString(localPartLength);
@@ -47,13 +48,12 @@ function generateRandomEmail() {
 
 function generateRandomPhoneNumber() {
   const getRandomDigit = () => Math.floor(Math.random() * 10);
-
-  const countryCode = '+1'; // Modify the country code as needed
+  
   const areaCode = `${getRandomDigit()}${getRandomDigit()}${getRandomDigit()}`;
   const firstPart = `${getRandomDigit()}${getRandomDigit()}${getRandomDigit()}`;
   const secondPart = `${getRandomDigit()}${getRandomDigit()}${getRandomDigit()}${getRandomDigit()}`;
 
-  return `${countryCode} (${areaCode}) ${firstPart}-${secondPart}`;
+  return `(${areaCode}) ${firstPart}-${secondPart}`;
 }
 
 function getRandomMonth() {
