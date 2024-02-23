@@ -2,7 +2,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const itemGenerationTools = require('./itemGeneration.js');
 
-async function returnUserArrayObject(csvFilePath, userData) {
+async function returnItemArrayObject(csvFilePath, userData) {
   const itemData = [];
 
   await new Promise((resolve, reject) => {
@@ -10,6 +10,7 @@ async function returnUserArrayObject(csvFilePath, userData) {
       pipe(csv()).
       on('data', (row) => {
         const randomUser = userData[Math.floor(Math.random() * userData.length)];
+        const extraField = itemGenerationTools.handleCategory(row.category);
         const newItem = {
           ownerID: randomUser.username,
           title: row.title,
@@ -17,7 +18,7 @@ async function returnUserArrayObject(csvFilePath, userData) {
           price: row.price,
           imageURIs: [row.imgUrl],
           condition: itemGenerationTools.generateRandomCondition(),
-          extraField: itemGenerationTools.handleCategory(row.category),
+          extraField: extraField,
           category: row.category
         };
         
@@ -34,4 +35,4 @@ async function returnUserArrayObject(csvFilePath, userData) {
   return itemData;
 }
 
-module.exports = { returnUserArrayObject };
+module.exports = { returnItemArrayObject };

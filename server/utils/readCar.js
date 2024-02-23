@@ -2,7 +2,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const itemGenerationTools = require('./itemGeneration.js');
 
-async function returnUserArrayObject(csvFilePath, userData) {
+async function returnCarArrayObject(csvFilePath, userData) {
   const carData = [];
 
   await new Promise((resolve, reject) => {
@@ -37,4 +37,4 @@ async function returnUserArrayObject(csvFilePath, userData) {
   return carData;
 }
 
-module.exports = { returnUserArrayObject };
+module.exports = { returnCarArrayObject };

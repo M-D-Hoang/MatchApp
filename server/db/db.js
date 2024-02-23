@@ -1,14 +1,14 @@
-import * as dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import User from './model/User.js';
-import { Listing, CarListing } from './model/Listing.js';
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const User = require('./model/User.js');
+const { Listing, CarListing } = require('./model/Listing.js');
 
 dotenv.config();
 const dbUrl = process.env.ATLAS_URI;
 
 let instance = null;
 
-export default class DB {
+class DB {
   constructor() {
     //instance is the singleton, defined in outer scope
     if (!instance){
@@ -73,15 +73,17 @@ export default class DB {
   }
 
   async createUser(user) {
-    const formattedComments = user.comments.map(comment => ({
-      text: comment.text,
-      time: comment.time
-    }));
-    
     const userRow = new User({
-      name: user.name,
-      comments: formattedComments,
-      picture: user.picture
+      username: user.username,
+      password: user.password,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      birthday: user.birthday,
+      gender: user.gender,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      picture: user.picture,
+      type: user.type
     });
     
     await userRow.save();
@@ -122,3 +124,5 @@ export default class DB {
     });
   }
 }
+
+module.exports = DB;
