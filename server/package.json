@@ -6,7 +6,7 @@
   "main": "www/bin.js",
   "scripts": {
     "start": "node bin/www.js",
-    "seed": "node utils/seed.js",
+    "seed": "node utils/seed.cjs",
     "dev": "nodemon bin/www.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit"
   },
