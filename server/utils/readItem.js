@@ -10,7 +10,7 @@ async function returnItemArrayObject(csvFilePath, userData) {
       pipe(csv()).
       on('data', (row) => {
         const randomUser = userData[Math.floor(Math.random() * userData.length)];
-        const extraField = itemGenerationTools.handleCategory(row.category);
+        const extraField = itemGenerationTools.handleCategory(row.categoryName);
         const newItem = {
           ownerID: randomUser.username,
           title: row.title,

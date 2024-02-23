@@ -70,6 +70,6 @@ const occupyCarDB = async () => {
   }
 };
 
-// occupyUserDB();
+occupyUserDB();
 occupyItemDB();
-// occupyCarDB();
+occupyCarDB();
