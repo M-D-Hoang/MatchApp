@@ -7,7 +7,7 @@ const userFilePath = path.join(__dirname, './SeedingDataset/userSeedDataset.csv'
 const carFilePath = path.join(__dirname, './SeedingDataset/carSeedDataset.csv');
 const itemFilePath = path.join(__dirname, './SeedingDataset/itemSeedDataset.csv');
 let db;
-
+// eslint-disable-next-line no-unused-vars
 const occupyUserDB = async () => {
   const userDocuments = await returnUserArrayObject(userFilePath);
   let num = 0;
@@ -27,7 +27,7 @@ const occupyUserDB = async () => {
     process.exit();
   }
 };
-
+// eslint-disable-next-line no-unused-vars
 const occupyItemDB = async () => {
   const userData = await returnUserArrayObject(userFilePath);
   const itemDocuments = await returnItemArrayObject(itemFilePath, userData);
@@ -49,6 +49,7 @@ const occupyItemDB = async () => {
   }
 };
 
+// eslint-disable-next-line no-unused-vars
 const occupyCarDB = async () => {
   const userData = await returnUserArrayObject(userFilePath);
   const carDocuments = await returnCarArrayObject(carFilePath, userData);
