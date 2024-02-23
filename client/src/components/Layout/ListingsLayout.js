@@ -1,18 +1,20 @@
 import React from "react";
+import { useState } from "react";
 import "./ListingsLayout.css";
 
 import { ItemCardRectangle } from "../../components/ItemCard/ItemCardRectangle";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 import { DetailedView } from "../../components/DetailedView/DetailedViewLayout";
 
-
 export function ListingsLayout() {
-    const [open, setOpen] = React.useState(false);
+    const [isMenuOpen, setOpen] = useState(false);
+    const [isDeatiledView, setDetailedView] = useState(false);
+
     const handleSearchChange = () => {
         // Handle search
     };
     const handleOpen = () => {
-        setOpen(!open);
+        setOpen(!isMenuOpen);
     };
     const handleSortByPrice = () => {
         setOpen(false);
@@ -26,10 +28,20 @@ export function ListingsLayout() {
         setOpen(false);
         // Handle sort
     };
+    const handleShowDetailedView = () => {
+        setDetailedView(true);
+    };
+    const handleHideDetailedView = () => {
+        setDetailedView(false);
+    };
 
     return (
         <div className="listings-layout">
-            <DetailedView />
+            {isDeatiledView ? (
+                <div onClick={handleHideDetailedView}>
+                    <DetailedView />
+                </div>
+            ) : null}
             <div className="search-bar">
                 <input
                     type="text"
@@ -38,7 +50,7 @@ export function ListingsLayout() {
                 />
                 <div className="dropdown">
                     <button onClick={handleOpen}>Sort By</button>
-                    {open ? (
+                    {isMenuOpen ? (
                         <div className="dropdown-content">
                             <button onClick={handleSortByPrice}>Price</button>
                             <button onClick={handleSortByTime}>Time</button>
@@ -49,7 +61,9 @@ export function ListingsLayout() {
                     ) : null}
                 </div>
             </div>
-            <div className="listings-display square">
+            <div
+                className="listings-display square"
+                onClick={handleShowDetailedView}>
                 <ItemCardSquare />
                 <ItemCardSquare />
                 <ItemCardSquare />
