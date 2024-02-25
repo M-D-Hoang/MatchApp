@@ -14,8 +14,7 @@ async function returnUserArrayObject(csvFilePath) {
           password: userGenerationTools.generateRandomPassword(),
           firstName: row.first_name,
           lastName: row.last_name,
-          birthday: `${userGenerationTools.getRandomYear()}-
-          ${userGenerationTools.getRandomMonth()}-${userGenerationTools.getRandomDay()}`,
+          birthday: userGenerationTools.generateRandomBirthday(),
           gender: row.gender,
           email: userGenerationTools.generateRandomEmail(),
           phoneNumber: userGenerationTools.generateRandomPhoneNumber(),

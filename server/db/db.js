@@ -46,17 +46,18 @@ class DB {
   }
 
   async createCarListing(listing){
-    const listingRow = new Listing({
+    const listingRow = new CarListing({
       ownerID: listing.ownerID,
       title: listing.title,
       description: listing.description,
       price: listing.price,
       condition: listing.condition,
-      make: listing.extraField,
+      make: listing.make,
       model: listing.model,
       bodyType: listing.bodyType,
       mileage: listing.mileage,
       transmission: listing.transmission,
+      driveTrain: listing.driveTrain,
       imageURIs: listing.imageURIs
     });
     await listingRow.save();

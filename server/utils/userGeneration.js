@@ -56,24 +56,18 @@ function generateRandomPhoneNumber() {
   return `(${areaCode}) ${firstPart}-${secondPart}`;
 }
 
-function getRandomMonth() {
-  return Math.floor(Math.random() * 12) + 1;
-}
-
-function getRandomDay(month, year) {
-  const daysInMonth = new Date(year, month, 0).getDate();
-  const randomDay = Math.floor(Math.random() * daysInMonth) + 1;
-
-  const formattedMonth = month < 10 ? '0' + month : month;
-  const formattedDay = randomDay < 10 ? '0' + randomDay : randomDay;
-
-  return `${formattedMonth}/${formattedDay}/${year}`;
-}
-
-function getRandomYear() {
+function generateRandomBirthday() {
   const currentYear = new Date().getFullYear();
-  const minYear = currentYear - 100;
-  return Math.floor(Math.random() * (currentYear - minYear + 1)) + minYear;
+  const minYear = currentYear - 60;
+  const maxYear = currentYear;
+
+  const randomYear = Math.floor(Math.random() * (maxYear - minYear + 1)) + minYear;
+  const randomMonth = Math.floor(Math.random() * 12) + 1;
+  const randomDay = Math.floor(Math.random() * 28) + 1;
+  const randomDate = new Date(randomYear, randomMonth - 1, randomDay);
+  const formattedDate = randomDate.toISOString().split('T')[0];
+
+  return formattedDate;
 }
 
 module.exports = {
@@ -81,7 +75,5 @@ module.exports = {
   generateRandomPassword,
   generateRandomEmail,
   generateRandomPhoneNumber,
-  getRandomMonth,
-  getRandomDay,
-  getRandomYear,
+  generateRandomBirthday
 };

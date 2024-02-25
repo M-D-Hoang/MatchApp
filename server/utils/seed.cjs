@@ -10,15 +10,12 @@ let db;
 // eslint-disable-next-line no-unused-vars
 const occupyUserDB = async () => {
   const userDocuments = await returnUserArrayObject(userFilePath);
-  let num = 0;
   try {
     db = new DB();
-    for( const user of userDocuments){
-      db.createUser(user);
-      num++;
-    }
+    const createUserPromises = userDocuments.map(user => db.createUser(user));
+    await Promise.all(createUserPromises);
     // eslint-disable-next-line no-console
-    console.log(`Inserted ${num} users`);
+    console.log(`Inserted ${userDocuments.length} users`);
   } catch (e) {
     console.error('could not seed users');
     // eslint-disable-next-line no-console
@@ -31,15 +28,12 @@ const occupyUserDB = async () => {
 const occupyItemDB = async () => {
   const userData = await returnUserArrayObject(userFilePath);
   const itemDocuments = await returnItemArrayObject(itemFilePath, userData);
-  let num = 0;
   try {
     db = new DB();
-    for ( const item of itemDocuments){
-      db.createListing(item);
-      num++;
-    }
+    const createListingPromises = itemDocuments.map(item => db.createListing(item));
+    await Promise.all(createListingPromises);
     // eslint-disable-next-line no-console
-    console.log(`Inserted ${num} items`);
+    console.log(`Inserted ${itemDocuments.length} items`);
   } catch (e) {
     console.error('could not seed items');
     // eslint-disable-next-line no-console
@@ -53,15 +47,12 @@ const occupyItemDB = async () => {
 const occupyCarDB = async () => {
   const userData = await returnUserArrayObject(userFilePath);
   const carDocuments = await returnCarArrayObject(carFilePath, userData);
-  let num = 0;
   try {
     db = new DB();
-    for ( const car of carDocuments){
-      db.createCarListing(car);
-      num++;
-    }
+    const createCarListingPromises = carDocuments.map(car => db.createCarListing(car));
+    await Promise.all(createCarListingPromises);
     // eslint-disable-next-line no-console
-    console.log(`Inserted ${num} cars`);
+    console.log(`Inserted ${carDocuments.length} cars`);
   } catch (e) {
     console.error('could not seed cars');
     // eslint-disable-next-line no-console
@@ -71,6 +62,8 @@ const occupyCarDB = async () => {
   }
 };
 
-occupyUserDB();
-occupyItemDB();
+// Uncomment 1 at a time
+
+// occupyUserDB();
+// occupyItemDB();
 occupyCarDB();

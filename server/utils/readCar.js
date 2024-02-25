@@ -12,9 +12,9 @@ async function returnCarArrayObject(csvFilePath, userData) {
         const randomUser = userData[Math.floor(Math.random() * userData.length)];
         const newCar = {
           ownerID: randomUser.username,
-          title: itemGenerationTools.generateCarRandomPrice(),
+          title: itemGenerationTools.generateCarTitle(row.make, row.model), 
           description: itemGenerationTools.generateDescription(),
-          price: itemGenerationTools.generateCarTitle(row.make, row.model),
+          price: itemGenerationTools.generateCarRandomPrice(),
           condition: itemGenerationTools.generateRandomCondition(),
           make: row.make,
           model: row.model,
