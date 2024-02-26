@@ -9,8 +9,14 @@ import { DetailedView } from "../../components/DetailedView/DetailedViewLayout";
 export function ListingsLayout() {
     const [isMenuOpen, setOpen] = useState(false);
     const [isDeatiledView, setDetailedView] = useState(false);
+    const [filter, setFilter] = useState("");
 
-    const handleSearchChange = () => {
+    function handleSearchChange(e) {
+        setFilter(e.target.value);
+    }
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        alert(e.target.value);
         // Handle search
     };
     const handleOpen = () => {
@@ -43,11 +49,15 @@ export function ListingsLayout() {
                 </div>
             ) : null}
             <div className="search-bar">
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    onChange={handleSearchChange}
-                />
+                <form onSubmit={handleSearchSubmit}>
+                    <input
+                        type="text"
+                        value={filter}
+                        onChange={handleSearchChange}
+                        placeholder="Search..."
+                    />
+                </form>
+
                 <div className="dropdown">
                     <button onClick={handleOpen}>Sort By</button>
                     {isMenuOpen ? (
