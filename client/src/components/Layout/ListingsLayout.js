@@ -47,11 +47,13 @@ export function ListingsLayout() {
     const handleShowDetailedView = () => {
         setDetailedView(true);
     };
-    const handleHideDetailedView = () => {
-        setDetailedView(false);
+    const handleHideDetailedView = (e) => {
+        
+        if(e.target.className === "overlay"){
+            setDetailedView(false);
+        }
     };
 
-    console.log(listingData);
     //generate JSX based on listing data
     const listingJSX = listingData.map((item) => {
         return (
@@ -68,8 +70,8 @@ export function ListingsLayout() {
     return (
         <div className="listings-layout">
             {isDeatiledView ? (
-                <div onClick={handleHideDetailedView}>
-                    <DetailedView />
+                <div>
+                    <DetailedView onExit={handleHideDetailedView}/>
                 </div>
             ) : null}
             <div className="search-bar">
