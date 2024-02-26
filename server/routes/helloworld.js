@@ -1,7 +1,7 @@
-import express from 'express';
-import {imageUploadRouter} from './imageUpload.js';
+const express = require('express');
+const { imageUploadRouter } = require('./imageUpload.js');
 const helloRouter = express.Router();
-import DB from '../db/db.js';
+const DB = require('../db/db.js');
 const db = new DB();
 
 helloRouter.use('/users', async (req, res)=>{
@@ -54,4 +54,4 @@ helloRouter.use('/', (req, res)=>{
   });
 });
 
-export default helloRouter;
+module.exports = helloRouter;

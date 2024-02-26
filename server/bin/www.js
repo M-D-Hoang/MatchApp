@@ -1,7 +1,9 @@
-import app from '../server.js';
+/* eslint-disable no-console */
+const app = require('../server.js');
 const port = process.env.PORT || 3000;
 
 let server;
+
 (async () => {
   server = app.listen(port, () => {
     console.log(`Server listening on port ${port}!`);
@@ -15,4 +17,4 @@ process.on('SIGINT', () => {
   });
 });
 
-export default server;
+module.exports = server;
