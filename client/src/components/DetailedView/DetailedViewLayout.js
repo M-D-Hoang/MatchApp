@@ -5,14 +5,20 @@ import tempImage from "../../assets/images/item-image-temp1.png";
 
 import "./DetailedViewLayout.css";
 
-export function DetailedView({isRender}) {
+//TO-DO: Implement multiple image scrollthrough
+export function DetailedView({isRender, onExit, item}) {
+    const image = item.imageURIs[0]
+    if (image === undefined){
+        image = tempImage;
+    }
+
     return (
-        <div className={"overlay"}>
+        <div className={"overlay"} onClick={onExit}>
             <div className={"detailed-view"}>
                 <div className={"item-image"}>
-                    <img src={tempImage} />
+                    <img src={image} />
                 </div>
-                <ItemInfo />
+                <ItemInfo item={item} />
             </div>
         </div>
     );
