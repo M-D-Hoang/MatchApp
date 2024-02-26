@@ -35,6 +35,11 @@ export function ListingsLayout() {
         setDetailedView(false);
     };
 
+    if (isDeatiledView) {
+        document.body.style.overflow = "hidden";
+    } else{
+        document.body.style.overflow = "auto";
+    }
     return (
         <div className="listings-layout">
             {isDeatiledView ? (

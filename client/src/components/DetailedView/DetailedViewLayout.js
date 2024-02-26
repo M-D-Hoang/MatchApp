@@ -6,9 +6,6 @@ import tempImage from "../../assets/images/item-image-temp1.png";
 import "./DetailedViewLayout.css";
 
 export function DetailedView({isRender}) {
-
-    document.body.style.overflow = "hidden";
-
     return (
         <div className={"overlay"}>
             <div className={"detailed-view"}>
