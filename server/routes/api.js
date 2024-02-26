@@ -1,7 +1,8 @@
-import express from 'express';
-
+/* eslint-disable no-console */
+const express = require('express');
+// const { imageUploadRouter } = require('./imageUpload.js');
 const helloRouter = express.Router();
-import DB from '../db/db.js';
+const DB = require('../db/db.js');
 const db = new DB();
 import fileUpload from 'express-fileupload';
 
@@ -36,8 +37,14 @@ helloRouter.post('/listing', (req, res) => {
 
 });
 
-
-
+helloRouter.use('/listings', async (req, res) => {
+  try {
+    const listings = await db.readAllListings();
+    res.status(200).json({content: listings, response: 200});
+  } catch {
+    res.status(500).send('Internal DB error. Could not read listings');
+  }
+});
 
 helloRouter.use('/', (req, res)=>{
   res.json({
@@ -48,5 +55,4 @@ helloRouter.use('/', (req, res)=>{
 });
 
 
-//module.exports = helloRouter;
-export default helloRouter;
+module.exports = helloRouter;
