@@ -16,7 +16,7 @@ export function ListingsLayout() {
     }
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        alert(e.target.value);
+        alert(filter);
         // Handle search
     };
     const handleOpen = () => {
