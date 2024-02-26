@@ -1,13 +1,14 @@
-import * as dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import User from './model/User.js';
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const User = require('./model/User.js');
+const { Listing, CarListing } = require('./model/Listing.js');
 
 dotenv.config();
 const dbUrl = process.env.ATLAS_URI;
 
 let instance = null;
 
-export default class DB {
+class DB {
   constructor() {
     //instance is the singleton, defined in outer scope
     if (!instance){
@@ -22,9 +23,44 @@ export default class DB {
     return instance;
   }
 
-  async readAllUsers() {
-    const users = await User.find();
-    return users;
+  async readAllListings(){
+    return await Listing.find();
+  }
+
+  async readAllCarListings(){
+    return await CarListing.find();
+  }
+
+  async createListing(listing){
+    const listingRow = new Listing({
+      ownerID: listing.ownerID,
+      title: listing.title,
+      description: listing.description,
+      price: listing.price,
+      imageURIs: listing.imageURIs,
+      condition: listing.condition,
+      extraField: listing.extraField,
+      category: listing.category
+    });
+    await listingRow.save();
+  }
+
+  async createCarListing(listing){
+    const listingRow = new CarListing({
+      ownerID: listing.ownerID,
+      title: listing.title,
+      description: listing.description,
+      price: listing.price,
+      condition: listing.condition,
+      make: listing.make,
+      model: listing.model,
+      bodyType: listing.bodyType,
+      mileage: listing.mileage,
+      transmission: listing.transmission,
+      driveTrain: listing.driveTrain,
+      imageURIs: listing.imageURIs
+    });
+    await listingRow.save();
   }
 
   async updateUserImage(username, imageURL){
@@ -38,36 +74,38 @@ export default class DB {
   }
 
   async createUser(user) {
-    const formattedComments = user.comments.map(comment => ({
-      text: comment.text,
-      time: comment.time
-    }));
-    
     const userRow = new User({
-      name: user.name,
-      comments: formattedComments,
-      picture: user.picture
+      username: user.username,
+      password: user.password,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      birthday: user.birthday,
+      gender: user.gender,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      picture: user.picture,
+      type: user.type
     });
     
     await userRow.save();
   }
 
-  // BROKEN FOR NOW
-  async createManyUsers(users) {
-    const userRows = [];
-    // make mongoose User objects
-    users.forEach(user => {
-      userRows.push(new User({
-        name: user.name,
-        comments: user.comments,
-        picture: user.picture
-      }));
-    });
-    // save each object to DB
-    userRows.forEach(async (userRow) => {
-      await userRow.save();
-    });
-  }
+  // // BROKEN FOR NOW
+  // async createManyUsers(users) {
+  //   const userRows = [];
+  //   // make mongoose User objects
+  //   users.forEach(user => {
+  //     userRows.push(new User({
+  //       name: user.name,
+  //       comments: user.comments,
+  //       picture: user.picture
+  //     }));
+  //   });
+  //   // save each object to DB
+  //   userRows.forEach(async (userRow) => {
+  //     await userRow.save();
+  //   });
+  // }
 
   //add a comment to user's comments array,
   //if user not, exist, makes new user
@@ -87,3 +125,5 @@ export default class DB {
     });
   }
 }
+
+module.exports = DB;
