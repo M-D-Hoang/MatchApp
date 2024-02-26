@@ -5,7 +5,6 @@ import { Listing, CarListing } from './model/Listing.js';
 
 dotenv.config();
 const dbUrl = process.env.ATLAS_URI;
-
 let instance = null;
 
 export default class DB {

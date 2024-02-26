@@ -2,13 +2,13 @@
 /* eslint-disable no-console */
 
 import * as fs from 'node:fs';
-import csv from 'csv';
+import { parse } from 'csv-parse';
 import * as itemRand from './itemGeneration.js';
 
 export default async function returnItemArrayObject(csvFilePath, userData) {
   const itemData = [];
   fs.createReadStream(csvFilePath).
-    pipe(csv.parse({ fromLine: 2 })).
+    pipe(parse({ fromLine: 2 })).
     on('data', row => {
       const randomUser = userData[Math.floor(Math.random() * userData.length)];
       const extraField = itemRand.handleCategory(row.categoryName);

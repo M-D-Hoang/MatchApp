@@ -2,14 +2,15 @@
 /* eslint-disable no-console */
 
 import * as fs from 'node:fs';
-import csv from 'csv';
+//import { parse } from 'csv/sync';
+import { parse } from 'csv-parse';
 import * as userRand from './userGeneration.js';
 
 export default async function returnUserArrayObject(csvFilePath) {
   const userData = [];
   fs.createReadStream(csvFilePath).
-    pipe(csv.parse({ fromLine: 2 })).
-    on('data', row => {
+    pipe(parse({ fromLine: 2 })).
+    on('readable', row => {
       const newUser = {
         username: userRand.generateRandomUsername(),
         password: userRand.generateRandomPassword(),

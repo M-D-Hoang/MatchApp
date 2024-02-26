@@ -10,6 +10,7 @@ import returnItemArrayObject from './readItem.js';
 import DB from '../db/db.js';
 import path from 'path';
 
+const __dirname = path.resolve();
 const userFilePath = path.join(__dirname, './SeedingDataset/userSeedDataset.csv');
 const carFilePath = path.join(__dirname, './SeedingDataset/carSeedDataset.csv');
 const itemFilePath = path.join(__dirname, './SeedingDataset/itemSeedDataset.csv');
@@ -21,6 +22,9 @@ const itemFilePath = path.join(__dirname, './SeedingDataset/itemSeedDataset.csv'
   const itemDocuments = await returnItemArrayObject(itemFilePath, userData);
   const carDocuments = await returnCarArrayObject(carFilePath, userData);
   console.log('done parsing!');
+  console.log(`users: ${userDocuments.length}`);
+  console.log(`items: ${itemDocuments.length}`);
+  console.log(`cars: ${carDocuments.length}`);
 
   let collRowsInserted = 0;
   let totalRowsInserted = 0;
