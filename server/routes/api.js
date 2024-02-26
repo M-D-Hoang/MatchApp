@@ -4,7 +4,7 @@ const express = require('express');
 const helloRouter = express.Router();
 const DB = require('../db/db.js');
 const db = new DB();
-import fileUpload from 'express-fileupload';
+const fileUpload = require('express-fileupload');
 
 
 
