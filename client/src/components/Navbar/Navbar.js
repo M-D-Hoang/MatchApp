@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import "./Navbar.css";
 import logo from "../../assets/images/logo-temp.png";
 import { Link } from "react-router-dom";
 
@@ -19,7 +19,14 @@ export function Navbar() {
             <div className="title">
                 <h1>Fake Market Place</h1>
             </div>
-            <div className="links"> Links to other pages</div>
+            <div className="link-container">
+                <div className="link">
+                    <Link to="/sell">Sell</Link>
+                </div>
+                <div className="link">
+                    <Link to="/your-listings">Your Listings</Link>
+                </div>
+            </div>
         </nav>
     );
 }
