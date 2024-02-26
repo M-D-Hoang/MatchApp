@@ -12,19 +12,19 @@ export function ListingsLayout() {
 
     //Fetch data from API
     const [listingData, setListingData] = useState([]);
-    useEffect(()=>{
+    useEffect(() => {
         fetch("/api/listings")
-          .then((resp) => {
-            return resp.json();
-          })
-          .then((json) => {
-            setListingData(json.content);
-          })
-          .catch((e) => {
-            console.error(e);
-            setListingData([]);
-          });
-    },[])
+            .then((resp) => {
+                return resp.json();
+            })
+            .then((json) => {
+                setListingData(json.content);
+            })
+            .catch((e) => {
+                console.error(e);
+                setListingData([]);
+            });
+    }, []);
 
     const handleSearchChange = () => {
         // Handle search
@@ -51,17 +51,19 @@ export function ListingsLayout() {
         setDetailedView(false);
     };
 
-    if (isDeatiledView) {
-        document.body.style.overflow = "hidden";
-    } else{
-        document.body.style.overflow = "auto";
-    }
     console.log(listingData);
     //generate JSX based on listing data
-    const listingJSX = listingData.map((item)=>{
-        return <ItemCardSquare key={item._id} title={item.title}></ItemCardSquare>
+    const listingJSX = listingData.map((item) => {
+        return (
+            <ItemCardSquare key={item._id} title={item.title}></ItemCardSquare>
+        );
     });
 
+    if (isDeatiledView) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "auto";
+    }
 
     return (
         <div className="listings-layout">
