@@ -12,6 +12,7 @@ export function ListingsLayout() {
 
     //Fetch data from API
     const [listingData, setListingData] = useState([]);
+    const [currentItem, setCurrentItem] = useState([]);
     useEffect(() => {
         fetch("/api/listings")
             .then((resp) => {
@@ -44,7 +45,8 @@ export function ListingsLayout() {
         setOpen(false);
         // Handle sort
     };
-    const handleShowDetailedView = () => {
+    function handleShowDetailedView(item){
+        setCurrentItem(item);
         setDetailedView(true);
     };
     const handleHideDetailedView = (e) => {
@@ -57,7 +59,7 @@ export function ListingsLayout() {
     //generate JSX based on listing data
     const listingJSX = listingData.map((item) => {
         return (
-            <ItemCardSquare key={item._id} title={item.title}></ItemCardSquare>
+            <ItemCardSquare key={item._id} item={item} showHandler={()=>{handleShowDetailedView(item)}}></ItemCardSquare>
         );
     });
 
@@ -71,7 +73,7 @@ export function ListingsLayout() {
         <div className="listings-layout">
             {isDeatiledView ? (
                 <div>
-                    <DetailedView onExit={handleHideDetailedView}/>
+                    <DetailedView item={currentItem} onExit={handleHideDetailedView}/>
                 </div>
             ) : null}
             <div className="search-bar">
@@ -94,8 +96,7 @@ export function ListingsLayout() {
                 </div>
             </div>
             <div
-                className="listings-display square"
-                onClick={handleShowDetailedView}>
+                className="listings-display square">
                 {listingJSX}
             </div>
             {/* <div className="listings-display rectangle">

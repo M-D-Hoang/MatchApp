@@ -2,10 +2,10 @@
 
 import React from "react";
 
-export function ItemInfo(props) {
+export function ItemInfo({item}) {
     return <div className="item-info">
-        Item info
-        <button>Delete</button>
+        <h1>{item.title} - {item.price}$</h1>
+        <p>{item.description}</p>
         <button>Delete</button>
         </div>;
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import "./ItemCardSquare.css";
 
-export function ItemCardSquare({title}) {
+export function ItemCardSquare({item, showHandler}) {
     return (
-        <div className="item-card">
-            <h1>{title}</h1>
-            <img src="https://i.kym-cdn.com/entries/icons/facebook/000/028/315/cover.jpg"></img>
+        <div className="item-card" onClick={showHandler}>
+            <h1>{item.title}</h1>
+            <img src={item.imageURIs[0]}></img>
         </div>
     );
 }
