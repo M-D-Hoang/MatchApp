@@ -91,9 +91,8 @@ export function ListingsLayout() {
                         placeholder="Search..."
                     />
                 </form>
-
                 <div className="dropdown">
-                    <button onClick={handleOpen}>Sort By</button>
+                    <button className="sort-button" onClick={handleOpen}>Sort By</button>
                     {isMenuOpen ? (
                         <div className="dropdown-content">
                             <button onClick={handleSortByPrice}>Price</button>

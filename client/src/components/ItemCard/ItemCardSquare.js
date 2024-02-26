@@ -7,7 +7,7 @@ export function ItemCardSquare({ item, showHandler }) {
             <img className="preview-image" src={item.imageURIs[0]}></img>
             <div className="preview-text">
                 <p className="title">{item.title}</p>
-                <p className="price">£0.00</p>
+                <p className="price">{item.price} $</p>
             </div>
         </div>
     );
