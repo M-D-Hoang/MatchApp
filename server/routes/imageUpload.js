@@ -1,10 +1,10 @@
-//Uploader deps
-import * as dotenv from 'dotenv';
-import express from 'express';
-import fileUpload from 'express-fileupload';
-import DB from '../db/db.js';
-//Azure stuff
-import { BlobServiceClient } from '@azure/storage-blob';
+// Uploader deps
+const dotenv = require('dotenv');
+const express = require('express');
+const fileUpload = require('express-fileupload');
+const DB = require('../db/db.js');
+// Azure stuff
+const { BlobServiceClient } = require('@azure/storage-blob');
 
 export const imageUploadRouter = express.Router();
 
@@ -23,7 +23,6 @@ const containerClient = blobService.getContainerClient(containerName);
 //DB Setup
 const db = new DB();
 
-    
 imageUploadRouter.use(
   //docs: https://www.npmjs.com/package/express-fileupload
   fileUpload({
@@ -32,7 +31,6 @@ imageUploadRouter.use(
 );
 
 imageUploadRouter.post('/image', async (req, res) =>{
-
   //env check
   if(AZURE_SAS === undefined || storageAccountName === undefined){
     res.status(500).json({
@@ -80,7 +78,6 @@ imageUploadRouter.use('/image', (req, res)=>{
   });
 });
 
-
 imageUploadRouter.use('/', (req, res)=>{
   res.status = 404;
   res.json({
@@ -88,3 +85,5 @@ imageUploadRouter.use('/', (req, res)=>{
     status:404
   });
 });
+
+module.exports = imageUploadRouter;
