@@ -35,22 +35,18 @@ exports.getAll = asyncHandler(async (req, res) => {
   }
 });
 
-
-exports.postItem = asyncHandler(async (req, res) => {
-  //console.log(req.body);
-  //console.log(req.files);
-  
+exports.postItem = asyncHandler(async (req, res, next) => {
   const formObj = req.body;
   try {
-
-    //Upload images to blob & get URI here, append to body object
+    // imageURIs empty, imageUploader will update the field next
     formObj.imageURIs = [''];
-    //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
+    // TODO: TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
     formObj.ownerID = 'user4633'; 
-    //Add the listing to the DB
+    // Add the listing to the DB
     await db.createListing(formObj);
-
-    return res.status(201).send({ status: 201, content: formObj });
+    // pass request to the next middleware (image uploader)
+    next();
+    //return res.status(201).send({ status: 201, content: formObj });
   } catch (e) {
     res.status = 400;
     res.json({
@@ -60,22 +56,18 @@ exports.postItem = asyncHandler(async (req, res) => {
   }
 });
 
-exports.postCar = asyncHandler(async (req, res) => {
-  //console.log(req.body);
-  //console.log(req.files);
-  
+exports.postCar = asyncHandler(async (req, res, next) => {
   const formObj = req.body;
-  
   try {
-
-    //Upload images to blob & get URI here, append to body object
+    // imageURIs empty, imageUploader will update the field next
     formObj.imageURIs = [''];
-    //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
+    // TODO: TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
     formObj.ownerID = 'user4633';
-    //Add the listing to the DB
+    // Add the listing to the DB
     await db.createCarListing(formObj);
-
-    return res.status(201).send({ status: 201, content: formObj });
+    // pass request to the next middleware (image uploader)
+    next();
+    //return res.status(201).send({ status: 201, content: formObj });
   } catch (e) {
     res.status = 400;
     res.json({
@@ -84,4 +76,3 @@ exports.postCar = asyncHandler(async (req, res) => {
     });
   }
 });
-
