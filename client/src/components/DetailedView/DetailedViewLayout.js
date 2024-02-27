@@ -2,14 +2,23 @@
 import React from "react";
 import { ItemInfo } from "../DetailedView/ItemInfo";
 import tempImage from "../../assets/images/item-image-temp1.png";
-
+import { useNavigate } from "react-router-dom";
 import "./DetailedViewLayout.css";
 
 //TO-DO: Implement multiple image scrollthrough
 export function DetailedView({isRender, onExit, item}) {
+    const navigate = useNavigate();
+    
     const image = item.imageURIs[0]
     if (image === undefined){
         image = tempImage;
+    }
+
+    const onDeleteClicked = ()=>{
+       //fetch()
+       //The below should work when we have routers for individual items working.
+       //For now, it works only once.
+       navigate("/");
     }
 
     return (
@@ -22,7 +31,7 @@ export function DetailedView({isRender, onExit, item}) {
                     <button className={"item-image-button"}>R</button>
 
                 </div>
-                <ItemInfo item={item} />
+                <ItemInfo onDeleteClicked={onDeleteClicked} item={item} />
             </div>
         </div>
     );
