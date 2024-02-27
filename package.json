@@ -1,0 +1,11 @@
+{
+  "name": "fmp",
+  "version": "1.0.0",
+  "description": "An online marketplace.",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd server && npm install && cd ../client && npm install"
+  },
+  "author": "",
+  "license": "ISC"
+}
