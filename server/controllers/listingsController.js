@@ -44,7 +44,7 @@ exports.postItem = asyncHandler(async (req, res) => {
   try {
     //await db.addComment(req.body.name, req.body.comment, req.body.dateTime);
 
-    return res.status(200).send({ status: 201, content: [req.body, req.files] });
+    return res.status(201).send({ status: 201, content: [req.body, req.files] });
   } catch (e) {
     res.status = 400;
     res.json({
@@ -62,7 +62,7 @@ exports.postCar = asyncHandler(async (req, res) => {
   try {
     //await db.addComment(req.body.name, req.body.comment, req.body.dateTime);
 
-    return res.status(200).send({ status: 201, content: [req.body, req.files] });
+    return res.status(201).send({ status: 201, content: [req.body, req.files] });
   } catch (e) {
     res.status = 400;
     res.json({
