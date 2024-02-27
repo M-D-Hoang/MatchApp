@@ -10,7 +10,7 @@ export function CarForm(){
     e.preventDefault();
     var formData = new FormData(e.target);
     formData.append('image',image);
-    return await updateListing(formData)
+    return await updateListing(formData, '/api/listings/cars')
     
 };
 

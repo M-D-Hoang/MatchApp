@@ -5,8 +5,8 @@
  * @param {*} formData The formdata object corresponding to a specific listing
  * @returns The response object, used for validation
  */
-export async function updateListing(formData){
-  const resp = await fetch('/api/listing',{
+export async function updateListing(formData, URL){
+  const resp = await fetch(URL,{
     method:'POST',
     headers:{},
     body:formData
