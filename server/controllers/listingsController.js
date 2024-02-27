@@ -37,14 +37,19 @@ exports.getAll = asyncHandler(async (req, res) => {
 
 
 exports.postItem = asyncHandler(async (req, res) => {
-  console.log(req.body);
-  console.log(req.files);
-
-  //db is not implemented yet, for now, echo the body content
+  //console.log(req.body);
+  //console.log(req.files);
+  
+  const formObj = req.body;
   try {
-    //await db.addComment(req.body.name, req.body.comment, req.body.dateTime);
 
-    return res.status(201).send({ status: 201, content: [req.body, req.files] });
+    //Upload images to blob & get URI here, append to body object
+    formObj.imageURIs = [''];
+    formObj.ownerID = 'user4633' //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
+    //Add the listing to the DB
+    await db.createListing(formObj);
+
+    return res.status(201).send({ status: 201, content: formObj });
   } catch (e) {
     res.status = 400;
     res.json({
@@ -55,14 +60,20 @@ exports.postItem = asyncHandler(async (req, res) => {
 });
 
 exports.postCar = asyncHandler(async (req, res) => {
-  console.log(req.body);
-  console.log(req.files);
-
-  //db is not implemented yet, for now, echo the body content
+  //console.log(req.body);
+  //console.log(req.files);
+  
+  const formObj = req.body;
+  
   try {
-    //await db.addComment(req.body.name, req.body.comment, req.body.dateTime);
 
-    return res.status(201).send({ status: 201, content: [req.body, req.files] });
+    //Upload images to blob & get URI here, append to body object
+    formObj.imageURIs = [''];
+    formObj.ownerID = 'user4633' //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
+    //Add the listing to the DB
+    await db.createCarListing(formObj);
+
+    return res.status(201).send({ status: 201, content: formObj });
   } catch (e) {
     res.status = 400;
     res.json({

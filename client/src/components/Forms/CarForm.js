@@ -30,16 +30,17 @@ export function CarForm(){
    return (
     <div className="item-form">
       <form onSubmit={submitItem}>
-        <label>Title: <input type="text" name="name"></input></label>
+        <label>Title: <input type="text" name="title" required></input></label>
         <label>Description: <input type="text" name="description"></input></label>
         <label>Price: <input type="number" name="price"></input></label>
-        <input type="file" name="image" accept="image/*" onChange={onImageChange}></input>
-        <label>Condition: <input type="text" name="condition"></input></label>
-        <label>Make: <input type="text" name="make"></input></label>
-        <label>Model: <input type="text" name="model"></input></label>
-        <label>Body Type: <input type="text" name="bodytype"></input></label>
-        <label>Mileage: <input type="number" name="mileage"></input></label>
-        <label>Transmission: <input type="text" name="transmission"></input></label>
+        <input type="file" name="image" accept="image/*" onChange={onImageChange} required></input>
+        <label>Condition: <input type="text" name="condition" required></input></label>
+        <label>Make: <input type="text" name="make" required></input></label>
+        <label>Model: <input type="text" name="model" required></input></label>
+        <label>Body Type: <input type="text" name="bodyType" required></input></label>
+        <label>Mileage: <input type="number" name="mileage" required></input></label>
+        <label>Transmission: <input type="text" name="transmission" required></input></label>
+        <label>DriveTrain: <input type="text" name="driveTrain" required></input></label>
         <input type="submit"></input>
       </form>
       <ImagePreview src={image}/>

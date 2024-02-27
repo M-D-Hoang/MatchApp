@@ -8,7 +8,7 @@ const listingSchema = new Schema({
   description: {type: String, required: false},
   price: {type: Number, required: true},
   imageURIs: {type: Array, required: false},
-  condition: {type: String, required: false, index: true},
+  condition: {type: String, required: true, index: true},
   extraField: {type: String, required: false, index: true},
   category: {type: String, required: true, index: true},
 });

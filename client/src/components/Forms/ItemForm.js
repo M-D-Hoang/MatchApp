@@ -31,13 +31,13 @@ export function ItemForm(){
    return (
     <div className="item-form">
       <form onSubmit={submitItem} >
-        <label>Title: <input type="text" name="name"></input></label>
+      <label>Title: <input type="text" name="title" required></input></label>
         <label>Description: <input type="text" name="description"></input></label>
         <label>Price: <input type="number" name="price"></input></label>
-        <label>Image: <input type="file" name="image" accept="image/*" onChange={onImageChange}></input></label>
-        <label>Condition: <input type="text" name="condition"></input></label>
-        <label>Extra: <input type="text" name="extra"></input></label>
-        <label>Category: <input type="text" name="category"></input></label>
+        <label>Image: <input type="file" name="image" accept="image/*" onChange={onImageChange} required></input></label>
+        <label>Condition: <input type="text" name="condition" required></input></label>
+        <label>Extra: <input type="text" name="extraField"></input></label>
+        <label>Category: <input type="text" name="category" required></input></label>
         <input type="submit"></input>
       </form>
       
