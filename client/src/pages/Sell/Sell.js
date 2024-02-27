@@ -8,37 +8,31 @@ export function Sell() {
     const [sellJSX, setSellJSX] = useState(<></>);
     const [isMenuOpen, setOpen] = useState(false);
 
-    const handleCarForm = () => {
+    const handleFormChoice = (value) => {
         setOpen(false);
-        setSellJSX(<CarForm />)
-    }
-
-    const handleItemForm = () => {
-        handleOpen(false);
-        setSellJSX(<ItemForm />)
-    }
-
-    const handleOpen = () => {
-        setOpen(!isMenuOpen);
+        switch (value) {
+            case "Car":
+                setSellJSX(<CarForm />);
+                console.log("Car");
+                break;
+            case "Other":
+                setSellJSX(<ItemForm />);
+                break;
+            default:
+                break;
+        }
     };
+
     return (
         <div className="sell-page">
             <h1>Add Your Listing</h1>
-            <div className="dropdown">
-                <button className="sort-button" onClick={handleOpen}>
-                    Select Category
-                </button>
-                {isMenuOpen ? (
-                    <div className="dropdown-content">
-                        <button onClick={handleCarForm}>
-                            Car
-                        </button>
-                        <button onClick={handleItemForm}>
-                            Other
-                        </button>
-                    </div>
-                ) : null}
-            </div>
+
+            <select className="form-select" onChange={(e) => handleFormChoice(e.target.value)}>
+                <option>Select Category</option>
+                <option value="Car">Car</option>
+                <option value="Other">Other</option>
+            </select>
+
             {sellJSX}
         </div>
     );
