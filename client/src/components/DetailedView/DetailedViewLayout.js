@@ -16,7 +16,11 @@ export function DetailedView({isRender, onExit, item}) {
         <div className={"overlay"} onClick={onExit}>
             <div className={"detailed-view"}>
                 <div className={"item-image"}>
+                  
+                    <button className={"item-image-button"}>L</button>
                     <img src={image} />
+                    <button className={"item-image-button"}>R</button>
+
                 </div>
                 <ItemInfo item={item} />
             </div>

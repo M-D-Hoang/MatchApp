@@ -37,6 +37,8 @@
 }
 
 .item-image {
+    display:flex;
+    flex-direction:row;
     width: 600px;
     height: 600px;
 }
