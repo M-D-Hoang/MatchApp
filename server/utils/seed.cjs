@@ -65,5 +65,5 @@ const occupyCarDB = async () => {
 // Uncomment 1 at a time
 
 // occupyUserDB();
-// occupyItemDB();
-occupyCarDB();
+occupyItemDB();
+// occupyCarDB();

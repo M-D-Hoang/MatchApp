@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./ListingsLayout.css";
 
 import { ItemCardRectangle } from "../../components/ItemCard/ItemCardRectangle";
@@ -9,10 +9,33 @@ import { DetailedView } from "../../components/DetailedView/DetailedViewLayout";
 export function ListingsLayout() {
     const [isMenuOpen, setOpen] = useState(false);
     const [isDeatiledView, setDetailedView] = useState(false);
+    const [filter, setFilter] = useState("");
 
-    const handleSearchChange = () => {
-        // Handle search
-    };
+    function handleSearchChange(e) {
+        setFilter(e.target.value);
+    }
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        alert(filter);
+        
+    }
+    //Fetch data from API
+    const [listingData, setListingData] = useState([]);
+    const [currentItem, setCurrentItem] = useState([]);
+    useEffect(() => {
+        fetch("/api/listings")
+            .then((resp) => {
+                return resp.json();
+            })
+            .then((json) => {
+                setListingData(json.content);
+            })
+            .catch((e) => {
+                console.error(e);
+                setListingData([]);
+            });
+    }, []);
+
     const handleOpen = () => {
         setOpen(!isMenuOpen);
     };
@@ -28,28 +51,48 @@ export function ListingsLayout() {
         setOpen(false);
         // Handle sort
     };
-    const handleShowDetailedView = () => {
+    function handleShowDetailedView(item){
+        setCurrentItem(item);
         setDetailedView(true);
     };
-    const handleHideDetailedView = () => {
-        setDetailedView(false);
+    const handleHideDetailedView = (e) => {
+        
+        if(e.target.className === "overlay"){
+            setDetailedView(false);
+        }
     };
+
+    //generate JSX based on listing data
+    const listingJSX = listingData.map((item) => {
+        return (
+            <ItemCardSquare key={item._id} item={item} showHandler={()=>{handleShowDetailedView(item)}}></ItemCardSquare>
+        );
+    });
+
+    if (isDeatiledView) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "auto";
+    }
 
     return (
         <div className="listings-layout">
             {isDeatiledView ? (
-                <div onClick={handleHideDetailedView}>
-                    <DetailedView />
+                <div>
+                    <DetailedView item={currentItem} onExit={handleHideDetailedView}/>
                 </div>
             ) : null}
             <div className="search-bar">
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    onChange={handleSearchChange}
-                />
+                <form onSubmit={handleSearchSubmit}>
+                    <input
+                        type="text"
+                        value={filter}
+                        onChange={handleSearchChange}
+                        placeholder="Search..."
+                    />
+                </form>
                 <div className="dropdown">
-                    <button onClick={handleOpen}>Sort By</button>
+                    <button className="sort-button" onClick={handleOpen}>Sort By</button>
                     {isMenuOpen ? (
                         <div className="dropdown-content">
                             <button onClick={handleSortByPrice}>Price</button>
@@ -62,23 +105,8 @@ export function ListingsLayout() {
                 </div>
             </div>
             <div
-                className="listings-display square"
-                onClick={handleShowDetailedView}>
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
-                <ItemCardSquare />
+                className="listings-display square">
+                {listingJSX}
             </div>
             {/* <div className="listings-display rectangle">
                 <ItemCardRectangle />
