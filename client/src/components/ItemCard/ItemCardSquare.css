@@ -21,14 +21,12 @@
 }
 .preview-text {
     padding: 0 0.5em;
-    font-weight: 600;
     font-size: 15px;
     display: flex;
     flex-direction: row;
     height: 20%;
     align-items: center;
     justify-content: space-between;
-    gap: 1em;
     color: rgb(0, 0, 0);
 }
 .preview-text > .title {
@@ -40,6 +38,8 @@
     overflow: hidden;
 }
 .price {
+    font-weight: 600;
     height: 100%;
     margin: 0;
+    line-height: 4em;
 }

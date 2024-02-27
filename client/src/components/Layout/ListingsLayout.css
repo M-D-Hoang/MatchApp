@@ -10,7 +10,7 @@
     display: flex;
     justify-content: flex-end;
     gap: 1em;
-    padding: 1em 2em;
+    padding: 1em 3em;
 }
 .search-bar > form {
     flex-grow: 1;
@@ -54,7 +54,6 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
     overflow: hidden;
     translate: 0 -1.5em;
-    z-index: 0;
     background-color: rgb(240, 240, 240);
     position: relative;
 }
@@ -74,7 +73,7 @@ button {
     padding: 0 2em;
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 1em;
 }
 .listings-display.square {
     flex-flow: row wrap;
