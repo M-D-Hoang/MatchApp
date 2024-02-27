@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {ImagePreview} from './ImagePreview.js';
 import {updateListing} from './FormSubmit.js';
-
+import "./Form.css";
 
 export function ItemForm(){
   
