@@ -16,7 +16,7 @@ listingsRouter.use(
   })
 );
 
-listingsRouter.post('/items', listingsController.postItem)
-listingsRouter.post('/cars', listingsController.postCar)
+listingsRouter.post('/items', listingsController.postItem);
+listingsRouter.post('/cars', listingsController.postCar);
 
 module.exports = listingsRouter;

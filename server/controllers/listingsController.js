@@ -45,7 +45,8 @@ exports.postItem = asyncHandler(async (req, res) => {
 
     //Upload images to blob & get URI here, append to body object
     formObj.imageURIs = [''];
-    formObj.ownerID = 'user4633' //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
+    //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
+    formObj.ownerID = 'user4633'; 
     //Add the listing to the DB
     await db.createListing(formObj);
 
@@ -69,7 +70,8 @@ exports.postCar = asyncHandler(async (req, res) => {
 
     //Upload images to blob & get URI here, append to body object
     formObj.imageURIs = [''];
-    formObj.ownerID = 'user4633' //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
+    //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
+    formObj.ownerID = 'user4633';
     //Add the listing to the DB
     await db.createCarListing(formObj);
 
