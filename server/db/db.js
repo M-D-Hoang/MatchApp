@@ -125,13 +125,13 @@ class DB {
     });
   }
 
-    async removeListingByID(id){
-      return await Listing.remove({ _id: id});
-    }
+  async removeListingByID(id){
+    return await Listing.remove({ _id: id});
+  }
 
-    async removeCarByID(id){
-      return await CarListing.remove({ _id: id});
-    }
+  async removeCarByID(id){
+    return await CarListing.remove({ _id: id});
+  }
 }
 
 module.exports = DB;

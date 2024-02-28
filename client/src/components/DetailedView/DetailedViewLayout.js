@@ -5,6 +5,9 @@ import tempImage from "../../assets/images/item-image-temp1.png";
 import { useNavigate } from "react-router-dom";
 import "./DetailedViewLayout.css";
 
+
+
+
 //TO-DO: Implement multiple image scrollthrough
 export function DetailedView({isRender, onExit, item}) {
     const navigate = useNavigate();
@@ -14,8 +17,14 @@ export function DetailedView({isRender, onExit, item}) {
         image = tempImage;
     }
 
-    const onDeleteClicked = ()=>{
-       //fetch()
+    const onDeleteClicked = async ()=>{
+       const resp = await fetch('/api/listings/items',{
+        method:'DELETE',
+        headers:{'Content-Type': 'application/json'},
+        body:{_id : item._id}
+       })
+       const json = resp.json();
+       alert(json);
        //The below should work when we have routers for individual items working.
        //For now, it works only once.
        navigate("/");

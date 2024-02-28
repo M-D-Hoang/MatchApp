@@ -45,7 +45,8 @@ exports.postItem = asyncHandler(async (req, res) => {
 
     //Upload images to blob & get URI here, append to body object
     formObj.imageURIs = [''];
-    formObj.ownerID = 'user4633' //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
+    //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
+    formObj.ownerID = 'user4633'; 
     //Add the listing to the DB
     await db.createListing(formObj);
 
@@ -69,7 +70,8 @@ exports.postCar = asyncHandler(async (req, res) => {
 
     //Upload images to blob & get URI here, append to body object
     formObj.imageURIs = [''];
-    formObj.ownerID = 'user4633' //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
+    //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
+    formObj.ownerID = 'user4633'; 
     //Add the listing to the DB
     await db.createCarListing(formObj);
 
@@ -96,7 +98,7 @@ exports.deleteItem = asyncHandler(async (req, res) => {
    
     await db.removeListingByID(itemID);
 
-    return res.status(204).send({ status: 204, content: "Item Deleted" });
+    return res.status(204).send({ status: 204, content: 'Item Deleted' });
   } catch (e) {
     res.status = 400;
     res.json({
@@ -119,7 +121,7 @@ exports.deleteCar = asyncHandler(async (req, res) => {
    
     await db.removeListingByID(itemID);
 
-    return res.status(204).send({ status: 204, content: "Item Deleted" });
+    return res.status(204).send({ status: 204, content: 'Item Deleted' });
   } catch (e) {
     res.status = 400;
     res.json({
