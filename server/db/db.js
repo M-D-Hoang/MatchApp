@@ -110,20 +110,10 @@ class DB {
   //add a comment to user's comments array,
   //if user not, exist, makes new user
   //need to be tested
-  async addComment(user, comment, time) {
-    const update = {
-      $push: {
-        comments: {
-          text: comment,
-          time: time,
-        },
-      },
-    };
-
-    await User.findOneAndUpdate({ name: user }, update, {
-      upsert: true,
-    });
-  }
+  async updateCarListing(listing) {
+    const update = { $set: listing };
+    await CarListing.findOneAndUpdate({ _id: listing._id }, update);
+  }  
 }
 
 module.exports = DB;

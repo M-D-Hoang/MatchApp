@@ -85,3 +85,37 @@ exports.postCar = asyncHandler(async (req, res) => {
   }
 });
 
+exports.updateCar = asyncHandler(async (req, res) => {
+  const carObj = req.body;
+  try {
+    //Update the listing in the DB
+    await db.updateCarListing(carObj);
+    return res.status(200).send({ status: 200, content: carObj });
+  } catch (e) {
+    res.status = 400;
+    res.json({
+      content: e.message,
+      status: 400
+    });
+  }
+});
+
+
+
+exports.getItemsFiltered = asyncHandler(async (req, res) => {
+  try {
+    const listings = await db.readAllListings();
+    res.status(200).json({ content: listings, response: 200 });
+  } catch {
+    res.status(500).send('Internal DB error. Could not read listings');
+  }
+});
+
+exports.getCarsFiltered = asyncHandler(async (req, res) => {
+  try {
+    const carListings = await db.readAllCarListings();
+    res.status(200).json({ content: carListings, response: 200 });
+  } catch {
+    res.status(500).send('Internal DB error. Could not read car listings');
+  }
+});
