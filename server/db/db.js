@@ -126,11 +126,11 @@ class DB {
   }
 
   async removeListingByID(id){
-    return await Listing.remove({ _id: id});
+    return await Listing.deleteOne({ _id: id});
   }
 
   async removeCarByID(id){
-    return await CarListing.remove({ _id: id});
+    return await CarListing.deleteOne({ _id: id});
   }
 }
 

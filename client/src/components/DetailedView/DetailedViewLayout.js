@@ -18,16 +18,20 @@ export function DetailedView({isRender, onExit, item}) {
     }
 
     const onDeleteClicked = async ()=>{
+        const respJSON = JSON.stringify({_id : item._id});
+
        const resp = await fetch('/api/listings/items',{
         method:'DELETE',
         headers:{'Content-Type': 'application/json'},
-        body:{_id : item._id}
+        body:respJSON
        })
-       const json = resp.json();
+       console.log(resp);
+       const json = await resp.json();
+       console.log(json);
        alert(json);
        //The below should work when we have routers for individual items working.
        //For now, it works only once.
-       navigate("/");
+       //navigate("/");
     }
 
     return (
