@@ -11,7 +11,7 @@ let instance = null;
 class DB {
   constructor() {
     //instance is the singleton, defined in outer scope
-    if (!instance){
+    if (!instance) {
       instance = this;
       if (dbUrl) {
         mongoose.connect(dbUrl);
@@ -23,15 +23,15 @@ class DB {
     return instance;
   }
 
-  async readAllListings(){
+  async readAllListings() {
     return await Listing.find();
   }
 
-  async readAllCarListings(){
+  async readAllCarListings() {
     return await CarListing.find();
   }
 
-  async createListing(listing){
+  async createListing(listing) {
     const listingRow = new Listing({
       ownerID: listing.ownerID,
       title: listing.title,
@@ -40,12 +40,12 @@ class DB {
       imageURIs: listing.imageURIs,
       condition: listing.condition,
       extraField: listing.extraField,
-      category: listing.category
+      category: listing.category,
     });
     await listingRow.save();
   }
 
-  async createCarListing(listing){
+  async createCarListing(listing) {
     const listingRow = new CarListing({
       ownerID: listing.ownerID,
       title: listing.title,
@@ -58,18 +58,18 @@ class DB {
       mileage: listing.mileage,
       transmission: listing.transmission,
       driveTrain: listing.driveTrain,
-      imageURIs: listing.imageURIs
+      imageURIs: listing.imageURIs,
     });
     await listingRow.save();
   }
 
-  async updateUserImage(username, imageURL){
+  async updateUserImage(username, imageURL) {
     //get user and update their pfp
     //if doesn't exist, make a new one
     console.log('Doing update');
-    const update = { $set: {picture: imageURL} };
-    await User.findOneAndUpdate({name:username}, update, {
-      upsert:true
+    const update = { $set: { picture: imageURL } };
+    await User.findOneAndUpdate({ name: username }, update, {
+      upsert: true,
     });
   }
 
@@ -84,9 +84,9 @@ class DB {
       email: user.email,
       phoneNumber: user.phoneNumber,
       picture: user.picture,
-      type: user.type
+      type: user.type,
     });
-    
+
     await userRow.save();
   }
 
@@ -123,6 +123,11 @@ class DB {
     await User.findOneAndUpdate({ name: user }, update, {
       upsert: true,
     });
+  }
+
+  async updateItemListing(listing) {
+    const update = { $set: listing };
+    await Listing.findOneAndUpdate({ _id: listing._id }, update);
   }
 }
 

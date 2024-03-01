@@ -85,3 +85,17 @@ exports.postCar = asyncHandler(async (req, res) => {
   }
 });
 
+exports.editItem = asyncHandler(async (req, res) => {
+  const ItemObj = req.body;
+  try {
+    await db.updateItemListing(ItemObj);
+    return res.status(201).send({ status: 201, content: ItemObj });
+  } catch (e) {
+    res.status = 400;
+    res.json({
+      content: e.message,
+      status: 400,
+    });
+  }
+});
+

@@ -3,7 +3,7 @@ import { ImagePreview } from "./ImagePreview.js";
 import { updateListing } from "./FormSubmit.js";
 import "./Form.css";
 
-export function ItemForm() {
+export function ItemForm({item}) {
     const [image, setImage] = useState(null);
 
     const submitItem = async (e) => {
@@ -27,13 +27,13 @@ export function ItemForm() {
         <div className="item-form">
             <form onSubmit={submitItem}>
                 <label>
-                    Title: <input type="text" name="title" required></input>
+                    Title: <input type="text" name="title" defaultValue={item.title} required></input>
                 </label>
                 <label>
-                    Description: <input type="text" name="description"></input>
+                    Description: <input type="text" name="description" defaultValue={item.description}></input>
                 </label>
                 <label>
-                    Price: <input type="number" name="price"></input>
+                    Price: <input type="number" name="price" defaultValue={item.price}></input>
                 </label>
                 <label>
                     Image:{" "}
@@ -47,14 +47,14 @@ export function ItemForm() {
                 </label>
                 <label>
                     Condition:{" "}
-                    <input type="text" name="condition" required></input>
+                    <input type="text" name="condition" defaultValue={item.condition} required></input>
                 </label>
                 <label>
-                    Extra: <input type="text" name="extraField"></input>
+                    Extra: <input type="text" name="extraField" defaultValue={item.extraField === 'none' ? "" : item.extraField}></input>
                 </label>
                 <label>
                     Category:{" "}
-                    <input type="text" name="category" required></input>
+                    <input type="text" name="category" defaultValue={item.category} required></input>
                 </label>
                 <input type="submit"></input>
             </form>

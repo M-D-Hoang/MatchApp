@@ -1,8 +1,14 @@
 //react fucntion that displays info
-
+import {  useNavigate } from "react-router-dom";
 import React from "react";
 
 export function ItemInfo({ item }) {
+    const navigate = useNavigate();
+
+    const handleEdit = () => {
+        navigate('/edit', {state: {data: item}});
+    };
+
     return (
         <div className="item-info">
             <h1>
@@ -10,7 +16,7 @@ export function ItemInfo({ item }) {
             </h1>
             <p>{item.description}</p>
             <button>Delete</button>
-            <button>Edit</button>
+            <button onClick={handleEdit}>Edit</button>
         </div>
     );
 }
