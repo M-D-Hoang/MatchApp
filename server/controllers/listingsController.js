@@ -71,7 +71,7 @@ exports.postCar = asyncHandler(async (req, res) => {
     //Upload images to blob & get URI here, append to body object
     formObj.imageURIs = [''];
     //TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
-    formObj.ownerID = 'user4633'; 
+    formObj.ownerID = 'user4633';
     //Add the listing to the DB
     await db.createCarListing(formObj);
 
