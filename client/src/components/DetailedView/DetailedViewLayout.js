@@ -25,10 +25,15 @@ export function DetailedView({isRender, onExit, item}) {
         headers:{'Content-Type': 'application/json'},
         body:respJSON
        })
-       console.log(resp);
-       const json = await resp.json();
-       console.log(json);
-       alert(json);
+      
+       //const json = await resp.json();
+       //console.log(json);
+       //alert(json);
+       if(resp.status === 204){
+        //placeholder reload, we'd navigate to a page once we have proper nav paths done
+        // eslint-disable-next-line no-restricted-globals
+        location.reload();
+       }
        //The below should work when we have routers for individual items working.
        //For now, it works only once.
        //navigate("/");
