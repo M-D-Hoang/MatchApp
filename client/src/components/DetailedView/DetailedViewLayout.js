@@ -17,14 +17,30 @@ export function DetailedView({isRender, onExit, item}) {
         image = tempImage;
     }
 
+    const isCar = item.make !== undefined;
+    
     const onDeleteClicked = async ()=>{
+
+        
         const respJSON = JSON.stringify({_id : item._id});
 
-       const resp = await fetch('/api/listings/items',{
-        method:'DELETE',
-        headers:{'Content-Type': 'application/json'},
-        body:respJSON
-       })
+        var resp = undefined;
+        
+        if(isCar){
+            resp = await fetch('/api/listings/cars',{
+                method:'DELETE',
+                headers:{'Content-Type': 'application/json'},
+                body:respJSON
+               })
+        }
+        else{
+            resp = await fetch('/api/listings/items',{
+                method:'DELETE',
+                headers:{'Content-Type': 'application/json'},
+                body:respJSON
+               });
+        }
+        
       
        //const json = await resp.json();
        //console.log(json);

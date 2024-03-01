@@ -103,24 +103,19 @@ exports.deleteItem = asyncHandler(async (req, res) => {
 });
 
 exports.deleteCar = asyncHandler(async (req, res) => {
-  //console.log(req.body);
-  //console.log(req.files);
-  
-  //Needs to check if user is the owner of the item
 
+  //Needs to check if user is the owner of the item
   const itemID = req.body._id;
   
   try {
-
-   
-    await db.removeListingByID(itemID);
-
-    return res.status(204).send({ status: 204, content: 'Item Deleted' });
+    await db.removeCarByID(itemID);
+    
+    return res.status(204).json({ status: 204, content: 'Item Deleted' });
   } catch (e) {
-    res.status = 400;
-    res.json({
+    res.status(400).json({
       content: e.message,
       status: 400
     });
   }
 });
+
