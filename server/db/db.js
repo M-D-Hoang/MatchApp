@@ -114,6 +114,14 @@ class DB {
     const update = { $set: listing };
     await CarListing.findOneAndUpdate({ _id: listing._id }, update);
   }  
+
+  async readOneCar(id) {
+    return await CarListing.findById(id);
+  }
+
+  async readOneItem(id) {
+    return await Listing.findById(id);
+  }
 }
 
 module.exports = DB;
