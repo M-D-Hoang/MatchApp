@@ -1,16 +1,22 @@
 import { useState } from "react";
 import { ImagePreview } from "./ImagePreview.js";
-import { updateListing } from "./FormSubmit.js";
+import { editListing, updateListing } from "./FormSubmit.js";
 import "./Form.css";
 
-export function ItemForm({item}) {
+export function ItemForm({ item }) {
     const [image, setImage] = useState(null);
 
     const submitItem = async (e) => {
         e.preventDefault();
         var formData = new FormData(e.target);
         formData.append("image", image);
-        return await updateListing(formData, "/api/listings/items");
+        if (item !== undefined) {
+            console.log("Editing item");
+            formData.append("id", item._id);
+            return await editListing(formData, "/api/listings/items");
+        } else {
+            return await updateListing(formData, "/api/listings/items");
+        }
     };
 
     async function onImageChange(e) {
@@ -27,13 +33,26 @@ export function ItemForm({item}) {
         <div className="item-form">
             <form onSubmit={submitItem}>
                 <label>
-                    Title: <input type="text" name="title" defaultValue={item.title} required></input>
+                    Title:{" "}
+                    <input
+                        type="text"
+                        name="title"
+                        defaultValue={item !== undefined ? item.title : ""}
+                        required></input>
                 </label>
                 <label>
-                    Description: <input type="text" name="description" defaultValue={item.description}></input>
+                    Description:{" "}
+                    <input
+                        type="text"
+                        name="description"
+                        defaultValue={item !== undefined ? item.description : ""}></input>
                 </label>
                 <label>
-                    Price: <input type="number" name="price" defaultValue={item.price}></input>
+                    Price:{" "}
+                    <input
+                        type="number"
+                        name="price"
+                        defaultValue={item !== undefined ? item.price : ""}></input>
                 </label>
                 <label>
                     Image:{" "}
@@ -47,14 +66,28 @@ export function ItemForm({item}) {
                 </label>
                 <label>
                     Condition:{" "}
-                    <input type="text" name="condition" defaultValue={item.condition} required></input>
+                    <input
+                        type="text"
+                        name="condition"
+                        defaultValue={item !== undefined ? item.condition : ""}
+                        required></input>
                 </label>
                 <label>
-                    Extra: <input type="text" name="extraField" defaultValue={item.extraField === 'none' ? "" : item.extraField}></input>
+                    Extra:{" "}
+                    <input
+                        type="text"
+                        name="extraField"
+                        defaultValue={
+                            item !== undefined ? item.extraField : ""
+                        }></input>
                 </label>
                 <label>
                     Category:{" "}
-                    <input type="text" name="category" defaultValue={item.category} required></input>
+                    <input
+                        type="text"
+                        name="category"
+                        defaultValue={item !== undefined ? item.category : ""}
+                        required></input>
                 </label>
                 <input type="submit"></input>
             </form>

@@ -127,7 +127,7 @@ class DB {
 
   async updateItemListing(listing) {
     const update = { $set: listing };
-    await Listing.findOneAndUpdate({ _id: listing._id }, update);
+    return await Listing.findByIdAndUpdate(listing.id, update);
   }
 }
 
