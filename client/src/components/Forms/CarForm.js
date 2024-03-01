@@ -1,16 +1,22 @@
 import {useState} from 'react';
 import {ImagePreview} from './ImagePreview.js';
 import {updateListing} from './FormSubmit.js';
-
+import { useNavigate } from 'react-router-dom';
 export function CarForm(){
-  
+  const navigate = useNavigate();
   const [image, setImage] = useState(null);
 
   const submitItem = async (e) => {
     e.preventDefault();
     var formData = new FormData(e.target);
     formData.append('image',image);
-    return await updateListing(formData, '/api/listings/cars')
+    const json = await updateListing(formData, '/api/listings/cars')
+    if(json.status === 201){
+      navigate('/')
+    }
+    else{
+      alert(`Unable to add listing: ${json.content}`);
+    }
     
 };
 

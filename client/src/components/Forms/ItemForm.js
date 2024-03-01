@@ -1,16 +1,24 @@
 import { useState } from "react";
 import { ImagePreview } from "./ImagePreview.js";
 import { updateListing } from "./FormSubmit.js";
+import { useNavigate } from 'react-router-dom';
 import "./Form.css";
 
 export function ItemForm() {
+    const navigate = useNavigate();
     const [image, setImage] = useState(null);
 
     const submitItem = async (e) => {
         e.preventDefault();
         var formData = new FormData(e.target);
         formData.append("image", image);
-        return await updateListing(formData, "/api/listings/items");
+        const json =  await updateListing(formData, "/api/listings/items");
+        if(json.status === 201){
+            navigate('/')
+          }
+          else{
+            alert(`Unable to add listing: ${json.content}`);
+          }
     };
 
     async function onImageChange(e) {
