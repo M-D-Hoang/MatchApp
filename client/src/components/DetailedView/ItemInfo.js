@@ -2,7 +2,8 @@
 import {  useNavigate } from "react-router-dom";
 import React from "react";
 
-export function ItemInfo({ item }) {
+
+export function ItemInfo({item, onDeleteClicked}) {
     const navigate = useNavigate();
 
     const handleEdit = () => {
@@ -20,3 +21,4 @@ export function ItemInfo({ item }) {
         </div>
     );
 }
+

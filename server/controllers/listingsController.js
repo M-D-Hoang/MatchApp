@@ -85,6 +85,40 @@ exports.postCar = asyncHandler(async (req, res) => {
   }
 });
 
+exports.deleteItem = asyncHandler(async (req, res) => {
+
+  //Needs to check if user is the owner of the item
+  const itemID = req.body._id;
+  
+  try {
+    await db.removeListingByID(itemID);
+    
+    return res.status(204).json({ status: 204, content: 'Item Deleted' });
+  } catch (e) {
+    res.status(400).json({
+      content: e.message,
+      status: 400
+    });
+  }
+});
+
+exports.deleteCar = asyncHandler(async (req, res) => {
+
+  //Needs to check if user is the owner of the item
+  const itemID = req.body._id;
+  
+  try {
+    await db.removeCarByID(itemID);
+    
+    return res.status(204).json({ status: 204, content: 'Item Deleted' });
+  } catch (e) {
+    res.status(400).json({
+      content: e.message,
+      status: 400
+    });
+  }
+});
+
 exports.editItem = asyncHandler(async (req, res) => {
   const ItemObj = req.body;
   try {
@@ -95,6 +129,7 @@ exports.editItem = asyncHandler(async (req, res) => {
     res.json({
       content: e.message,
       status: 400,
+
     });
   }
 });
