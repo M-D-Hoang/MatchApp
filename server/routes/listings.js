@@ -19,7 +19,11 @@ listingsRouter.use(
 listingsRouter.post('/items', listingsController.postItem);
 listingsRouter.post('/cars', listingsController.postCar);
 
+
 listingsRouter.delete('/items', listingsController.deleteItem);
 listingsRouter.delete('/cars', listingsController.deleteCar);
+
+listingsRouter.patch('/items', listingsController.editItem);
+
 
 module.exports = listingsRouter;

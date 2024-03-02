@@ -1,24 +1,33 @@
 import { useState } from "react";
 import { ImagePreview } from "./ImagePreview.js";
+
 import { updateListing } from "./FormSubmit.js";
 import { useNavigate } from 'react-router-dom';
 import "./Form.css";
 
-export function ItemForm() {
+export function ItemForm({ item }) {
     const navigate = useNavigate();
+
+import { editListing, updateListing } from "./FormSubmit.js";
+import "./Form.css";
+
     const [image, setImage] = useState(null);
 
     const submitItem = async (e) => {
         e.preventDefault();
         var formData = new FormData(e.target);
         formData.append("image", image);
-        const json =  await updateListing(formData, "/api/listings/items");
-        if(json.status === 201){
-            navigate('/')
-          }
-          else{
-            alert(`Unable to add listing: ${json.content}`);
-          }
+
+        if (item !== undefined) {
+            //For editing an item
+            console.log("Editing item");
+            formData.append("id", item._id);
+            return await editListing(formData, "/api/listings/items");
+        } else {
+            //For adding a listing
+            return await updateListing(formData, "/api/listings/items");
+        }
+
     };
 
     async function onImageChange(e) {
@@ -35,13 +44,26 @@ export function ItemForm() {
         <div className="item-form">
             <form onSubmit={submitItem}>
                 <label>
-                    Title: <input type="text" name="title" required></input>
+                    Title:{" "}
+                    <input
+                        type="text"
+                        name="title"
+                        defaultValue={item !== undefined ? item.title : ""}
+                        required></input>
                 </label>
                 <label>
-                    Description: <input type="text" name="description"></input>
+                    Description:{" "}
+                    <input
+                        type="text"
+                        name="description"
+                        defaultValue={item !== undefined ? item.description : ""}></input>
                 </label>
                 <label>
-                    Price: <input type="number" name="price"></input>
+                    Price:{" "}
+                    <input
+                        type="number"
+                        name="price"
+                        defaultValue={item !== undefined ? item.price : ""}></input>
                 </label>
                 <label>
                     Image:{" "}
@@ -55,14 +77,28 @@ export function ItemForm() {
                 </label>
                 <label>
                     Condition:{" "}
-                    <input type="text" name="condition" required></input>
+                    <input
+                        type="text"
+                        name="condition"
+                        defaultValue={item !== undefined ? item.condition : ""}
+                        required></input>
                 </label>
                 <label>
-                    Extra: <input type="text" name="extraField"></input>
+                    Extra:{" "}
+                    <input
+                        type="text"
+                        name="extraField"
+                        defaultValue={
+                            item !== undefined ? item.extraField : ""
+                        }></input>
                 </label>
                 <label>
                     Category:{" "}
-                    <input type="text" name="category" required></input>
+                    <input
+                        type="text"
+                        name="category"
+                        defaultValue={item !== undefined ? item.category : ""}
+                        required></input>
                 </label>
                 <input type="submit"></input>
             </form>
