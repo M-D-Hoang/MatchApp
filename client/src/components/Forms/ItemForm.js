@@ -1,15 +1,11 @@
 import { useState } from "react";
 import { ImagePreview } from "./ImagePreview.js";
-
-import { updateListing } from "./FormSubmit.js";
+import { editListing, updateListing } from "./FormSubmit.js";
 import { useNavigate } from 'react-router-dom';
 import "./Form.css";
 
 export function ItemForm({ item }) {
     const navigate = useNavigate();
-
-import { editListing, updateListing } from "./FormSubmit.js";
-import "./Form.css";
 
     const [image, setImage] = useState(null);
 
@@ -17,15 +13,22 @@ import "./Form.css";
         e.preventDefault();
         var formData = new FormData(e.target);
         formData.append("image", image);
-
+        var resultJSON = undefined
         if (item !== undefined) {
             //For editing an item
             console.log("Editing item");
             formData.append("id", item._id);
-            return await editListing(formData, "/api/listings/items");
+            resultJSON = await editListing(formData, "/api/listings/items");
         } else {
             //For adding a listing
-            return await updateListing(formData, "/api/listings/items");
+            resultJSON = await updateListing(formData, "/api/listings/items");
+        }
+
+        if(resultJSON.status === 201){
+            navigate('/');
+        }
+        else{
+            alert('Listing update failed.');
         }
 
     };
