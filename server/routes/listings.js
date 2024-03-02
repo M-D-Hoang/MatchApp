@@ -20,5 +20,6 @@ listingsRouter.post('/items', listingsController.postItem);
 listingsRouter.post('/cars', listingsController.postCar);
 
 listingsRouter.patch('/items', listingsController.editCar);
+listingsRouter.patch('/items', listingsController.editItem);
 
 module.exports = listingsRouter;
