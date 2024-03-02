@@ -30,7 +30,7 @@ class DB {
   async readAllCarListings(filter) {
     return await CarListing.find(filter);
   }
-  
+
   async createListing(listing) {
     const listingRow = new Listing({
       ownerID: listing.ownerID,
@@ -126,6 +126,15 @@ class DB {
   async updateItemListing(listing) {
     const update = { $set: listing };
     return await Listing.findByIdAndUpdate(listing.id, update);
+  }
+
+  async readUser(username) {
+    return await User.findOne(username);
+  }
+
+  async updateUser(user) {
+    const update = { $set: user };
+    return await User.updateOne(user.username, update);
   }
 }
 
