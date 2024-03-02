@@ -8,6 +8,11 @@ const fileUpload = require('express-fileupload');
 listingsRouter.get('/items', listingsController.getItems);
 listingsRouter.get('/cars', listingsController.getCars);
 listingsRouter.get('/', listingsController.getAll);
+listingsRouter.get('/car', listingsController.getCar);
+listingsRouter.get('/item', listingsController.getItem);
+
+listingsRouter.get('/items-filtered', listingsController.getItemsFiltered);
+listingsRouter.get('/cars-filtered', listingsController.getCarsFiltered);
 
 listingsRouter.use(
   //docs: https://www.npmjs.com/package/express-fileupload

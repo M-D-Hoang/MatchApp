@@ -23,14 +23,14 @@ class DB {
     return instance;
   }
 
-  async readAllListings() {
-    return await Listing.find();
+  async readAllListings(filter) {
+    return await Listing.find(filter);
   }
-
-  async readAllCarListings() {
-    return await CarListing.find();
+  
+  async readAllCarListings(filter) {
+    return await CarListing.find(filter);
   }
-
+  
   async createListing(listing) {
     const listingRow = new Listing({
       ownerID: listing.ownerID,
@@ -112,7 +112,7 @@ class DB {
   //need to be tested
   async updateCarListing(listing) {
     const update = { $set: listing };
-    await CarListing.findOneAndUpdate({ _id: listing._id }, update);
+    await CarListing.findOneAndUpdate(listing._id, update);
   }  
 
   async readOneCar(id) {

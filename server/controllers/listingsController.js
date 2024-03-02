@@ -88,9 +88,8 @@ exports.postCar = asyncHandler(async (req, res) => {
 exports.editCar = asyncHandler(async (req, res) => {
   const carObj = req.body;
   try {
-    //Update the listing in the DB
-    await db.updateCarListing(carObj);
-    return res.status(200).send({ status: 200, content: carObj });
+    const mongoRes = await db.updateCarListing(carObj);
+    return res.status(200).send({ status: 201, content: mongoRes });
   } catch (e) {
     res.status = 400;
     res.json({
@@ -134,23 +133,54 @@ exports.getSingleCar = asyncHandler(async (req, res) => {
   }
 });
 
-
-
-
 exports.getItemsFiltered = asyncHandler(async (req, res) => {
   try {
-    const listings = await db.readAllListings();
+    const { condition, extraField, category } = req.query;
+    const filter = {};
+    if (condition) {
+      filter.condition = condition;
+    }
+    if (extraField) {
+      filter.extraField = extraField;
+    }
+    if (category) {
+      filter.category = category;
+    }
+    const listings = await db.readAllListings(filter);
     res.status(200).json({ content: listings, response: 200 });
-  } catch {
+  } catch (error) {
+    console.error(error);
     res.status(500).send('Internal DB error. Could not read listings');
   }
 });
 
 exports.getCarsFiltered = asyncHandler(async (req, res) => {
   try {
-    const carListings = await db.readAllCarListings();
+    const { condition, make, model, bodyType, transmission, driveTrain } = req.query;
+
+    const filter = {};
+    if (condition) {
+      filter.condition = condition;
+    }
+    if (make) {
+      filter.make = make;
+    }
+    if (model) {
+      filter.model = model;
+    }
+    if (bodyType) {
+      filter.bodyType = bodyType;
+    }
+    if (transmission) {
+      filter.transmission = transmission;
+    }
+    if (driveTrain) {
+      filter.driveTrain = driveTrain;
+    }
+    const carListings = await db.readAllCarListings(filter);
     res.status(200).json({ content: carListings, response: 200 });
-  } catch {
+  } catch (error) {
+    console.error(error);
     res.status(500).send('Internal DB error. Could not read car listings');
   }
 });
