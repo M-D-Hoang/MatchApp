@@ -131,9 +131,19 @@ class DB {
     return await Listing.findById(id);
   }
 
+
+  async removeListingByID(id){
+    return await Listing.deleteOne({ _id: id});
+  }
+
+  async removeCarByID(id){
+    return await CarListing.deleteOne({ _id: id});
+  }
+  
   async updateItemListing(listing) {
     const update = { $set: listing };
     return await Listing.findByIdAndUpdate(listing.id, update);
+
   }
 
   async readUser(username) {
