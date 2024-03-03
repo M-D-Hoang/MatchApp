@@ -12,3 +12,5 @@ usersRouter.use(
     createParentPath: true,
   })
 );
+
+module.exports = usersRouter;

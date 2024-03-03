@@ -143,7 +143,6 @@ class DB {
   async updateItemListing(listing) {
     const update = { $set: listing };
     return await Listing.findByIdAndUpdate(listing.id, update);
-
   }
 
   async readUser(username) {

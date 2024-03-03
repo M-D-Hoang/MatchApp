@@ -5,7 +5,7 @@ const db = new DB();
 exports.getItems = asyncHandler(async (req, res) => {
   try {
     const listings = await db.readAllListings();
-    res.status(200).json({ content: listings, response: 200 });
+    res.status(200).json(listings);
   } catch {
     res.status(500).send('Internal DB error. Could not read listings');
   }
@@ -14,7 +14,7 @@ exports.getItems = asyncHandler(async (req, res) => {
 exports.getCars = asyncHandler(async (req, res) => {
   try {
     const carListings = await db.readAllCarListings();
-    res.status(200).json({ content: carListings, response: 200 });
+    res.status(200).json(carListings);
   } catch {
     res.status(500).send('Internal DB error. Could not read car listings');
   }
@@ -28,8 +28,9 @@ exports.getAll = asyncHandler(async (req, res) => {
     // combine them
     const combined = listings.concat(carListings);
     // TODO: sort them by date
+    // TODO: location
     // send all listings
-    res.status(200).json({ content: combined, response: 200 });
+    res.status(200).json(combined);
   } catch {
     res.status(500).send('Internal DB error. Could not read all listings');
   }
@@ -50,7 +51,7 @@ exports.postItem = asyncHandler(async (req, res) => {
     //Add the listing to the DB
     await db.createListing(formObj);
 
-    return res.status(201).send({ status: 201, content: formObj });
+    return res.status(201).send(formObj);
   } catch (e) {
     res.status = 400;
     res.json({
@@ -75,7 +76,7 @@ exports.postCar = asyncHandler(async (req, res) => {
     //Add the listing to the DB
     await db.createCarListing(formObj);
 
-    return res.status(201).send({ status: 201, content: formObj });
+    return res.status(201).send(formObj);
   } catch (e) {
     res.status = 400;
     res.json({
@@ -92,7 +93,7 @@ exports.deleteItem = asyncHandler(async (req, res) => {
   try {
     await db.removeListingByID(itemID);
     
-    return res.status(204).json({ status: 204, content: 'Item Deleted' });
+    return res.status(204).json('Item Deleted');
   } catch (e) {
     res.status(400).json({
       content: e.message,
@@ -108,7 +109,7 @@ exports.deleteCar = asyncHandler(async (req, res) => {
   try {
     await db.removeCarByID(itemID);
     
-    return res.status(204).json({ status: 204, content: 'Item Deleted' });
+    return res.status(204).json('Item Deleted');
   } catch (e) {
     res.status(400).json({
       content: e.message,
@@ -121,7 +122,7 @@ exports.editCar = asyncHandler(async (req, res) => {
   const carObj = req.body;
   try {
     const mongoRes = await db.updateCarListing(carObj);
-    return res.status(200).send({ status: 201, content: mongoRes });
+    return res.status(200).send(mongoRes);
   } catch (e) {
     res.status = 400;
     res.json({
@@ -135,7 +136,7 @@ exports.editItem = asyncHandler(async (req, res) => {
   const ItemObj = req.body;
   try {
     const mongoRes = await db.updateItemListing(ItemObj);
-    return res.status(201).send({ status: 201, content: mongoRes });
+    return res.status(201).send(mongoRes);
   } catch (e) {
     res.status = 400;
     res.json({
@@ -150,7 +151,7 @@ exports.getSingleItem = asyncHandler(async (req, res) => {
   const id = req.params.id;
   try {
     const listing = await db.readOneItem(id);
-    res.status(200).json({ content: listing, response: 200 });
+    res.status(200).json(listing);
   } catch {
     res.status(500).send('Internal DB error. Could not read listings');
   }
@@ -160,7 +161,7 @@ exports.getSingleCar = asyncHandler(async (req, res) => {
   const id = req.params.id;
   try {
     const carListing = await db.readOneCar(id);
-    res.status(200).json({ content: carListing, response: 200 });
+    res.status(200).json(carListing);
   } catch {
     res.status(500).send('Internal DB error. Could not read car listings');
   }
@@ -180,7 +181,7 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
       filter.category = category;
     }
     const listings = await db.readAllListings(filter);
-    res.status(200).json({ content: listings, response: 200 });
+    res.status(200).json(listings);
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal DB error. Could not read listings');
@@ -211,7 +212,7 @@ exports.getCarsFiltered = asyncHandler(async (req, res) => {
       filter.driveTrain = driveTrain;
     }
     const carListings = await db.readAllCarListings(filter);
-    res.status(200).json({ content: carListings, response: 200 });
+    res.status(200).json(carListings);
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal DB error. Could not read car listings');
