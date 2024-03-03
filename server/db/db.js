@@ -23,12 +23,20 @@ class DB {
     return instance;
   }
 
-  async readAllListings(filter) {
+  async readAllFilteredListings(filter) {
     return await Listing.find(filter);
   }
   
-  async readAllCarListings(filter) {
+  async readAllFilteredCarListings(filter) {
     return await CarListing.find(filter);
+  }
+
+  async readAllListings() {
+    return await Listing.find();
+  }
+  
+  async readAllCarListings() {
+    return await CarListing.find();
   }
 
   async createListing(listing) {

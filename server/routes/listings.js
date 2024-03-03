@@ -8,8 +8,8 @@ const fileUpload = require('express-fileupload');
 listingsRouter.get('/items', listingsController.getItems);
 listingsRouter.get('/cars', listingsController.getCars);
 listingsRouter.get('/', listingsController.getAll);
-listingsRouter.get('/car', listingsController.getCar);
-listingsRouter.get('/item', listingsController.getItem);
+listingsRouter.get('/car/:id', listingsController.getSingleCar);
+listingsRouter.get('/item/:id', listingsController.getSingleItem);
 
 listingsRouter.get('/items-filtered', listingsController.getItemsFiltered);
 listingsRouter.get('/cars-filtered', listingsController.getCarsFiltered);
@@ -24,7 +24,7 @@ listingsRouter.use(
 listingsRouter.post('/items', listingsController.postItem);
 listingsRouter.post('/cars', listingsController.postCar);
 
-listingsRouter.patch('/items', listingsController.editCar);
+listingsRouter.patch('/cars', listingsController.editCar);
 listingsRouter.patch('/items', listingsController.editItem);
 
 module.exports = listingsRouter;
