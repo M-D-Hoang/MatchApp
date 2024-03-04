@@ -43,7 +43,7 @@ exports.postItem = asyncHandler(async (req, res, next) => {
     // TODO: TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
     formObj.ownerID = 'user4633'; 
     // Add the listing to the DB
-    await db.createListing(formObj);
+    res.locals.listing = await db.createListing(formObj);
     // pass request to the next middleware (image uploader)
     next();
     //return res.status(201).send({ status: 201, content: formObj });
@@ -64,7 +64,7 @@ exports.postCar = asyncHandler(async (req, res, next) => {
     // TODO: TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
     formObj.ownerID = 'user4633';
     // Add the listing to the DB
-    await db.createCarListing(formObj);
+    res.locals.listing = await db.createCarListing(formObj);
     // pass request to the next middleware (image uploader)
     next();
     //return res.status(201).send({ status: 201, content: formObj });

@@ -1,6 +1,8 @@
 const asyncHandler = require('express-async-handler');
 const dotenv = require('dotenv');
 const { BlobServiceClient } = require('@azure/storage-blob');
+const DB = require('../db/db.js');
+const db = new DB();
 
 dotenv.config();
 const AZURE_SAS = process.env.AZURE_SAS;
@@ -15,7 +17,6 @@ const blobService = new BlobServiceClient(
 const containerClient = blobService.getContainerClient(containerName);
 
 exports.postImage = asyncHandler(async (req, res) => {
-//   const data = req.body;
   // TODO: support for multiple images
   const image = req.files.image[0];
   // set filename
@@ -26,7 +27,9 @@ exports.postImage = asyncHandler(async (req, res) => {
   // upload to blob storage
   await blobClient.uploadData(image.data, options);
   const fullURL = blobPublicUrl + path;
-  // TODO: update db row with image url
-  //await db.updateItem(data.title);
+  // TODO: support for multiple images
+  res.locals.listing.imageURIs[0] = fullURL;
+  // update db row
+  await db.updateItemListing(res.locals.listing);
   return res.status(201).json({ path:path, fullUrl: fullURL });
 });

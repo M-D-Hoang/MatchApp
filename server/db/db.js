@@ -60,7 +60,7 @@ class DB {
       driveTrain: listing.driveTrain,
       imageURIs: listing.imageURIs,
     });
-    await listingRow.save();
+    return await listingRow.save();
   }
 
   async updateUserImage(username, imageURL) {
@@ -136,8 +136,16 @@ class DB {
   
   async updateItemListing(listing) {
     const update = { $set: listing };
-    return await Listing.findByIdAndUpdate(listing.id, update);
+    return await Listing.findByIdAndUpdate(
+      listing.id ? listing.id : listing._id.toString(), update
+    );
+  }
 
+  async updateCarListing(listing) {
+    const update = { $set: listing };
+    return await CarListing.findByIdAndUpdate(
+      listing.id ? listing.id : listing._id.toString(), update
+    );
   }
 }
 
