@@ -5,12 +5,12 @@ import { CarForm } from "../../components/Forms/CarForm.js";
 
 export function Edit() {
     const location = useLocation();
-    const data = location.state.data;
+    const item = location.state.data;
 
     return (
         <div className="sell-page">
             <h1>Edit Your Listing</h1>
-            <ItemForm item={data}/>
+            <ItemForm item={item} />
         </div>
     );
 }

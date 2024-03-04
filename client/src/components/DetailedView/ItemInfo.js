@@ -9,6 +9,9 @@ export function ItemInfo({ item }) {
         navigate('/edit', {state: {data: item}});
     };
 
+    const handleFullView = () => {
+        navigate('/fullview', {state: {data: item}});
+    }
     return (
         <div className="item-info">
             <h1>
@@ -17,6 +20,7 @@ export function ItemInfo({ item }) {
             <p>{item.description}</p>
             <button>Delete</button>
             <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleFullView}>Full View</button>
         </div>
     );
 }
