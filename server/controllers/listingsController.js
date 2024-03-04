@@ -51,7 +51,7 @@ exports.postItem = asyncHandler(async (req, res) => {
     //Add the listing to the DB
     await db.createListing(formObj);
 
-    return res.status(201).send(formObj);
+    return res.status(200).send(formObj);
   } catch (e) {
     res.status = 400;
     res.json({
@@ -76,7 +76,7 @@ exports.postCar = asyncHandler(async (req, res) => {
     //Add the listing to the DB
     await db.createCarListing(formObj);
 
-    return res.status(201).send(formObj);
+    return res.status(200).send(formObj);
   } catch (e) {
     res.status = 400;
     res.json({
@@ -122,7 +122,7 @@ exports.editCar = asyncHandler(async (req, res) => {
   const carObj = req.body;
   try {
     const mongoRes = await db.updateCarListing(carObj);
-    return res.status(200).send(mongoRes);
+    return res.status(201).send(mongoRes);
   } catch (e) {
     res.status = 400;
     res.json({
@@ -170,6 +170,7 @@ exports.getSingleCar = asyncHandler(async (req, res) => {
 exports.getItemsFiltered = asyncHandler(async (req, res) => {
   try {
     const { condition, extraField, category } = req.query;
+
     const filter = {};
     if (condition) {
       filter.condition = condition;
@@ -180,7 +181,7 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
     if (category) {
       filter.category = category;
     }
-    const listings = await db.readAllListings(filter);
+    const listings = await db.readAllFilteredListings(filter);
     res.status(200).json(listings);
   } catch (error) {
     console.error(error);
@@ -211,7 +212,7 @@ exports.getCarsFiltered = asyncHandler(async (req, res) => {
     if (driveTrain) {
       filter.driveTrain = driveTrain;
     }
-    const carListings = await db.readAllCarListings(filter);
+    const carListings = await db.readAllFilteredCarListings(filter);
     res.status(200).json(carListings);
   } catch (error) {
     console.error(error);

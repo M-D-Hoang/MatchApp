@@ -97,27 +97,7 @@ class DB {
 
     await userRow.save();
   }
-
-  // // BROKEN FOR NOW
-  // async createManyUsers(users) {
-  //   const userRows = [];
-  //   // make mongoose User objects
-  //   users.forEach(user => {
-  //     userRows.push(new User({
-  //       name: user.name,
-  //       comments: user.comments,
-  //       picture: user.picture
-  //     }));
-  //   });
-  //   // save each object to DB
-  //   userRows.forEach(async (userRow) => {
-  //     await userRow.save();
-  //   });
-  // }
-
-  //add a comment to user's comments array,
-  //if user not, exist, makes new user
-  //need to be tested
+  
   async updateCarListing(listing) {
     const update = { $set: listing };
     await CarListing.findOneAndUpdate(listing._id, update);

@@ -5,7 +5,7 @@ const db = new DB();
 exports.getUser = asyncHandler(async (req, res) => {
   try {
     const user = await db.readUser(req.body.username);
-    res.status(200).json({ content: user, response: 200 });
+    res.status(200).json(user);
   } catch {
     res.status(500).send('Internal DB error. Could not read user');
   }
@@ -15,7 +15,7 @@ exports.editUser = asyncHandler(async (req, res) => {
   const userObj = req.body;
   try {
     const mongoRes = await db.updateUser(userObj);
-    return res.status(200).send({ status: 201, content: mongoRes });
+    return res.status(201).send(mongoRes);
   } catch (e) {
     res.status = 400;
     res.json({
@@ -29,7 +29,7 @@ exports.postUser = asyncHandler(async (req, res) => {
   const userObj = req.body;
   try {
     await db.createUser(userObj);
-    return res.status(201).send({ status: 201, content: userObj });
+    return res.status(200).send(userObj);
   } catch (e) {
     res.status = 400;
     res.json({
