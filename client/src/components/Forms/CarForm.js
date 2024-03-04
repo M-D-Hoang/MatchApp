@@ -10,12 +10,12 @@ export function CarForm(){
     e.preventDefault();
     var formData = new FormData(e.target);
     formData.append('image',image);
-    const json = await updateListing(formData, '/api/listings/cars')
-    if(json.status === 201){
+    const resp = await updateListing(formData, '/api/listings/cars')
+    if(resp.status === 200){
       navigate('/')
     }
     else{
-      alert(`Unable to add listing: ${json}`);
+      alert(`Unable to add listing: ${resp}`);
     }
     
 };
