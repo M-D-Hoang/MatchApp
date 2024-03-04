@@ -65,9 +65,9 @@ export function DetailedView({isRender, onExit, item}) {
             <div className={"detailed-view"}>
                 <div className={"item-image"}>
                   
-                    <button className={"item-image-button"}>L</button>
+                    <button className={"item-image-button right"}></button>
                     <img src={image} />
-                    <button className={"item-image-button"}>R</button>
+                    <button className={"item-image-button"}></button>
 
                 </div>
                 <ItemInfo onDeleteClicked={onDeleteClicked} item={item} />

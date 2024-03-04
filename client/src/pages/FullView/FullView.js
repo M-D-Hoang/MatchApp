@@ -18,9 +18,10 @@ export function FullView() {
     return (
         <div className={"full-view-page"}>
             <div className={"item-image"}>
-                <button className={"item-image-button"}>L</button>
+                <button className={"item-image-button right"}>
+                </button>
                 <img src={image} />
-                <button className={"item-image-button"}>R</button>
+                <button className={"item-image-button left"}></button>
             </div>
             <ItemInfo item={item} />
         </div>
