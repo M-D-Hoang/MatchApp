@@ -28,7 +28,7 @@ export function ListingsLayout() {
                 return resp.json();
             })
             .then((json) => {
-                setListingData(json.content);
+                setListingData(json);
             })
             .catch((e) => {
                 console.error(e);

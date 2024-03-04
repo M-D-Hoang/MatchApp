@@ -53,7 +53,7 @@ export function DetailedView({isRender, onExit, item}) {
        else{
             //placeholder alert, should be something nicer later
             const json = await resp.json();
-            alert(`Something went wrong while deleting the entry: ${json.content}`)
+            alert(`Something went wrong while deleting the entry: ${json}`)
        }
        //The below should work when we have routers for individual items working.
        //For now, it works only once.
