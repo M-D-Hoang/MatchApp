@@ -6,10 +6,10 @@ import "./Sell.css";
 
 export function Sell() {
     const [sellJSX, setSellJSX] = useState(<></>);
-    const [isMenuOpen, setOpen] = useState(false);
+    
 
     const handleFormChoice = (value) => {
-        setOpen(false);
+        
         switch (value) {
             case "Car":
                 setSellJSX(<CarForm />);
