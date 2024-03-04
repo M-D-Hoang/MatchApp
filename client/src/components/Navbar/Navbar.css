@@ -23,3 +23,18 @@ a{
     text-decoration: none;
     color: white;
 }
+
+.navbar-pfp{
+    object-fit: cover;
+    width:60px;
+    height:60px;
+    border-radius: 500%;
+    border:2px solid black;
+}
+
+.navbar-pfp:hover{
+    border:2px solid rgb(102, 179, 119);
+    transition: box-shadow 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 0px;
+}
+
