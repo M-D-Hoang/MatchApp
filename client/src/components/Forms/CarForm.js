@@ -25,9 +25,9 @@ export function CarForm(){
     const pickedFiles = e.target.files
     console.log("Image changed!")
     console.log(pickedFiles)
-    if(pickedFiles[0] !== undefined){
+    if(pickedFiles !== undefined){
         //set image statevar to the picked image
-        setImage(pickedFiles[0]);
+        setImage(pickedFiles);
     }
 }
 
@@ -39,7 +39,7 @@ export function CarForm(){
         <label>Title: <input type="text" name="title" required></input></label>
         <label>Description: <input type="text" name="description"></input></label>
         <label>Price: <input type="number" name="price"></input></label>
-        <input type="file" name="image" accept="image/*" onChange={onImageChange} required></input>
+        <input type="file" name="image" accept="image/*" onChange={onImageChange} required multiple="multiple"></input>
         <label>Condition: <input type="text" name="condition" required></input></label>
         <label>Make: <input type="text" name="make" required></input></label>
         <label>Model: <input type="text" name="model" required></input></label>
