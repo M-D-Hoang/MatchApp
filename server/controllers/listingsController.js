@@ -110,11 +110,14 @@ exports.deleteCar = asyncHandler(async (req, res) => {
   }
 });
 
-exports.editCar = asyncHandler(async (req, res) => {
+exports.editCar = asyncHandler(async (req, res, next) => {
   const carObj = req.body;
   try {
-    const mongoRes = await db.updateCarListing(carObj);
-    return res.status(201).send(mongoRes);
+    //const mongoRes = await db.updateCarListing(carObj);
+    res.locals.listing = await db.updateCarListing(carObj);
+    // pass request down to image controller
+    next();
+    //return res.status(201).send(mongoRes);
   } catch (e) {
     res.status = 400;
     res.json({
@@ -124,17 +127,19 @@ exports.editCar = asyncHandler(async (req, res) => {
   }
 });
 
-exports.editItem = asyncHandler(async (req, res) => {
+exports.editItem = asyncHandler(async (req, res, next) => {
   const ItemObj = req.body;
   try {
-    const mongoRes = await db.updateItemListing(ItemObj);
-    return res.status(201).send(mongoRes);
+    //const mongoRes = await db.updateItemListing(ItemObj);
+    res.locals.listing = await db.updateItemListing(ItemObj);
+    // pass request down to image controller
+    next();
+    //return res.status(201).send(mongoRes);
   } catch (e) {
     res.status = 400;
     res.json({
       content: e.message,
       status: 400,
-
     });
   }
 });
