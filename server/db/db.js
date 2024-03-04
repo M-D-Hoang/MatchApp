@@ -23,10 +23,18 @@ class DB {
     return instance;
   }
 
+  async readAllFilteredListings(filter) {
+    return await Listing.find(filter);
+  }
+  
+  async readAllFilteredCarListings(filter) {
+    return await CarListing.find(filter);
+  }
+
   async readAllListings() {
     return await Listing.find();
   }
-
+  
   async readAllCarListings() {
     return await CarListing.find();
   }
@@ -89,45 +97,41 @@ class DB {
 
     await userRow.save();
   }
+  
+  async updateCarListing(listing) {
+    const update = { $set: listing };
+    await CarListing.findOneAndUpdate(listing._id, update);
+  }  
 
-  // // BROKEN FOR NOW
-  // async createManyUsers(users) {
-  //   const userRows = [];
-  //   // make mongoose User objects
-  //   users.forEach(user => {
-  //     userRows.push(new User({
-  //       name: user.name,
-  //       comments: user.comments,
-  //       picture: user.picture
-  //     }));
-  //   });
-  //   // save each object to DB
-  //   userRows.forEach(async (userRow) => {
-  //     await userRow.save();
-  //   });
-  // }
-
-  //add a comment to user's comments array,
-  //if user not, exist, makes new user
-  //need to be tested
-  async addComment(user, comment, time) {
-    const update = {
-      $push: {
-        comments: {
-          text: comment,
-          time: time,
-        },
-      },
-    };
-
-    await User.findOneAndUpdate({ name: user }, update, {
-      upsert: true,
-    });
+  async readOneCar(id) {
+    return await CarListing.findById(id);
   }
 
+  async readOneItem(id) {
+    return await Listing.findById(id);
+  }
+
+
+  async removeListingByID(id){
+    return await Listing.deleteOne({ _id: id});
+  }
+
+  async removeCarByID(id){
+    return await CarListing.deleteOne({ _id: id});
+  }
+  
   async updateItemListing(listing) {
     const update = { $set: listing };
     return await Listing.findByIdAndUpdate(listing.id, update);
+  }
+
+  async readUser(username) {
+    return await User.findOne(username);
+  }
+
+  async updateUser(user) {
+    const update = { $set: user };
+    return await User.updateOne(user.username, update);
   }
 }
 
