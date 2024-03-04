@@ -40,6 +40,8 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
     transition: box-shadow 0.3s;
     cursor: pointer;
+    filter: brightness(0.9);
+    transition: brightness 0.3s;
 }
 .dropdown {
     width: 10em;
