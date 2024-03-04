@@ -1,20 +1,38 @@
 //Page for Selling
-import {useState} from "react";
-import {ItemForm} from '../../components/Forms/ItemForm.js'
-import {CarForm} from '../../components/Forms/CarForm.js'
-
+import { useState } from "react";
+import { ItemForm } from "../../components/Forms/ItemForm.js";
+import { CarForm } from "../../components/Forms/CarForm.js";
+import "./Sell.css";
 
 export function Sell() {
+    const [sellJSX, setSellJSX] = useState(<></>);
+    const [isMenuOpen, setOpen] = useState(false);
 
-    const [sellJSX, setSellJSX] = useState(<></>)
-  
+    const handleFormChoice = (value) => {
+        setOpen(false);
+        switch (value) {
+            case "Car":
+                setSellJSX(<CarForm />);
+                console.log("Car");
+                break;
+            case "Other":
+                setSellJSX(<ItemForm />);
+                break;
+            default:
+                break;
+        }
+    };
 
     return (
-        <div>
+        <div className="sell-page">
             <h1>Add Your Listing</h1>
 
-            <button onClick={()=>setSellJSX(<CarForm/>)}>Sell Car</button>
-            <button onClick={()=>setSellJSX(<ItemForm/>)}>Sell Misc</button>
+            <select className="form-select" onChange={(e) => handleFormChoice(e.target.value)}>
+                <option>Select Category</option>
+                <option value="Car">Car</option>
+                <option value="Other">Other</option>
+            </select>
+
             {sellJSX}
         </div>
     );
