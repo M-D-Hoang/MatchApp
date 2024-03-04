@@ -3,6 +3,7 @@ const app = express();
 //Middleware imports
 //const helloRouter = require('./routes/helloworld.js');
 const listingsRouter = require('./routes/listings.js');
+const userRouter = require('./routes/users.js');
 
 app.use(express.json());
 
@@ -10,6 +11,7 @@ app.use(express.json());
 //app.use('/test-api', helloRouter);
 
 app.use('/api/listings', listingsRouter);
+app.use('/api/users', userRouter);
 
 app.use('/', express.static('../client/build/'));
 

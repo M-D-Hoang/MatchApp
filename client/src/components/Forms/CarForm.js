@@ -15,7 +15,7 @@ export function CarForm(){
       navigate('/')
     }
     else{
-      alert(`Unable to add listing: ${json.content}`);
+      alert(`Unable to add listing: ${json}`);
     }
     
 };
