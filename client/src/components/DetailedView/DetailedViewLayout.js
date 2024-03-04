@@ -2,7 +2,7 @@
 import React from "react";
 import { ItemInfo } from "../DetailedView/ItemInfo";
 import tempImage from "../../assets/images/item-image-temp1.png";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import "./DetailedViewLayout.css";
 
 
@@ -10,12 +10,14 @@ import "./DetailedViewLayout.css";
 
 //TO-DO: Implement multiple image scrollthrough
 export function DetailedView({isRender, onExit, item}) {
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     
-    const image = item.imageURIs[0]
+    
+    let image = item.imageURIs[0]
     if (image === undefined){
         image = tempImage;
     }
+    
 
     const isCar = item.make !== undefined;
     
@@ -66,7 +68,7 @@ export function DetailedView({isRender, onExit, item}) {
                 <div className={"item-image"}>
                   
                     <button className={"item-image-button"}>L</button>
-                    <img src={image} />
+                    <img src={image} alt={'product'}/>
                     <button className={"item-image-button"}>R</button>
 
                 </div>
