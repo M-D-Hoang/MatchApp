@@ -13,18 +13,18 @@ export function ItemForm({ item }) {
         e.preventDefault();
         var formData = new FormData(e.target);
         formData.append("image", image);
-        var resultJSON = undefined
+        var resp = undefined
         if (item !== undefined) {
             //For editing an item
             console.log("Editing item");
             formData.append("id", item._id);
-            resultJSON = await editListing(formData, "/api/listings/items");
+            resp = await editListing(formData, "/api/listings/items");
         } else {
             //For adding a listing
-            resultJSON = await updateListing(formData, "/api/listings/items");
+            resp = await updateListing(formData, "/api/listings/items");
         }
-
-        if(resultJSON.status === 201){
+console.log(resp.status)
+        if(resp.status === 200){
             navigate('/');
         }
         else{

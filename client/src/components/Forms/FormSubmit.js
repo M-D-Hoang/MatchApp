@@ -11,8 +11,8 @@ export async function updateListing(formData, URL) {
         headers: {},
         body: formData,
     });
-    const json = await resp.json();
-    return json;
+    
+    return resp;
 }
 
 export async function editListing(formData, URL) {
@@ -21,6 +21,6 @@ export async function editListing(formData, URL) {
         headers: {},
         body: formData,
     });
-    const json = await resp.json();
-    return json;
+    
+    return resp;
 }
