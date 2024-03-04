@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "./ListingsLayout.css";
 
-import { ItemCardRectangle } from "../../components/ItemCard/ItemCardRectangle";
+//import { ItemCardRectangle } from "../../components/ItemCard/ItemCardRectangle";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 import { DetailedView } from "../../components/DetailedView/DetailedViewLayout";
 
