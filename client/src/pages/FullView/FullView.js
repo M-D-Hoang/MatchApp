@@ -10,7 +10,7 @@ export function FullView() {
     const item = location.state.data;
 
     
-    const image = item.imageURIs[0];
+    let image = item.imageURIs[0];
     if (image === undefined) {
         image = tempImage;
     }
@@ -19,7 +19,7 @@ export function FullView() {
         <div className={"full-view-page"}>
             <div className={"item-image"}>
                 <button className={"item-image-button"}>L</button>
-                <img src={image} />
+                <img src={image} alt='product'/>
                 <button className={"item-image-button"}>R</button>
             </div>
             <ItemInfo item={item} />
