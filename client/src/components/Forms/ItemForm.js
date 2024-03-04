@@ -23,7 +23,7 @@ export function ItemForm({ item }) {
             //For adding a listing
             resp = await updateListing(formData, "/api/listings/items");
         }
-console.log(resp.status)
+
         if(resp.status === 200){
             navigate('/');
         }
