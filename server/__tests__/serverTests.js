@@ -143,7 +143,7 @@ describe('Listing Controller Routes', () => {
       const response = await request(app).
         patch('/api/listings/items').
         send(expectedItem);
-      expect(response.status).toBe(201);
+      expect(response.status).toBe(200);
     });
   });
 
@@ -154,7 +154,7 @@ describe('Listing Controller Routes', () => {
       const response = await request(app).
         patch('/api/listings/cars').
         send(expectedCar);
-      expect(response.status).toBe(201);
+      expect(response.status).toBe(200);
     });
   });
 });

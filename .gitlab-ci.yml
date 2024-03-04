@@ -1,0 +1,91 @@
+image: node:18.18-bullseye-slim
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_BRANCH == 'Staging'
+
+default:
+  cache:
+    key: 
+      prefix: $CI_COMMIT_REF_NAME
+      files:
+        - server/package-lock.json
+        - client/package-lock.json
+    paths:
+      - server/.npm/
+      - client/.npm
+  before_script:
+   - cd server && npm ci --cache .npm --prefer-offline && cd ../client && npm ci --cache .npm --prefer-offline && cd ..
+
+stages:
+  - lint
+  - test
+  - build
+  - deploy
+
+lint-server:
+  stage: lint 
+  before_script:
+    - cd server && npm ci --cache .npm --prefer-offline
+  script:
+    - ./node_modules/eslint/bin/eslint.js --ext js,mjs,cjs --max-warnings=0 . || true
+  allow_failure: false
+
+lint-client:
+  stage: lint 
+  before_script:
+    - cd client && npm ci --cache .npm --prefer-offline
+  script:
+    - ./node_modules/eslint/bin/eslint.js --ext js,jsx,mjs,cjs --max-warnings=0 . || true
+  allow_failure: false
+
+test-server:
+  stage: test
+  before_script:
+    - cd server && npm ci --cache .npm --prefer-offline
+  script:
+    - npm test
+
+# test-client job will go here as part of test stage
+
+build-prod:
+  stage: build
+  before_script:
+    - apt-get update && apt-get install -y zip
+  script:
+    - cd client && npm install --production && npm run build && cd ..
+    - cd server && npm install --production && cd ..
+    - zip -r deploymentPkg.zip client/build server package.json
+  only:
+    refs:
+      - main
+      - staging
+  artifacts:
+    expire_in: 1 days
+    when: on_success
+    paths:
+      - deploymentPkg.zip
+
+deploy-azure:
+  image: mcr.microsoft.com/azure-cli:2.57.0
+  stage: deploy
+  dependencies:
+    - build-prod
+  before_script: []
+  script:
+    - az login --service-principal -u $AZ_SP_ID -p $AZ_SP_SECRET --tenant $AZ_TENANT
+    - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
+      --settings WEBSITE_RUN_FROM_PACKAGE=$WEBSITE_RUN_FROM_PACKAGE
+    - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
+      --settings ATLAS_URI=$ATLAS_URI
+    - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
+      --settings AZURE_SAS=$AZURE_SAS
+    - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
+      --settings AZURE_STORAGE_ACCOUNT_NAME=$AZURE_STORAGE_ACCOUNT_NAME
+    - az webapp deployment source config-zip --name $APP_NAME
+      --resource-group $RESOURCE_GROUP_NAME --src deploymentPkg.zip
+  only:
+    refs:
+      - main

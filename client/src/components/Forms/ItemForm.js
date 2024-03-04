@@ -24,7 +24,7 @@ export function ItemForm({ item }) {
             resp = await updateListing(formData, "/api/listings/items");
         }
 
-        if(resp.status === 200){
+        if(resp.status === 201){
             navigate('/');
         }
         else{
