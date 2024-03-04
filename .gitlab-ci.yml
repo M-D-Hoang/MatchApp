@@ -47,7 +47,6 @@ test-server:
     - cd server && npm ci --cache .npm --prefer-offline
   script:
     - npm test
-    - echo $WEBSITE_RUN_FROM_PACKAGE
 
 # test-client job will go here as part of test stage
 
