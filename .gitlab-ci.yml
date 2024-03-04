@@ -61,7 +61,7 @@ build-prod:
   only:
     refs:
       - main
-      - staging
+      - Staging
   artifacts:
     expire_in: 1 days
     when: on_success
