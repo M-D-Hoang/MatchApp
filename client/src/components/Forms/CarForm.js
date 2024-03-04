@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {ImagePreview} from './ImagePreview.js';
 import {updateListing} from './FormSubmit.js';
 import { useNavigate } from 'react-router-dom';
-export function CarForm(){
+export function CarForm({item}){
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
 
@@ -34,21 +34,21 @@ export function CarForm(){
 
 
    return (
-    <div className="item-form">
-      <form onSubmit={submitItem}>
-        <label>Title: <input type="text" name="title" required></input></label>
-        <label>Description: <input type="text" name="description"></input></label>
-        <label>Price: <input type="number" name="price"></input></label>
-        <input type="file" name="image" accept="image/*" onChange={onImageChange} required></input>
-        <label>Condition: <input type="text" name="condition" required></input></label>
-        <label>Make: <input type="text" name="make" required></input></label>
-        <label>Model: <input type="text" name="model" required></input></label>
-        <label>Body Type: <input type="text" name="bodyType" required></input></label>
-        <label>Mileage: <input type="number" name="mileage" required></input></label>
-        <label>Transmission: <input type="text" name="transmission" required></input></label>
-        <label>DriveTrain: <input type="text" name="driveTrain" required></input></label>
-        <input type="submit"></input>
-      </form>
+     <div className="item-form">
+       <form onSubmit={submitItem}>
+         <label>Title: <input type="text" name="title" required defaultValue={item !== undefined ? item.title : ""}></input></label>
+         <label>Description: <input type="text" name="description" defaultValue={item !== undefined ? item.description : ""}></input></label>
+         <label>Price: <input type="number" name="price" defaultValue={item !== undefined ? item.price : ""}></input></label>
+         <input type="file" name="image" accept="image/*" onChange={onImageChange} required></input>
+         <label>Condition: <input type="text" name="condition" required defaultValue={item !== undefined ? item.condition : ""}></input></label>
+         <label>Make: <input type="text" name="make" required defaultValue={item !== undefined ? item.make : ""}></input></label>
+         <label>Model: <input type="text" name="model" required defaultValue={item !== undefined ? item.model : ""}></input></label>
+         <label>Body Type: <input type="text" name="bodyType" required defaultValue={item !== undefined ? item.bodyType : ""}></input></label>
+         <label>Mileage: <input type="number" name="mileage" required defaultValue={item !== undefined ? item.mileage : ""}></input></label>
+         <label>Transmission: <input type="text" name="transmission" required defaultValue={item !== undefined ? item.transmission : ""}></input></label>
+         <label>DriveTrain: <input type="text" name="driveTrain" required defaultValue={item !== undefined ? item.driveTrain : ""}></input></label>
+         <input type="submit"></input>
+       </form>
       <ImagePreview src={image}/>
     </div>
   );
