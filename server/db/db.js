@@ -42,7 +42,7 @@ class DB {
       extraField: listing.extraField,
       category: listing.category
     });
-    await listingRow.save();
+    return await listingRow.save();
   }
 
   async createCarListing(listing){

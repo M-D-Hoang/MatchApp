@@ -1,9 +1,8 @@
 const express = require('express');
 const listingsRouter = express.Router();
 const listingsController = require('../controllers/listingsController.js');
+const imagesController = require('../controllers/imagesController.js');
 const fileUpload = require('express-fileupload');
-
-
 
 listingsRouter.get('/items', listingsController.getItems);
 listingsRouter.get('/cars', listingsController.getCars);
@@ -15,8 +14,9 @@ listingsRouter.use(
     createParentPath: true,
   })
 );
-
 listingsRouter.post('/items', listingsController.postItem);
 listingsRouter.post('/cars', listingsController.postCar);
+listingsRouter.post('/items', imagesController.postImage);
+listingsRouter.post('/cars', imagesController.postImage);
 
 module.exports = listingsRouter;
