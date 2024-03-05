@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
     display: flex;
     background-color: green;
     color: white;
@@ -6,20 +6,39 @@
     top: 0;
     z-index: 2;
 }
-.logo{
+.logo {
     width: 100px;
     margin: 10px;
 }
-.link-container{
+.link-container {
     flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
-.link{
+.link {
     margin: 20px;
 }
-a{
+a {
     text-decoration: none;
     color: white;
+}
+
+.navbar-pfp {
+    object-fit: cover;
+    width: 4em;
+    border-radius: 500%;
+    flex-shrink: 0;
+}
+
+.navbar-pfp:hover {
+    transition: box-shadow 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 0px;
+}
+.pfp-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    margin: 0 1em;
 }

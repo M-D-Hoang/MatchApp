@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./DetailedViewLayout.css";
 
 //TO-DO: Implement multiple image scrollthrough
-export function DetailedView({ isRender, onExit, item }) {
+export function DetailedView({ onExit, item }) {
     const navigate = useNavigate();
 
     var image = item.imageURIs[0];
