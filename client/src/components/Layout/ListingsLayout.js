@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import "./ListingsLayout.css";
 
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
-import { DetailedView } from "../../components/DetailedView/DetailedViewLayout";
 
 export function ListingsLayout() {
     const [isMenuOpen, setOpen] = useState(false);
@@ -49,25 +48,11 @@ export function ListingsLayout() {
         // Handle sort
     };
 
-    // const handleHideDetailedView = (e) => {
-        
-    //     if(e.target.className === "overlay"){
-    //         setDetailedView(false);
-    //     }
-    // };
-
-    //generate JSX based on listing data
     const listingJSX = listingData.map((item) => {
         return (
             <ItemCardSquare key={item._id} item={item}></ItemCardSquare>
         );
     });
-
-    // if (isDeatiledView) {
-    //     document.body.style.overflow = "hidden";
-    // } else {
-    //     document.body.style.overflow = "auto";
-    // }
 
     return (
         <div className="listings-layout">

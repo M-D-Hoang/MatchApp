@@ -19,6 +19,12 @@ export function ItemCardSquare({ item }) {
         }
     };
 
+    if (isDeatiledView) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "auto";
+    }
+
     return (
         <div className="item-card" onClick={showHandler}>
             {isDeatiledView ? (
