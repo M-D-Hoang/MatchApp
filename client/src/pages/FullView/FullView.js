@@ -45,7 +45,7 @@ export function FullView() {
             <div className={"full-view-page"}>
                 <div className={"item-image"}>
                     <button className={"item-image-button right"}></button>
-                    <img src={image} />
+                    <img src={image} alt="item"/>
                     <button className={"item-image-button left"}></button>
                 </div>
                 <div className="item-info-container">
