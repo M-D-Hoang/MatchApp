@@ -18,7 +18,6 @@ const containerClient = blobService.getContainerClient(containerName);
 
 exports.postImage = asyncHandler(async (req, res) => {
   const images = Array.from(req.files.image);
-  //   console.log(res.locals.listing);
   // create promises to upload images
   const uploadPromises = images.map(async (image, i) => {
     const path = image.name;
