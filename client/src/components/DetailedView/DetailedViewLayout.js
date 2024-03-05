@@ -8,7 +8,7 @@ import "./DetailedViewLayout.css";
 export function DetailedView({ isRender, onExit, item }) {
     const navigate = useNavigate();
 
-    const image = item.imageURIs[0];
+    var image = item.imageURIs[0];
     if (image === undefined) {
         image = tempImage;
     }
@@ -52,7 +52,7 @@ export function DetailedView({ isRender, onExit, item }) {
     };
 
     const handleFullViewURL = () => {
-        navigate("/fullview/" + "?itemId=" + item._id, { state: { data: item } });
+        navigate("/fullview/?itemId=" + item._id, { state: { data: item } });
     }
 
     return (
