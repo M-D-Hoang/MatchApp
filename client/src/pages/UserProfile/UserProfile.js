@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
-
+import { ImagePreview } from "../../components/Forms/ImagePreview";
 
 const exampleUser = {
     _id: 'user1026',
@@ -18,7 +18,17 @@ const exampleUser = {
 export function UserPage() {
     //for the real thing, we would have user passed in as a prop
     const user = exampleUser
-    const [userItems, setUserItems] = useState([])
+    const [isEditing, setEditing] = useState(false);
+    const [userItems, setUserItems] = useState([]);
+
+    const onEditToggle = ()=>{
+      setEditing(!isEditing);  
+    };
+
+    const onEditSubmit = ()=>{
+        
+    }
+
     useEffect(() => {
         //get products by user
         setUserItems([
@@ -74,24 +84,111 @@ export function UserPage() {
         ])
     }, [])
 
+    
+
+    return (<div>
+        {!isEditing?<Display user={user} userItems={userItems}></Display>:<Edit user={user} onSubmit={onEditSubmit}/>}
+        
+    </div>);
+}
+
+function Edit({user, onSubmit}){
+
+    const [previewImages, setPreviewImages] = useState([])
+
+    const onImageChange = (e)=>{
+        const pickedFiles = e.target.files
+        console.log("Image changed!")
+        console.log(pickedFiles)
+        if(pickedFiles[0] !== undefined){
+            //set image statevar to the picked image
+            setPreviewImages(pickedFiles);
+        }
+    }
+
+    return(
+        <div className="item-form">
+        <form onSubmit={onSubmit}>
+            <label>
+                Title:{" "}
+                <input
+                    type="text"
+                    name="title"
+                    defaultValue={user !== undefined ? user.title : ""}
+                    required></input>
+            </label>
+            <label>
+                Description:{" "}
+                <input
+                    type="text"
+                    name="description"
+                    defaultValue={user !== undefined ? user.description : ""}></input>
+            </label>
+            <label>
+                Price:{" "}
+                <input
+                    type="number"
+                    name="price"
+                    defaultValue={user !== undefined ? user.price : ""}></input>
+            </label>
+            <label>
+                Image:{" "}
+                <input
+                    className="image-input"
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    onChange={onImageChange}
+                    required></input>
+            </label>
+            <label>
+                Condition:{" "}
+                <input
+                    type="text"
+                    name="condition"
+                    defaultValue={user !== undefined ? user.condition : ""}
+                    required></input>
+            </label>
+            <label>
+                Extra:{" "}
+                <input
+                    type="text"
+                    name="extraField"
+                    defaultValue={
+                        user !== undefined ? user.extraField : ""
+                    }></input>
+            </label>
+            <label>
+                Category:{" "}
+                <input
+                    type="text"
+                    name="category"
+                    defaultValue={user !== undefined ? user.category : ""}
+                    required></input>
+            </label>
+            <input type="submit"></input>
+        </form>
+
+        <ImagePreview src={previewImages} />
+    </div>
+    );
+}
+
+function Display({user, userItems}){
     const listingJSX = userItems.map((item) => {
         return (<ItemCardSquare item={item} />);
     })
 
-    return (<div>
-        <h1>{user.username}</h1>
-        <h2>{user.firstName} {user.lastName}</h2>
-        <img src={user.picture} alt={user.username}></img>
-        <div className="profile-personal-info">
-            <h1>Personal Info:</h1>
-            <p>Birthday: {user.birthday}</p>
-            <p>E-Mail: {user.email}</p>
-            <p>Phone Number: {user.phoneNumber}</p>
-            <p>Gender: {user.gender}</p>
-        </div>
-        <div>
+    return(
+        <><h1>{user.username}</h1><h2>{user.firstName} {user.lastName}</h2><img src={user.picture} alt={user.username}></img><div className="profile-personal-info">
+        <h1>Personal Info:</h1>
+        <p>Birthday: {user.birthday}</p>
+        <p>E-Mail: {user.email}</p>
+        <p>Phone Number: {user.phoneNumber}</p>
+        <p>Gender: {user.gender}</p>
+    </div><div>
             <h1>Items</h1>
             {listingJSX}
-        </div>
-    </div>);
+        </div></>
+    );
 }
