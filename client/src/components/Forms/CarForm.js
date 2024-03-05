@@ -11,7 +11,7 @@ export function CarForm(){
     var formData = new FormData(e.target);
     formData.append('image',image);
     const resp = await updateListing(formData, '/api/listings/cars')
-    if(resp.status === 200){
+    if(resp.status === 201){
       navigate('/')
     }
     else{

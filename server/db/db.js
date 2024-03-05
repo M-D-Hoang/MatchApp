@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const User = require('./model/User.js');
@@ -50,7 +51,7 @@ class DB {
       extraField: listing.extraField,
       category: listing.category,
     });
-    await listingRow.save();
+    return await listingRow.save();
   }
 
   async createCarListing(listing) {
@@ -68,7 +69,7 @@ class DB {
       driveTrain: listing.driveTrain,
       imageURIs: listing.imageURIs,
     });
-    await listingRow.save();
+    return await listingRow.save();
   }
 
   async updateUserImage(username, imageURL) {
@@ -97,11 +98,6 @@ class DB {
 
     await userRow.save();
   }
-  
-  async updateCarListing(listing) {
-    const update = { $set: listing };
-    await CarListing.findOneAndUpdate(listing._id, update);
-  }  
 
   async readOneCar(id) {
     return await CarListing.findById(id);
@@ -122,7 +118,16 @@ class DB {
   
   async updateItemListing(listing) {
     const update = { $set: listing };
-    return await Listing.findByIdAndUpdate(listing.id, update);
+    return await Listing.findByIdAndUpdate(
+      listing.id ? listing.id : listing._id.toString(), update
+    );
+  }
+
+  async updateCarListing(listing) {
+    const update = { $set: listing };
+    return await CarListing.findByIdAndUpdate(
+      listing.id ? listing.id : listing._id.toString(), update
+    );
   }
 
   async readUser(username) {

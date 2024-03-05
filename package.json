@@ -4,7 +4,8 @@
   "description": "An online marketplace.",
   "main": "index.js",
   "scripts": {
-    "install": "cd server && npm install && cd ../client && npm install"
+    "install": "cd server && npm install && cd ../client && npm install",
+    "start": "cd server && npm run start"
   },
   "author": "",
   "license": "ISC"
