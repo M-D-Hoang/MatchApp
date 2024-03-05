@@ -34,9 +34,9 @@ export function CarForm({ item }) {
     const pickedFiles = e.target.files
     console.log("Image changed!")
     console.log(pickedFiles)
-    if (pickedFiles[0] !== undefined) {
-      //set image statevar to the picked image
-      setImage(pickedFiles[0]);
+    if(pickedFiles !== undefined){
+        //set image statevar to the picked image
+        setImage(pickedFiles);
     }
   }
 
