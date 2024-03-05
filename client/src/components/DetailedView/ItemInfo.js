@@ -18,7 +18,7 @@ export function ItemInfo({item, onDeleteClicked}) {
             <h1>
                 {item.title} - {item.price}$
             </h1>
-            <p>{item.description}</p>
+            <p>{item.description}</p>Í
             <button>Delete</button>
             <button onClick={handleEdit}>Edit</button>
             <button onClick={handleFullView}>Full View</button>

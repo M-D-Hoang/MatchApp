@@ -33,3 +33,4 @@ exports.postImage = asyncHandler(async (req, res) => {
   await db.updateItemListing(res.locals.listing);
   return res.status(201).json({ path:path, fullUrl: fullURL });
 });
+
