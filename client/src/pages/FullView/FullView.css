@@ -39,6 +39,25 @@
     filter: brightness(0.9);
 }
 
+.action-container {
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+}
+.action-container > button {
+    height: 3em;
+    border-radius: 3em;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
+    background-color: rgb(83, 255, 106);
+    z-index: 1;
+    position: relative;
+}
+.full-view-page > .item-info-container {
+    gap: 2em;
+}
+    
+
 @media (max-width: 1500px) {
     .full-view-page {
         flex-direction: column;

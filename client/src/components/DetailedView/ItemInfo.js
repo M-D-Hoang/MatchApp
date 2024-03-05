@@ -1,17 +1,6 @@
-//react fucntion that displays info
-import { useNavigate } from "react-router-dom";
 import React from "react";
 
 export function ItemInfo({ item, onDeleteClicked }) {
-    const navigate = useNavigate();
-
-    const handleEdit = () => {
-        navigate("/edit", { state: { data: item } });
-    };
-
-    const handleFullView = () => {
-        navigate("/fullview", { state: { data: item } });
-    };
     return (
         <div className="item-info">
             <h1 className="title">{item.title}</h1>
@@ -32,11 +21,6 @@ export function ItemInfo({ item, onDeleteClicked }) {
                         <b>Mileage:</b> {item.year}
                     </p>
                 )}
-                {item.extraField && item.extraField !== "none" && (
-                    <p className="detail">
-                        <b>Extra:</b> {item.extraField}
-                    </p>
-                )}
                 {item.mileage && (
                     <p className="detail">
                         <b>Mileage:</b> {item.mileage} km
@@ -47,13 +31,14 @@ export function ItemInfo({ item, onDeleteClicked }) {
                         <b>Condition:</b> {item.condition}
                     </p>
                 )}
+                {item.extraField && item.extraField !== "none" && (
+                    <p className="detail">
+                        <b>Extra:</b> {item.extraField}
+                    </p>
+                )}
             </div>
             <h3 className="description-title">Description</h3>
             <p className="description">{item.description}</p>
-
-            <button>Delete</button>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleFullView}>Full View</button>
         </div>
     );
 }

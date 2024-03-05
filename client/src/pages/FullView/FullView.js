@@ -1,29 +1,61 @@
 import React from "react";
 import { ItemInfo } from "../../components/DetailedView/ItemInfo";
 import tempImage from "../../assets/images/item-image-temp1.png";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import "./FullView.css";
 
-
 export function FullView() {
-    const location = useLocation();
-    const item = location.state.data;
+    const navigate = useNavigate();
+    const [queryParameters] = useSearchParams();
 
-    
-    const image = item.imageURIs[0];
+    const [item, setItem] = useState();
+
+    const itemId = queryParameters.get("itemId");
+    console.log("/api/listings/item/" + itemId);
+
+    useEffect(() => {
+        fetch("/api/listings/item/" + itemId)
+            .then((resp) => {
+                return resp.json();
+            })
+            .then((json) => {
+                setItem(json);
+            })
+            .catch((e) => {
+                console.error(e);
+                setItem();
+            });
+    }, [itemId]);
+
+    console.log(item);
+
+    var image = item ? item.imageURIs[0] : undefined;
     if (image === undefined) {
         image = tempImage;
     }
 
-    return (
-        <div className={"full-view-page"}>
-            <div className={"item-image"}>
-                <button className={"item-image-button right"}>
-                </button>
-                <img src={image} />
-                <button className={"item-image-button left"}></button>
+    const handleEdit = () => {
+        navigate("/edit", { state: { data: item } });
+    };
+
+    if (item) {
+        return (
+            <div className={"full-view-page"}>
+                <div className={"item-image"}>
+                    <button className={"item-image-button right"}></button>
+                    <img src={image} />
+                    <button className={"item-image-button left"}></button>
+                </div>
+                <div className="item-info-container">
+                    <ItemInfo item={item} />
+                    <div className="action-container">
+                        <button>Delete</button>
+                        <button onClick={handleEdit}>Edit</button>
+                    </div>
+                </div>
             </div>
-            <ItemInfo item={item} />
-        </div>
-    );
+        );
+    }
 }

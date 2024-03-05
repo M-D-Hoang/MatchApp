@@ -24,7 +24,7 @@
     border: none;
 }
 
-.item-info > button:hover {
+button:hover {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
     filter: brightness(0.9);
     transition: box-shadow 0.3s;
@@ -32,7 +32,7 @@
     transition: brightness 0.3s;
 }
 
-.item-info > button {
+.item-info-container > button {
     height: 3em;
     border-radius: 3em;
     border: none;
@@ -41,7 +41,11 @@
     z-index: 1;
     position: relative;
 }
-
+.item-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .item-info {
     display: flex;
     flex-direction: column;
