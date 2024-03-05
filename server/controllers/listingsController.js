@@ -115,6 +115,7 @@ exports.editCar = asyncHandler(async (req, res, next) => {
   try {
     //const mongoRes = await db.updateCarListing(carObj);
     res.locals.listing = await db.updateCarListing(carObj);
+    console.log(res.locals.listing);
     // pass request down to image controller
     next();
     //return res.status(201).send(mongoRes);
@@ -130,6 +131,7 @@ exports.editCar = asyncHandler(async (req, res, next) => {
 exports.editItem = asyncHandler(async (req, res, next) => {
   const ItemObj = req.body;
   try {
+    console.log('editing item');
     //const mongoRes = await db.updateItemListing(ItemObj);
     res.locals.listing = await db.updateItemListing(ItemObj);
     // pass request down to image controller

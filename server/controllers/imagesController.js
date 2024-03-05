@@ -17,19 +17,26 @@ const blobService = new BlobServiceClient(
 const containerClient = blobService.getContainerClient(containerName);
 
 exports.postImage = asyncHandler(async (req, res) => {
-  // TODO: support for multiple images
-  const image = req.files.image[0];
-  // set filename
-  const path = image.name;
-  const blobClient = containerClient.getBlockBlobClient(path);
-  // set mimetype as determined from browser w/file upload control
-  const options = {blobHTTPHeaders: {blobContentType: image.mimetype}};
-  // upload to blob storage
-  await blobClient.uploadData(image.data, options);
-  const fullURL = blobPublicUrl + path;
-  // TODO: support for multiple images
-  res.locals.listing.imageURIs[0] = fullURL;
+  const images = Array.from(req.files.image);
+  //   console.log(res.locals.listing);
+  // create promises to upload images
+  const uploadPromises = images.map(async (image, i) => {
+    const path = image.name;
+    const blobClient = containerClient.getBlockBlobClient(path);
+    const options = {blobHTTPHeaders: {blobContentType: image.mimetype}};
+    await blobClient.uploadData(image.data, options);
+    const fullURL = blobPublicUrl + path;
+    // Assign URL to the array.
+    res.locals.listing.imageURIs[i] = fullURL; 
+  });
+  // Wait for all image upload promises to resolve.
+  await Promise.all(uploadPromises);
   // update db row
-  await db.updateItemListing(res.locals.listing);
-  return res.status(201).json({ path:path, fullUrl: fullURL });
+  // check if car
+  if (req.body.mileage){
+    await db.updateCarListing(res.locals.listing);
+  } else {
+    await db.updateItemListing(res.locals.listing);
+  }
+  return res.status(201).json({ listing: res.locals.listing });
 });
