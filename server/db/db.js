@@ -28,6 +28,7 @@ class DB {
     const skipItems = (page - 1) * ITEMS_PER_PAGE;
     const validSortOrder = sortOrder.toLowerCase() === 'asc' ? 'asc' : 'desc';
     const sortObject = {};
+    // TODO MAKE SURE ONLY PRICE OR DATE
     sortObject[sortField] = validSortOrder;
     return await Listing.find(filter).
       sort(sortObject).
@@ -39,6 +40,7 @@ class DB {
     const skipItems = (page - 1) * ITEMS_PER_PAGE;
     const validSortOrder = sortOrder.toLowerCase() === 'asc' ? 'asc' : 'desc';
     const sortObject = {};
+    // TODO MAKE SURE ONLY PRICE OR DATE
     sortObject[sortField] = validSortOrder;
     return (await CarListing.find(filter)).
       sort(sortObject).
