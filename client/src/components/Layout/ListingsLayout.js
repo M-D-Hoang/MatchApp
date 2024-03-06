@@ -2,13 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "./ListingsLayout.css";
 
-//import { ItemCardRectangle } from "../../components/ItemCard/ItemCardRectangle";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
-import { DetailedView } from "../../components/DetailedView/DetailedViewLayout";
 
 export function ListingsLayout() {
     const [isMenuOpen, setOpen] = useState(false);
-    const [isDeatiledView, setDetailedView] = useState(false);
     const [filter, setFilter] = useState("");
 
     function handleSearchChange(e) {
@@ -21,7 +18,6 @@ export function ListingsLayout() {
     }
     //Fetch data from API
     const [listingData, setListingData] = useState([]);
-    const [currentItem, setCurrentItem] = useState([]);
     useEffect(() => {
         fetch("/api/listings")
             .then((resp) => {
@@ -51,37 +47,15 @@ export function ListingsLayout() {
         setOpen(false);
         // Handle sort
     };
-    function handleShowDetailedView(item){
-        setCurrentItem(item);
-        setDetailedView(true);
-    };
-    const handleHideDetailedView = (e) => {
-        
-        if(e.target.className === "overlay"){
-            setDetailedView(false);
-        }
-    };
 
-    //generate JSX based on listing data
     const listingJSX = listingData.map((item) => {
         return (
-            <ItemCardSquare key={item._id} item={item} showHandler={()=>{handleShowDetailedView(item)}}></ItemCardSquare>
+            <ItemCardSquare key={item._id} item={item}></ItemCardSquare>
         );
     });
 
-    if (isDeatiledView) {
-        document.body.style.overflow = "hidden";
-    } else {
-        document.body.style.overflow = "auto";
-    }
-
     return (
         <div className="listings-layout">
-            {isDeatiledView ? (
-                <div>
-                    <DetailedView item={currentItem} onExit={handleHideDetailedView}/>
-                </div>
-            ) : null}
             <div className="search-bar">
                 <form onSubmit={handleSearchSubmit}>
                     <input

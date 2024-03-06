@@ -28,6 +28,7 @@ listingsRouter.delete('/cars', listingsController.deleteCar);
 
 listingsRouter.patch('/cars', listingsController.editCar);
 listingsRouter.patch('/items', listingsController.editItem);
-
+listingsRouter.patch('/items', imagesController.postImage);
+listingsRouter.patch('/cars', imagesController.postImage);
 
 module.exports = listingsRouter;
