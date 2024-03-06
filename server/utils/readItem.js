@@ -19,10 +19,7 @@ async function returnItemArrayObject(csvFilePath, userData) {
           imageURIs: [row.imgUrl],
           condition: itemGenerationTools.generateRandomCondition(),
           extraField: extraField,
-          category: row.categoryName,
-          date: itemGenerationTools.generateRandomDate(),
-          location: itemGenerationTools.generateRandomPostalCode(),
-          objectType: 'item'
+          category: row.categoryName
         };
         
         itemData.push(newItem);
