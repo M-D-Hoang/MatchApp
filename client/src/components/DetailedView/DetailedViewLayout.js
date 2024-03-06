@@ -3,16 +3,23 @@ import { ItemInfo } from "../DetailedView/ItemInfo";
 import tempImage from "../../assets/images/item-image-temp1.png";
 import { useNavigate } from "react-router-dom";
 import "./DetailedViewLayout.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 //TO-DO: Implement multiple image scrollthrough
 export function DetailedView({ onExit, item }) {
     const navigate = useNavigate();
 
-    var image = item.imageURIs[0];
-    if (image === undefined) {
-        image = tempImage;
+    // prepare images array
+    const images = [];
+    // set placeholder if listing has no images
+    if (item.imageURIs.length === 0) {
+        images.push(<><img src={tempImage} alt="preview"></img></>);
     }
-    
+    // create images slides
+    item.imageURIs.forEach(img => {
+        images.push(<><img src={img} alt="preview"></img></>);
+    });
 
     const isCar = item.make !== undefined;
 
@@ -60,13 +67,11 @@ export function DetailedView({ onExit, item }) {
         <div className={"overlay"} onClick={onExit}>
             <div className={"detailed-view"}>
                 <div className={"item-image"}>
-                    <button className={"item-image-button right"}></button>
-                    <img src={image} alt="preview"/>
-                    <button className={"item-image-button"}></button>
+                    <Carousel infiniteLoop={true}>{images}</Carousel>
                 </div>
                 <div className="item-info-container">
                     <ItemInfo onDeleteClicked={onDeleteClicked} item={item} />
-                    <button onClick={handleFullViewURL}>Full View</button>
+                    <button className="btn" onClick={handleFullViewURL}>Full View</button>
                 </div>
             </div>
         </div>
