@@ -6,8 +6,8 @@ const { Listing, CarListing } = require('./model/Listing.js');
 
 dotenv.config();
 const dbUrl = process.env.ATLAS_URI;
-
 let instance = null;
+const ITEMS_PER_PAGE = 50;
 
 class DB {
   constructor() {
@@ -24,12 +24,28 @@ class DB {
     return instance;
   }
 
-  async readAllFilteredListings(filter) {
-    return await Listing.find(filter);
+  async readAllFilteredListings(filter, page = 1, sortField = 'date', sortOrder = 'desc') {
+    const skipItems = (page - 1) * ITEMS_PER_PAGE;
+    const validSortOrder = sortOrder.toLowerCase() === 'asc' ? 'asc' : 'desc';
+    const sortObject = {};
+    // TODO MAKE SURE ONLY PRICE OR DATE
+    sortObject[sortField] = validSortOrder;
+    return await Listing.find(filter).
+      sort(sortObject).
+      skip(skipItems).
+      limit(ITEMS_PER_PAGE);
   }
   
-  async readAllFilteredCarListings(filter) {
-    return await CarListing.find(filter);
+  async readAllFilteredCarListings(filter, page = 1, sortField = 'date', sortOrder = 'desc') {
+    const skipItems = (page - 1) * ITEMS_PER_PAGE;
+    const validSortOrder = sortOrder.toLowerCase() === 'asc' ? 'asc' : 'desc';
+    const sortObject = {};
+    // TODO MAKE SURE ONLY PRICE OR DATE
+    sortObject[sortField] = validSortOrder;
+    return (await CarListing.find(filter)).
+      sort(sortObject).
+      skip(skipItems).
+      limit(ITEMS_PER_PAGE);
   }
 
   async readAllListings() {
@@ -50,6 +66,9 @@ class DB {
       condition: listing.condition,
       extraField: listing.extraField,
       category: listing.category,
+      date: listing.date,
+      location: listing.location,
+      objectType: listing.objectType
     });
     return await listingRow.save();
   }
@@ -68,6 +87,9 @@ class DB {
       transmission: listing.transmission,
       driveTrain: listing.driveTrain,
       imageURIs: listing.imageURIs,
+      date: listing.date,
+      location: listing.location,
+      objectType: listing.objectType
     });
     return await listingRow.save();
   }
@@ -137,6 +159,10 @@ class DB {
   async updateUser(user) {
     const update = { $set: user };
     return await User.updateOne(user.username, update);
+  }
+
+  async getItemsFromUser(username) {
+    return await Listing.find({ ownerID: username });
   }
 }
 
