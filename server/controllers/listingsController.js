@@ -161,7 +161,7 @@ exports.getSingleCar = asyncHandler(async (req, res) => {
 
 exports.getItemsFiltered = asyncHandler(async (req, res) => {
   try {
-    const { condition, extraField, category } = req.query;
+    const { condition, extraField, category, minPrice, maxPrice } = req.query;
 
     const filter = {};
     if (condition) {
@@ -172,6 +172,12 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
     }
     if (category) {
       filter.category = category;
+    }
+    if (minPrice) {
+      filter.price = {
+        $gte: minPrice,
+        $lte: maxPrice
+      };
     }
     const listings = await db.readAllFilteredListings(filter);
     res.status(200).json(listings);

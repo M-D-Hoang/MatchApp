@@ -1,0 +1,49 @@
+.sidebar {
+    background-color: rgb(255, 255, 255);
+    width: 20em;
+    flex-shrink: 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
+    z-index: 1;
+    padding: 3em 1em;
+}
+
+.condition-select {
+    padding: 0 1em;
+    height: 3em;
+    width: 100%;
+    border-radius: 3em;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
+    margin-bottom: 1em;
+}
+
+.condition-select:hover {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
+}
+.price-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+.price-filter > input {
+    width: 8em;
+}
+
+.price-filter > p{
+    margin: 0;
+}
+
+.price-filter > input{
+    padding: 0 1em;
+    height: 3em;
+    border-radius: 3em;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
+
+}
+@media (max-width: 1081px) {
+    .sidebar {
+        display: none;
+    }
+}
