@@ -37,7 +37,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
-.preview-text > .price {
+.price {
     font-weight: 600;
     height: 100%;
     margin: 0;

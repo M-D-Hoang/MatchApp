@@ -37,9 +37,9 @@ export function ItemForm({ item }) {
         const pickedFiles = e.target.files;
         console.log("Image changed!");
         console.log(pickedFiles);
-        if(pickedFiles !== undefined){
+        if (pickedFiles[0] !== undefined) {
             //set image statevar to the picked image
-            setImage(pickedFiles);
+            setImage(pickedFiles[0]);
         }
     }
 
@@ -76,8 +76,7 @@ export function ItemForm({ item }) {
                         name="image"
                         accept="image/*"
                         onChange={onImageChange}
-                        required
-                        multiple="multiple"></input>                        
+                        required></input>
                 </label>
                 <label>
                     Condition:{" "}
