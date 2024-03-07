@@ -9,7 +9,7 @@ exports.getUser = asyncHandler(async (req, res) => {
     const user = await db.readUser(filter);
     res.status(200).json(user);
   } catch (e){
-    console.err(e);
+    
     res.status(500).send('Internal DB error. Could not read user');
   }
 });

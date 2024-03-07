@@ -29,7 +29,7 @@ export function Navbar() {
                     <Link className="pfp-container-link" to="/my-page">
                         <img
                             className="navbar-pfp"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTTiQ8Yl6XjZK9qjqoqztkUDOXXerRr7Kp0z38NwfdYQ&s"
+                            src="https://cdn.discordapp.com/emojis/383621124854120449.webp?size=1024&quality=lossless&name=bolus"
                             alt="my-account"></img>
                     </Link>
                 </div>

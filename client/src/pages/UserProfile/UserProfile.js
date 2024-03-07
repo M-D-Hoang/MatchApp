@@ -32,26 +32,27 @@ export function UserPage() {
         console.log(`Username: ${username}`)
         fetch(`/api/users/${username}`)
         .then((resp) => {return resp.json()})
-        .then((json)=>{setUser(json)}).then(()=>{console.log(user)})
+        .then((json)=>{setUser(json)})
+        .then(()=>{
+            //Get products by user
+            //Doesn't work. Doesn't return a 404, but doesn't return anything. 
+            //Should work once the path is implemented.
+            fetch(`/api/listings/userItems/${username}`)
+            .then((resp) => {return resp.json()})
+            .then((json)=>{console.log(json);setUserItems(json);})
+            .catch(()=>{alert('User Item Fetch Failed. Replace alert with on-page error')})
+        })
         .catch(()=>{alert('User Fetch Failed. Replace alert with on-page error')})
 
 
-        //Get products by user
-        //Doesn't work. Doesn't return a 404, but doesn't return anything. 
-        //Should work once the path is implemented.
-        fetch(`/api/listings/userItems/${username}`)
-        .then((resp) => {return resp.json()})
-        .then((json)=>{console.log(json);setUserItems(json);})
-        .catch(()=>{alert('User Item Fetch Failed. Replace alert with on-page error')})
+        
 
        
-    }, [location.state])
+    }, [location.state, params.username])
 
-    
-
+    console.log(user);
     return (<div>
-        {!isEditing?<Display user={user} userItems={userItems} editToggle={editToggle}></Display>:<Edit user={user} onSubmit={onEditSubmit} editToggle={editToggle}/>}
-        
+        {user !== null?( !isEditing?<Display user={user} userItems={userItems} editToggle={editToggle}></Display>:<Edit user={user} onSubmit={onEditSubmit} editToggle={editToggle}/>):<NoUser/>}
     </div>);
 }
 
@@ -156,4 +157,9 @@ function Display({user, userItems, editToggle}){
             {listingJSX}
         </div></>
     );
+}
+
+
+function NoUser(){
+    return(<div><h1>This user does not exist.</h1></div>)
 }
