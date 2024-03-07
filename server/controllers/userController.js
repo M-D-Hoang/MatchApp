@@ -4,7 +4,7 @@ const db = new DB();
 
 exports.getUser = asyncHandler(async (req, res) => {
   try {
-    const user = await db.readUser(req.body.username);
+    const user = await db.readUser(req.query.username);
     res.status(200).json(user);
   } catch {
     res.status(500).send('Internal DB error. Could not read user');

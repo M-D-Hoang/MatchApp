@@ -18,7 +18,7 @@ function App() {
                         <Route path="edit" element={<Edit />} />
                         <Route path="fullview" element={<FullView />} />
                         <Route path='my-page' element={<UserPage/>}/>
-                        <Route path='user/:id' element={<UserPage/>}/>
+                        <Route path='user/:username' element={<UserPage/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

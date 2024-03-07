@@ -1,26 +1,17 @@
 import { useEffect, useState } from "react";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 import { ImagePreview } from "../../components/Forms/ImagePreview";
-
-const exampleUser = {
-    _id: 'user1026',
-    username: 'bobzilla1289',
-    lastName: 'Bob',
-    firstName: 'Billy',
-    birthday: 'Febuary 17 2004',
-    gender: 'Male',
-    email: 'pewdiepie@gmail.com',
-    phoneNumber: '123-123-1234',
-    picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTTiQ8Yl6XjZK9qjqoqztkUDOXXerRr7Kp0z38NwfdYQ&s',
-    type: 'buyer'
-}
+import { useParams, useLocation } from 'react-router-dom';
 
 export function UserPage() {
     //for the real thing, we would have user passed in as a prop
-    const user = exampleUser
+    const [user, setUser] = useState({});
     const [isEditing, setEditing] = useState(false);
     const [userItems, setUserItems] = useState([]);
-
+    const location = useLocation();
+    //get userid from URL
+    const params = useParams();
+    
     const editToggle = ()=>{
       setEditing(!isEditing);  
     };
@@ -30,59 +21,31 @@ export function UserPage() {
     }
 
     useEffect(() => {
-        //get products by user
-        setUserItems([
-            {
-              
-                    "_id": "65dd042f642427fd5770228a",
-                    "ownerID": "user9381",
-                    "title": "NERF Nstrike Snapfire",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dol",
-                    "price": 56.79,
-                    "imageURIs": [
-                        "https://m.media-amazon.com/images/I/71fM1bvB8iL._AC_UL320_.jpg"
-                    ],
-                    "condition": "fair",
-                    "extraField": "none",
-                    "category": "Games & Toys",
-                    "__v": 0
-                
-            },
-            {
-                
-                    "_id": "65dd042f642427fd5770228a",
-                    "ownerID": "user9381",
-                    "title": "NERF Nstrike Snapfire",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dol",
-                    "price": 56.79,
-                    "imageURIs": [
-                        "https://m.media-amazon.com/images/I/71fM1bvB8iL._AC_UL320_.jpg"
-                    ],
-                    "condition": "fair",
-                    "extraField": "none",
-                    "category": "Games & Toys",
-                    "__v": 0
-                
-            },
-            {
-               
-                    "_id": "65dd042f642427fd5770228a",
-                    "ownerID": "user9381",
-                    "title": "NERF Nstrike Snapfire",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dol",
-                    "price": 56.79,
-                    "imageURIs": [
-                        "https://m.media-amazon.com/images/I/71fM1bvB8iL._AC_UL320_.jpg"
-                    ],
-                    "condition": "fair",
-                    "extraField": "none",
-                    "category": "Games & Toys",
-                    "__v": 0
-                
-            }
+        //Get Username from Route
+        
+        //console.log(location.state)
+        const username = params.username;
+        console.log(username);
 
-        ])
-    }, [])
+
+        //Get User
+        console.log(`Username: ${username}`)
+        fetch(`/api/users/${username}`)
+        .then((resp) => {return resp.json()})
+        .then((json)=>{setUser(json)})
+        .catch(()=>{alert('User Fetch Failed. Replace alert with on-page error')})
+
+
+        //Get products by user
+        //Doesn't work. Doesn't return a 404, but doesn't return anything. 
+        //Should work once the path is implemented.
+        fetch(`/api/listings/userItems/${username}`)
+        .then((resp) => {return resp.json()})
+        .then((json)=>{console.log(json);setUserItems(json);})
+        .catch(()=>{alert('User Item Fetch Failed. Replace alert with on-page error')})
+
+       
+    }, [location.state])
 
     
 

@@ -10,14 +10,17 @@ export function UserButton({userID}){
   const [userName, setUsername] = useState('');
 
   const onUserClick=()=>{
-    navigate('user');
+    if(userName !== ''){
+      navigate(`/user/${userName}`,  { state: { data: userName } });
+    }
+   
     
   };
 
   //Fetch username & image from DB
   useEffect(()=>{
     setImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTTiQ8Yl6XjZK9qjqoqztkUDOXXerRr7Kp0z38NwfdYQ&s');
-    setUsername('bobZilla2141')
+    setUsername('user1026')
   },[])
 
   return(
