@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 import { ImagePreview } from "../../components/Forms/ImagePreview";
 import { useParams, useLocation } from 'react-router-dom';
-
+import ReactLoading from 'react-loading';
 export function UserPage() {
     //for the real thing, we would have user passed in as a prop
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(undefined);
     const [isEditing, setEditing] = useState(false);
     const [userItems, setUserItems] = useState([]);
     const location = useLocation();
@@ -50,9 +50,11 @@ export function UserPage() {
        
     }, [location.state, params.username])
 
+    const loadingJSX = <ReactLoading type={"spin"} color={"#58cc77"} height={667} width={375} />
+
     console.log(user);
     return (<div>
-        {user !== null?( !isEditing?<Display user={user} userItems={userItems} editToggle={editToggle}></Display>:<Edit user={user} onSubmit={onEditSubmit} editToggle={editToggle}/>):<NoUser/>}
+        {user === undefined? loadingJSX: user !== null?( !isEditing?<Display user={user} userItems={userItems} editToggle={editToggle}></Display>:<Edit user={user} onSubmit={onEditSubmit} editToggle={editToggle}/>):<NoUser/>}
     </div>);
 }
 
