@@ -32,7 +32,7 @@ export function UserPage() {
         console.log(`Username: ${username}`)
         fetch(`/api/users/${username}`)
         .then((resp) => {return resp.json()})
-        .then((json)=>{setUser(json)})
+        .then((json)=>{setUser(json)}).then(()=>{console.log(user)})
         .catch(()=>{alert('User Fetch Failed. Replace alert with on-page error')})
 
 
