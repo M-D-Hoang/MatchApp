@@ -4,15 +4,14 @@ const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
   username: {type: String, required: true, unique: true, index: true},
-  password: {type: String, required: true},
-  firstName: {type: String, required: false},
-  lastName: {type: String, required: false},
+  password: {type: String, required: false},
+  name: {type: String, required: true},
   birthday: {type: String, required: false},
   gender: {type: String, required: false},
-  email: {type: String, required: false},
+  email: {type: String, required: true},
   phoneNumber: {type: String, required: false},
-  picture: {type: String, required: false},
-  type: {type: String, required: true},
+  picture: {type: String, required: true},
+  type: {type: String, required: false},
 });
 
 const User = model('User', userSchema);

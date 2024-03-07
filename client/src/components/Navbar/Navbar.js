@@ -1,5 +1,6 @@
 import React from "react";
 import "./Navbar.css";
+import { Login } from "../Login/Login.js";
 import logo from "../../assets/images/logo-temp.png";
 import { Link } from "react-router-dom";
 
@@ -8,7 +9,10 @@ import { Link } from "react-router-dom";
  *
  * @return {JSX.Element} The rendered navigation bar.
  */
-export function Navbar() {
+
+// TODO: props contains setUsername() set username when you need login
+// TODO: setup Login page
+export function Navbar(props) {
     return (
         <nav className="navbar">
             <div className="logo">
@@ -21,6 +25,7 @@ export function Navbar() {
                     <h1>Fake Market Place</h1>
                 </Link>
             </div>
+            <Login setUsename={props.setUsername} />
             <div className="link-container">
                 <div className="link">
                     <Link to="/sell">Sell</Link>

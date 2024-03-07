@@ -158,8 +158,10 @@ class DB {
 
   async updateUser(user) {
     const update = { $set: user };
-    return await User.updateOne(user.username, update);
+    const options = { upsert: true };
+    return await User.findOneAndUpdate({ username: user.username }, update, options);
   }
+  
 
   async getItemsFromUser(username) {
     return await Listing.find({ ownerID: username });

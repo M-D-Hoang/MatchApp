@@ -7,14 +7,16 @@ import { Edit } from "./pages/Edit/Edit";
 import { FullView } from "./pages/FullView/FullView";
 import { UserPage } from "./pages/UserProfile/UserProfile";
 import {GoogleOAuthProvider} from "@react-oauth/google";
+import { useState } from "react";
 
 function App() {
+  const [username, setUsername] = useState("");
     return (
-        <GoogleOAuthProvider clientId="process.env.REACT_APP_GOOGLE_CLIENT_ID">
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
           <div className="App">
               <BrowserRouter>
                   <Routes>
-                      <Route path="/" element={<AppLayout />}>
+                      <Route path="/" element={<AppLayout setUsername={setUsername}/>}>
                           <Route index element={<Listings />} />
                           <Route path="sell" element={<Sell />} />
                           <Route path="edit" element={<Edit />} />
