@@ -47,7 +47,7 @@ export function ListingsSidebar() {
                     <select
                         className="item-type-select"
                         onChange={(e) => handleItemTypeChoice(e.target.value)}>
-                        <option>Type</option>
+                        <option value={""}>Type</option>
                         <option value="items">Items</option>
                         <option value="cars">Cars</option>
                     </select>
