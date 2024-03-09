@@ -21,12 +21,12 @@ export function UserPage() {
     const [isEditing, setEditing] = useState(false);
     const [userItems, setUserItems] = useState([]);
 
-    const onEditToggle = ()=>{
+    const editToggle = ()=>{
       setEditing(!isEditing);  
     };
 
     const onEditSubmit = ()=>{
-        
+        alert('THIS IS A WIP GO HOME');
     }
 
     useEffect(() => {
@@ -87,12 +87,12 @@ export function UserPage() {
     
 
     return (<div>
-        {!isEditing?<Display user={user} userItems={userItems}></Display>:<Edit user={user} onSubmit={onEditSubmit}/>}
+        {!isEditing?<Display user={user} userItems={userItems} editToggle={editToggle}></Display>:<Edit user={user} onSubmit={onEditSubmit} editToggle={editToggle}/>}
         
     </div>);
 }
 
-function Edit({user, onSubmit}){
+function Edit({user, onSubmit, editToggle}){
 
     const [previewImages, setPreviewImages] = useState([])
 
@@ -110,29 +110,29 @@ function Edit({user, onSubmit}){
         <div className="item-form">
         <form onSubmit={onSubmit}>
             <label>
-                Title:{" "}
+                First Name:{" "}
                 <input
                     type="text"
-                    name="title"
-                    defaultValue={user !== undefined ? user.title : ""}
+                    name="firstName"
+                    defaultValue={user !== undefined ? user.firstName : ""}
                     required></input>
             </label>
             <label>
-                Description:{" "}
+             Last Name:{" "}
                 <input
                     type="text"
-                    name="description"
-                    defaultValue={user !== undefined ? user.description : ""}></input>
+                    name="lastName"
+                    defaultValue={user !== undefined ? user.lastName : ""}></input>
             </label>
             <label>
-                Price:{" "}
+                Birthday:{" "}
                 <input
-                    type="number"
-                    name="price"
-                    defaultValue={user !== undefined ? user.price : ""}></input>
+                    type="date"
+                    name="birthday"
+                    defaultValue={user !== undefined ? user.birthday : ""}></input>
             </label>
             <label>
-                Image:{" "}
+                Profile Picture:{" "}
                 <input
                     className="image-input"
                     type="file"
@@ -142,29 +142,30 @@ function Edit({user, onSubmit}){
                     required></input>
             </label>
             <label>
-                Condition:{" "}
+                Gender:{" "}
                 <input
                     type="text"
-                    name="condition"
-                    defaultValue={user !== undefined ? user.condition : ""}
+                    name="gender"
+                    defaultValue={user !== undefined ? user.gender : ""}
                     required></input>
             </label>
             <label>
-                Extra:{" "}
+                E-Mail:{" "}
                 <input
-                    type="text"
-                    name="extraField"
+                    type="email"
+                    name="email"
                     defaultValue={
-                        user !== undefined ? user.extraField : ""
+                        user !== undefined ? user.email : ""
                     }></input>
             </label>
             <label>
-                Category:{" "}
+                Phone Number:{" "}
                 <input
-                    type="text"
-                    name="category"
-                    defaultValue={user !== undefined ? user.category : ""}
-                    required></input>
+                    type="tel"
+                    name="phoneNumber"
+                    defaultValue={user !== undefined ? user.phoneNumber : ""}
+                    required
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></input>
             </label>
             <input type="submit"></input>
         </form>
@@ -174,7 +175,7 @@ function Edit({user, onSubmit}){
     );
 }
 
-function Display({user, userItems}){
+function Display({user, userItems, editToggle}){
     const listingJSX = userItems.map((item) => {
         return (<ItemCardSquare item={item} />);
     })
@@ -186,6 +187,7 @@ function Display({user, userItems}){
         <p>E-Mail: {user.email}</p>
         <p>Phone Number: {user.phoneNumber}</p>
         <p>Gender: {user.gender}</p>
+        <button onClick={editToggle}>Edit Info</button>
     </div><div>
             <h1>Items</h1>
             {listingJSX}

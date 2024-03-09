@@ -65,6 +65,39 @@ function generateRandomCondition() {
   return conditions[randomIndex];
 }
 
+function generateRandomDate() {
+  const today = new Date();
+  const pastWeek = new Date(today);
+  pastWeek.setDate(today.getDate() - 7);
+
+  const randomTimestamp = 
+  pastWeek.getTime() + Math.random() * (today.getTime() - pastWeek.getTime());
+  const randomDate = new Date(randomTimestamp);
+
+  const month = (randomDate.getMonth() + 1).toString().padStart(2, '0');
+  const day = randomDate.getDate().toString().padStart(2, '0');
+  const year = randomDate.getFullYear();
+
+  return `${month}/${day}/${year}`;
+}
+function generateRandomPostalCode() {
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numbers = '0123456789';
+
+  let postalCode = '';
+
+  for (let i = 0; i < 6; i++) {
+    if (i % 2 === 0) {
+      const randomLetter = letters[Math.floor(Math.random() * letters.length)];
+      postalCode += randomLetter;
+    } else {
+      const randomNumber = numbers[Math.floor(Math.random() * numbers.length)];
+      postalCode += randomNumber;
+    }
+  }
+  return postalCode;
+}
+
 module.exports = {
   generateCarRandomPrice,
   generateCarTitle,
@@ -73,4 +106,6 @@ module.exports = {
   handleCategory,
   generateRandomSize,
   generateRandomCondition,
+  generateRandomPostalCode,
+  generateRandomDate,
 };
