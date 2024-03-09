@@ -33,7 +33,7 @@ export function ListingsLayout() {
                     setListingData([]);
                 });
         } else {
-            fetch("/api/listings/itemsFiltered?"+queryParameters.toString())
+            fetch("/api/listings/" + queryParameters.get("type") + "?"+queryParameters.toString())
                 .then((resp) => {
                     return resp.json();
                 })
