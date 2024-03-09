@@ -1,10 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import "./ListingsLayout.css";
 
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 
 export function ListingsLayout() {
+    const [queryParameters] = useSearchParams();
     const [isMenuOpen, setOpen] = useState(false);
     const [filter, setFilter] = useState("");
 
@@ -14,23 +16,36 @@ export function ListingsLayout() {
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         alert(filter);
-        
-    }
+    };
     //Fetch data from API
     const [listingData, setListingData] = useState([]);
     useEffect(() => {
-        fetch("/api/listings")
-            .then((resp) => {
-                return resp.json();
-            })
-            .then((json) => {
-                setListingData(json);
-            })
-            .catch((e) => {
-                console.error(e);
-                setListingData([]);
-            });
-    }, []);
+        if (queryParameters.size === 0) {
+            fetch("/api/listings")
+                .then((resp) => {
+                    return resp.json();
+                })
+                .then((json) => {
+                    setListingData(json);
+                })
+                .catch((e) => {
+                    console.error(e);
+                    setListingData([]);
+                });
+        } else {
+            fetch("/api/listings/itemsFiltered?"+queryParameters.toString())
+                .then((resp) => {
+                    return resp.json();
+                })
+                .then((json) => {
+                    setListingData(json);
+                })
+                .catch((e) => {
+                    console.error(e);
+                    setListingData([]);
+                });
+        }
+    }, [queryParameters]);
 
     const handleOpen = () => {
         setOpen(!isMenuOpen);
@@ -49,9 +64,7 @@ export function ListingsLayout() {
     };
 
     const listingJSX = listingData.map((item) => {
-        return (
-            <ItemCardSquare key={item._id} item={item}></ItemCardSquare>
-        );
+        return <ItemCardSquare key={item._id} item={item}></ItemCardSquare>;
     });
 
     return (
@@ -66,7 +79,9 @@ export function ListingsLayout() {
                     />
                 </form>
                 <div className="dropdown">
-                    <button className="sort-button" onClick={handleOpen}>Sort By</button>
+                    <button className="sort-button" onClick={handleOpen}>
+                        Sort By
+                    </button>
                     {isMenuOpen ? (
                         <div className="dropdown-content">
                             <button onClick={handleSortByPrice}>Price</button>
@@ -78,18 +93,7 @@ export function ListingsLayout() {
                     ) : null}
                 </div>
             </div>
-            <div
-                className="listings-display square">
-                {listingJSX}
-            </div>
-            {/* <div className="listings-display rectangle">
-                <ItemCardRectangle />
-                <ItemCardRectangle />
-                <ItemCardRectangle />
-                <ItemCardRectangle />
-                <ItemCardRectangle />
-                <ItemCardRectangle />
-            </div> */}
+            <div className="listings-display square">{listingJSX}</div>
         </div>
     );
 }

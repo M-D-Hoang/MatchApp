@@ -42,7 +42,7 @@ exports.postItem = asyncHandler(async (req, res, next) => {
     // imageURIs empty, imageUploader will update the field next
     formObj.imageURIs = [''];
     // TODO: TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
-    formObj.ownerID = 'user4633'; 
+    formObj.ownerID = 'user4633';
     // Add the listing to the DB
     res.locals.listing = await db.createListing(formObj);
     // pass request to the next middleware (image uploader)
@@ -52,7 +52,7 @@ exports.postItem = asyncHandler(async (req, res, next) => {
     res.status = 400;
     res.json({
       content: e.message,
-      status: 400
+      status: 400,
     });
   }
 });
@@ -73,23 +73,23 @@ exports.postCar = asyncHandler(async (req, res, next) => {
     res.status = 400;
     res.json({
       content: e.message,
-      status: 400
+      status: 400,
     });
   }
 });
-  
+
 exports.deleteItem = asyncHandler(async (req, res) => {
   //Needs to check if user is the owner of the item
   const itemID = req.body._id;
-  
+
   try {
     await db.removeListingByID(itemID);
-    
+
     return res.status(204).json('Item Deleted');
   } catch (e) {
     res.status(400).json({
       content: e.message,
-      status: 400
+      status: 400,
     });
   }
 });
@@ -97,15 +97,15 @@ exports.deleteItem = asyncHandler(async (req, res) => {
 exports.deleteCar = asyncHandler(async (req, res) => {
   //Needs to check if user is the owner of the item
   const itemID = req.body._id;
-  
+
   try {
     await db.removeCarByID(itemID);
-    
+
     return res.status(204).json('Item Deleted');
   } catch (e) {
     res.status(400).json({
       content: e.message,
-      status: 400
+      status: 400,
     });
   }
 });
@@ -134,7 +134,6 @@ exports.editItem = asyncHandler(async (req, res) => {
     res.json({
       content: e.message,
       status: 400,
-
     });
   }
 });
@@ -161,7 +160,8 @@ exports.getSingleCar = asyncHandler(async (req, res) => {
 
 exports.getItemsFiltered = asyncHandler(async (req, res) => {
   try {
-    const { condition, extraField, category, minPrice, maxPrice } = req.query;
+    const { condition, extraField, category, minPrice, maxPrice } =
+            req.query;
 
     const filter = {};
     if (condition) {
@@ -174,11 +174,12 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
       filter.category = category;
     }
     if (minPrice) {
-      filter.price = {
-        $gte: minPrice,
-        $lte: maxPrice
-      };
+      filter.price = { $gte: minPrice };
     }
+    if (maxPrice) {
+      filter.price = { $lte: maxPrice };
+    }
+    
     const listings = await db.readAllFilteredListings(filter);
     res.status(200).json(listings);
   } catch (error) {
@@ -189,7 +190,8 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
 
 exports.getCarsFiltered = asyncHandler(async (req, res) => {
   try {
-    const { condition, make, model, bodyType, transmission, driveTrain } = req.query;
+    const { condition, make, model, bodyType, transmission, driveTrain } =
+            req.query;
 
     const filter = {};
     if (condition) {

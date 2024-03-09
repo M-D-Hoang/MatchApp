@@ -28,6 +28,7 @@
 }
 
 .dropdown > button {
+    font-weight: 600;
     height: 3em;
     border-radius: 3em;
     border: none;
