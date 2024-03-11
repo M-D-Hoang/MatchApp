@@ -129,6 +129,7 @@ exports.getSingleCar = asyncHandler(async (req, res) => {
 exports.getItemsFiltered = asyncHandler(async (req, res) => {
   try {
     const {
+      keyword,
       condition,
       extraField,
       category,
@@ -140,6 +141,12 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
     } = req.query;
 
     const filter = {};
+
+    if (keyword){
+      //contains title
+      filter.title = {};
+    }
+
     if (condition) {
       filter.condition = condition;
     }

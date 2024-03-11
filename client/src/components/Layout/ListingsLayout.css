@@ -28,7 +28,6 @@
 }
 
 .dropdown > button {
-    font-weight: 600;
     height: 3em;
     border-radius: 3em;
     border: none;
@@ -36,6 +35,9 @@
     background-color: rgb(83, 255, 106);
     z-index: 1;
     position: relative;
+}
+.sort-by{
+    font-weight: 600;
 }
 .dropdown > button:hover {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;

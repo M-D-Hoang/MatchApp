@@ -9,12 +9,14 @@ export function ListingsLayout() {
     const [queryParameters] = useSearchParams();
     const [isMenuOpen, setOpen] = useState(false);
     const [filter, setFilter] = useState("");
+    const [sortBy, setSortBy] = useState("Date: Newest");
 
     function handleSearchChange(e) {
         setFilter(e.target.value);
     }
     const handleSearchSubmit = (e) => {
         e.preventDefault();
+
         alert(filter);
     };
     //Fetch data from API
@@ -33,7 +35,12 @@ export function ListingsLayout() {
                     setListingData([]);
                 });
         } else {
-            fetch("/api/listings/" + queryParameters.get("type") + "?"+queryParameters.toString())
+            fetch(
+                "/api/listings/" +
+                    queryParameters.get("type") +
+                    "?" +
+                    queryParameters.toString()
+            )
                 .then((resp) => {
                     return resp.json();
                 })
@@ -50,17 +57,22 @@ export function ListingsLayout() {
     const handleOpen = () => {
         setOpen(!isMenuOpen);
     };
-    const handleSortByPrice = () => {
+    const handleSortByPriceAsc = () => {
         setOpen(false);
+        setSortBy("Price: Low to High");
         // Handle sort
     };
-    const handleSortByTime = () => {
+    const handleSortByPriceDesc = () => {
         setOpen(false);
-        // Handle sort
+        setSortBy("Price: High to Low");
     };
-    const handleSortByLocation = () => {
+    const handleSortByOldest = () => {
         setOpen(false);
-        // Handle sort
+        setSortBy("Date: Oldest");
+    };
+    const handleSortByNewest = () => {
+        setOpen(false);
+        setSortBy("Date: Newest");
     };
 
     const listingJSX = listingData.map((item) => {
@@ -80,15 +92,31 @@ export function ListingsLayout() {
                 </form>
                 <div className="dropdown">
                     <button className="sort-button" onClick={handleOpen}>
-                        Sort By
+                        Sort by:
+                        <div className="sort-by">{sortBy}</div>
                     </button>
                     {isMenuOpen ? (
                         <div className="dropdown-content">
-                            <button onClick={handleSortByPrice}>Price</button>
-                            <button onClick={handleSortByTime}>Time</button>
-                            <button onClick={handleSortByLocation}>
-                                Location
-                            </button>
+                            {sortBy !== "Date: Newest" ? (
+                                <button onClick={handleSortByNewest}>
+                                    Date: Newest
+                                </button>
+                            ) : null}
+                            {sortBy !== "Date: Oldest" ? (
+                                <button onClick={handleSortByOldest}>
+                                    Date: Oldest
+                                </button>
+                            ) : null}
+                            {sortBy !== "Price: Low to High" ? (
+                                <button onClick={handleSortByPriceAsc}>
+                                    Price: Low to High
+                                </button>
+                            ) : null}
+                            {sortBy !== "Price: High to Low" ? (
+                                <button onClick={handleSortByPriceDesc}>
+                                    Price: High to Low
+                                </button>
+                            ) : null}
                         </div>
                     ) : null}
                 </div>

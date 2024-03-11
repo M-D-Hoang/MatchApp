@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export function ListingsSidebar() {
     const navigate = useNavigate();
 
-    const [itemType, setItemType] = useState("");
+    const [itemType, setItemType] = useState("items");
     const [condition, setCondition] = useState("");
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
@@ -24,7 +24,7 @@ export function ListingsSidebar() {
     const submitQueries = (e) => {
         e.preventDefault();
         var queries = "";
-        queries += itemType ? `type=${itemType}&` : "";
+        queries += itemType ? `type=${itemType}&` : "items&";
         queries += condition ? `condition=${condition}&` : "";
         queries += minPrice > 0 ? `minPrice=${minPrice}&` : "";
         queries += maxPrice > 0 ? `maxPrice=${maxPrice}&` : "";
@@ -47,8 +47,7 @@ export function ListingsSidebar() {
                     <select
                         className="item-type-select"
                         onChange={(e) => handleItemTypeChoice(e.target.value)}>
-                        <option value={""}>Type</option>
-                        <option value="items">Items</option>
+                        <option value="items" selected>Items</option>
                         <option value="cars">Cars</option>
                     </select>
                     <select
