@@ -6,7 +6,6 @@ import "./DetailedViewLayout.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
-//TO-DO: Implement multiple image scrollthrough
 export function DetailedView({ onExit, item }) {
     const navigate = useNavigate();
 
@@ -42,9 +41,6 @@ export function DetailedView({ onExit, item }) {
             });
         }
 
-        //const json = await resp.json();
-        //console.log(json);
-        //alert(json);
         if (resp.status === 204) {
             //placeholder reload, we'd navigate to a page once we have proper nav paths done
             // eslint-disable-next-line no-restricted-globals
@@ -67,11 +63,11 @@ export function DetailedView({ onExit, item }) {
         <div className={"overlay"} onClick={onExit}>
             <div className={"detailed-view"}>
                 <div className={"item-image"}>
-                    <Carousel infiniteLoop={true}>{images}</Carousel>
+                    <Carousel className="carousel" infiniteLoop={true}>{images}</Carousel>
                 </div>
                 <div className="item-info-container">
                     <ItemInfo onDeleteClicked={onDeleteClicked} item={item} />
-                    <button className="btn" onClick={handleFullViewURL}>Full View</button>
+                    <button onClick={handleFullViewURL}>Full View</button>
                 </div>
             </div>
         </div>
