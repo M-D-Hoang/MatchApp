@@ -8,6 +8,7 @@ import { FullView } from "./pages/FullView/FullView";
 import { UserPage } from "./pages/UserProfile/UserProfile";
 import {GoogleOAuthProvider} from "@react-oauth/google";
 import { useState } from "react";
+import {MissingPage} from './pages/404/404.js'
 
 function App() {
   const [username, setUsername] = useState("");
@@ -22,6 +23,7 @@ function App() {
                           <Route path="edit" element={<Edit />} />
                           <Route path="fullview" element={<FullView />} />
                           <Route path='my-page' element={<UserPage/>}/>
+                          <Route path="*" element={<MissingPage/>}/>  
                       </Route>
                   </Routes>
               </BrowserRouter>
