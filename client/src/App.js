@@ -12,12 +12,13 @@ import {MissingPage} from './pages/404/404.js'
 
 function App() {
   const [username, setUsername] = useState("");
+
     return (
         <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
           <div className="App">
               <BrowserRouter>
                   <Routes>
-                      <Route path="/" element={<AppLayout setUsername={setUsername}/>}>
+                      <Route path="/" element={<AppLayout setUsername={setUsername} username={username}/>}>
                           <Route index element={<Listings />} />
                           <Route path="sell" element={<Sell />} />
                           <Route path="edit" element={<Edit />} />

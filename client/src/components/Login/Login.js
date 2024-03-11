@@ -1,5 +1,6 @@
 import React from "react";
-import {GoogleLogin, GoogleLogout} from '@react-oauth/google';
+// GoogleLogou
+import {GoogleLogin} from '@react-oauth/google';
 import { useEffect, useState } from "react";
 import toast, {Toaster} from "react-hot-toast";
 // import { response } from "../../../../server/server";
