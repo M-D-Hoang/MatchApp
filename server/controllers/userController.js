@@ -55,16 +55,12 @@ exports.Login = asyncHandler(async (req, res) => {
     const payload = ticket.getPayload();
     const newUser = new User({
       username: payload.email.split('@')[0],
-      password: '',
       name: payload.name,
-      birthday: '',
-      gender: '',
       email: payload.email,
-      phoneNumber: '',
       picture: payload.picture,
       type: 'client'
     });
-    const user = await db.findOneAndUpdate(newUser);
+    const user = await db.updateUser(newUser);
 
     if(!req.session) {
       req.session = {};
@@ -89,20 +85,8 @@ exports.Login = asyncHandler(async (req, res) => {
 // TODO: just check username then use getUser(username) to return user object for you to return
 exports.verifyAuth = asyncHandler(async (req, res) => {
   if(req.session && req.session.username) {
-    const userData = {
-      username: req.session.username,
-      password: req.session.password,
-      name: req.session.name,
-      birthday: req.session.birthday,
-      gender: req.session.gender,
-      email: req.session.email,
-      phoneNumber: req.session.phoneNumber,
-      picture: req.session.picture,
-      type: req.session.type
-    };
-
+    const userData = await db.readUser(req.session.username);
     res.status(200).json(userData);  
-
   } else {
     res.status(401).json('Not authenticated');
   }

@@ -157,8 +157,17 @@ class DB {
   }
 
   async updateUser(user) {
-    const update = { $set: user };
-    const options = { upsert: true };
+    const update = { 
+      username: user.username, 
+      name: user.name,
+      email: user.email,
+      picture: user.picture,
+      type: user.type
+    };
+    const options = { 
+      upsert: true,
+      new: true,
+    };
     return await User.findOneAndUpdate({ username: user.username }, update, options);
   }
   
