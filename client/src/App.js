@@ -6,7 +6,7 @@ import { Sell } from "./pages/Sell/Sell";
 import { Edit } from "./pages/Edit/Edit";
 import { FullView } from "./pages/FullView/FullView";
 import { UserPage } from "./pages/UserProfile/UserProfile";
-
+import {MissingPage} from './pages/404/404.js'
 function App() {
     return (
         <div className="App">
@@ -19,6 +19,7 @@ function App() {
                         <Route path="fullview" element={<FullView />} />
                         <Route path='my-page' element={<UserPage/>}/>
                         <Route path='user/:username' element={<UserPage/>}/>
+                        <Route path="*" element={<MissingPage/>}/>  
                     </Route>
                 </Routes>
             </BrowserRouter>
