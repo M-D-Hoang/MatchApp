@@ -34,9 +34,9 @@ export function CarForm({ item }) {
     const pickedFiles = e.target.files
     console.log("Image changed!")
     console.log(pickedFiles)
-    if(pickedFiles !== undefined){
-        //set image statevar to the picked image
-        setImage(pickedFiles);
+    if (pickedFiles !== undefined) {
+      //set image statevar to the picked image
+      setImage(pickedFiles);
     }
   }
 
@@ -49,7 +49,16 @@ export function CarForm({ item }) {
         <label>Description: <input type="text" name="description" defaultValue={item !== undefined ? item.description : ""}></input></label>
         <label>Price: <input type="number" name="price" defaultValue={item !== undefined ? item.price : ""}></input></label>
         <input type="file" name="image" accept="image/*" onChange={onImageChange} required></input>
-        <label>Condition: <input type="text" name="condition" required defaultValue={item !== undefined ? item.condition : ""}></input></label>
+        <label>Condition:
+          <select
+            name="condition"
+            className="condition-select"
+            required
+            defaultValue={item !== undefined ? item.condition : "new"}>
+            <option value="new">New</option>
+            <option value="fair">Fair</option>
+            <option value="used">Used</option>
+          </select></label>
         <label>Make: <input type="text" name="make" required defaultValue={item !== undefined ? item.make : ""}></input></label>
         <label>Model: <input type="text" name="model" required defaultValue={item !== undefined ? item.model : ""}></input></label>
         <label>Body Type: <input type="text" name="bodyType" required defaultValue={item !== undefined ? item.bodyType : ""}></input></label>

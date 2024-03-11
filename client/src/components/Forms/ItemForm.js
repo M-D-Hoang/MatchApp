@@ -12,7 +12,11 @@ export function ItemForm({ item }) {
     const submitItem = async (e) => {
         e.preventDefault();
         var formData = new FormData(e.target);
+        //add extra form parameters
         formData.append("image", image);
+        //formData.append("date", );
+        //formData.append("location", );
+
         var resp = undefined
         if (item !== undefined) {
             //For editing an item
@@ -24,10 +28,10 @@ export function ItemForm({ item }) {
             resp = await updateListing(formData, "/api/listings/items");
         }
 
-        if(resp.status === 201){
+        if (resp.status === 201) {
             navigate('/');
         }
-        else{
+        else {
             alert('Listing update failed.');
         }
 
@@ -37,7 +41,7 @@ export function ItemForm({ item }) {
         const pickedFiles = e.target.files;
         console.log("Image changed!");
         console.log(pickedFiles);
-        if(pickedFiles !== undefined){
+        if (pickedFiles !== undefined) {
             //set image statevar to the picked image
             setImage(pickedFiles);
         }
@@ -77,16 +81,18 @@ export function ItemForm({ item }) {
                         accept="image/*"
                         onChange={onImageChange}
                         required
-                        multiple="multiple"></input>                        
+                        multiple="multiple"></input>
                 </label>
-                <label>
-                    Condition:{" "}
-                    <input
-                        type="text"
+                <label>Condition:{" "}
+                    <select
                         name="condition"
-                        defaultValue={item !== undefined ? item.condition : ""}
-                        required></input>
-                </label>
+                        className="condition-select"
+                        required
+                        defaultValue={item !== undefined ? item.condition : "new"}>
+                        <option value="new">New</option>
+                        <option value="fair">Fair</option>
+                        <option value="used">Used</option>
+                    </select></label>
                 <label>
                     Extra:{" "}
                     <input
