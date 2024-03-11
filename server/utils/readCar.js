@@ -22,10 +22,7 @@ async function returnCarArrayObject(csvFilePath, userData) {
           mileage: itemGenerationTools.generateMiles(),
           transmission: row.transmission,
           driveTrain: row.drive_train,
-          imageURIs: [row.picture1, row.picture2],
-          date: itemGenerationTools.generateRandomDate(),
-          location: itemGenerationTools.generateRandomPostalCode(),
-          objectType: 'car'
+          imageURIs: [row.picture1, row.picture2]
         };
         carData.push(newCar);
       }).
