@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const MongoStore = require('connect-mongo');
+// const MongoStore = require('connect-mongo');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const app = express();
@@ -13,13 +13,13 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  store: MongoStore.create({
-    mongoUrl: process.env.ATLAS_URI,
-    dbName: 'test',
-    ttl: 86400000
-  })
+  // resave: false,
+  // saveUninitialized: true,
+  // store: MongoStore.create({
+  //   mongoUrl: process.env.ATLAS_URI,
+  //   dbName: 'test',
+  //   ttl: 86400000
+  // })
 }));
 
 //for testing only, we will remove it eventually
