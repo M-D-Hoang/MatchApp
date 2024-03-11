@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppLayout } from "./components/Layout/AppLayout";
 import { Listings } from "./pages/Listings/Listings";
 import { Sell } from "./pages/Sell/Sell";
-import { YourListings } from "./pages/YourListings/YourListings";
+// import { YourListings } from "./pages/YourListings/YourListings";
 import { Edit } from "./pages/Edit/Edit";
 import { FullView } from "./pages/FullView/FullView";
 import { UserPage } from "./pages/UserProfile/UserProfile";
