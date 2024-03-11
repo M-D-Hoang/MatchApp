@@ -4,6 +4,7 @@
     align-items: center;
 }
 .form-select {
+    padding: 0 1em;
     height: 3em;
     width: 20em;
     border-radius: 3em;
