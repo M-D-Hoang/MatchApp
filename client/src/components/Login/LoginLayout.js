@@ -49,7 +49,6 @@ const handleLogin = async (response) => {
 }
   return (
     <div className="login-page">
-      <h1>Login</h1>
       <GoogleLogin onSuccess={handleLogin}
         onError={() => toast.error('Login failed')}
         useOneTap={true}

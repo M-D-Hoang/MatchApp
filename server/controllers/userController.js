@@ -88,7 +88,7 @@ exports.Login = asyncHandler(async (req, res) => {
 // TODO: just check username then use getUser(username) to return user object for you to return
 exports.verifyAuth = asyncHandler(async (req, res) => {
   if(req.session && req.session.username) {
-    const userData = await db.readUser(req.session.username);
+    const userData = await db.readUser({username:req.session.username});
     res.status(200).json(userData);  
   } else {
     res.status(401).json('Not authenticated');
