@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ItemInfo } from "../../components/DetailedView/ItemInfo";
 import tempImage from "../../assets/images/item-image-temp1.png";
-import { useNavigate, useSearchParams, useState, useEffect } from "react";  // Combine imports into a single line
-
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import "./FullView.css";
 
@@ -16,22 +15,15 @@ export function FullView() {
 
     useEffect(() => {
         fetch("/api/listings/item/" + itemId)
-            .then((resp) => {
-                return resp.json();
-            })
-            .then((json) => {
-                setItem(json);
-            })
+            .then((resp) => resp.json())
+            .then((json) => setItem(json))
             .catch((e) => {
                 console.error(e);
                 setItem();
             });
     }, [itemId]);
 
-    let image = item ? item.imageURIs[0] : undefined;
-    if (image === undefined) {
-        image = tempImage;
-    }
+    const image = item ? item.imageURIs[0] : tempImage;
 
     const handleEdit = () => {
         navigate("/edit", { state: { data: item } });
@@ -42,7 +34,7 @@ export function FullView() {
             <div className={"full-view-page"}>
                 <div className={"item-image"}>
                     <button className={"item-image-button right"}></button>
-                    <img src={image} alt="item"/>
+                    <img src={image} alt="item" />
                     <button className={"item-image-button left"}></button>
                 </div>
                 <div className="item-info-container">
@@ -55,4 +47,5 @@ export function FullView() {
             </div>
         );
     }
+    return null;
 }
