@@ -4,9 +4,12 @@ const db = new DB();
 
 exports.getUser = asyncHandler(async (req, res) => {
   try {
-    const user = await db.readUser(req.body.username);
+    const filter = {};
+    filter.username =  req.params.username;
+    const user = await db.readUser(filter);
     res.status(200).json(user);
-  } catch {
+  } catch (e){
+    
     res.status(500).send('Internal DB error. Could not read user');
   }
 });

@@ -2,6 +2,7 @@ import React from "react";
 import { ItemInfo } from "../DetailedView/ItemInfo";
 import tempImage from "../../assets/images/item-image-temp1.png";
 import { useNavigate } from "react-router-dom";
+
 import "./DetailedViewLayout.css";
 
 //TO-DO: Implement multiple image scrollthrough
