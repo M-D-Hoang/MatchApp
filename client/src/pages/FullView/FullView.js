@@ -23,7 +23,7 @@ export function FullView() {
             });
     }, [itemId]);
 
-    const image = item ? item.imageURIs[0] : tempImage;
+    let image = item ? item.imageURIs[0] : tempImage;
 
     const handleEdit = () => {
         navigate("/edit", { state: { data: item } });
