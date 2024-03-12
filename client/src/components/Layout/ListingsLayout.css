@@ -36,6 +36,9 @@
     z-index: 1;
     position: relative;
 }
+.sort-by{
+    font-weight: 600;
+}
 .dropdown > button:hover {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
     transition: box-shadow 0.3s;

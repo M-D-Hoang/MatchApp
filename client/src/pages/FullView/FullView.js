@@ -9,8 +9,25 @@ export function FullView() {
     const location = useLocation();
     const item = location.state.data;
 
-    
-    let image = item.imageURIs[0];
+    const [item, setItem] = useState();
+
+    const itemId = queryParameters.get("itemId");
+
+    useEffect(() => {
+        fetch("/api/listings/item/" + itemId)
+            .then((resp) => {
+                return resp.json();
+            })
+            .then((json) => {
+                setItem(json);
+            })
+            .catch((e) => {
+                console.error(e);
+                setItem();
+            });
+    }, [itemId]);
+
+    var image = item ? item.imageURIs[0] : undefined;
     if (image === undefined) {
         image = tempImage;
     }

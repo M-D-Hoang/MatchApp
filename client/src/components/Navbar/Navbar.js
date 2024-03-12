@@ -21,7 +21,9 @@ export function Navbar(props) {
                 </Link>
             </div>
             <div className="title">
-                <h1>Fake Market Place</h1>
+                <Link to="/">
+                    <h1>MatchApp</h1>
+                </Link>
             </div>
             <Login setUsename={props.setUsername} />
             <div className="link-container">
