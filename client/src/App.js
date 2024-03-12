@@ -20,12 +20,13 @@ function App() {
               <BrowserRouter>
                   <Routes>
                       <Route path="/" element={<AppLayout setUsername={setUsername} username={username}/>}>
-                          <Route index element={<Listings />} />
-                          <Route path="sell" element={<Sell />} />
-                          <Route path="edit" element={<Edit />} />
-                          <Route path="fullview" element={<FullView />} />
-                          <Route path='my-page' element={<UserPage/>}/>
-                          <Route path="*" element={<MissingPage/>}/>  
+                      <Route index element={<Listings />} />
+                      <Route path="sell" element={<Sell />} />
+                      <Route path="edit" element={<Edit />} />
+                      <Route path="fullview" element={<FullView />} />
+                      <Route path='my-page' element={<UserPage/>}/>
+                      <Route path='user/:username' element={<UserPage/>}/>
+                      <Route path="*" element={<MissingPage/>}/>  
                       </Route>
                   </Routes>
               </BrowserRouter>
