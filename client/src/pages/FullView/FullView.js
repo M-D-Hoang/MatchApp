@@ -19,11 +19,11 @@ export function FullView() {
             .then((json) => setItem(json))
             .catch((e) => {
                 console.error(e);
-                setItem();
+                // setItem();
             });
     }, [itemId]);
 
-    let image = item ? item.imageURIs[0] : tempImage;
+    const image = item ? item.imageURIs[0] : tempImage;
 
     const handleEdit = () => {
         navigate("/edit", { state: { data: item } });
