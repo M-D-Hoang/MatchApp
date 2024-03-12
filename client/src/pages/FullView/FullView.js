@@ -1,8 +1,8 @@
 import React from "react";
 import { ItemInfo } from "../../components/DetailedView/ItemInfo";
 import tempImage from "../../assets/images/item-image-temp1.png";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useNavigate, useSearchParams, useState, useEffect } from "react";  // Combine imports into a single line
+
 
 import "./FullView.css";
 
