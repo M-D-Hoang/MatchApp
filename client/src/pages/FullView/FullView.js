@@ -9,7 +9,7 @@ export function FullView() {
     const navigate = useNavigate();
     const [queryParameters] = useSearchParams();
 
-    const [item, setItem] = useState();
+    const [item, setItem] = useState(undefined);
 
     const itemId = queryParameters.get("itemId");
 
