@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-// const MongoStore = require('connect-mongo');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const app = express();
