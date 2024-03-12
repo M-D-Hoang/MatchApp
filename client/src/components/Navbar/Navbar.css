@@ -5,6 +5,7 @@
     position: sticky;
     top: 0;
     z-index: 2;
+    height: 70px;
 }
 .logo {
     width: 100px;

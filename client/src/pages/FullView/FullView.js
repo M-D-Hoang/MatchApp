@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ItemInfo } from "../../components/DetailedView/ItemInfo";
 import tempImage from "../../assets/images/item-image-temp1.png";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import "./FullView.css";
 
@@ -21,7 +20,7 @@ export function FullView({isCar}) {
             })
             .catch((e) => {
                 console.error(e);
-                setItem();
+                // setItem();
             });
     }, [itemId, isCar]);
 
@@ -87,4 +86,5 @@ export function FullView({isCar}) {
             </div>
         );
     }
+    return null;
 }

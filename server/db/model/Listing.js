@@ -11,6 +11,9 @@ const listingSchema = new Schema({
   condition: {type: String, required: true, index: true},
   extraField: {type: String, required: false, index: true},
   category: {type: String, required: true, index: true},
+  date: {type: String, required: true, index: true},
+  location: {type: String, required: true, index: true},
+  objectType: {type: String, required: true, index: true},
 });
 
 const carListingSchema = new Schema({
@@ -26,6 +29,9 @@ const carListingSchema = new Schema({
   transmission: {type: String, required: true, index: true},
   driveTrain: {type: String, required: true, index: true},
   imageURIs: {type: Array, required: false},
+  date: {type: String, required: true, index: true},
+  location: {type: String, required: true, index: true},
+  objectType: {type: String, required: true, index: true},
 });
 
 const Listing = model('Listing', listingSchema);
