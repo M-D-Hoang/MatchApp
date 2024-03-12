@@ -1,14 +1,16 @@
 import React from "react";
 import "./Navbar.css";
+import { Login } from "../Login/LoginLayout.js";
 import logo from "../../assets/images/logo-temp.png";
 import { Link } from "react-router-dom";
+
 
 /**
  * Renders the navigation bar component. This includes the logo, the title, and links to pages.
  *
  * @return {JSX.Element} The rendered navigation bar.
  */
-export function Navbar() {
+export function Navbar(props) {
     return (
         <nav className="navbar">
             <div className="logo">
@@ -21,6 +23,7 @@ export function Navbar() {
                     <h1>Fake Market Place</h1>
                 </Link>
             </div>
+            <Login setUsename={props.setUsername} />
             <div className="link-container">
                 <div className="link">
                     <Link to="/sell">Sell</Link>
