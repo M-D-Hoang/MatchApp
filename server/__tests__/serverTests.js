@@ -170,9 +170,3 @@ describe('User Controller Routes', () => {
     });
   });
 });
-
-describe('Assert true', () => {
-  test('should return true', () => {
-    expect(true).toBe(true);
-  });
-});
