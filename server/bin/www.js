@@ -14,6 +14,7 @@ process.on('SIGINT', () => {
   console.log('SIGINT signal received: closing HTTP server');
   server.close(() => {
     console.log('HTTP server closed');
+    process.exit(0);
   });
 });
 
