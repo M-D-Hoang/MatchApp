@@ -13,7 +13,6 @@ export function FullView() {
     const [item, setItem] = useState();
 
     const itemId = queryParameters.get("itemId");
-    console.log("/api/listings/item/" + itemId);
 
     useEffect(() => {
         fetch("/api/listings/item/" + itemId)
@@ -28,8 +27,6 @@ export function FullView() {
                 setItem();
             });
     }, [itemId]);
-
-    console.log(item);
 
     var image = item ? item.imageURIs[0] : undefined;
     if (image === undefined) {
