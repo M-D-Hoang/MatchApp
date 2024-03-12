@@ -15,11 +15,6 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  // store: MongoStore.create({
-  //   mongoUrl: process.env.ATLAS_URI,
-  //   dbName: 'test',
-  //   ttl: 86400000
-  // })
 }));
 
 //for testing only, we will remove it eventually
