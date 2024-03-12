@@ -18,7 +18,7 @@ export function Navbar() {
             </div>
             <div className="title">
                 <Link to="/">
-                    <h1>Fake Market Place</h1>
+                    <h1>MatchApp</h1>
                 </Link>
             </div>
             <div className="link-container">
