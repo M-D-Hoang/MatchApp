@@ -28,7 +28,7 @@ export function FullView() {
             });
     }, [itemId]);
 
-    var image = item ? item.imageURIs[0] : undefined;
+    let image = item ? item.imageURIs[0] : undefined;
     if (image === undefined) {
         image = tempImage;
     }
