@@ -19,8 +19,11 @@ export function DetailedView({ onExit, item }) {
         images.push(<><img src={img} alt="preview"></img></>);
     });
 
+    // TODO: change this
+    const isCar = item && item.make !== undefined;
+
     const handleFullViewURL = () => {
-        navigate("/fullview/?itemId=" + item._id, { state: { data: item } });
+        navigate(`/fullview/${isCar ? 'car' : 'item'}/` + item._id, { state: { data: item } });
     }
     return (
         <div className={"overlay"} onClick={onExit}>
