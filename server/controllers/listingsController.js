@@ -144,7 +144,7 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
 
     if (keyword){
       //contains title
-      filter.title = {};
+      filter.title = {$regex: keyword, $options: 'i'};
     }
 
     if (condition) {

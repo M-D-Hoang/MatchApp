@@ -1,29 +1,50 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import "./ListingsLayout.css";
 
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 
 export function ListingsLayout() {
+    const navigate = useNavigate();
+
     const [queryParameters] = useSearchParams();
     const [isMenuOpen, setOpen] = useState(false);
-    const [filter, setFilter] = useState("");
+    const [keyword, setKeyword] = useState("");
     const [sortBy, setSortBy] = useState("Date: Newest");
 
-    function handleSearchChange(e) {
-        setFilter(e.target.value);
-    }
+    const handleSearchChange = (e) => {
+        setKeyword(e.target.value);
+    };
+
     const handleSearchSubmit = (e) => {
         e.preventDefault();
 
-        alert(filter);
+        let params = queryParameters;
+        if (params.has("keyword")) {
+            params.delete("keyword");
+        }
+        if (params.length > 0) {
+            params += "&";
+        }
+        if (keyword.length > 0) {
+           params += `&keyword=${keyword}`; 
+        }
+        let url = queryParameters.get("type") === null ? "?type=items" : "?";
+        url += params;
+        navigate(url);
     };
     //Fetch data from API
     const [listingData, setListingData] = useState([]);
     useEffect(() => {
-        if (queryParameters.size === 0) {
-            fetch("/api/listings")
+        try {
+            let url = "/api/listings/";
+            url += queryParameters.get("type")
+                ? `${queryParameters.get("type")}?`
+                : "";
+            url += queryParameters.toString();
+            console.log(url);
+            fetch(url)
                 .then((resp) => {
                     return resp.json();
                 })
@@ -34,45 +55,52 @@ export function ListingsLayout() {
                     console.error(e);
                     setListingData([]);
                 });
-        } else {
-            fetch(
-                "/api/listings/" +
-                    queryParameters.get("type") +
-                    "?" +
-                    queryParameters.toString()
-            )
-                .then((resp) => {
-                    return resp.json();
-                })
-                .then((json) => {
-                    setListingData(json);
-                })
-                .catch((e) => {
-                    console.error(e);
-                    setListingData([]);
-                });
+        } catch (error) {
+            console.log(error);
         }
     }, [queryParameters]);
 
+    //Sorting
+    const sortByHandler = (sortField, sortOrder) => {
+        let params = queryParameters;
+        //remove existing sort params
+        if (params.has("sortField")) {
+            params.delete("sortField");
+        }
+        if (params.has("sortOrder")) {
+            params.delete("sortOrder");
+        }
+        if (params.length > 0) {
+            params += "&";
+        }
+        //add new sort params and update url
+        params += `&sortField=${sortField}&sortOrder=${sortOrder}`;
+        let url = queryParameters.get("type") === null ? "?type=items" : "?";
+        url += params;
+        navigate(url);
+    };
     const handleOpen = () => {
         setOpen(!isMenuOpen);
     };
     const handleSortByPriceAsc = () => {
         setOpen(false);
         setSortBy("Price: Low to High");
-        // Handle sort
+        sortByHandler("price", "asc");
     };
     const handleSortByPriceDesc = () => {
         setOpen(false);
         setSortBy("Price: High to Low");
+        sortByHandler("price", "desc");
     };
     const handleSortByOldest = () => {
         setOpen(false);
         setSortBy("Date: Oldest");
+        sortByHandler("date", "asc");
     };
     const handleSortByNewest = () => {
         setOpen(false);
         setSortBy("Date: Newest");
+        sortByHandler("date", "desc");
     };
 
     const listingJSX = listingData.map((item) => {
@@ -85,14 +113,14 @@ export function ListingsLayout() {
                 <form onSubmit={handleSearchSubmit}>
                     <input
                         type="text"
-                        value={filter}
+                        value={keyword}
                         onChange={handleSearchChange}
                         placeholder="Search..."
                     />
                 </form>
                 <div className="dropdown">
                     <button className="sort-button" onClick={handleOpen}>
-                        Sort by:
+                        Sort by
                         <div className="sort-by">{sortBy}</div>
                     </button>
                     {isMenuOpen ? (
@@ -121,6 +149,9 @@ export function ListingsLayout() {
                     ) : null}
                 </div>
             </div>
+            {listingJSX.length === 0 ? (
+                <div className="no-results">No results found</div>
+            ) : null}
             <div className="listings-display square">{listingJSX}</div>
         </div>
     );
