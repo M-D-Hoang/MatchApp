@@ -52,8 +52,28 @@ export function Login() {
     toast.success('Login Successful')
   }
 
+  //TEMP
+  const handleLogout = async (response) => {
+    const resp = await fetch('/api/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(response),
+      credentials: 'include'
+    })
+    if (!resp.ok) {
+      toast.error('Failed to login')
+      return
+    }
+    const data = await resp.json()
+    
+    setUserInfo(data)
+    toast.success('Login Successful')
+  }
 
-  let displayableJSX = <LoggedInUserButton/>
+
+  let displayableJSX = <LoggedInUserButton user={userInfo}/>
   if(userInfo === null){
     displayableJSX = (
       <GoogleLogin 
@@ -77,21 +97,22 @@ export function Login() {
 }
 
 
-function LoggedInUserButton(){
+function LoggedInUserButton({user, onLogOut}){
   return(
     //Link to User Page & Sell Button
         <div className="link-container">
           <div className="link">
-            <Link to="/sell">Sell</Link>
-          </div>
-          <div className="link">
             <p onClick={()=>{alert('Under construction')}}>Logout</p>
           </div>
+          <div className="link">
+            <Link to="/sell">Sell</Link>
+          </div>
+          
           <div className="link pfp-container">
-            <Link className="pfp-container-link" to="/my-page">
+            <Link className="pfp-container-link" to={`/user/${user.username}`}>
               <img
                 className="navbar-pfp"
-                src="https://cdn.discordapp.com/emojis/383621124854120449.webp?size=1024&quality=lossless&name=bolus"
+                src={user.picture}
                 alt="my-account"></img>
             </Link>
           </div>
