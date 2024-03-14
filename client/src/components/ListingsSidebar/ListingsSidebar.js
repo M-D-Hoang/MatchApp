@@ -30,6 +30,7 @@ export function ListingsSidebar() {
         queries += maxPrice > 0 ? `maxPrice=${maxPrice}&` : "";
         queries = queries.substring(0, queries.length - 1);
         navigate("/?"+queries);
+        toggleSidebar();
     };
 
     const toggleSidebar = () => {
@@ -47,7 +48,7 @@ export function ListingsSidebar() {
                     <select
                         className="item-type-select"
                         onChange={(e) => handleItemTypeChoice(e.target.value)}>
-                        <option value="items" selected>Items</option>
+                        <option value="items" defaultValue>Items</option>
                         <option value="cars">Cars</option>
                     </select>
                     <select
