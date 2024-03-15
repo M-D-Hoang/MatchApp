@@ -14,28 +14,30 @@
 }
 
 .preview-image {
-    object-fit: cover;
     width: 100%;
     height: 80%;
     border-radius: 0.6em;
 }
 .preview-text {
     padding: 0 0.5em;
-    font-size: 15px;
     display: flex;
     flex-direction: row;
     height: 20%;
     align-items: center;
     justify-content: space-between;
-    color: rgb(0, 0, 0);
 }
 .preview-text > .title {
-    height: 100%;
+    display: block;
+    font-size: 14px;
     width: 75%;
     margin: 0;
     text-align: left;
     text-overflow: ellipsis;
     overflow: hidden;
+    max-height: 3.7em;
+    line-height: 1.2em;
+    font-weight: 500;
+    white-space: pre-wrap;
 }
 .preview-text > .price {
     font-weight: 600;

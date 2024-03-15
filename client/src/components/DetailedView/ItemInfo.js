@@ -6,7 +6,7 @@ export function ItemInfo({ item }) {
         <div className="item-info">
             <h1 className="title">{item.title}</h1>
             <h2 className="price">{item.price}$</h2>
-            <UserButton userID={item.ownerID}/>
+            {/* <UserButton userID={item.ownerID}/> */}
             <div className="detail-container">
                 {item.make && (
                     <p className="detail">

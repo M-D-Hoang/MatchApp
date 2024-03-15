@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { ItemInfo } from "../../components/DetailedView/ItemInfo";
+import { UserButton } from "../../components/UserButton/UserButton";
 import tempImage from "../../assets/images/item-image-temp1.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
+
 import "./FullView.css";
 
 export function FullView({isCar}) {
@@ -74,11 +76,19 @@ export function FullView({isCar}) {
         return (
             <div className={"full-view-page"}>
                 <div className={"item-image"}>
-                    <Carousel className="carousel" infiniteLoop={true}>{images}</Carousel>
+                    <Carousel className="carousel" infiniteLoop={true}>
+                        {images}
+                    </Carousel>
                 </div>
                 <div className="item-info-container">
                     <ItemInfo item={item} />
                     <div className="action-container">
+                        <div className="user-info">
+                            <p>Posted by:</p>
+                            <UserButton userID={item.ownerID}/>
+                        </div>
+                        
+
                         <button onClick={handleDelete}>Delete</button>
                         <button onClick={handleEdit}>Edit</button>
                     </div>

@@ -1,9 +1,9 @@
 .full-view-page {
-    padding-top: 5em;
+    padding: 5em 0;
     display: flex;
     gap: 5em;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 .item-image > button {
     background-image: url("../../assets/images/next-icon.png");
@@ -49,14 +49,24 @@
     border-radius: 3em;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
-    background-color: rgb(83, 255, 106);
+    background-color: rgb(50, 122, 65);
+    color: white;
+    font-weight: 600;
     z-index: 1;
     position: relative;
 }
 .full-view-page > .item-info-container {
     gap: 2em;
 }
-    
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.user-info > p {
+    font-size: 18px;
+    font-weight: 600;
+}
 
 @media (max-width: 1500px) {
     .full-view-page {

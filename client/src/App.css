@@ -6,3 +6,9 @@
 input:focus, select:focus, textarea:focus, button:focus {
     outline: 1px solid rgb(182, 182, 182);
 }
+img{
+    object-fit: contain;
+}
+input{
+    padding-left: 1em;
+}
