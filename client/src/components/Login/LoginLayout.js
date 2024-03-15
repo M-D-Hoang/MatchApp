@@ -52,28 +52,25 @@ export function Login() {
     toast.success('Login Successful')
   }
 
-  //TEMP
+ 
   const handleLogout = async (response) => {
-    const resp = await fetch('/api/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(response),
+    const resp = await fetch('/api/users/logout', {
+      method: 'DELETE',      
       credentials: 'include'
     })
     if (!resp.ok) {
-      toast.error('Failed to login')
+      toast.error('Failed to log out')
       return
     }
-    const data = await resp.json()
+    //const data = await resp.json()
     
-    setUserInfo(data)
-    toast.success('Login Successful')
+    setUserInfo(null)
+    toast.success('Logout Successful')
+    
   }
 
 
-  let displayableJSX = <LoggedInUserButton user={userInfo}/>
+  let displayableJSX = <LoggedInUserButton user={userInfo} onLogOut={handleLogout}/>
   if(userInfo === null){
     displayableJSX = (
       <GoogleLogin 
@@ -102,7 +99,7 @@ function LoggedInUserButton({user, onLogOut}){
     //Link to User Page & Sell Button
         <div className="link-container">
           <div className="link">
-            <p onClick={()=>{alert('Under construction')}}>Logout</p>
+            <p onClick={async()=>{await onLogOut()}}>Logout</p>
           </div>
           <div className="link">
             <Link to="/sell">Sell</Link>
