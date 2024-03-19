@@ -29,7 +29,7 @@
 .preview-text > .title {
     display: block;
     font-size: 14px;
-    width: 75%;
+    max-width: 75%;
     margin: 0;
     text-align: left;
     text-overflow: ellipsis;
@@ -40,6 +40,7 @@
     white-space: pre-wrap;
 }
 .preview-text > .price {
+    display: flex;
     font-weight: 600;
     height: 100%;
     margin: 0;

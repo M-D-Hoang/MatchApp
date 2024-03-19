@@ -47,5 +47,5 @@ exports.postImage = asyncHandler(async (req, res) => {
   } else {
     await db.updateItemListing(res.locals.listing);
   }
-  return res.status(201).json({ listing: res.locals.listing });
+  return res.status(201).json({ listing: res.locals.listing, id: res.locals.listing._id });
 });

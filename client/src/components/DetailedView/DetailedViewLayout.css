@@ -59,7 +59,7 @@ button:hover {
     .detailed-view {
         flex-direction: column;
     }
-    .detailed-view >.item-info {
+    .detailed-view > .item-info {
         flex-grow: 1;
         width: 800px;
     }
@@ -71,7 +71,6 @@ button:hover {
     width: 700px;
     height: 600px;
 }
-
 
 .item-info > .price,
 .item-info > .title,
@@ -101,16 +100,19 @@ button:hover {
     gap: 0.5em;
     justify-content: space-between;
 }
-b{
+b {
     font-weight: 600;
 }
 .price {
     color: rgb(50, 122, 65);
 }
 
-.carousel-slider, .slide, .slide img {
+.carousel-slider,
+.slide,
+.slide img {
     width: 700px;
-    height: 500px;}
+    height: 500px;
+}
 
 .control-arrow {
     width: 10%;
@@ -124,6 +126,9 @@ b{
     filter: brightness(0.5);
 }
 
-.carousel .carousel .thumbs-wrapper{
+.carousel .carousel .thumbs-wrapper {
     margin: 0;
+}
+.control-dots {
+    display: none;
 }

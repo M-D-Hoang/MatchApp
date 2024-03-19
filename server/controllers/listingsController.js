@@ -9,6 +9,10 @@ exports.postItem = asyncHandler(async (req, res, next) => {
     formObj.imageURIs = [''];
     // TODO: TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
     formObj.ownerID = 'user4633';
+    formObj.location = 'H0H0H0';
+
+    formObj.objectType = 'item';
+    formObj.date = new Date(Date.now()).toLocaleString();
     // Add the listing to the DB
     res.locals.listing = await db.createListing(formObj);
     // pass request to the next middleware (image uploader)
@@ -30,6 +34,11 @@ exports.postCar = asyncHandler(async (req, res, next) => {
     formObj.imageURIs = [''];
     // TODO: TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
     formObj.ownerID = 'user4633';
+    formObj.location = 'H0H0H0';
+
+
+    formObj.objectType = 'cars';
+    formObj.date = new Date(Date.now()).toLocaleString();
     // Add the listing to the DB
     res.locals.listing = await db.createCarListing(formObj);
     // pass request to the next middleware (image uploader)
@@ -81,7 +90,11 @@ exports.editCar = asyncHandler(async (req, res, next) => {
   try {
     res.locals.listing = await db.updateCarListing(carObj);
     // pass request down to image controller
-    next();
+    if (req.files) {
+      next();
+    } else {
+      return res.status(201).send({ status: 201, id: carObj.id });
+    }
   } catch (e) {
     res.status = 400;
     res.json({
@@ -96,7 +109,11 @@ exports.editItem = asyncHandler(async (req, res, next) => {
   try {
     res.locals.listing = await db.updateItemListing(ItemObj);
     // pass request down to image controller
-    next();
+    if (req.files) {
+      next();
+    } else {
+      return res.status(201).send({ status: 201, id: ItemObj.id });
+    }
   } catch (e) {
     res.status = 400;
     res.json({
@@ -142,9 +159,9 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
 
     const filter = {};
 
-    if (keyword){
+    if (keyword) {
       //contains title
-      filter.title = {$regex: keyword, $options: 'i'};
+      filter.title = { $regex: keyword, $options: 'i' };
     }
 
     if (condition) {
