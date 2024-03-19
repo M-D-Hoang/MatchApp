@@ -1,5 +1,4 @@
 import React from "react";
-import {UserButton} from '../UserButton/UserButton.js'
 
 export function ItemInfo({ item }) {
     return (
