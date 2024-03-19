@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { ImagePreview } from "./ImagePreview.js";
 import { editListing, updateListing } from "./FormSubmit.js";
 import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
-import tempImage from "../../assets/images/item-image-temp1.png";
 
 export function ItemForm({ item }) {
     const navigate = useNavigate();
