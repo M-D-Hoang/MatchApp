@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
-import { useParams, useLocation} from 'react-router-dom';
+import { useParams, useLocation, useNavigate} from 'react-router-dom';
 import ReactLoading from 'react-loading';
-import { UserEdit } from "../../components/UserEdit/UserEdit";
+
 
 
 export function UserPage() {
     //for the real thing, we would have user passed in as a prop
     const [user, setUser] = useState(undefined);
-    const [isEditing, setEditing] = useState(false);
     const [userItems, setUserItems] = useState([]);
     const location = useLocation();
     //get userid from URL
     const params = useParams();
-
-    const editToggle = () => {
-        setEditing(!isEditing);
-    };
-
     
+    const navigate = useNavigate();
+
+    const editToggle = ()=>{
+        //navigate to edit page
+        //<UserEdit user={user} editToggle={editToggle} />
+        navigate('/user/edit', { state: { data: user } })
+    }
 
     useEffect(() => {
         //Get Username from Route
@@ -50,11 +51,11 @@ export function UserPage() {
 
     }, [location.state, params.username])
 
-    const loadingJSX = <ReactLoading type={"spin"} color={"#58cc77"} height={667} width={375} />
+    const loadingJSX = <ReactLoading type={"spin"} color={"#58cc77"} height={400} width={400} />
 
     console.log(user);
     return (<div>
-        {user === undefined ? loadingJSX : user !== null ? (!isEditing ? <Display user={user} userItems={userItems} editToggle={editToggle}></Display> : <UserEdit user={user} editToggle={editToggle} />) : <NoUser />}
+        {user === undefined ? loadingJSX : user !== null ? (<Display user={user} userItems={userItems} editToggle={editToggle}></Display>) : <NoUser />}
     </div>);
 }
 

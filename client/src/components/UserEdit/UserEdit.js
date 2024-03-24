@@ -1,8 +1,8 @@
 import { ImagePreview } from "../../components/Forms/ImagePreview";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-export function UserEdit({ user }) {
-
+import { useNavigate, useLocation } from 'react-router-dom';
+export function UserEdit({setPfpURL}) {
+    
     const [previewImage, setPreviewImage] = useState([])
 
     const onImageChange = (e) => {
@@ -17,6 +17,15 @@ export function UserEdit({ user }) {
 
     const navigate = useNavigate();
 
+    //get userdata from location state
+    const location = useLocation();
+    const { data } = location.state || null;
+    if(data === null){
+        data.navigate('/')
+    }
+    console.log(data);
+    const user = data;
+    
     const onEditSubmit = async (e) => {
 
         e.preventDefault();
@@ -36,6 +45,7 @@ export function UserEdit({ user }) {
         }
         else {
             //If post went through, navigate back to user page
+            setPfpURL(json.picture);
             navigate(`/user/${user.username}`, { state: { data: user.username } });
         }
         console.error(JSON.stringify(json));

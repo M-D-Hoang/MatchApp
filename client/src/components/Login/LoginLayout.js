@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 // import { response } from "../../../../server/server";
 import { Link, useNavigate } from "react-router-dom";
 
-export function Login() {
+export function Login(props) {
 
   const navigate = useNavigate();
 
@@ -25,15 +25,16 @@ export function Login() {
         }
 
         const data = await resp.json()
-        console.warn(data)
-        setUserInfo(data)
+        console.warn(data);
+        setUserInfo(data);
+        props.setPfpURL(data.picture);
       } catch (e) {
         console.error(e)
       }
     }
 
     checkAuth()
-  }, []);
+  }, [props]);
 
   const handleLogin = async (response) => {
     const resp = await fetch('/api/users/login', {
@@ -72,7 +73,7 @@ export function Login() {
   }
 
 
-  let displayableJSX = <LoggedInUserButton user={userInfo} onLogOut={handleLogout}/>
+  let displayableJSX = <LoggedInUserButton user={userInfo} onLogOut={handleLogout} pfpURL={props.pfpURL}/>
   if(userInfo === null){
     displayableJSX = (
       <GoogleLogin 
@@ -96,7 +97,7 @@ export function Login() {
 }
 
 
-function LoggedInUserButton({user, onLogOut}){
+function LoggedInUserButton({user, onLogOut, pfpURL}){
   return(
     //Link to User Page & Sell Button
         <div className="link-container">
@@ -111,7 +112,7 @@ function LoggedInUserButton({user, onLogOut}){
             <Link className="pfp-container-link" to={`/user/${user.username}`}>
               <img
                 className="navbar-pfp"
-                src={user.picture}
+                src={pfpURL}
                 alt="my-account"></img>
             </Link>
           </div>

@@ -27,7 +27,7 @@ export function Navbar(props) {
                     <h1>MatchApp</h1>
                 </Link>
             </div>
-            <Login setUsename={props.setUsername} />
+            <Login setUsename={props.setUsername} pfpURL={props.pfpURL} setPfpURL={props.setPfpURL} />
             
         </nav>
     );
