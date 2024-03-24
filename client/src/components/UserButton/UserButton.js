@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import "./UserButton.css";
+import ReactLoading from 'react-loading';
 //A simple button displaying the user and their PFP. Clicking on them navigates
 //to their user page.
 export function UserButton({userID}){
@@ -29,7 +30,10 @@ export function UserButton({userID}){
 
   return(
     <div className={'user-button'} onClick={onUserClick}>
-      <img className={'user-button-image'} src={image} alt={`${userName} profile`}></img>
+
+      {image === '' ? <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={75} width={75} />:
+      <img className={'user-button-image'} src={image} alt={`${userName} profile`}></img>}
+
       <div className={'user-button-name'}>{userName}</div>
     </div>
   );

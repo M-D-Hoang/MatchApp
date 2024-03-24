@@ -4,7 +4,7 @@ import { UserButton } from "../../components/UserButton/UserButton";
 import tempImage from "../../assets/images/item-image-temp1.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
-
+import ReactLoading from 'react-loading';
 import "./FullView.css";
 
 export function FullView({isCar}) {
@@ -94,28 +94,31 @@ export function FullView({isCar}) {
     if (item) {
         return (
             <div className={"full-view-page"}>
-                <div className={"item-image"}>
-                    <Carousel className="carousel" infiniteLoop={true}>
-                        {images}
-                    </Carousel>
-                </div>
-                <div className="item-info-container">
-                    <ItemInfo item={item} />
-                    <div className="action-container">
-                        <div className="user-info">
-                            <p>Posted by:</p>
-                            <UserButton userID={item.ownerID}/>
-                        </div>
-                        
-                        {
-                            isOwner &&
-                            <>
-                                <button onClick={handleDelete}>Delete</button>
-                                <button onClick={handleEdit}>Edit</button>
-                            </>
-                        }
-                    </div>
-                </div>
+                
+                {item.ownerID === undefined ? 
+                <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={400} width={400} />:
+                <><div className={"item-image"}>
+                        <Carousel className="carousel" infiniteLoop={true}>
+                            {images}
+                        </Carousel>
+                    </div><div className="item-info-container">
+                            <ItemInfo item={item} />
+                            <div className="action-container">
+                                <div className="user-info">
+                                    <p>Posted by:</p>
+                                    <UserButton userID={item.ownerID} />
+                                </div>
+
+                                {isOwner &&
+                                    <>
+                                        <button onClick={handleDelete}>Delete</button>
+                                        <button onClick={handleEdit}>Edit</button>
+                                    </>}
+                            </div>
+                        </div></>
+                }
+
+                
             </div>
         );
     }
