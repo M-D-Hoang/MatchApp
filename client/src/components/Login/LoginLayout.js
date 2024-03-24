@@ -27,14 +27,14 @@ export function Login(props) {
         const data = await resp.json()
         console.warn(data);
         setUserInfo(data);
-        props.setPfpURL(data.picture);
+        
       } catch (e) {
         console.error(e)
       }
     }
 
     checkAuth()
-  }, [props]);
+  }, []);
 
   const handleLogin = async (response) => {
     const resp = await fetch('/api/users/login', {
@@ -52,6 +52,7 @@ export function Login(props) {
     const data = await resp.json()
     
     setUserInfo(data)
+    props.setPfpURL(data.picture);
     toast.success('Login Successful')
   }
 
