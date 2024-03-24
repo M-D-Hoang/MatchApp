@@ -45,8 +45,17 @@ export function UserEdit({setPfpURL}) {
         }
         else {
             //If post went through, navigate back to user page
-            console.log(json);
-            setPfpURL(json.picture);
+            //console.log(json);
+            if(json.picture !== undefined){
+                setPfpURL(json.picture);
+            }else{
+                //set the new image by fetching from the db again
+                fetch(`/api/users/${user.username}`)
+                .then(resp=>{return resp.json})
+                .then(json=>{setPfpURL(json.picture);})
+            }
+            
+            
             navigate(`/user/${user.username}`, { state: { data: user.username } });
         }
         

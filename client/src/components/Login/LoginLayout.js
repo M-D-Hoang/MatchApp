@@ -35,7 +35,7 @@ export function Login(props) {
     }
 
     checkAuth()
-  }, []);
+  }, [props]);
 
   const handleLogin = async (response) => {
     const resp = await fetch('/api/users/login', {
