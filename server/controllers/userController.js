@@ -42,14 +42,21 @@ exports.Login = asyncHandler(async (req, res) => {
       audience: clientId
     });
     const payload = ticket.getPayload();
+    const newUsername = payload.email.split('@')[0];
     const newUser = new User({
-      username: payload.email.split('@')[0],
+      username: newUsername,
       name: payload.name,
       email: payload.email,
       picture: payload.picture,
       type: 'client'
     });
-    const user = await db.updateUser(newUser);
+
+    //if the user exists in the db already, don't update info from google
+    let user = await db.readUser({username:newUsername});
+    if(!user){
+      //make(update) a new entry in the database
+      user = await db.updateUser(newUser);
+    }
 
     if(!req.session) {
       req.session = {};

@@ -39,7 +39,7 @@ exports.postImage = asyncHandler(async (req, res) => {
   // Wait for all image upload promises to resolve.
   await Promise.all(uploadPromises);
   // set new images urls
-  console.log(req.body.username);
+ 
   if(res.locals.listing !== undefined){
     res.locals.listing.imageURIs = urls;
   }
