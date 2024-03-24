@@ -11,7 +11,7 @@ import "./AppLayout.css";
 export function AppLayout(props) {
     return (
         <div className="app-layout">
-            <Navbar setUsername={props.setUsername}/>
+            <Navbar setUsername={props.setUsername} setPfpURL={props.setPfpURL} pfpURL={props.pfpURL}/>
             <Outlet />
         </div>
     );

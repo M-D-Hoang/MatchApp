@@ -99,7 +99,7 @@ class DB {
     //if doesn't exist, make a new one
     console.log('Doing update');
     const update = { $set: { picture: imageURL } };
-    await User.findOneAndUpdate({ name: username }, update, {
+    await User.findOneAndUpdate({ username: username }, update, {
       upsert: true,
     });
   }
@@ -159,8 +159,12 @@ class DB {
   async updateUser(user) {
     const update = { 
       username: user.username, 
-      name: user.name,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      birthday: user.birthday,  
+      gender: user.gender,  
       email: user.email,
+      phoneNumber: user.phoneNumber,
       picture: user.picture,
       type: user.type
     };
