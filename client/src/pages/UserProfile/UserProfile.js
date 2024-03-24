@@ -3,7 +3,7 @@ import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 
-
+import "./UserProfile.css";
 
 export function UserPage() {
     //for the real thing, we would have user passed in as a prop
@@ -50,7 +50,7 @@ export function UserPage() {
     const loadingJSX = <ReactLoading type={"spin"} color={"#58cc77"} height={400} width={400} />
 
     console.log(user);
-    return (<div>
+    return (<div classname="profile-menu-base">
         {user === undefined ? loadingJSX : user !== null ? (<Display user={user} userItems={userItems} editToggle={editToggle}></Display>) : <NoUser />}
     </div>);
 }
@@ -84,7 +84,7 @@ function Display({ user, userItems, editToggle }) {
     }, [user.username]);
 
     return (
-        <><h1>{user.username}</h1><h2>{user.firstName} {user.lastName}</h2><img src={user.picture} alt={user.username}></img><div className="profile-personal-info">
+        <><h1>{user.username}</h1><h2>{user.firstName} {user.lastName}</h2><img className="profile-pfp" src={user.picture} alt={user.username}></img><div className="profile-personal-info">
             <h1>Personal Info:</h1>
             <p>Birthday: {user.birthday}</p>
             <p>E-Mail: {user.email}</p>
