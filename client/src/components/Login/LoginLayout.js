@@ -4,9 +4,11 @@ import { GoogleLogin } from '@react-oauth/google';
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 // import { response } from "../../../../server/server";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Login() {
+
+  const navigate = useNavigate();
 
   const [userInfo, setUserInfo] = useState(null)
 
@@ -66,7 +68,7 @@ export function Login() {
     
     setUserInfo(null)
     toast.success('Logout Successful')
-    
+    navigate('/')
   }
 
 

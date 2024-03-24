@@ -159,8 +159,12 @@ class DB {
   async updateUser(user) {
     const update = { 
       username: user.username, 
-      name: user.name,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      birthday: user.birthday,  
+      gender: user.gender,  
       email: user.email,
+      phoneNumber: user.phoneNumber,
       picture: user.picture,
       type: user.type
     };

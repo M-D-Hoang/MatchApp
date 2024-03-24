@@ -20,6 +20,7 @@ exports.getUser = asyncHandler(async (req, res) => {
 
 exports.editUser = asyncHandler(async (req, res) => {
   const userObj = req.body;
+  console.log(userObj);
   try {
     const mongoRes = await db.updateUser(userObj);
     return res.status(201).send(mongoRes);
