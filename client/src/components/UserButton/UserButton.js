@@ -19,9 +19,12 @@ export function UserButton({userID}){
 
   //Fetch username & image from DB
   useEffect(()=>{
+    fetch(`/api/users/${userID}`)
+    .then(resp=>{return resp.json()})
+    .then(json=>{setImage(json.picture);})
+    .catch(()=>{setImage('https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg')});
     
-    setImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTTiQ8Yl6XjZK9qjqoqztkUDOXXerRr7Kp0z38NwfdYQ&s');
-    setUsername(userID)
+    setUsername(userID);
   },[userID])
 
   return(

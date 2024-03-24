@@ -10,7 +10,26 @@ import "./FullView.css";
 export function FullView({isCar}) {
     const navigate = useNavigate();
     const itemId = useParams().id;
-    const [item, setItem] = useState();
+    const [item, setItem] = useState({ownerID:undefined, imageURIs:['']});
+    const [isOwner, setisOwner] = useState(false);
+
+    useEffect(() => {
+        fetch('/api/users/check-auth', {
+            method: 'GET',
+            credentials: "include"
+        }).then(resp => {
+            if (!resp.ok) {
+                setisOwner(false);
+                return
+            }
+            return resp.json();
+        }).then(json => {
+            setisOwner(item.ownerID === json.username)
+        }).catch((e) => {
+            console.error(e)
+            setisOwner(false);
+        })
+    }, [item.ownerID]);
 
     useEffect(() => {
         fetch(`/api/listings/${isCar ? 'car' : 'item'}/` + itemId)
@@ -88,9 +107,13 @@ export function FullView({isCar}) {
                             <UserButton userID={item.ownerID}/>
                         </div>
                         
-
-                        <button onClick={handleDelete}>Delete</button>
-                        <button onClick={handleEdit}>Edit</button>
+                        {
+                            isOwner &&
+                            <>
+                                <button onClick={handleDelete}>Delete</button>
+                                <button onClick={handleEdit}>Edit</button>
+                            </>
+                        }
                     </div>
                 </div>
             </div>
