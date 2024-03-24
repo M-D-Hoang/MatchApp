@@ -47,7 +47,7 @@ export function UserPage() {
 
     }, [location.state, params.username])
 
-    const loadingJSX = <ReactLoading type={"spin"} color={"#58cc77"} height={400} width={400} />
+    const loadingJSX = <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={400} width={400} />
 
     console.log(user);
     return (<div classname="profile-menu-base">

@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import "./ListingsLayout.css";
-
+import ReactLoading from 'react-loading';
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 
 export function ListingsLayout() {
@@ -12,7 +12,7 @@ export function ListingsLayout() {
     const [isMenuOpen, setOpen] = useState(false);
     const [keyword, setKeyword] = useState("");
     const [sortBy, setSortBy] = useState("Date: Newest");
-
+    const [loadingDone,setLoadingDone] = useState(false)
     const handleSearchChange = (e) => {
         setKeyword(e.target.value);
     };
@@ -38,6 +38,7 @@ export function ListingsLayout() {
     const [listingData, setListingData] = useState([]);
     useEffect(() => {
         try {
+            setLoadingDone(false);
             let url = "/api/listings/";
             url += queryParameters.get("type")
                 ? `${queryParameters.get("type")}?`
@@ -49,11 +50,15 @@ export function ListingsLayout() {
                 })
                 .then((json) => {
                     setListingData(json);
+                    
                 })
                 .catch((e) => {
                     console.error(e);
                     setListingData([]);
-                });
+                    
+                })
+                .finally(()=>{setLoadingDone(true)});
+                
         } catch (error) {
             console.log(error);
         }
@@ -108,50 +113,56 @@ export function ListingsLayout() {
 
     return (
         <div className="listings-layout">
-            <div className="search-bar">
-                <form onSubmit={handleSearchSubmit}>
-                    <input
-                        type="text"
-                        value={keyword}
-                        onChange={handleSearchChange}
-                        placeholder="Search..."
-                    />
-                </form>
-                <div className="dropdown">
-                    <button className="sort-button" onClick={handleOpen}>
-                        Sort by
-                        <div className="sort-by">{sortBy}</div>
-                    </button>
-                    {isMenuOpen ? (
-                        <div className="dropdown-content">
-                            {sortBy !== "Date: Newest" ? (
-                                <button onClick={handleSortByNewest}>
-                                    Date: Newest
-                                </button>
-                            ) : null}
-                            {sortBy !== "Date: Oldest" ? (
-                                <button onClick={handleSortByOldest}>
-                                    Date: Oldest
-                                </button>
-                            ) : null}
-                            {sortBy !== "Price: Low to High" ? (
-                                <button onClick={handleSortByPriceAsc}>
-                                    Price: Low to High
-                                </button>
-                            ) : null}
-                            {sortBy !== "Price: High to Low" ? (
-                                <button onClick={handleSortByPriceDesc}>
-                                    Price: High to Low
-                                </button>
-                            ) : null}
-                        </div>
-                    ) : null}
+            
+            {!loadingDone ? <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={400} width={400} /> :
+                <><div className="search-bar">
+                    <form onSubmit={handleSearchSubmit}>
+                        <input
+                            type="text"
+                            value={keyword}
+                            onChange={handleSearchChange}
+                            placeholder="Search..." />
+                    </form>
+                    <div className="dropdown">
+                        <button className="sort-button" onClick={handleOpen}>
+                            Sort by
+                            <div className="sort-by">{sortBy}</div>
+                        </button>
+                        {isMenuOpen ? (
+                            <div className="dropdown-content">
+                                {sortBy !== "Date: Newest" ? (
+                                    <button onClick={handleSortByNewest}>
+                                        Date: Newest
+                                    </button>
+                                ) : null}
+                                {sortBy !== "Date: Oldest" ? (
+                                    <button onClick={handleSortByOldest}>
+                                        Date: Oldest
+                                    </button>
+                                ) : null}
+                                {sortBy !== "Price: Low to High" ? (
+                                    <button onClick={handleSortByPriceAsc}>
+                                        Price: Low to High
+                                    </button>
+                                ) : null}
+                                {sortBy !== "Price: High to Low" ? (
+                                    <button onClick={handleSortByPriceDesc}>
+                                        Price: High to Low
+                                    </button>
+                                ) : null}
+                            </div>
+                        ) : null}
+                    </div>
                 </div>
-            </div>
-            {listingJSX.length === 0 ? (
-                <div className="no-results">No results found</div>
-            ) : null}
-            <div className="listings-display square">{listingJSX}</div>
+                    {listingJSX.length === 0 && loadingDone ? (
+                        <div className="no-results">No results found</div>
+                    ) : null}
+                    <div className="listings-display square">{listingJSX}</div>
+                </>
+            }
+            
+          
+            
         </div>
     );
 }
