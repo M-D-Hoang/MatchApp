@@ -7,7 +7,6 @@ export function ItemCardSquare({ item }) {
     const [isDeatiledView, setDetailedView] = useState(false);
 
     const handleHideDetailedView = (e) => {
-        console.log(e.target.className);
         if (e.target.className === "overlay") {
             setDetailedView(false);
         }

@@ -10,7 +10,7 @@ listingsRouter.get('/car/:id', listingsController.getSingleCar);
 listingsRouter.get('/item/:id', listingsController.getSingleItem);
 listingsRouter.get('/items', listingsController.getItemsFiltered);
 listingsRouter.get('/cars', listingsController.getCarsFiltered);
-listingsRouter.get('userItems/:username', listingsController.getUserItems);
+listingsRouter.get('/userItems/:username', listingsController.getUserItems);
 
 listingsRouter.use(
   //docs: https://www.npmjs.com/package/express-fileupload

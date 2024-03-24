@@ -8,10 +8,10 @@ import "./AppLayout.css";
  *
  * @return {JSX.Element} The rendered layout component
  */
-export function AppLayout() {
+export function AppLayout(props) {
     return (
         <div className="app-layout">
-            <Navbar />
+            <Navbar setUsername={props.setUsername} setPfpURL={props.setPfpURL} pfpURL={props.pfpURL}/>
             <Outlet />
         </div>
     );

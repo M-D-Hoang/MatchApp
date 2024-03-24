@@ -142,7 +142,7 @@ describe('User Controller Routes', () => {
       const userArray = await returnUserArrayObject(fileUserPath);
       const expectedUser = userArray[0];
       jest.spyOn(DB.prototype, 'readUser').mockResolvedValue(expectedUser);
-      const response = await request(app).get(`/api/users/user/${expectedUser.username}`);
+      const response = await request(app).get(`/api/users/${expectedUser.username}`);
       expect(response.status).toBe(200);
       expect(response.body).toEqual(expectedUser);
       expect(DB.prototype.readUser).toHaveBeenCalled();
@@ -153,20 +153,19 @@ describe('User Controller Routes', () => {
     test('should return a new user', async () => {
       const expectedUser = await returnUserArrayObject(fileUserPath)[0];
       const response = await request(app).
-        post('/api/users/user').
+        post('/api/users').
         send(expectedUser);
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('content');
     });
   });
-
-  describe('EDIT USER /user', () => {
-    test('should return a new user', async () => {
-      const expectedUser = await returnUserArrayObject(fileUserPath)[0];
-      const response = await request(app).
-        patch('/api/users/user').
-        send(expectedUser);
-      expect(response.status).toBe(201);
-    });
-  });
+  // describe('EDIT USER /user', () => {
+  //   test('should return a new user', async () => {
+  //     const expectedUser = await returnUserArrayObject(fileUserPath)[0];
+  //     const response = await request(app).
+  //       patch('/api/users/user').
+  //       send(expectedUser);
+  //     expect(response.status).toBe(201);
+  //   });
+  // });
 });

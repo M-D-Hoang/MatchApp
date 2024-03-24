@@ -15,7 +15,7 @@ export function Sell() {
                 setSellJSX(<CarForm />);
                 console.log("Car");
                 break;
-            case "Other":
+            case "Item":
                 setSellJSX(<ItemForm />);
                 break;
             default:
@@ -25,12 +25,14 @@ export function Sell() {
 
     return (
         <div className="sell-page">
-            <h1>Add Your Listing</h1>
+            <h1 className="sell-title">Add Your Listing</h1>
 
-            <select className="form-select" onChange={(e) => handleFormChoice(e.target.value)}>
+            <select
+                className="form-select"
+                onChange={(e) => handleFormChoice(e.target.value)}>
                 <option>Select Category</option>
+                <option value="Item">Item</option>
                 <option value="Car">Car</option>
-                <option value="Other">Other</option>
             </select>
 
             {sellJSX}

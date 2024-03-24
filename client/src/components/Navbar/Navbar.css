@@ -1,14 +1,16 @@
 .navbar {
     display: flex;
-    background-color: green;
-    color: white;
+    background-color: rgb(255, 255, 255);
+    color: rgb(68, 98, 74);
     position: sticky;
     top: 0;
     z-index: 2;
+    height: 70px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 0px;
 }
 .logo {
-    width: 100px;
-    margin: 10px;
+    width: 60px;
+    margin: 2px 6px;
 }
 .link-container {
     flex-grow: 1;
@@ -17,11 +19,11 @@
     justify-content: flex-end;
 }
 .link {
-    margin: 20px;
+    margin: 10px;
 }
 a {
     text-decoration: none;
-    color: white;
+    color: rgb(68, 98, 74);
 }
 
 .navbar-pfp {
@@ -35,10 +37,11 @@ a {
     transition: box-shadow 0.3s;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 0px;
 }
-.pfp-container {
+.pfp-container-link {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     flex-shrink: 0;
     margin: 0 1em;
 }
+
