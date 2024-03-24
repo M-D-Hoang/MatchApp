@@ -3,6 +3,8 @@
     flex-direction: column;
     align-items: center;
     padding: 5em;
+    overflow: scroll;
+    height:80vh;
 }
 .edit-title {
     margin: 0 0 1em 0;
