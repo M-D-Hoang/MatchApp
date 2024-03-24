@@ -19,3 +19,6 @@ input{
 .App, select, input,button{
     font-family: "Inter",sans-serif;
 }
+.loading-bar{
+    align-self: center;
+}
