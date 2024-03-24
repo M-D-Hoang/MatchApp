@@ -39,13 +39,21 @@ exports.postImage = asyncHandler(async (req, res) => {
   // Wait for all image upload promises to resolve.
   await Promise.all(uploadPromises);
   // set new images urls
-  res.locals.listing.imageURIs = urls;
+  console.log(req.body.username);
+  if(res.locals.listing !== undefined){
+    res.locals.listing.imageURIs = urls;
+  }
+
   // update db row
-  // check if car
-  if (req.body.mileage){
+  // check if car / user
+  if(req.body.username !== undefined){
+    //Set the image to the first uploaded image
+    await db.updateUserImage(req.body.username, urls[0]);
+  } else if (req.body.mileage){
     await db.updateCarListing(res.locals.listing);
   } else {
     await db.updateItemListing(res.locals.listing);
   }
+  
   return res.status(201).json({ listing: res.locals.listing });
 });

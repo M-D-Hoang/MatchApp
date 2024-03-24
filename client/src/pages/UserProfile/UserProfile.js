@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useLocation} from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import { UserEdit } from "../../components/UserEdit/UserEdit";
 
@@ -18,33 +18,7 @@ export function UserPage() {
         setEditing(!isEditing);
     };
 
-    const navigate = useNavigate();
-
-    const onEditSubmit = async (e) => {
-
-        e.preventDefault();
-        var formData = new FormData(e.target);
-        formData.append("image", '');
-        formData.append('username', user.username);
-
-        const resp = await fetch('/api/users/', {
-            method: "PATCH",
-            headers:{},
-            body: formData,
-        });
-
-        const json = await resp.json();
-        if (!resp.ok) {
-            console.error(JSON.stringify(json));
-        }
-        else {
-            //If post went through, navigate back to user page
-            navigate(`/user/${user.username}`, { state: { data: user.username } });
-        }
-        console.error(JSON.stringify(json));
-
-
-    }
+    
 
     useEffect(() => {
         //Get Username from Route
@@ -80,7 +54,7 @@ export function UserPage() {
 
     console.log(user);
     return (<div>
-        {user === undefined ? loadingJSX : user !== null ? (!isEditing ? <Display user={user} userItems={userItems} editToggle={editToggle}></Display> : <UserEdit user={user} onSubmit={onEditSubmit} editToggle={editToggle} />) : <NoUser />}
+        {user === undefined ? loadingJSX : user !== null ? (!isEditing ? <Display user={user} userItems={userItems} editToggle={editToggle}></Display> : <UserEdit user={user} editToggle={editToggle} />) : <NoUser />}
     </div>);
 }
 

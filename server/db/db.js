@@ -99,7 +99,7 @@ class DB {
     //if doesn't exist, make a new one
     console.log('Doing update');
     const update = { $set: { picture: imageURL } };
-    await User.findOneAndUpdate({ name: username }, update, {
+    await User.findOneAndUpdate({ username: username }, update, {
       upsert: true,
     });
   }

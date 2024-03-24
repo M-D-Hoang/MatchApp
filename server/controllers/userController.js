@@ -18,21 +18,6 @@ exports.getUser = asyncHandler(async (req, res) => {
   }
 });
 
-exports.editUser = asyncHandler(async (req, res) => {
-  const userObj = req.body;
-  console.log(userObj);
-  try {
-    const mongoRes = await db.updateUser(userObj);
-    return res.status(201).send(mongoRes);
-  } catch (e) {
-    res.status = 400;
-    res.json({
-      content: e.message,
-      status: 400,
-    });
-  }
-});
-
 exports.postUser = asyncHandler(async (req, res) => {
   const userObj = req.body;
   try {
@@ -101,3 +86,17 @@ exports.Logout = asyncHandler(async (req, res) => {
   res.status(200).send('Logout successful');
 });
 
+exports.editUser = asyncHandler(async (req, res, next) => {
+  const userObj = req.body;
+  try {
+    await db.updateUser(userObj);
+    next();
+    //return res.status(201).send(mongoRes);
+  } catch (e) {
+    res.status = 400;
+    res.json({
+      content: e.message,
+      status: 400,
+    });
+  }
+});
