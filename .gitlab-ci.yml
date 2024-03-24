@@ -83,6 +83,12 @@ deploy-azure:
     - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
       --settings AZURE_SAS=$AZURE_SAS
     - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
+      --settings SESSION_SECRET=$SESSION_SECRET
+    - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
+      --settings GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID
+    - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
+      --settings GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET
+    - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
       --settings AZURE_STORAGE_ACCOUNT_NAME=$AZURE_STORAGE_ACCOUNT_NAME
     - az webapp deployment source config-zip --name $APP_NAME
       --resource-group $RESOURCE_GROUP_NAME --src deploymentPkg.zip
