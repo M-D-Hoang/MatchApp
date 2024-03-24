@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
-import { useParams, useLocation, useNavigate} from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 
 
@@ -12,10 +12,10 @@ export function UserPage() {
     const location = useLocation();
     //get userid from URL
     const params = useParams();
-    
+
     const navigate = useNavigate();
 
-    const editToggle = ()=>{
+    const editToggle = () => {
         //navigate to edit page
         //<UserEdit user={user} editToggle={editToggle} />
         navigate('/user/edit', { state: { data: user } })
@@ -66,6 +66,27 @@ function Display({ user, userItems, editToggle }) {
         return (<ItemCardSquare item={item} />);
     })
 
+    const [isUser, setIsUser] = useState(false);
+    //check if current logged in user is the one being looked at
+    //probably not the most secure way to check this
+    useEffect(() => {
+        fetch('/api/users/check-auth', {
+            method: 'GET',
+            credentials: "include"
+        }).then(resp => {
+            if (!resp.ok) {
+                setIsUser(false);
+                return
+            }
+            return resp.json();
+        }).then(json => {
+            setIsUser(user.username === json.username)
+        }).catch((e) => {
+            console.error(e)
+            setIsUser(false);
+        })
+    }, []);
+
     return (
         <><h1>{user.username}</h1><h2>{user.firstName} {user.lastName}</h2><img src={user.picture} alt={user.username}></img><div className="profile-personal-info">
             <h1>Personal Info:</h1>
@@ -73,7 +94,7 @@ function Display({ user, userItems, editToggle }) {
             <p>E-Mail: {user.email}</p>
             <p>Phone Number: {user.phoneNumber}</p>
             <p>Gender: {user.gender}</p>
-            <button onClick={editToggle}>Edit Info</button>
+            {isUser && <button onClick={editToggle}>Edit Info</button>}
         </div><div>
                 <h1>Items</h1>
                 {listingJSX}
