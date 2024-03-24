@@ -18,20 +18,6 @@ exports.getUser = asyncHandler(async (req, res) => {
   }
 });
 
-exports.editUser = asyncHandler(async (req, res) => {
-  const userObj = req.body;
-  try {
-    const mongoRes = await db.updateUser(userObj);
-    return res.status(201).send(mongoRes);
-  } catch (e) {
-    res.status = 400;
-    res.json({
-      content: e.message,
-      status: 400,
-    });
-  }
-});
-
 exports.postUser = asyncHandler(async (req, res) => {
   const userObj = req.body;
   try {
@@ -56,14 +42,21 @@ exports.Login = asyncHandler(async (req, res) => {
       audience: clientId
     });
     const payload = ticket.getPayload();
+    const newUsername = payload.email.split('@')[0];
     const newUser = new User({
-      username: payload.email.split('@')[0],
+      username: newUsername,
       name: payload.name,
       email: payload.email,
       picture: payload.picture,
       type: 'client'
     });
-    const user = await db.updateUser(newUser);
+
+    //if the user exists in the db already, don't update info from google
+    let user = await db.readUser({username:newUsername});
+    if(!user){
+      //make(update) a new entry in the database
+      user = await db.updateUser(newUser);
+    }
 
     if(!req.session) {
       req.session = {};
@@ -88,7 +81,7 @@ exports.Login = asyncHandler(async (req, res) => {
 // TODO: just check username then use getUser(username) to return user object for you to return
 exports.verifyAuth = asyncHandler(async (req, res) => {
   if(req.session && req.session.username) {
-    const userData = await db.readUser(req.session.username);
+    const userData = await db.readUser({username:req.session.username});
     res.status(200).json(userData);  
   } else {
     res.status(401).json('Not authenticated');
@@ -100,3 +93,17 @@ exports.Logout = asyncHandler(async (req, res) => {
   res.status(200).send('Logout successful');
 });
 
+exports.editUser = asyncHandler(async (req, res, next) => {
+  const userObj = req.body;
+  try {
+    await db.updateUser(userObj);
+    next();
+    //return res.status(201).send(mongoRes);
+  } catch (e) {
+    res.status = 400;
+    res.json({
+      content: e.message,
+      status: 400,
+    });
+  }
+});

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Navbar.css";
+import logo from "../../assets/images/logo512.png";
 import { Login } from "../Login/LoginLayout.js";
-import logo from "../../assets/images/logo-temp.png";
 import { Link } from "react-router-dom";
 
 
@@ -11,11 +11,15 @@ import { Link } from "react-router-dom";
  * @return {JSX.Element} The rendered navigation bar.
  */
 export function Navbar(props) {
+
+    
+    
     return (
         <nav className="navbar">
             <div className="logo">
+                
                 <Link to="/">
-                    <img src={logo} alt="logo"></img>
+                    <img className="logo" src={logo} alt="logo"></img>
                 </Link>
             </div>
             <div className="title">
@@ -23,20 +27,8 @@ export function Navbar(props) {
                     <h1>MatchApp</h1>
                 </Link>
             </div>
-            <Login setUsename={props.setUsername} />
-            <div className="link-container">
-                <div className="link">
-                    <Link to="/sell">Sell</Link>
-                </div>
-                <div className="link pfp-container">
-                    <Link className="pfp-container-link" to="/my-page">
-                        <img
-                            className="navbar-pfp"
-                            src="https://cdn.discordapp.com/emojis/383621124854120449.webp?size=1024&quality=lossless&name=bolus"
-                            alt="my-account"></img>
-                    </Link>
-                </div>
-            </div>
+            <Login setUsename={props.setUsername} pfpURL={props.pfpURL} setPfpURL={props.setPfpURL} />
+            
         </nav>
     );
 }
