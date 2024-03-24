@@ -25,6 +25,9 @@ function App() {
                       <Route index element={<Listings />} />
                       <Route path="sell" element={<Sell />} />
                       <Route path="edit" element={<Edit />} />
+                      <Route path="fullview/item/:id" element={<FullView isCar={false} />} />
+                      <Route path="fullview/car/:id" element={<FullView isCar={true} />} />
+                      <Route path='my-page' element={<UserPage/>}/>
                       <Route path="fullview" element={<FullView />} />                     
                       <Route path='user/:username' element={<UserPage/>}/>
                       <Route path='user/edit' element={<UserEdit setPfpURL={setPfpURL}/>}/>

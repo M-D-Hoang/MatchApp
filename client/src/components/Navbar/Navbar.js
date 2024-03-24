@@ -19,7 +19,7 @@ export function Navbar(props) {
             <div className="logo">
                 
                 <Link to="/">
-                    <img src={logo} alt="logo"></img>
+                    <img className="logo" src={logo} alt="logo"></img>
                 </Link>
             </div>
             <div className="title">

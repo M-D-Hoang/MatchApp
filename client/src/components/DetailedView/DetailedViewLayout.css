@@ -37,7 +37,9 @@ button:hover {
     border-radius: 3em;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
-    background-color: rgb(83, 255, 106);
+    background-color: rgb(50, 122, 65);
+    color: white;
+    font-weight: 600;
     z-index: 1;
     position: relative;
 }
@@ -45,6 +47,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 1em;
 }
 .item-info {
     display: flex;
@@ -56,7 +59,7 @@ button:hover {
     .detailed-view {
         flex-direction: column;
     }
-    .detailed-view >.item-info {
+    .detailed-view > .item-info {
         flex-grow: 1;
         width: 800px;
     }
@@ -65,14 +68,8 @@ button:hover {
 .item-image {
     display: flex;
     flex-direction: row;
-    width: 800px;
+    width: 700px;
     height: 600px;
-    justify-content: space-between;
-}
-
-img {
-    max-width: 80%;
-    max-height: 100%;
 }
 
 .item-info > .price,
@@ -103,9 +100,35 @@ img {
     gap: 0.5em;
     justify-content: space-between;
 }
-b{
+b {
     font-weight: 600;
 }
 .price {
-    color: rgb(0, 161, 21);
+    color: rgb(50, 122, 65);
+}
+
+.carousel-slider,
+.slide,
+.slide img {
+    width: 700px;
+    height: 500px;
+}
+
+.control-arrow {
+    width: 10%;
+}
+
+.carousel-status {
+    display: none;
+}
+
+.control-arrow {
+    filter: brightness(0.5);
+}
+
+.carousel .carousel .thumbs-wrapper {
+    margin: 0;
+}
+.control-dots {
+    display: none;
 }
