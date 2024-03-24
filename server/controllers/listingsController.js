@@ -7,8 +7,8 @@ exports.postItem = asyncHandler(async (req, res, next) => {
   try {
     // imageURIs empty, imageUploader will update the field next
     formObj.imageURIs = [''];
-    // TODO: TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
-    formObj.ownerID = 'user4633';
+    
+    formObj.ownerID = req.session.username;
     formObj.location = 'H0H0H0';
 
     formObj.objectType = 'item';
