@@ -49,6 +49,7 @@ exports.postImage = asyncHandler(async (req, res) => {
   if(req.body.username !== undefined){
     //Set the image to the first uploaded image
     await db.updateUserImage(req.body.username, urls[0]);
+    return res.status(201).json({ listing: res.locals.listing });
   } else if (req.body.mileage){
     await db.updateCarListing(res.locals.listing);
   } else {
