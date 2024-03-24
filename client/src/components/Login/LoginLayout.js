@@ -27,6 +27,7 @@ export function Login(props) {
         const data = await resp.json()
         console.warn(data);
         setUserInfo(data);
+        props.setPfpURL(data.picture);
         
       } catch (e) {
         console.error(e)

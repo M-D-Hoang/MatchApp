@@ -45,10 +45,11 @@ export function UserEdit({setPfpURL}) {
         }
         else {
             //If post went through, navigate back to user page
+            console.log(json);
             setPfpURL(json.picture);
             navigate(`/user/${user.username}`, { state: { data: user.username } });
         }
-        console.error(JSON.stringify(json));
+        
 
 
     }

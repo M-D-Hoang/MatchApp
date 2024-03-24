@@ -45,10 +45,6 @@ export function UserPage() {
             })
             .catch(() => { alert('User Fetch Failed. Replace alert with on-page error') })
 
-
-
-
-
     }, [location.state, params.username])
 
     const loadingJSX = <ReactLoading type={"spin"} color={"#58cc77"} height={400} width={400} />
@@ -85,7 +81,7 @@ function Display({ user, userItems, editToggle }) {
             console.error(e)
             setIsUser(false);
         })
-    }, []);
+    }, [user.username]);
 
     return (
         <><h1>{user.username}</h1><h2>{user.firstName} {user.lastName}</h2><img src={user.picture} alt={user.username}></img><div className="profile-personal-info">
