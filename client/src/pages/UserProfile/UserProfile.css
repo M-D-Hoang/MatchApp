@@ -24,7 +24,7 @@
     width: 10em;
 }
 
-.profile-username {
+.profile-username, .profile-error {
     font-size: 32px;
     font-weight: 600;
     margin: 0.5em;

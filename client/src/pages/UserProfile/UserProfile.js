@@ -156,7 +156,7 @@ function Display({ user, userItems, editToggle }) {
 function NoUser() {
     return (
         <div>
-            <h1>This user does not exist.</h1>
+            <p className="profile-error">This user does not exist.</p>
         </div>
     );
 }
