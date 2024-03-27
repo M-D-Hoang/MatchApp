@@ -1,39 +1,42 @@
-import { ImagePreview } from "../../components/Forms/ImagePreview";
-import { useState } from "react";
-import { useNavigate, useLocation } from 'react-router-dom';
-export function UserEdit({setPfpURL}) {
-    
-    const [previewImage, setPreviewImage] = useState([])
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import "./UserEdit.css";
+export function UserEdit({ setPfpURL }) {
+    const [previewImage, setPreviewImage] = useState([]);
 
     const onImageChange = (e) => {
-        const pickedFiles = e.target.files
-        console.log("Image changed!")
-        console.log(pickedFiles)
+        const pickedFiles = e.target.files;
+        console.log(pickedFiles);
         if (pickedFiles[0] !== undefined) {
             //set image statevar to the picked image
             setPreviewImage(pickedFiles);
         }
-    }
+    };
 
     const navigate = useNavigate();
 
     //get userdata from location state
     const location = useLocation();
     const { data } = location.state || null;
-    if(data === null){
-        data.navigate('/')
+    if (data === null) {
+        data.navigate("/");
     }
-    console.log(data);
-    const user = data;
-    
-    const onEditSubmit = async (e) => {
 
+    const user = data;
+
+    useEffect(() => {
+        if (user.picture !== undefined) {
+            setPfpURL(user.picture);
+        }
+    });
+
+    const onEditSubmit = async (e) => {
         e.preventDefault();
         var formData = new FormData(e.target);
         formData.append("imageURIs", previewImage);
-        formData.append('username', user.username);
+        formData.append("username", user.username);
 
-        const resp = await fetch('/api/users/', {
+        const resp = await fetch("/api/users/", {
             method: "PATCH",
             headers: {},
             body: formData,
@@ -42,30 +45,44 @@ export function UserEdit({setPfpURL}) {
         const json = await resp.json();
         if (!resp.ok) {
             console.error(JSON.stringify(json));
-        }
-        else {
+        } else {
             //If post went through, navigate back to user page
             //console.log(json);
-            if(json.picture !== undefined){
+            if (json.picture !== undefined) {
                 setPfpURL(json.picture);
-            }else{
+            } else {
                 //set the new image by fetching from the db again
                 fetch(`/api/users/${user.username}`)
-                .then(resp=>{return resp.json})
-                .then(json=>{setPfpURL(json.picture);})
+                    .then((resp) => {
+                        return resp.json;
+                    })
+                    .then((json) => {
+                        setPfpURL(json.picture);
+                    });
             }
-            
-            
-            navigate(`/user/${user.username}`, { state: { data: user.username } });
+
+            navigate(`/user/${user.username}`, {
+                state: { data: user.username },
+            });
         }
-        
-
-
-    }
+    };
 
     return (
-        <div className="item-form">
+        <div className="user-form">
+            <img className="profile-pfp" src={user.picture} alt="preview"></img>
             <form onSubmit={onEditSubmit}>
+                <label>
+                    <div className="image-input-container">
+                        Edit Picture
+                        <input
+                            className="image-input"
+                            type="file"
+                            name="image"
+                            accept="image/*"
+                            onChange={onImageChange}
+                            required></input>
+                    </div>
+                </label>
                 <label>
                     First Name:{" "}
                     <input
@@ -79,25 +96,20 @@ export function UserEdit({setPfpURL}) {
                     <input
                         type="text"
                         name="lastName"
-                        defaultValue={user !== undefined ? user.lastName : ""}></input>
+                        defaultValue={
+                            user !== undefined ? user.lastName : ""
+                        }></input>
                 </label>
                 <label>
                     Birthday:{" "}
                     <input
                         type="date"
                         name="birthday"
-                        defaultValue={user !== undefined ? user.birthday : ""}></input>
+                        defaultValue={
+                            user !== undefined ? user.birthday : ""
+                        }></input>
                 </label>
-                <label>
-                    Profile Picture:{" "}
-                    <input
-                        className="image-input"
-                        type="file"
-                        name="image"
-                        accept="image/*"
-                        onChange={onImageChange}
-                        required></input>
-                </label>
+
                 <label>
                     Gender:{" "}
                     <input
@@ -120,14 +132,14 @@ export function UserEdit({setPfpURL}) {
                     <input
                         type="tel"
                         name="phoneNumber"
-                        defaultValue={user !== undefined ? user.phoneNumber : ""}
+                        defaultValue={
+                            user !== undefined ? user.phoneNumber : ""
+                        }
                         required
                         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></input>
                 </label>
-                <input type="submit"></input>
+                <input type="submit" className="submit-button"></input>
             </form>
-
-            <ImagePreview src={previewImage} />
         </div>
     );
 }

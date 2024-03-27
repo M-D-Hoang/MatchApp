@@ -145,7 +145,7 @@ function Display({ user, userItems, editToggle }) {
                 {listingJSX.length !== 0 && (
                     <div className="items-section">
                         <h1 className="items-title">Items</h1>
-                        {listingJSX}
+                        <div className="listings-display square">{listingJSX}</div>
                     </div>
                 )}
             </div>
