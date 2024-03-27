@@ -6,10 +6,10 @@ export function UserEdit({ setPfpURL }) {
 
     const onImageChange = (e) => {
         const pickedFiles = e.target.files;
-        console.log(pickedFiles);
         if (pickedFiles[0] !== undefined) {
             //set image statevar to the picked image
-            setPreviewImage(pickedFiles);
+            const img =URL.createObjectURL(pickedFiles[0]);
+            setPreviewImage(img);
         }
     };
 
@@ -26,9 +26,9 @@ export function UserEdit({ setPfpURL }) {
 
     useEffect(() => {
         if (user.picture !== undefined) {
-            setPfpURL(user.picture);
+            setPreviewImage(user.picture);
         }
-    });
+    },[user]);
 
     const onEditSubmit = async (e) => {
         e.preventDefault();
@@ -69,7 +69,7 @@ export function UserEdit({ setPfpURL }) {
 
     return (
         <div className="user-form">
-            <img className="profile-pfp" src={user.picture} alt="preview"></img>
+            <img className="profile-pfp" src={previewImage} alt="preview"></img>
             <form onSubmit={onEditSubmit}>
                 <label>
                     <div className="image-input-container">
