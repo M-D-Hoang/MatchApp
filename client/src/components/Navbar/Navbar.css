@@ -12,23 +12,49 @@
     width: 60px;
     margin: 2px 6px;
 }
+
+.navbar-title {
+    margin-left: 0.5em;
+    font-weight: 600;
+}
+
 .link-container {
     flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
-.link {
-    margin: 10px;
-}
+
 a {
     text-decoration: none;
     color: rgb(68, 98, 74);
 }
 
+.navbar-link {
+    padding: 0.8em 1em;
+    margin-left: 0.5em;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3em;
+    border: none;
+    font-weight: 600;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px;
+    background-color: rgb(50, 122, 65);
+    color: white;
+}
+.navbar-link:hover{
+    filter: brightness(0.9);
+    transition: filter 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
+    cursor: pointer;
+}
+
 .navbar-pfp {
     object-fit: cover;
-    width: 4em;
+    width: 58px;
+    height: 58px;
     border-radius: 500%;
     flex-shrink: 0;
 }
