@@ -100,24 +100,34 @@ export function Login(props) {
 
 
 function LoggedInUserButton({user, onLogOut, pfpURL}){
-  return(
-    //Link to User Page & Sell Button
-        <div className="link-container">
+  return (
+      //Link to User Page & Sell Button
+      <div className="link-container">
           <div className="link">
-            <p onClick={async()=>{await onLogOut()}}>Logout</p>
+              <p
+                  className="navbar-link"
+                  onClick={async () => {
+                      await onLogOut();
+                  }}>
+                  Logout
+              </p>
           </div>
           <div className="link">
-            <Link to="/sell">Sell</Link>
+              <Link to="/sell" className="navbar-link">
+                  Sell
+              </Link>
           </div>
-          
+
           <div className="link pfp-container">
-            <Link className="pfp-container-link" to={`/user/${user.username}`}>
-              <img
-                className="navbar-pfp"
-                src={pfpURL}
-                alt="my-account"></img>
-            </Link>
+              <Link
+                  className="pfp-container-link"
+                  to={`/user/${user.username}`}>
+                  <img
+                      className="navbar-pfp"
+                      src={pfpURL}
+                      alt="my-account"></img>
+              </Link>
           </div>
-        </div>
+      </div>
   );
 }

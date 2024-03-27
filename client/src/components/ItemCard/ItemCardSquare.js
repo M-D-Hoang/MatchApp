@@ -1,10 +1,15 @@
-import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DetailedView } from "../DetailedView/DetailedViewLayout";
 import "./ItemCardSquare.css";
 
 export function ItemCardSquare({ item }) {
     const [isDeatiledView, setDetailedView] = useState(false);
+
+    useEffect(() => {
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, []);
 
     const handleHideDetailedView = (e) => {
         if (e.target.className === "overlay") {
