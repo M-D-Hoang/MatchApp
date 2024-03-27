@@ -1,33 +1,37 @@
-.navbar {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    color: rgb(68, 98, 74);
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    height: 70px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 0px;
+ .navbar {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  color: rgb(68, 98, 74);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: 70px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 0px;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .logo {
-    width: 60px;
-    margin: 2px 6px;
+  width: 60px;
+  margin: 2px 6px;
 }
 
 .navbar-title {
     margin-left: 0.5em;
     font-weight: 600;
 }
-
 .link-container {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  margin: 10px;
 }
 
 a {
-    text-decoration: none;
-    color: rgb(68, 98, 74);
+  text-decoration: none;
+  color: rgb(68, 98, 74);
 }
 
 .navbar-link {
@@ -60,17 +64,23 @@ a {
 }
 
 .navbar-pfp:hover {
-    transition: box-shadow 0.3s;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 0px;
-}
-.pfp-container-link {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-shrink: 0;
-    margin: 0 1em;
+  transition: box-shadow 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 0px;
 }
 
+.pfp-container-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  margin: 0 1em;
+}
+
+#language-selector {
+  display: flex;
+  margin-left: auto;
+  margin-right: 0.7em;
+}
 .qJTHM{
     transform: translate(0, -5px);
 }

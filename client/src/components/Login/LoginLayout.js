@@ -1,16 +1,15 @@
-import React from "react";
 // GoogleLogou
 import { GoogleLogin } from '@react-oauth/google';
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 // import { response } from "../../../../server/server";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export function Login(props) {
 
   const navigate = useNavigate();
-
-  const [userInfo, setUserInfo] = useState(null)
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -100,6 +99,7 @@ export function Login(props) {
 
 
 function LoggedInUserButton({user, onLogOut, pfpURL}){
+const [t] = useTranslation("global");
   return (
       //Link to User Page & Sell Button
       <div className="link-container">
@@ -109,12 +109,12 @@ function LoggedInUserButton({user, onLogOut, pfpURL}){
                   onClick={async () => {
                       await onLogOut();
                   }}>
-                  Logout
+                  {t("nav.logout")}
               </p>
           </div>
           <div className="link">
               <Link to="/sell" className="navbar-link">
-                  Sell
+                {t("nav.sell")}
               </Link>
           </div>
 

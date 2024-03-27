@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
-import ReactLoading from "react-loading";
-
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import ReactLoading from 'react-loading';
+import { useTranslation } from "react-i18next";
 import "./UserProfile.css";
 
 export function UserPage() {
@@ -88,6 +88,7 @@ export function UserPage() {
 }
 
 function Display({ user, userItems, editToggle }) {
+    const [t] = useTranslation("global");
     const listingJSX = userItems.map((item) => {
         return <ItemCardSquare item={item} />;
     });
@@ -128,15 +129,15 @@ function Display({ user, userItems, editToggle }) {
                     <p className="profile-name">
                         {user.firstName} {user.lastName}
                     </p>
-                    <p>Birthday: {user.birthday}</p>
-                    <p>E-Mail: {user.email}</p>
-                    <p>Phone Number: {user.phoneNumber}</p>
-                    <p>Gender: {user.gender}</p>
+                    <p>{t("user.birthday")} {user.birthday}</p>
+                    <p>{t("user.email")} {user.email}</p>
+                    <p>{t("user.phoneNumber")} {user.phoneNumber}</p>
+                    <p>{t("user.gender")} {user.gender}</p>
                     {isUser && (
                         <button
                             className="edit-user-button"
                             onClick={editToggle}>
-                            Edit Info
+                            {t("user.edit")}
                         </button>
                     )}
                 </div>
@@ -144,7 +145,7 @@ function Display({ user, userItems, editToggle }) {
             <div>
                 {listingJSX.length !== 0 && (
                     <div className="items-section">
-                        <h1 className="items-title">Items</h1>
+                        <h1 className="items-title">{t("user.items")}</h1>
                         <div className="listings-display square">{listingJSX}</div>
                     </div>
                 )}
@@ -154,9 +155,11 @@ function Display({ user, userItems, editToggle }) {
 }
 
 function NoUser() {
+    const [t] = useTranslation("global");
     return (
         <div>
-            <p className="profile-error">This user does not exist.</p>
+            <p className="profile-error">{t("user.noUser")}</p>
         </div>
     );
 }
+
