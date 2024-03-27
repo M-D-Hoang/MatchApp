@@ -5,7 +5,7 @@ import "./Edit.css";
 import { useTranslation } from "react-i18next";
 
 export function Edit() {
-    const [t, i18n] = useTranslation("global");
+    const [t] = useTranslation("global");
     const location = useLocation();
     const item = location.state.data;
     const isCar = item.make !== undefined;

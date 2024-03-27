@@ -5,7 +5,7 @@ import { CarForm } from "../../components/Forms/CarForm.js";
 import "./Sell.css";
 import { useTranslation } from "react-i18next";
 export function Sell() {
-  const [t, i18n] = useTranslation("global");
+  const [t] = useTranslation("global");
   const [sellJSX, setSellJSX] = useState(<></>);
   
 

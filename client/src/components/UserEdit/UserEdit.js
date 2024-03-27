@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 export function UserEdit({setPfpURL}) {
-  const [t, i18n] = useTranslation("global");
+  const [t] = useTranslation("global");
 
   const [previewImage, setPreviewImage] = useState([])
 

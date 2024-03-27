@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
 import { useTranslation } from "react-i18next";
 export function CarForm({ item }) {
-  const { t, i18n} = useTranslation("global");
+  const { t} = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
     const [imageFiles, setImageFiles] = useState(null);

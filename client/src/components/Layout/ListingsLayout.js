@@ -7,7 +7,7 @@ import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 import { useTranslation } from "react-i18next";
 
 export function ListingsLayout() {
-    const [t, i18n] = useTranslation("global");
+    const [t] = useTranslation("global");
     const navigate = useNavigate();
 
     const [queryParameters] = useSearchParams();

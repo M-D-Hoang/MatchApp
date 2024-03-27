@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
  * @return {JSX.Element} The rendered navigation bar.
  */
 export function Navbar(props) {
+    // eslint-disable-next-line no-unused-vars
     const [t, i18n] = useTranslation("global");
 
     const handleChangeLanguage = (lang) => {

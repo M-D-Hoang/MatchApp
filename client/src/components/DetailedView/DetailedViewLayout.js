@@ -9,7 +9,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { useTranslation } from "react-i18next";
 
 export function DetailedView({ onExit, item }) {
-   const [t, i18n] = useTranslation("global");
+   const [t] = useTranslation("global");
     const navigate = useNavigate();
     // prepare images array
     const images = [];

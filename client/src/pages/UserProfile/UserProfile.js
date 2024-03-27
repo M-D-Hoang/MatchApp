@@ -101,6 +101,6 @@ function Display({ user, userItems, editToggle }) {
 
 
 function NoUser() {
-    const [t, i18n] = useTranslation("global");
+    const [t] = useTranslation("global");
     return (<div><h1>{t("user.noUser")}</h1></div>)
 }

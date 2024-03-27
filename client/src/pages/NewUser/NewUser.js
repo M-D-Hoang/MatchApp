@@ -4,7 +4,7 @@
 import { UserEdit } from "../../components/UserEdit/UserEdit";
 import { useTranslation } from "react-i18next";
 export function NewUserForm(){
-  const [t, i18n] = useTranslation("global");
+  const [t] = useTranslation("global");
   const onSubmit = ()=>{
     //Send the data to the server. Let them know if something went wrong, 
     //send them to their userpage when it works. 

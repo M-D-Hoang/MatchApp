@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 export function ListingsSidebar() {
     const navigate = useNavigate();
-    const [t, i18n] = useTranslation("global");
+    const [t] = useTranslation("global");
     const [itemType, setItemType] = useState("items");
     const [condition, setCondition] = useState("");
     const [minPrice, setMinPrice] = useState("");

@@ -99,7 +99,7 @@ export function Login(props) {
 
 
 function LoggedInUserButton({user, onLogOut, pfpURL}){
-  const [t, i18n] = useTranslation("global");
+  const [t] = useTranslation("global");
   return(
     //Link to User Page & Sell Button
         <div className="link-container">
