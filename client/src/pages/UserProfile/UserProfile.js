@@ -58,7 +58,7 @@ export function UserPage() {
 
 
 function Display({ user, userItems, editToggle }) {
-    const [t, i18n] = useTranslation("global");
+    const [t] = useTranslation("global");
     const listingJSX = userItems.map((item) => {
         return (<ItemCardSquare item={item} />);
     })
