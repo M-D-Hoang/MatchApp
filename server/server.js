@@ -7,6 +7,8 @@ const app = express();
 //const helloRouter = require('./routes/helloworld.js');
 const listingsRouter = require('./routes/listings.js');
 const userRouter = require('./routes/users.js');
+const fs = require('fs');
+const STATIC_FILES = fs.readdirSync('../client/build/');
 
 app.use(express.json());
 app.use(cookieParser());
@@ -22,11 +24,21 @@ app.use(session({
 app.use('/api/listings', listingsRouter);
 app.use('/api/users', userRouter);
 
-app.use('/', express.static('../client/build/'));
+// app.use('/', express.static('../client/build/'));
+app.use('/static', express.static('../client/build/static'));
+app.get('/*', (req, res) => {
+
+  const file = req.path.split('/')[1];
+  if (STATIC_FILES.includes(file)) {
+    res.sendFile(file, {root: '../client/build/'});
+    return;
+  }
+  res.sendFile('index.html', { root: '../client/build/'});
+
+});
 
 //Custom 404 if no URLs found
 app.use((req, res) => {
   res.status(404).json({content:'Page not found', status:404});
 });
-
 module.exports = app;

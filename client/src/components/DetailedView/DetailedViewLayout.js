@@ -26,7 +26,7 @@ export function DetailedView({ onExit, item }) {
     const isCar = item && item.make !== undefined;
 
     const handleFullViewURL = () => {
-        navigate(`/fullview/${isCar ? 'car' : 'item'}/` + item._id, { state: { data: item } });
+        navigate(`/fullview/${isCar ? 'car' : 'item'}/` + item._id);
     }
     return (
         <div className={"overlay"} onClick={onExit}>
