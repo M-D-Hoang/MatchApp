@@ -8,7 +8,10 @@ const app = express();
 const listingsRouter = require('./routes/listings.js');
 const userRouter = require('./routes/users.js');
 const fs = require('fs');
-const STATIC_FILES = fs.readdirSync('../client/build/');
+let STATIC_FILES;
+if (!process.env.TEST){
+  STATIC_FILES = fs.readdirSync('../client/build/');
+}
 
 app.use(express.json());
 app.use(cookieParser());
