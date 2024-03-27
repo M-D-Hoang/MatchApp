@@ -1,11 +1,13 @@
-import { ImagePreview } from "../../components/Forms/ImagePreview";
-import { useState } from "react";
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useTranslation } from "react-i18next";
-export function UserEdit({setPfpURL}) {
-  const [t] = useTranslation("global");
 
-  const [previewImage, setPreviewImage] = useState([])
+import { ImagePreview } from "../../components/Forms/ImagePreview";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import "./UserEdit.css";
+import { useTranslation } from "react-i18next";
+
+export function UserEdit({ setPfpURL }) {
+    const [t] = useTranslation("global");
+    const [previewImage, setPreviewImage] = useState([]);
 
   const onImageChange = (e) => {
       const pickedFiles = e.target.files
@@ -16,7 +18,6 @@ export function UserEdit({setPfpURL}) {
           setPreviewImage(pickedFiles);
       }
   }
-
   const navigate = useNavigate();
 
   //get userdata from location state
@@ -28,6 +29,11 @@ export function UserEdit({setPfpURL}) {
   console.log(data);
   const user = data;
   
+  useEffect(() => {
+    if (user.picture !== undefined) {
+        setPfpURL(user.picture);
+    }
+});
   const onEditSubmit = async (e) => {
 
       e.preventDefault();
@@ -53,12 +59,17 @@ export function UserEdit({setPfpURL}) {
           }else{
               //set the new image by fetching from the db again
               fetch(`/api/users/${user.username}`)
-              .then(resp=>{return resp.json})
-              .then(json=>{setPfpURL(json.picture);})
+                    .then((resp) => {
+                        return resp.json;
+                    })
+                    .then((json) => {
+                        setPfpURL(json.picture);
+                    });
           }
           
-          
-          navigate(`/user/${user.username}`, { state: { data: user.username } });
+          navigate(`/user/${user.username}`, {
+            state: { data: user.username },
+        });
       }
       
 
@@ -67,7 +78,20 @@ export function UserEdit({setPfpURL}) {
 
   return (
       <div className="item-form">
+        <img className="profile-pfp" src={user.picture} alt="preview"></img>
           <form onSubmit={onEditSubmit}>
+          <label>
+                    <div className="image-input-container">
+                      {t("user.profilePicture")}{" "}
+                        <input
+                            className="image-input"
+                            type="file"
+                            name="image"
+                            accept="image/*"
+                            onChange={onImageChange}
+                            required></input>
+                    </div>
+          </label>
               <label>
                 {t("user.firstName")}{" "}
                   <input
@@ -89,16 +113,6 @@ export function UserEdit({setPfpURL}) {
                       type="date"
                       name="birthday"
                       defaultValue={user !== undefined ? user.birthday : ""}></input>
-              </label>
-              <label>
-                {t("user.profilePicture")}{" "}
-                  <input
-                      className="image-input"
-                      type="file"
-                      name="image"
-                      accept="image/*"
-                      onChange={onImageChange}
-                      required></input>
               </label>
               <label>
                 {t("user.gender")}{" "}

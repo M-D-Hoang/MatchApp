@@ -5,6 +5,7 @@ import { Login } from "../Login/LoginLayout.js";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+
 /**
  * Renders the navigation bar component. This includes the logo, the title, and links to pages.
  *
@@ -17,17 +18,17 @@ export function Navbar(props) {
     const handleChangeLanguage = (lang) => {
         i18n.changeLanguage(lang);
     };
+
     return (
         <nav className="navbar">
             <div className="logo">
-                
                 <Link to="/">
                     <img className="logo" src={logo} alt="logo"></img>
                 </Link>
             </div>
             <div className="title">
                 <Link to="/">
-                    <h1>MatchApp</h1>
+                    <h1 className="navbar-title">MatchApp</h1>
                 </Link>
             </div>
             <div id="language-selector">
