@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
 import ReactLoading from 'react-loading';
 import "./FullView.css";
+import { MapScreen } from "../../components/Location/Map";
 
 export function FullView({isCar}) {
     const navigate = useNavigate();
@@ -108,7 +109,7 @@ export function FullView({isCar}) {
                                     <p>Posted by:</p>
                                     <UserButton userID={item.ownerID} />
                                 </div>
-
+                                <MapScreen/>
                                 {isOwner &&
                                     <>
                                         <button onClick={handleDelete}>Delete</button>
