@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import ReactLoading from 'react-loading';
-
+import { useTranslation } from "react-i18next";
 import "./UserProfile.css";
 
 export function UserPage() {
@@ -58,6 +58,7 @@ export function UserPage() {
 
 
 function Display({ user, userItems, editToggle }) {
+    const [t, i18n] = useTranslation("global");
     const listingJSX = userItems.map((item) => {
         return (<ItemCardSquare item={item} />);
     })
@@ -85,14 +86,14 @@ function Display({ user, userItems, editToggle }) {
 
     return (
         <><h1>{user.username}</h1><h2>{user.firstName} {user.lastName}</h2><img className="profile-pfp" src={user.picture} alt={user.username}></img><div className="profile-personal-info">
-            <h1>Personal Info:</h1>
-            <p>Birthday: {user.birthday}</p>
-            <p>E-Mail: {user.email}</p>
-            <p>Phone Number: {user.phoneNumber}</p>
-            <p>Gender: {user.gender}</p>
+            <h1>{t("user.personal")}</h1>
+            <p>{t("user.birthday")} {user.birthday}</p>
+            <p>{t("user.email")} {user.email}</p>
+            <p>{t("user.phoneNumber")} {user.phoneNumber}</p>
+            <p>{t("user.gender")} {user.gender}</p>
             {isUser && <button onClick={editToggle}>Edit Info</button>}
         </div><div>
-                <h1>Items</h1>
+                <h1>{t("user.items")}</h1>
                 {listingJSX}
             </div></>
     );
@@ -100,5 +101,6 @@ function Display({ user, userItems, editToggle }) {
 
 
 function NoUser() {
-    return (<div><h1>This user does not exist.</h1></div>)
+    const [t, i18n] = useTranslation("global");
+    return (<div><h1>{t("user.noUser")}</h1></div>)
 }

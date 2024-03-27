@@ -4,14 +4,16 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import "./ListingsLayout.css";
 import ReactLoading from 'react-loading';
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
+import { useTranslation } from "react-i18next";
 
 export function ListingsLayout() {
+    const [t, i18n] = useTranslation("global");
     const navigate = useNavigate();
 
     const [queryParameters] = useSearchParams();
     const [isMenuOpen, setOpen] = useState(false);
     const [keyword, setKeyword] = useState("");
-    const [sortBy, setSortBy] = useState("Date: Newest");
+    const [sortBy, setSortBy] = useState(t("filter.newest"));
     const [loadingDone,setLoadingDone] = useState(false)
     const handleSearchChange = (e) => {
         setKeyword(e.target.value);
@@ -88,22 +90,22 @@ export function ListingsLayout() {
     };
     const handleSortByPriceAsc = () => {
         setOpen(false);
-        setSortBy("Price: Low to High");
+        setSortBy(t("filter.lowPrice"));
         sortByHandler("price", "asc");
     };
     const handleSortByPriceDesc = () => {
         setOpen(false);
-        setSortBy("Price: High to Low");
+        setSortBy("filter.highPrice");
         sortByHandler("price", "desc");
     };
     const handleSortByOldest = () => {
         setOpen(false);
-        setSortBy("Date: Oldest");
+        setSortBy(t("filter.oldest"));
         sortByHandler("date", "asc");
     };
     const handleSortByNewest = () => {
         setOpen(false);
-        setSortBy("Date: Newest");
+        setSortBy(t("filter.newest"));
         sortByHandler("date", "desc");
     };
 
@@ -121,33 +123,33 @@ export function ListingsLayout() {
                             type="text"
                             value={keyword}
                             onChange={handleSearchChange}
-                            placeholder="Search..." />
+                            placeholder={t("filter.search")} />
                     </form>
                     <div className="dropdown">
                         <button className="sort-button" onClick={handleOpen}>
-                            Sort by
+                            {t("filter.sortBy")}
                             <div className="sort-by">{sortBy}</div>
                         </button>
                         {isMenuOpen ? (
                             <div className="dropdown-content">
                                 {sortBy !== "Date: Newest" ? (
                                     <button onClick={handleSortByNewest}>
-                                        Date: Newest
+                                        {t("filter.newest")}
                                     </button>
                                 ) : null}
                                 {sortBy !== "Date: Oldest" ? (
                                     <button onClick={handleSortByOldest}>
-                                        Date: Oldest
+                                        {t("filter.oldest")}
                                     </button>
                                 ) : null}
                                 {sortBy !== "Price: Low to High" ? (
                                     <button onClick={handleSortByPriceAsc}>
-                                        Price: Low to High
+                                        {t("filter.lowPrice")}
                                     </button>
                                 ) : null}
                                 {sortBy !== "Price: High to Low" ? (
                                     <button onClick={handleSortByPriceDesc}>
-                                        Price: High to Low
+                                        {t("filter.highPrice")}
                                     </button>
                                 ) : null}
                             </div>
@@ -155,7 +157,7 @@ export function ListingsLayout() {
                     </div>
                 </div>
                     {listingJSX.length === 0 && loadingDone ? (
-                        <div className="no-results">No results found</div>
+                        <div className="no-results">{t("filter.none")}</div>
                     ) : null}
                     <div className="listings-display square">{listingJSX}</div>
                 </>

@@ -3,39 +3,40 @@ import { useState } from "react";
 import { ItemForm } from "../../components/Forms/ItemForm.js";
 import { CarForm } from "../../components/Forms/CarForm.js";
 import "./Sell.css";
-
+import { useTranslation } from "react-i18next";
 export function Sell() {
-    const [sellJSX, setSellJSX] = useState(<></>);
-    
+  const [t, i18n] = useTranslation("global");
+  const [sellJSX, setSellJSX] = useState(<></>);
+  
 
-    const handleFormChoice = (value) => {
-        
-        switch (value) {
-            case "Car":
-                setSellJSX(<CarForm />);
-                console.log("Car");
-                break;
-            case "Item":
-                setSellJSX(<ItemForm />);
-                break;
-            default:
-                break;
-        }
-    };
+  const handleFormChoice = (value) => {
+      
+      switch (value) {
+          case "Car":
+              setSellJSX(<CarForm />);
+              console.log("Car");
+              break;
+          case "Item":
+              setSellJSX(<ItemForm />);
+              break;
+          default:
+              break;
+      }
+  };
 
-    return (
-        <div className="sell-page">
-            <h1 className="sell-title">Add Your Listing</h1>
+  return (
+      <div className="sell-page">
+          <h1 className="sell-title">{t("sell.sellTitle")}</h1>
 
-            <select
-                className="form-select"
-                onChange={(e) => handleFormChoice(e.target.value)}>
-                <option>Select Category</option>
-                <option value="Item">Item</option>
-                <option value="Car">Car</option>
-            </select>
+          <select
+              className="form-select"
+              onChange={(e) => handleFormChoice(e.target.value)}>
+              <option>{t("sell.select")}</option>
+              <option value="Item">{t("sell.item")}</option>
+              <option value="Car">{t("sell.car")}</option>
+          </select>
 
-            {sellJSX}
-        </div>
-    );
+          {sellJSX}
+      </div>
+  );
 }

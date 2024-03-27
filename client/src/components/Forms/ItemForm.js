@@ -3,8 +3,10 @@ import { editListing, updateListing } from "./FormSubmit.js";
 import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
+import { useTranslation } from "react-i18next";
 
 export function ItemForm({ item }) {
+    const { t, i18n } = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
     const [imageFiles, setImageFiles] = useState(null);
@@ -63,7 +65,7 @@ export function ItemForm({ item }) {
         <div className="item-form">
             <form onSubmit={submitItem}>
                 <label>
-                    Title:{" "}
+                    {t("form.title")}{" "}
                     <input
                         type="text"
                         name="title"
@@ -71,7 +73,7 @@ export function ItemForm({ item }) {
                         required></input>
                 </label>
                 <label>
-                    Description:{" "}
+                    {t("form.description")}{" "}
                     <textarea
                         type="text"
                         name="description"
@@ -84,7 +86,7 @@ export function ItemForm({ item }) {
                         }></textarea>
                 </label>
                 <label>
-                    Price:{" "}
+                    {t("form.price")}{" "}
                     <input
                         type="number"
                         name="price"
@@ -93,7 +95,7 @@ export function ItemForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Condition:{" "}
+                    {t("form.condition")}{" "}
                     <input
                         type="text"
                         name="condition"
@@ -101,7 +103,7 @@ export function ItemForm({ item }) {
                         required></input>
                 </label>
                 <label>
-                    Extra:{" "}
+                    {t("form.extra")}{" "}
                     <input
                         type="text"
                         name="extraField"
@@ -110,7 +112,7 @@ export function ItemForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Category:{" "}
+                    {t("form.category")}{" "}
                     <input
                         type="text"
                         name="category"
@@ -118,9 +120,9 @@ export function ItemForm({ item }) {
                         required></input>
                 </label>
                 <label>
-                    Images:{" "}
+                    {t("form.images")}{" "}
                     <div className="image-input-container">
-                        Select files
+                      {t("form.select")}
                         <input
                             className="image-input"
                             type="file"

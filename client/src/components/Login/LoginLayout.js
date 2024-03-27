@@ -1,16 +1,15 @@
-import React from "react";
 // GoogleLogou
 import { GoogleLogin } from '@react-oauth/google';
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 // import { response } from "../../../../server/server";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export function Login(props) {
 
   const navigate = useNavigate();
-
-  const [userInfo, setUserInfo] = useState(null)
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -100,14 +99,15 @@ export function Login(props) {
 
 
 function LoggedInUserButton({user, onLogOut, pfpURL}){
+  const [t, i18n] = useTranslation("global");
   return(
     //Link to User Page & Sell Button
         <div className="link-container">
           <div className="link">
-            <p onClick={async()=>{await onLogOut()}}>Logout</p>
+            <p onClick={async()=>{await onLogOut()}}>{t("nav.logout")}</p>
           </div>
           <div className="link">
-            <Link to="/sell">Sell</Link>
+            <Link to="/sell">{t("nav.sell")}</Link>
           </div>
           
           <div className="link pfp-container">

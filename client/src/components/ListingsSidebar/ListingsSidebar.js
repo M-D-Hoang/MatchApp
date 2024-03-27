@@ -2,10 +2,11 @@ import React from "react";
 import "./ListingsSidebar.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export function ListingsSidebar() {
     const navigate = useNavigate();
-
+    const [t, i18n] = useTranslation("global");
     const [itemType, setItemType] = useState("items");
     const [condition, setCondition] = useState("");
     const [minPrice, setMinPrice] = useState("");
@@ -44,28 +45,28 @@ export function ListingsSidebar() {
         <div className={sidebarClassname}>
             <form onSubmit={(e) => submitQueries(e)} className="filters-form">
                 <div className="form-input">
-                    <h3 className="filter-title">Filters</h3>
+                    <h3 className="filter-title">{t("filter.filter")}</h3>
                     <select
                         className="item-type-select"
                         onChange={(e) => handleItemTypeChoice(e.target.value)}>
-                        <option value="items" defaultValue>Items</option>
-                        <option value="cars">Cars</option>
+                        <option value="items" defaultValue>{t("filter.items")}</option>
+                        <option value="cars">{t("filter.cars")}</option>
                     </select>
                     <select
                         name="condition"
                         className="condition-select"
                         onChange={(e) => handleConditionChoice(e.target.value)}>
-                        <option value={""}>Condition</option>
-                        <option value="new">New</option>
-                        <option value="fair">Fair</option>
-                        <option value="used">Used</option>
+                        <option value={""}>{t("filter.condition")}</option>
+                        <option value="new">{t("filter.new")}</option>
+                        <option value="fair">{t("filter.fair")}</option>
+                        <option value="used">{t("filter.used")}</option>
                     </select>
-                    <h3 className="price-title">Price</h3>
+                    <h3 className="price-title">{t("filter.price")}</h3>
                     <div className="price-filter">
                         <input
                             type="number"
                             min={0}
-                            placeholder="Min"
+                            placeholder={t("filter.min")}
                             onChange={(e) =>
                                 setMinPrice(e.target.value)
                             }></input>
@@ -73,7 +74,7 @@ export function ListingsSidebar() {
                         <input
                             type="number"
                             min={minPrice || 0}
-                            placeholder="Max"
+                            placeholder={t("filter.max")}
                             onChange={(e) =>
                                 setMaxPrice(e.target.value)
                             }></input>
