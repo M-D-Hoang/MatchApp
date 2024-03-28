@@ -58,7 +58,8 @@
     "select": "Select files",
     "extra": "Extra:",
     "category": "Category:",
-    "year": "Year:"
+    "year": "Year:",
+    "location": "Location"
   },
   "404": {
     "404": "404 - No Such Page"

@@ -57,7 +57,8 @@
     "images": "Images :",
     "select": "Sélectionner des fichiers",
     "extra": "Supplémentaire :",
-    "category": "Catégorie :"
+    "category": "Catégorie :",
+    "location": "Emplacement"
   },
   "404": {
     "404": "404 - Page non trouvée"

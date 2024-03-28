@@ -12,7 +12,11 @@
     font-weight: 600;
     gap: 0.5em;
 }
-.item-form > form > label > input:not(.image-input), .user-form > form > label > input {
+.location-select-parent, .location-select-parent > *{
+    width: 100%;
+    margin:16px 0px;
+}
+.item-form > form > label > input:not(.image-input), .user-form > form > label > input, location-select-parent{
     width: 100%;
     height: 3em;
     border-radius: 2em;

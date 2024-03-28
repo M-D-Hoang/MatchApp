@@ -4,12 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
 import { useTranslation } from "react-i18next";
+import { LocationSelect } from "../Location/LocationPicker.js";
 
 export function ItemForm({ item }) {
     const { t} = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
     const [imageFiles, setImageFiles] = useState(null);
+
+    //Coords data & address
+    const [coordinates, setCoordinates] = useState(null);
 
     useEffect(() => {
         // create images slides
@@ -118,6 +122,10 @@ export function ItemForm({ item }) {
                         name="category"
                         defaultValue={item !== undefined ? item.category : ""}
                         required></input>
+                </label>
+                <label>
+                    {t("form.location")}{" "}
+                    <LocationSelect coordinates={coordinates} setCoordinates={setCoordinates}/>
                 </label>
                 <label>
                     {t("form.images")}{" "}

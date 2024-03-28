@@ -1,18 +1,20 @@
-import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
-
+import { MapContainer, Marker, TileLayer, Tooltip, useMap } from 'react-leaflet';
+import { useEffect, useState } from 'react';
 /**react leaflet map component taking a landmark object list
  * and displaying mapmarkers based on their positions.
  */
 export function MapScreen({ marker }) {
+
 
   const attribution =
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
   const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
   let mapMarkersJSX = <></>
-  if(marker !== undefined){
-    mapMarkersJSX = <Marker position={[marker.point.coordinates[1], marker.point.coordinates[0]]}>
-    <Tooltip>{marker.name}</Tooltip>
+  if(marker !== null && marker !== undefined){
+    console.log(marker);
+    mapMarkersJSX = <Marker position={[marker.coordinates.lat, marker.coordinates.lon]}>
+    <Tooltip>{marker.name.replace(/,/g, '\n')}</Tooltip>
     </Marker>;
   }
 
@@ -28,17 +30,27 @@ export function MapScreen({ marker }) {
         updateWhenZooming={false}
         updateWhenIdle={true}
         preferCanvas={true}
-        minZoom={2}
-        maxZoom={14}
+        minZoom={8}
+        maxZoom={18}
       >
         <TileLayer
           attribution={attribution}
           url={tileUrl}
         />
         {mapMarkersJSX}
+        {marker != null && <MapPanner coordinates={[marker.coordinates.lat, marker.coordinates.lon]}/>}
       </MapContainer>
     </div>
   );
   //<Marker position={point} icon={customIcon}/>
   //put the above line below the tilelayer element
+}
+
+
+function MapPanner({coordinates}){
+  const map = useMap();
+  useEffect(()=>{
+    map.panTo(coordinates);
+    map.setZoom(13);
+  },[coordinates, map])
 }
