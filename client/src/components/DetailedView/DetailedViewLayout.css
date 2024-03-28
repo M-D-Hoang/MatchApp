@@ -7,7 +7,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 2;
     overflow-x: hidden;
@@ -16,7 +15,7 @@
     flex-wrap: wrap;
 }
 .detailed-view {
-    background-color: rgb(248, 249, 249);
+    background-color: var(--color-background-light);
     padding: 2em;
     display: flex;
     gap: 5em;
@@ -25,37 +24,20 @@
     margin: 2em;
 }
 
-button:hover {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
-    filter: brightness(0.9);
-    transition: box-shadow 0.3s;
-    cursor: pointer;
-    transition: brightness 0.3s;
-}
-
-.item-info-container > button {
-    height: 3em;
-    border-radius: 3em;
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
-    background-color: rgb(50, 122, 65);
-    color: white;
-    font-weight: 600;
-    z-index: 1;
-    position: relative;
-}
 .item-info-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 1em;
 }
+
 .item-info {
     display: flex;
     flex-direction: column;
     width: 30em;
     gap: 0.5em;
 }
+
 @media (max-width: 1500px) {
     .detailed-view {
         flex-direction: column;
@@ -80,17 +62,20 @@ button:hover {
     text-align: left;
     margin: 0;
 }
+
 .item-info > .title,
 .item-info > .price,
 .item-info > .description-title {
     font-weight: 600;
 }
+
 .detail-container {
     padding: 1em 0;
     display: flex;
     flex-direction: column;
     gap: 0.5em;
 }
+
 .detail-container > .detail {
     padding-right: 50%;
     margin: 0;
@@ -101,11 +86,9 @@ button:hover {
     gap: 0.5em;
     justify-content: space-between;
 }
-b {
-    font-weight: 600;
-}
+
 .price {
-    color: rgb(50, 122, 65);
+    color: var(--button-background);
 }
 
 .carousel-slider,
@@ -117,9 +100,13 @@ b {
 
 .control-arrow {
     width: 10%;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
 }
 
-.carousel-status {
+.carousel-status,
+.control-dots {
     display: none;
 }
 
@@ -129,7 +116,4 @@ b {
 
 .carousel .carousel .thumbs-wrapper {
     margin: 0;
-}
-.control-dots {
-    display: none;
 }

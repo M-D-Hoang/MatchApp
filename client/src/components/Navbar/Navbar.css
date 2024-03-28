@@ -1,37 +1,34 @@
- .navbar {
-  display: flex;
-  background-color: rgb(255, 255, 255);
-  color: rgb(68, 98, 74);
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  height: 70px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 0px;
-  justify-content: space-between;
-  align-items: center;
+.navbar {
+    display: flex;
+    background-color: var(--color-background-light);
+    color: var(--color-text-green);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    height: 70px;
+    box-shadow: var(--box-shadow-small);
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-  width: 60px;
-  margin: 2px 6px;
+    width: 60px;
+    margin: 2px 6px;
 }
 
 .navbar-title {
     margin-left: 0.5em;
     font-weight: 600;
 }
-.link-container {
-  display: flex;
-  align-items: center;
-}
 
-.link {
-  margin: 10px;
+.link-container {
+    display: flex;
+    align-items: center;
 }
 
 a {
-  text-decoration: none;
-  color: rgb(68, 98, 74);
+    text-decoration: none;
+    color: var(--color-text-green);
 }
 
 .navbar-link {
@@ -44,14 +41,14 @@ a {
     border-radius: 3em;
     border: none;
     font-weight: 600;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px;
-    background-color: rgb(50, 122, 65);
-    color: white;
+    box-shadow: var(--box-shadow-small);
+    background-color: var(--button-background);
+    color: var(--button-text);
 }
-.navbar-link:hover{
+.navbar-link:hover {
     filter: brightness(0.9);
     transition: filter 0.3s;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
+    box-shadow: var(--box-shadow-medium);
     cursor: pointer;
 }
 
@@ -64,23 +61,24 @@ a {
 }
 
 .navbar-pfp:hover {
-  transition: box-shadow 0.3s;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 0px;
+    transition: box-shadow 0.3s;
+    box-shadow: var(--box-shadow-medium);
 }
 
 .pfp-container-link {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-shrink: 0;
-  margin: 0 1em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    margin: 0 1em;
 }
 
 #language-selector {
-  display: flex;
-  margin-left: auto;
-  margin-right: 0.7em;
+    display: flex;
+    margin-left: auto;
+    margin-right: 0.7em;
 }
-.qJTHM{
+
+.qJTHM {
     transform: translate(0, -5px);
 }

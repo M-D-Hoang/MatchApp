@@ -5,23 +5,12 @@
     padding: 5em;
 }
 .sell-title {
-    margin: 0 0 1em 0;
+    margin-bottom: 1em;
     font-weight: 600;
-    color: rgb(68, 98, 74);
+    color: var(--color-text-green);
 }
 .form-select {
-    padding: 0 1em;
-    height: 3em;
-    width: 20em;
-    border-radius: 3em;
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
-    font-size: 16px;
+    width: 24em;
     margin-bottom: 1em;
 }
-.form-select > option {
-    height: 3em;
-}
-.form-select:hover {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
-}
+
