@@ -70,7 +70,7 @@
     "delete": "Supprimer",
     "edit": "Modifier"
   },
-  "full": {
+  "detail": {
     "full": "Vue complète"
   }
 }
