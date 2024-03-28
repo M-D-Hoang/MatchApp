@@ -7,8 +7,10 @@ import { Carousel } from 'react-responsive-carousel';
 import ReactLoading from 'react-loading';
 import "./FullView.css";
 import { MapScreen } from "../../components/Location/Map";
+import { useTranslation } from "react-i18next";
 
 export function FullView({isCar}) {
+    const [t] = useTranslation("global");
     const navigate = useNavigate();
     const itemId = useParams().id;
     const [item, setItem] = useState({ownerID:undefined, imageURIs:['']});
@@ -106,14 +108,14 @@ export function FullView({isCar}) {
                             <ItemInfo item={item} />
                             <div className="action-container">
                                 <div className="user-info">
-                                    <p>Posted by:</p>
+                                    <p>{t("fullView.posted")}</p>
                                     <UserButton userID={item.ownerID} />
                                 </div>
                                 <MapScreen/>
                                 {isOwner &&
                                     <>
-                                        <button onClick={handleDelete}>Delete</button>
-                                        <button onClick={handleEdit}>Edit</button>
+                                        <button onClick={handleDelete}>{t("fullView.delete")}</button>
+                                        <button onClick={handleEdit}>{t("fullView.edit")}</button>
                                     </>}
                             </div>
                         </div></>

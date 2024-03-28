@@ -1,16 +1,15 @@
-import React from "react";
 // GoogleLogou
 import { GoogleLogin } from '@react-oauth/google';
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 // import { response } from "../../../../server/server";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export function Login(props) {
 
   const navigate = useNavigate();
-
-  const [userInfo, setUserInfo] = useState(null)
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -100,24 +99,35 @@ export function Login(props) {
 
 
 function LoggedInUserButton({user, onLogOut, pfpURL}){
-  return(
-    //Link to User Page & Sell Button
-        <div className="link-container">
+const [t] = useTranslation("global");
+  return (
+      //Link to User Page & Sell Button
+      <div className="link-container">
           <div className="link">
-            <p onClick={async()=>{await onLogOut()}}>Logout</p>
+              <p
+                  className="navbar-link"
+                  onClick={async () => {
+                      await onLogOut();
+                  }}>
+                  {t("nav.logout")}
+              </p>
           </div>
           <div className="link">
-            <Link to="/sell">Sell</Link>
+              <Link to="/sell" className="navbar-link">
+                {t("nav.sell")}
+              </Link>
           </div>
-          
+
           <div className="link pfp-container">
-            <Link className="pfp-container-link" to={`/user/${user.username}`}>
-              <img
-                className="navbar-pfp"
-                src={pfpURL}
-                alt="my-account"></img>
-            </Link>
+              <Link
+                  className="pfp-container-link"
+                  to={`/user/${user.username}`}>
+                  <img
+                      className="navbar-pfp"
+                      src={pfpURL}
+                      alt="my-account"></img>
+              </Link>
           </div>
-        </div>
+      </div>
   );
 }
