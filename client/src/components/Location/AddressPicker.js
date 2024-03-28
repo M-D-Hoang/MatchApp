@@ -14,12 +14,22 @@ function AddressTextField({setCoordinates}){
   }
 
   const checkAddress = (e) => {
-    //fetch(`https://geocode.maps.co/search?q=${address}&api_key=${LOCATION_KEY}`)
+    setIsLoading(true);
+    fetch(`/api/location/${address}`).then(resp => {
+      if (!resp.ok){
+        throw new Error('Address could not be read.');
+      }
+      return resp.json();
+    })
+    .then(json => {
+      setCoordinates(json);
+    })
+    .finally(()=>{setIsLoading(false)})
   }
 
   return(
     <div>
-      <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={16} width={16} />
+      {isLoading && <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={16} width={16} />}
       <label>Address for Pickup: <input type='text' onChange={onInputChange}></input></label><button onClick={checkAddress}>Check</button>
     </div>
   );
