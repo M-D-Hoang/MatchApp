@@ -37,6 +37,8 @@
     border-radius: 1em;
     resize: none;
     font-family: inherit;
+    background-color: var(--input-background);
+    color: var(--color-text);
 }
 
 #description-input:hover {

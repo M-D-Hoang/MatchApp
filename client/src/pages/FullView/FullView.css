@@ -12,10 +12,6 @@
     flex-direction: column;
 }
 
-.full-view-page > .item-info-container {
-    gap: 2em;
-}
-
 .user-info {
     display: flex;
     align-items: center;

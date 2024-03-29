@@ -24,6 +24,8 @@ input, select {
     border-radius: 3em;
     border: none;
     box-shadow: var(--box-shadow-small);
+    background-color: var(--input-background);
+    color: var(--color-text);
 }
 
 input:hover, select:hover {
