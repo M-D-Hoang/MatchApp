@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export function Contact({ onExit, item }) {
   const [t] = useTranslation("global");
   const [userInfo, setUserInfo] = useState(null);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -56,16 +57,20 @@ export function Contact({ onExit, item }) {
         return;
       }
       console.log('Message submitted successfully');
-      onExit();
+      setIsVisible(false);
     } catch (error) {
       console.error('Error submitting message:', error);
   }};
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div className={"overlay"} onClick={onExit}>
       <div className={"contact-view"}>
         <form onSubmit={submitMessage}>
-          <label for="textInput">{t("fullView.enterMessage")}</label>
+          <label htmlFor="textInput">{t("fullView.enterMessage")}</label>
           <textarea
             type="text"
             name="message"
