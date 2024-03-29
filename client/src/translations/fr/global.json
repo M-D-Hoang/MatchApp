@@ -68,7 +68,8 @@
   "fullView": {
     "posted": "Publié par :",
     "delete": "Supprimer",
-    "edit": "Modifier"
+    "edit": "Modifier",
+    "contact": "Contacter l'acheteur"
   },
   "detail": {
     "full": "Vue complète"

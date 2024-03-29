@@ -5,6 +5,7 @@ import tempImage from "../../assets/images/item-image-temp1.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
 import ReactLoading from 'react-loading';
+import { Contact } from "../Contact/Contact";
 import "./FullView.css";
 import { useTranslation } from "react-i18next";
 
@@ -14,6 +15,32 @@ export function FullView({isCar}) {
     const itemId = useParams().id;
     const [item, setItem] = useState({ownerID:undefined, imageURIs:['']});
     const [isOwner, setisOwner] = useState(false);
+
+    const [isContactView, setContactView] = useState(false);
+
+    useEffect(() => {
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, []);
+
+    const handleHideContactdView = (e) => {
+        if (e.target.className === "overlay") {
+            setContactView(false);
+        }
+    };
+
+    const showHandler = (e) => {
+        if (e.target.className !== "overlay") {
+            setContactView(true);
+        }
+    };
+
+    if (isContactView) {
+      document.body.style.overflow = "hidden";
+  } else {
+      document.body.style.overflow = "auto";
+  }
 
     useEffect(() => {
         fetch('/api/users/check-auth', {
@@ -103,7 +130,8 @@ export function FullView({isCar}) {
                         <Carousel className="carousel" infiniteLoop={true}>
                             {images}
                         </Carousel>
-                    </div><div className="item-info-container">
+                    </div>
+                    <div className="item-info-container">
                             <ItemInfo item={item} />
                             <div className="action-container">
                                 <div className="user-info">
@@ -111,11 +139,21 @@ export function FullView({isCar}) {
                                     <UserButton userID={item.ownerID} />
                                 </div>
 
-                                {isOwner &&
+                                {isOwner ? (
                                     <>
                                         <button onClick={handleDelete}>{t("fullView.delete")}</button>
                                         <button onClick={handleEdit}>{t("fullView.edit")}</button>
-                                    </>}
+                                    </>
+                                ) : (
+                                    <div>
+                                        <button className="contact-button" onClick={showHandler}>{t("fullView.contact")}</button>
+                                        {isContactView ? (
+                                            <div>
+                                              <Contact item={item} onExit={handleHideContactdView}></Contact>
+                                            </div>
+                                        ) : null}
+                                    </div>
+                                )}
                             </div>
                         </div></>
                 }

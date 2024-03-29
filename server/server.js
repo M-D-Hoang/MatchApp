@@ -7,6 +7,8 @@ const app = express();
 //const helloRouter = require('./routes/helloworld.js');
 const listingsRouter = require('./routes/listings.js');
 const userRouter = require('./routes/users.js');
+const messageRouter = require('./routes/messages.js');
+
 const fs = require('fs');
 let STATIC_FILES;
 if (!process.env.TEST){
@@ -26,6 +28,7 @@ app.use(session({
 
 app.use('/api/listings', listingsRouter);
 app.use('/api/users', userRouter);
+app.use('/api/messages', messageRouter);
 
 // app.use('/', express.static('../client/build/'));
 app.use('/static', express.static('../client/build/static'));

@@ -69,7 +69,10 @@
   "fullView": {
     "posted": "Posted by:",
     "delete": "Delete",
-    "edit": "Edit"
+    "edit": "Edit",
+    "contact": "Contact Buyer",
+    "send": "Send Message",
+    "enterMessage": "Enter Message:"
   },
   "detail": {
     "full": "Full View"

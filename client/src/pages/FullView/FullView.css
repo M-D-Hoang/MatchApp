@@ -55,6 +55,19 @@
     z-index: 1;
     position: relative;
 }
+
+.contact-button {
+  height: 3em;
+  border-radius: 3em;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
+  background-color: rgb(50, 122, 65);
+  color: white;
+  font-weight: 600;
+  z-index: 1;
+  position: relative;
+}
+
 .full-view-page > .item-info-container {
     gap: 2em;
 }

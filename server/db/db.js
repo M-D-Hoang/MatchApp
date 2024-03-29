@@ -2,6 +2,7 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const User = require('./model/User.js');
+const Message = require('./model/Message.js');
 const { Listing, CarListing } = require('./model/Listing.js');
 
 dotenv.config();
@@ -175,9 +176,24 @@ class DB {
     return await User.findOneAndUpdate({ username: user.username }, update, options);
   }
 
-
   async getItemsFromUser(username) {
     return await Listing.find({ ownerID: username });
+  }
+
+  async getMessagesFromUser(username) {
+    return await Message.find({ sellerID: username, isViewed: false }).sort({ createdAt: -1 });
+  }
+
+  async createMessage(message) {
+    const messageRow = new Message({
+      sellerID: message.sellerID,
+      buyerID: message.buyerID,
+      listingID: message.listingID,
+      message: message.message,
+      isViewed: message.isViewed
+    });
+
+    return await messageRow.save();
   }
 }
 
