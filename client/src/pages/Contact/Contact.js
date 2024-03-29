@@ -2,7 +2,7 @@ import "./Contact.css";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-export function Contact({ onExit, item }) {
+export function Contact({ onExit, item, onOverlayClick }) {
   const [t] = useTranslation("global");
   const [userInfo, setUserInfo] = useState(null);
   const [isVisible, setIsVisible] = useState(true);
@@ -67,7 +67,7 @@ export function Contact({ onExit, item }) {
   }
 
   return (
-    <div className={"overlay"} onClick={onExit}>
+    <div className={"overlay"} onClick={onOverlayClick}>
       <div className={"contact-view"}>
         <form onSubmit={submitMessage}>
           <label htmlFor="textInput">{t("fullView.enterMessage")}</label>

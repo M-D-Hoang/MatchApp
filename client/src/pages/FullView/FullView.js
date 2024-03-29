@@ -30,6 +30,10 @@ export function FullView({isCar}) {
         }
     };
 
+    const forceHideContactdView = () => {    
+            setContactView(false);
+    };
+
     const showHandler = (e) => {
         if (e.target.className !== "overlay") {
             setContactView(true);
@@ -149,7 +153,7 @@ export function FullView({isCar}) {
                                         <button className="contact-button" onClick={showHandler}>{t("fullView.contact")}</button>
                                         {isContactView ? (
                                             <div>
-                                              <Contact item={item} onExit={handleHideContactdView}></Contact>
+                                              <Contact item={item} onExit={forceHideContactdView} onOverlayClick={handleHideContactdView}></Contact>
                                             </div>
                                         ) : null}
                                     </div>
