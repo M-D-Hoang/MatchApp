@@ -194,6 +194,10 @@ class DB {
     });
 
     return await messageRow.save();
+  } 
+
+  async removeMessageByID(id) {
+    return await Message.deleteOne({ _id: id});
   }
 }
 

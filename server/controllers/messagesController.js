@@ -25,3 +25,18 @@ exports.postMessage = asyncHandler(async (req, res) => {
     });
   }
 });
+
+exports.deleteMessage = asyncHandler(async (req, res) => {
+  const messageID = req.body._id;
+
+  try {
+    await db.removeMessageByID(messageID);
+
+    return res.status(204).json('Message Deleted');
+  } catch (e) {
+    res.status(400).json({
+      content: e.message,
+      status: 400,
+    });
+  }
+});
