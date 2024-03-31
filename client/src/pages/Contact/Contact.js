@@ -6,7 +6,12 @@ export function Contact({ onExit, item, onOverlayClick }) {
   const [t] = useTranslation("global");
   const [userInfo, setUserInfo] = useState(null);
   const [isVisible, setIsVisible] = useState(true);
-
+  const message = "I'm interested in this item, please contact me back.";
+  const [charCount, setCharCount] = useState(message.length);
+  const handleChange = (event) => {
+    const inputMessage = event.target.value;
+    setCharCount(inputMessage.length);
+  };
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -77,9 +82,12 @@ export function Contact({ onExit, item, onOverlayClick }) {
             id="message-input"
             cols="30"
             rows="10"
+            maxLength={200}
             required
+            onChange={handleChange}
             defaultValue={"I'm interested in this item, please contact me back."}>
             </textarea>
+            <p>Characters left: {200 - charCount}</p>
           <button type="submit" className="submit-button">{t("fullView.send")}</button>
         </form>
       </div>

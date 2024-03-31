@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 // import { response } from "../../../../server/server";
 import { Link, useNavigate } from "react-router-dom";
+import "./LoginLayout.css";
 import { useTranslation } from "react-i18next";
 
 export function Login(props) {
@@ -99,7 +100,30 @@ export function Login(props) {
 
 
 function LoggedInUserButton({user, onLogOut, pfpURL}){
+const navigate = useNavigate();
 const [t] = useTranslation("global");
+const [noti, setNoti] = useState([]);
+
+useEffect(() => {
+  const fetchNotifications = async () => {
+    try {
+      const resp = await fetch(`/api/messages/${user.username}`);
+      if (!resp.ok) {
+        throw new Error('Failed to fetch notifications');
+      }
+      const json = await resp.json();
+      setNoti(json);
+    }
+    catch (error) {
+      console.error(error);
+    }
+  }
+
+  fetchNotifications();
+}, [user.username]);
+const handleNotificationsURL = () => {
+  navigate('/notifications/' + user.username);
+}
   return (
       //Link to User Page & Sell Button
       <div className="link-container">
@@ -116,6 +140,10 @@ const [t] = useTranslation("global");
               <Link to="/sell" className="navbar-link">
                 {t("nav.sell")}
               </Link>
+          </div>
+          <div id="notification-button">
+                <img id="notification-bell" src={require ("../../assets/images/notification.png")} alt="notification bell" onClick={handleNotificationsURL}/>
+                <p id="notification-count">{noti.length > 99 ? '99+' : noti.length}</p>
           </div>
 
           <div className="link pfp-container">
