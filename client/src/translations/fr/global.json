@@ -57,7 +57,8 @@
     "images": "Images :",
     "select": "Sélectionner des fichiers",
     "extra": "Supplémentaire :",
-    "category": "Catégorie :"
+    "category": "Catégorie :",
+    "year": "Année :"
   },
   "404": {
     "404": "404 - Page non trouvée"
@@ -69,9 +70,14 @@
     "posted": "Publié par :",
     "delete": "Supprimer",
     "edit": "Modifier",
-    "contact": "Contacter l'acheteur"
+    "contact": "Contacter l'acheteur",
+    "send": "Envoyer",
+    "enterMessage": "Entrez votre message:"
   },
   "detail": {
     "full": "Vue complète"
+  },
+  "noti": {
+    "noti": "Your Notifications"
   }
 }
