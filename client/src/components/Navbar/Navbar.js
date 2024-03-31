@@ -38,7 +38,7 @@ export function Navbar(props) {
               <p>|</p>
               <p onClick={() => handleChangeLanguage("ru")}>RU</p>
             </div>
-            <Login setNotifications={props.setNotifications} setUsename={props.setUsername} pfpURL={props.pfpURL} setPfpURL={props.setPfpURL} />
+            <Login setUsename={props.setUsername} pfpURL={props.pfpURL} setPfpURL={props.setPfpURL} />
         </nav>
     );
 }

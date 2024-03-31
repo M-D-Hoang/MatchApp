@@ -17,14 +17,13 @@ import { UserEdit } from "./components/UserEdit/UserEdit.js";
 function App() {
     const [pfpURL, setPfpURL] = useState('');
     const [username, setUsername] = useState("");
-    const [notifications, setNotifications] = useState([]);
     const clientID = '814081120756-6v1oiqc3019b696l91gq12gikok50975.apps.googleusercontent.com';
     return (
         <GoogleOAuthProvider clientId={clientID}>
           <div className="App">
               <BrowserRouter>
                   <Routes>
-                      <Route path="/" element={<AppLayout setNotifications={setNotifications} setUsername={setUsername} username={username} pfpURL={pfpURL} setPfpURL={setPfpURL}/>}>
+                      <Route path="/" element={<AppLayout setUsername={setUsername} username={username} pfpURL={pfpURL} setPfpURL={setPfpURL}/>}>
                       <Route index element={<Listings />} />
                       <Route path="sell" element={<Sell />} />
                       <Route path="edit" element={<Edit />} />
