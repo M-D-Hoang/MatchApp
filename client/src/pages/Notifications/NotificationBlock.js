@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { UserButton } from "../../components/UserButton/UserButton";
 import "./NotificationBlock.css";
 
 export function NotificationBlock({ notification }) {
-  const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [item, setItem] = useState({});
   const [itemPicture, setItemPicture] = useState('');
