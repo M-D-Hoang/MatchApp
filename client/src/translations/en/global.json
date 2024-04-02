@@ -58,7 +58,8 @@
     "select": "Select files",
     "extra": "Extra:",
     "category": "Category:",
-    "year": "Year:"
+    "year": "Year:",
+    "location": "Location"
   },
   "404": {
     "404": "404 - No Such Page"
@@ -69,7 +70,8 @@
   "fullView": {
     "posted": "Posted by:",
     "delete": "Delete",
-    "edit": "Edit"
+    "edit": "Edit",
+    "noLocation": "No pickup location was specified."
   },
   "detail": {
     "full": "Full View"

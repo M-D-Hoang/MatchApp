@@ -68,6 +68,7 @@ class DB {
       category: listing.category,
       date: listing.date,
       location: listing.location,
+      coordinates: listing.coordinates,
       objectType: listing.objectType
     });
     return await listingRow.save();
@@ -89,6 +90,7 @@ class DB {
       imageURIs: listing.imageURIs,
       date: listing.date,
       location: listing.location,
+      coordinates: listing.coordinates,
       objectType: listing.objectType
     });
     return await listingRow.save();

@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const app = express();
 //Middleware imports
+const locationRouter = require('./routes/location.js');
 const listingsRouter = require('./routes/listings.js');
 const userRouter = require('./routes/users.js');
 const fs = require('fs');
@@ -30,6 +31,7 @@ app.use(function (req, res, next) {
 // Register routes
 app.use('/api/listings', listingsRouter);
 app.use('/api/users', userRouter);
+app.use('/api/location', locationRouter);
 
 // app.use('/', express.static('../client/build/'));
 app.use('/static', express.static('../client/build/static'));

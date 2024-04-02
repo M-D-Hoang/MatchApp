@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
 import ReactLoading from 'react-loading';
 import "./FullView.css";
+import { MapScreen } from "../../components/Location/Map";
 import { useTranslation } from "react-i18next";
 
 export function FullView({isCar}) {
@@ -110,6 +111,10 @@ export function FullView({isCar}) {
                                     <p>{t("fullView.posted")}</p>
                                     <UserButton userID={item.ownerID} />
                                 </div>
+                                {item.coordinates.length > 0 && item.location !== undefined ? 
+                                <div className="fullview-map-parent">
+                                    <MapScreen marker={{name:item.location,coordinates:item.coordinates}}/>
+                                    </div>: <p>{t("fullView.noLocation")}</p>}
                                 {isOwner &&
                                     <>
                                         <button onClick={handleDelete}>{t("fullView.delete")}</button>
