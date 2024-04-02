@@ -1,8 +1,22 @@
 .notification-block {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 10em;
+    width: 100%;
+    padding: 2em;
+    box-shadow: var(--box-shadow-small);
+    border-radius: 1em;
+    border: none;
+    background-color: var(--color-background-light);
+    gap: 3em;
+}
+.notification-block > img {
+    width: 40%;
+    height: 80%;
+}
+
+.notification-title {
+    font-weight: 600;
 }

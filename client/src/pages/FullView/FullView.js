@@ -16,6 +16,7 @@ export function FullView({ isCar }) {
     const itemId = useParams().id;
     const [item, setItem] = useState({ ownerID: undefined, imageURIs: [''] });
     const [isOwner, setisOwner] = useState(false);
+    const [isLoggedIn, setLoggedIn] = useState(false);
 
     const [isContactView, setContactView] = useState(false);
 
@@ -54,14 +55,17 @@ export function FullView({ isCar }) {
         }).then(resp => {
             if (!resp.ok) {
                 setisOwner(false);
+                setLoggedIn(true);
                 return
             }
             return resp.json();
         }).then(json => {
             setisOwner(item.ownerID === json.username)
+            setLoggedIn(true);
         }).catch((e) => {
             console.error(e)
             setisOwner(false);
+            setLoggedIn(false);
         })
     }, [item.ownerID]);
 

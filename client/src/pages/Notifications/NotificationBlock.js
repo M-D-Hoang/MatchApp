@@ -62,7 +62,7 @@ export function NotificationBlock({ notification }) {
     <div className="notification-block" onClick={handleNotificationClick}>
       <UserButton userID={user.username}/>
       <div className="notification-info">
-        <p>{item && item.title && item.title.length > 60 ? item.title.substring(0, 60) + "..." : item && item.title}</p>
+        <p className="notification-title">{item && item.title && item.title.length > 60 ? item.title.substring(0, 60) + "..." : item && item.title}</p>
         <p>{notification.message}</p>    
       </div>
       <img src={itemPicture} alt="listing img"/>

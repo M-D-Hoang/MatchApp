@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { NotificationBlock } from "./NotificationBlock";
+import "./Notifications.css";
 
 export function Notifications() {
   const [noti, setNoti] = useState([]);
@@ -48,14 +49,14 @@ export function Notifications() {
   }, [user.username]);
 
   return (
-    <div>
-      <h1>{t("noti.noti")}</h1>
+    <div className="notifications">
+      <h1 className="notifications-title">{t("noti.noti")}</h1>
       {noti.length > 0 && (
-        <>
+        <div className="notifications-list">
           {noti.map((noti, index) => (
             <NotificationBlock notification={noti}/>
           ))}
-        </>
+        </div>
       )}
     </div>
   );

@@ -16,11 +16,12 @@
 
 .user-button-image {
     border-radius: 50%;
+    width: 58px;
+    height: 58px;
 }
 
 .user-button-image {
     object-fit: cover;
-    width: 4em;
     border-radius: 500%;
     flex-shrink: 0;
 }
