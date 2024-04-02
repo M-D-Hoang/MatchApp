@@ -111,7 +111,7 @@ export function FullView({isCar}) {
                                     <p>{t("fullView.posted")}</p>
                                     <UserButton userID={item.ownerID} />
                                 </div>
-                                {item.coordinates.length > 0 && item.location !== undefined ? 
+                                {item.coordinates && item.coordinates.length > 0 && item.location !== undefined ? 
                                 <div className="fullview-map-parent">
                                     <MapScreen marker={{name:item.location,coordinates:item.coordinates}}/>
                                     </div>: <p>{t("fullView.noLocation")}</p>}

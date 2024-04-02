@@ -30,8 +30,10 @@
     "express-session": "^1.18.0",
     "find-config": "^1.0.0",
     "google-auth-library": "^9.6.3",
+    "memory-cache": "^0.2.0",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.1",
+    "object-hash": "^3.0.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
