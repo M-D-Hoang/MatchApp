@@ -3,6 +3,13 @@ const asyncHandler = require('express-async-handler');
 exports.addressToCoordinates = asyncHandler(async (req, res) => {
   
   try {
+    if(!process.env.LOCATION_SECRET){
+      res.status = 500;
+      res.json({
+        content: 'Location Key Not Provided',
+        status: 500,
+      });
+    }
     if(!req.params){
       throw new Error ('Empty address provided');
     }

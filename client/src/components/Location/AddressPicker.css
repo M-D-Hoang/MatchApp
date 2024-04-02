@@ -6,3 +6,9 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
 }
 
+.location-picker-found-location:hover{
+    border-radius: 2em;
+    font-weight:bold;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
+}
