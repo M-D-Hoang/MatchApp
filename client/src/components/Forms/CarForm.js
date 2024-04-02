@@ -29,6 +29,8 @@ export function CarForm({ item }) {
         e.preventDefault();
         var formData = new FormData(e.target);
         formData.append("image", imageFiles);
+        formData.append("location",place.name)
+        formData.append("coordinates", place.coordinates)
         var resp = undefined;
         if (item !== undefined) {
             //For editing an item
