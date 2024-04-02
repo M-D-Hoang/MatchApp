@@ -40,6 +40,8 @@ export function FullView({isCar}) {
                 return resp.json();
             })
             .then((json) => {
+                console.log('nya')
+                console.log(json)
                 setItem(json);
             })
             .catch((e) => {
@@ -111,7 +113,7 @@ export function FullView({isCar}) {
                                     <p>{t("fullView.posted")}</p>
                                     <UserButton userID={item.ownerID} />
                                 </div>
-                                <MapScreen/>
+                                {item.location ? <MapScreen/>: <p>{t("fullView.noLocation")}</p>}
                                 {isOwner &&
                                     <>
                                         <button onClick={handleDelete}>{t("fullView.delete")}</button>

@@ -69,7 +69,8 @@
   "fullView": {
     "posted": "Publié par :",
     "delete": "Supprimer",
-    "edit": "Modifier"
+    "edit": "Modifier",
+    "noLocation": "Aucun lieu de prise en charge n'a été précisé."
   },
   "full": {
     "full": "Vue complète"
