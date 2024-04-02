@@ -44,10 +44,9 @@ export function Navbar(props) {
     };
 
     return (
-        <nav>
-          {width} - {!(width <= mobileWidth) && "nah"}
+        <nav className="navbar">   
             {!(width <= mobileWidth) ?
-                <nav className="navbar"><div className="logo">
+                <><div className="logo">
                     <Link to="/">
                         <img className="logo" src={logo} alt="logo"></img>
                     </Link>
@@ -63,16 +62,17 @@ export function Navbar(props) {
                         checked={isDark}
                         onChange={({ target }) => handleDarkMode(target.checked)}
                         icons={{ checked: "🌙", unchecked: "🔆" }}
-                        aria-label="Dark mode toggle" /><Login setUsename={props.setUsername} pfpURL={props.pfpURL} setPfpURL={props.setPfpURL} />
-                </nav>    
+                        aria-label="Dark mode toggle" />
+                </>    
         : 
-        <nav className="navbar"><div className="logo">
+        <><div className="logo">
                     <Link to="/">
                         <img className="logo" src={logo} alt="logo"></img>
                     </Link>
-                </div><Login setUsename={props.setUsername} pfpURL={props.pfpURL} setPfpURL={props.setPfpURL} isMobile={!(width <= mobileWidth)} />
-                </nav>    
+                </div>
+                </>    
         }
+        <Login setUsename={props.setUsername} pfpURL={props.pfpURL} setPfpURL={props.setPfpURL} isMobile={(width <= mobileWidth)} />
         </nav>
     );
 }

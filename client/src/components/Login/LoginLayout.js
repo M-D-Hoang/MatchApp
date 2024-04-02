@@ -88,7 +88,6 @@ export function Login(props) {
     displayableJSX = <LoggedInUserButton user={userInfo} onLogOut={handleLogout} pfpURL={props.pfpURL} isMobile={props.isMobile}/>
   }
 
-  console.log(displayableJSX);
   return (
 
     <div className="link-container">
@@ -107,9 +106,7 @@ const [t] = useTranslation("global");
   return (
       //Link to User Page & Sell Button
       <div className="link-container">
-        {isMobile && "nya"}
-          {!isMobile && <>
-          
+          {!isMobile && <>          
           <div className="link">
               <p
                   className="navbar-link"
@@ -128,6 +125,7 @@ const [t] = useTranslation("global");
           </>}
 
           <div className="link pfp-container">
+          
               <Link
                   className="pfp-container-link"
                   to={`/user/${user.username}`}>
