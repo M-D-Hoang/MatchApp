@@ -57,9 +57,6 @@ export function Navbar(props) {
               <p onClick={() => handleChangeLanguage("fr")}>FR</p>
               <p>|</p>
               <p onClick={() => handleChangeLanguage("ru")}>RU</p>
-                <p onClick={() => handleChangeLanguage("en")}>EN</p>
-                <p>|</p>
-                <p onClick={() => handleChangeLanguage("fr")}>FR</p>
 
             </div>
             <Toggle
