@@ -13,7 +13,7 @@ export function ItemForm({ item }) {
     const [imageFiles, setImageFiles] = useState(null);
 
     //Coords data & address
-    const [coordinates, setCoordinates] = useState(null);
+    const [place, setPlace] = useState(null);
 
     useEffect(() => {
         // create images slides
@@ -125,7 +125,7 @@ export function ItemForm({ item }) {
                 </label>
                 <label>
                     {t("form.location")}{" "}
-                    <LocationSelect coordinates={coordinates} setCoordinates={setCoordinates}/>
+                    <LocationSelect coordinates={place} setCoordinates={setPlace}/>
                 </label>
                 <label>
                     {t("form.images")}{" "}

@@ -4,11 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
 import { useTranslation } from "react-i18next";
+import { LocationSelect } from "../Location/LocationPicker.js";
 export function CarForm({ item }) {
   const { t} = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
     const [imageFiles, setImageFiles] = useState(null);
+
+    const [place, setPlace] = useState(null);
 
     useEffect(() => {
         // create images slides
@@ -162,6 +165,10 @@ export function CarForm({ item }) {
                         defaultValue={
                             item !== undefined ? item.driveTrain : ""
                         }></input>
+                </label>
+                <label>
+                    {t("form.location")}{" "}
+                    <LocationSelect coordinates={place} setCoordinates={setPlace}/>
                 </label>
                 <label>
                     {t("form.images")}{" "}
