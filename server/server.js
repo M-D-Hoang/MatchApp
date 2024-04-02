@@ -4,7 +4,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const app = express();
 //Middleware imports
-//const helloRouter = require('./routes/helloworld.js');
+const locationRouter = require('./routes/location.js');
 const listingsRouter = require('./routes/listings.js');
 const userRouter = require('./routes/users.js');
 const fs = require('fs');
@@ -26,6 +26,7 @@ app.use(session({
 
 app.use('/api/listings', listingsRouter);
 app.use('/api/users', userRouter);
+app.use('/api/location', locationRouter);
 
 // app.use('/', express.static('../client/build/'));
 app.use('/static', express.static('../client/build/static'));
