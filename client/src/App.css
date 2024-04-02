@@ -1,25 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 .App {
-    font-family: "Inter",sans-serif;
+    font-family: "Inter", sans-serif;
     text-align: center;
     min-height: 100vh;
-    background-color: rgb(248, 249, 249);
+    background-color: var(--color-background);
 }
-input:focus, select:focus, textarea:focus, button:focus {
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
     outline: 1px solid rgb(182, 182, 182);
 }
-img{
+
+img {
     object-fit: contain;
 }
-input{
+
+input, select {
     padding-left: 1em;
     box-sizing: border-box;
+    height: 3em;
+    border-radius: 3em;
+    border: none;
+    box-shadow: var(--box-shadow-small);
+    background-color: var(--input-background);
+    color: var(--color-text);
+}
 
+input:hover, select:hover {
+    box-shadow: var(--box-shadow-medium);
+    transition: box-shadow 0.3s;
 }
-.App, select, input,button{
-    font-family: "Inter",sans-serif;
+
+button {
+    box-shadow: var(--box-shadow-small);
+    background-color: var(--button-background);
+    color: var(--button-text);
+    border: none;
+    height: 3em;
+    border-radius: 3em;
+    font-weight: 600;
+    padding: 0 1em;
 }
-.loading-bar{
+
+button:hover {
+    filter: brightness(0.9);
+    box-shadow: var(--box-shadow-medium);
+    transition: filter 0.3;
+    cursor: pointer;
+}
+
+
+.App,
+select,
+input,
+button {
+    font-family: "Inter", sans-serif;
+}
+
+.loading-bar {
     align-self: center;
 }
 .map-container {
@@ -37,3 +77,7 @@ input{
     width:100%;
     border-radius: 16px;
   }
+
+b {
+    font-weight: 600;
+}

@@ -8,5 +8,9 @@
     "start": "cd server && npm run start"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react-responsive": "^10.0.0",
+    "react-toggle": "^4.1.3"
+  }
 }

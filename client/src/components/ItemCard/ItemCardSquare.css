@@ -1,14 +1,14 @@
 .item-card {
-    background-color: white;
+    background-color: var(--color-background-light);
     height: 20em;
     width: 20em;
     padding: 0.5em;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
+    box-shadow: var(--box-shadow-small);
     border-radius: 1em;
     border: none;
 }
 .item-card:hover {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
+    box-shadow: var(--box-shadow-medium);
     transition: box-shadow 0.3s;
     cursor: pointer;
 }

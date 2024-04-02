@@ -2,11 +2,11 @@ import React from "react";
 import { ItemInfo } from "../DetailedView/ItemInfo";
 import tempImage from "../../assets/images/item-image-temp1.png";
 import { useNavigate } from "react-router-dom";
-
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./DetailedViewLayout.css";
 import { Carousel } from 'react-responsive-carousel';
 import { useTranslation } from "react-i18next";
+import "../ImportedComponents/carousel.css";
 
 export function DetailedView({ onExit, item }) {
    const [t] = useTranslation("global");
