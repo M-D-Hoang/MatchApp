@@ -58,7 +58,8 @@
     "select": "Sélectionner des fichiers",
     "extra": "Supplémentaire :",
     "category": "Catégorie :",
-    "year": "Année :"
+    "year": "Année :",
+    "location": "Emplacement"
   },
   "404": {
     "404": "404 - Page non trouvée"
@@ -72,7 +73,8 @@
     "edit": "Modifier",
     "contact": "Contacter l'acheteur",
     "send": "Envoyer",
-    "enterMessage": "Entrez votre message:"
+    "enterMessage": "Entrez votre message:",
+    "noLocation": "Aucun lieu de prise en charge n'a été précisé."
   },
   "detail": {
     "full": "Vue complète"

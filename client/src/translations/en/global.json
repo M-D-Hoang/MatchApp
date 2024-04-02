@@ -58,7 +58,8 @@
     "select": "Select files",
     "extra": "Extra:",
     "category": "Category:",
-    "year": "Year:"
+    "year": "Year:",
+    "location": "Location"
   },
   "404": {
     "404": "404 - No Such Page"
@@ -72,7 +73,8 @@
     "edit": "Edit",
     "contact": "Contact Buyer",
     "send": "Send Message",
-    "enterMessage": "Enter Message:"
+    "enterMessage": "Enter Message:",
+    "noLocation": "No pickup location was specified."
   },
   "detail": {
     "full": "Full View"

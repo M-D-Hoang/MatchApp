@@ -9,7 +9,10 @@ exports.postItem = asyncHandler(async (req, res, next) => {
     formObj.imageURIs = [''];
     
     formObj.ownerID = req.session.username;
-    formObj.location = 'H0H0H0';
+    
+    //coordinates gets sent as a string for some reason so
+    //we turn it into an array with split
+    formObj.coordinates = formObj.coordinates.split(',');
 
     formObj.objectType = 'item';
     formObj.date = new Date(Date.now()).toLocaleString();
@@ -34,8 +37,10 @@ exports.postCar = asyncHandler(async (req, res, next) => {
     formObj.imageURIs = [''];
     // TODO: TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
     formObj.ownerID = req.session.username;
-    formObj.location = 'H0H0H0';
-
+ 
+    //coordinates gets sent as a string for some reason so
+    //we turn it into an array with split
+    formObj.coordinates = formObj.coordinates.split(',');
 
     formObj.objectType = 'cars';
     formObj.date = new Date(Date.now()).toLocaleString();
@@ -88,6 +93,9 @@ exports.deleteCar = asyncHandler(async (req, res) => {
 exports.editCar = asyncHandler(async (req, res, next) => {
   const carObj = req.body;
   try {
+    //coordinates gets sent as a string for some reason so
+    //we turn it into an array with split
+    carObj.coordinates = carObj.coordinates.split(',');
     res.locals.listing = await db.updateCarListing(carObj);
     // pass request down to image controller
     if (req.files) {
@@ -104,9 +112,14 @@ exports.editCar = asyncHandler(async (req, res, next) => {
   }
 });
 
+
+
 exports.editItem = asyncHandler(async (req, res, next) => {
   const ItemObj = req.body;
   try {
+    //coordinates gets sent as a string for some reason so
+    //we turn it into an array with split
+    ItemObj.coordinates = ItemObj.coordinates.split(',');
     res.locals.listing = await db.updateItemListing(ItemObj);
     // pass request down to image controller
     if (req.files) {

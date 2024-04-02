@@ -7,13 +7,14 @@ import { Carousel } from 'react-responsive-carousel';
 import ReactLoading from 'react-loading';
 import { Contact } from "../Contact/Contact";
 import "./FullView.css";
+import { MapScreen } from "../../components/Location/Map";
 import { useTranslation } from "react-i18next";
 
-export function FullView({isCar}) {
+export function FullView({ isCar }) {
     const [t] = useTranslation("global");
     const navigate = useNavigate();
     const itemId = useParams().id;
-    const [item, setItem] = useState({ownerID:undefined, imageURIs:['']});
+    const [item, setItem] = useState({ ownerID: undefined, imageURIs: [''] });
     const [isOwner, setisOwner] = useState(false);
 
     const [isContactView, setContactView] = useState(false);
@@ -30,8 +31,8 @@ export function FullView({isCar}) {
         }
     };
 
-    const forceHideContactdView = () => {    
-            setContactView(false);
+    const forceHideContactdView = () => {
+        setContactView(false);
     };
 
     const showHandler = (e) => {
@@ -41,10 +42,10 @@ export function FullView({isCar}) {
     };
 
     if (isContactView) {
-      document.body.style.overflow = "hidden";
-  } else {
-      document.body.style.overflow = "auto";
-  }
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "auto";
+    }
 
     useEffect(() => {
         fetch('/api/users/check-auth', {
@@ -127,15 +128,15 @@ export function FullView({isCar}) {
     if (item) {
         return (
             <div className={"full-view-page"}>
-                
-                {item.ownerID === undefined ? 
-                <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={400} width={400} />:
-                <><div className={"item-image"}>
+
+                {item.ownerID === undefined ?
+                    <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={400} width={400} /> :
+                    <><div className={"item-image"}>
                         <Carousel className="carousel" infiniteLoop={true}>
                             {images}
                         </Carousel>
                     </div>
-                    <div className="item-info-container">
+                        <div className="item-info-container">
                             <ItemInfo item={item} />
                             <div className="action-container">
                                 <div className="user-info">
@@ -143,6 +144,10 @@ export function FullView({isCar}) {
                                     <UserButton userID={item.ownerID} />
                                 </div>
 
+                                {item.coordinates.length > 0 && item.location !== undefined ?
+                                    <div className="fullview-map-parent">
+                                        <MapScreen marker={{ name: item.location, coordinates: item.coordinates }} />
+                                    </div> : <p>{t("fullView.noLocation")}</p>}
                                 {isOwner ? (
                                     <>
                                         <button onClick={handleDelete}>{t("fullView.delete")}</button>
@@ -153,7 +158,7 @@ export function FullView({isCar}) {
                                         <button className="contact-button" onClick={showHandler}>{t("fullView.contact")}</button>
                                         {isContactView ? (
                                             <div>
-                                              <Contact item={item} onExit={forceHideContactdView} onOverlayClick={handleHideContactdView}></Contact>
+                                                <Contact item={item} onExit={forceHideContactdView} onOverlayClick={handleHideContactdView}></Contact>
                                             </div>
                                         ) : null}
                                     </div>
@@ -162,7 +167,7 @@ export function FullView({isCar}) {
                         </div></>
                 }
 
-                
+
             </div>
         );
     }
