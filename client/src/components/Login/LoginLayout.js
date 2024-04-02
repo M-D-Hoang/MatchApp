@@ -194,9 +194,9 @@ function MobileFunctions({user,onLogOut, navigate, t, chLang, setDrawer, pfpURL,
       <p onClick={()=>{navigate('/sell'); setDrawer(false)}}>{t("nav.sell")}</p>
       <p onClick={toggleDark}>{t("nav.toggleDark")}</p>
 
-      <div>
-        <span className='mobile-drawer-option-language' onClick={()=>{chLang('en')}}>{t("nav.langEN")}</span>
-        <span className='mobile-drawer-option-language' onClick={()=>{chLang('fr')}}>{t("nav.langFR")}</span>
+      <div className='mobile-drawer-language-parent'>
+        <span className='mobile-drawer-option-language' onClick={()=>{chLang('en')}}>{t("nav.langEN")}</span>{" | "}
+        <span className='mobile-drawer-option-language' onClick={()=>{chLang('fr')}}>{t("nav.langFR")}</span>{" | "}
         <span className='mobile-drawer-option-language' onClick={()=>{chLang('ru')}}>{t("nav.langRU")}</span>
       </div>
       
