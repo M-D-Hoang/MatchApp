@@ -113,7 +113,10 @@ export function FullView({isCar}) {
                                     <p>{t("fullView.posted")}</p>
                                     <UserButton userID={item.ownerID} />
                                 </div>
-                                {item.location ? <MapScreen/>: <p>{t("fullView.noLocation")}</p>}
+                                {item.coordinates && item.location ? 
+                                <div className="fullview-map-parent">
+                                    <MapScreen marker={{name:item.location,coordinates:item.coordinates}}/>
+                                    </div>: <p>{t("fullView.noLocation")}</p>}
                                 {isOwner &&
                                     <>
                                         <button onClick={handleDelete}>{t("fullView.delete")}</button>
