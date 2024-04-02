@@ -40,8 +40,6 @@ export function FullView({isCar}) {
                 return resp.json();
             })
             .then((json) => {
-                console.log('nya')
-                console.log(json)
                 setItem(json);
             })
             .catch((e) => {
