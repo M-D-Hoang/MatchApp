@@ -2,12 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const app = express();
 //Middleware imports
-//const helloRouter = require('./routes/helloworld.js');
 const listingsRouter = require('./routes/listings.js');
 const userRouter = require('./routes/users.js');
 
+// Register middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(session({
@@ -15,10 +16,13 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
+app.use(compression());
+app.use(function (req, res, next) {
+  res.set('Cache-control', 'public, max-age=31536000');
+  next();
+});
 
-//for testing only, we will remove it eventually
-//app.use('/test-api', helloRouter);
-
+// Register routes
 app.use('/api/listings', listingsRouter);
 app.use('/api/users', userRouter);
 
