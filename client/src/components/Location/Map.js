@@ -13,7 +13,7 @@ export function MapScreen({ marker }) {
   let mapMarkersJSX = <></>
   if(marker !== null && marker !== undefined){
     console.log(marker);
-    mapMarkersJSX = <Marker position={[marker.coordinates.lat, marker.coordinates.lon]}>
+    mapMarkersJSX = <Marker position={[marker.coordinates[0], marker.coordinates[1]]}>
     <Tooltip>{marker.name.replace(/,/g, '\n')}</Tooltip>
     </Marker>;
   }
@@ -38,7 +38,7 @@ export function MapScreen({ marker }) {
           url={tileUrl}
         />
         {mapMarkersJSX}
-        {marker != null && <MapPanner coordinates={[marker.coordinates.lat, marker.coordinates.lon]}/>}
+        {marker != null && <MapPanner coordinates={[marker.coordinates[0], marker.coordinates[1]]}/>}
       </MapContainer>
     </div>
   );

@@ -23,7 +23,7 @@ exports.addressToCoordinates = asyncHandler(async (req, res) => {
       return {
         id:elem.place_id,
         name:elem.display_name,
-        coordinates:{lat: elem.lat, lon:elem.lon}
+        coordinates:[elem.lat, elem.lon]
       };
     }));
   } catch (e) {

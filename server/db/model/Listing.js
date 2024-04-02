@@ -12,7 +12,8 @@ const listingSchema = new Schema({
   extraField: {type: String, required: false, index: true},
   category: {type: String, required: true, index: true},
   date: {type: String, required: true, index: true},
-  location: {type: String, required: true, index: true},
+  location: {type: String, required: false, index: true},
+  coordinates: {type: [Number], required: false, index: true},
   objectType: {type: String, required: true, index: true},
 });
 
@@ -31,6 +32,7 @@ const carListingSchema = new Schema({
   imageURIs: {type: Array, required: false},
   date: {type: String, required: true, index: true},
   location: {type: String, required: true, index: true},
+  coordinates: {type: [Number], required: false, index: true},
   objectType: {type: String, required: true, index: true},
 });
 
