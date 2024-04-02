@@ -1,19 +1,20 @@
-.user-button{
-display:flex;
-flex-direction:row;
-align-items:center;
-margin-left: auto; 
-margin-right: 0;
-border-radius: 16px;
-padding:8px;
+.user-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 1.5em;
+    padding: 8px;
+    background-color: var(--color-background-light);
+    box-shadow: var(--box-shadow-small);
 }
 
-.user-button > *{
-
-    margin:0px 16px;
+.user-button > * {
+    margin: 0px 16px;
 }
 
-.user-button-image{
+.user-button-image {
     border-radius: 50%;
 }
 
@@ -26,5 +27,5 @@ padding:8px;
 
 .user-button:hover {
     transition: box-shadow 0.3s;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 0px;
+    box-shadow: var(--box-shadow-medium);
 }

@@ -3,8 +3,9 @@ import { editListing, updateListing } from "./FormSubmit.js";
 import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
-
+import { useTranslation } from "react-i18next";
 export function CarForm({ item }) {
+  const { t} = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
     const [imageFiles, setImageFiles] = useState(null);
@@ -14,7 +15,7 @@ export function CarForm({ item }) {
         if (item) {
             item.imageURIs.forEach((img) => {
                 setImage((images) => [
-                    ...images,
+                   ...images,
                     <img src={img} alt="preview"></img>,
                 ]);
             });
@@ -65,7 +66,7 @@ export function CarForm({ item }) {
         <div className="item-form">
             <form onSubmit={submitItem}>
                 <label>
-                    Title:{" "}
+                    {t("form.title")}{" "}
                     <input
                         type="text"
                         name="title"
@@ -73,7 +74,7 @@ export function CarForm({ item }) {
                         required></input>
                 </label>
                 <label>
-                    Description:{" "}
+                    {t("form.description")}{" "}
                     <textarea
                         type="text"
                         name="description"
@@ -86,7 +87,7 @@ export function CarForm({ item }) {
                         }></textarea>
                 </label>
                 <label>
-                    Price:{" "}
+                    {t("form.price")}{" "}
                     <input
                         type="number"
                         name="price"
@@ -95,7 +96,7 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Condition:{" "}
+                    {t("form.condition")}{" "}
                     <input
                         type="text"
                         name="condition"
@@ -103,7 +104,7 @@ export function CarForm({ item }) {
                         required></input>
                 </label>
                 <label>
-                    Make:{" "}
+                    {t("form.make")}{" "}
                     <input
                         type="text"
                         name="make"
@@ -113,7 +114,7 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Model:{" "}
+                    {t("form.model")}{" "}
                     <input
                         type="text"
                         name="model"
@@ -123,7 +124,7 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Body Type:{" "}
+                    {t("form.bodyType")}{" "}
                     <input
                         type="text"
                         name="bodyType"
@@ -133,7 +134,7 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Mileage:{" "}
+                    {t("form.mileage")}{" "}
                     <input
                         type="number"
                         name="mileage"
@@ -143,7 +144,7 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Transmission:{" "}
+                    {t("form.transmission")}{" "}
                     <input
                         type="text"
                         name="transmission"
@@ -153,7 +154,7 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    DriveTrain:{" "}
+                    {t("form.driveTrain")}{" "}
                     <input
                         type="text"
                         name="driveTrain"
@@ -163,9 +164,9 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Images:{" "}
+                    {t("form.images")}{" "}
                     <div className="image-input-container">
-                        Select files
+                        {t("form.select")}
                         <input
                             className="image-input"
                             type="file"

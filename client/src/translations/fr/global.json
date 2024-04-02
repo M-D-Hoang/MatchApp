@@ -1,0 +1,76 @@
+{
+  "nav": {
+    "logout": "Déconnexion",
+    "sell": "Vendre"
+  },
+  "user": {
+    "firstName": "Prénom :",
+    "lastName": "Nom de famille :",
+    "birthday": "Date de naissance :",
+    "profilePicture": "Changer la photo de profil",
+    "gender": "Genre :",
+    "email": "E-mail :",
+    "phoneNumber": "Numéro de téléphone :",
+    "personal": "Informations personnelles :",
+    "items": "Articles",
+    "edit": "Modifier les informations",
+    "noUser": "Cet utilisateur n'existe pas.",
+    "welcome": "Bienvenue sur MatchApp !",
+    "new": "Avant de vous laisser entrer, nous avons besoin d'en savoir un peu plus sur vous."
+  },
+  "sell": {
+    "sellTitle": "Ajouter votre annonce",
+    "select": "Sélectionner la catégorie",
+    "item": "Article",
+    "car": "Voiture"
+  },
+  "filter": {
+    "search": "Rechercher ...",
+    "sortBy": "Trier par",
+    "newest": "Date : Plus récent",
+    "oldest": "Date : Plus ancien",
+    "lowPrice": "Prix : Bas à élevé",
+    "highPrice": "Prix : Élevé à bas",
+    "none": "Aucun résultat trouvé",
+    "filter": "Filtres",
+    "items": "Articles",
+    "cars": "Voitures",
+    "condition": "État",
+    "new": "Neuf",
+    "used": "Usagé",
+    "fair": "Bon",
+    "price": "Prix",
+    "min": "Min",
+    "max": "Max"
+  },
+  "form": {
+    "title": "Titre :",
+    "description": "Description :",
+    "price": "Prix :",
+    "condition": "État :",
+    "make": "Marque :",
+    "model": "Modèle :",
+    "bodyType": "Type de carrosserie :",
+    "transmission": "Transmission :",
+    "mileage": "Kilométrage :",
+    "driveTrain": "Transmission :",
+    "images": "Images :",
+    "select": "Sélectionner des fichiers",
+    "extra": "Supplémentaire :",
+    "category": "Catégorie :"
+  },
+  "404": {
+    "404": "404 - Page non trouvée"
+  },
+  "edit": {
+    "edit": "Modifier votre annonce"
+  },
+  "fullView": {
+    "posted": "Publié par :",
+    "delete": "Supprimer",
+    "edit": "Modifier"
+  },
+  "full": {
+    "full": "Vue complète"
+  }
+}
