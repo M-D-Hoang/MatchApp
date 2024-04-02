@@ -14,7 +14,7 @@ export function ListingsLayout() {
     const [isMenuOpen, setOpen] = useState(false);
     const [keyword, setKeyword] = useState("");
     const [sortBy, setSortBy] = useState(t("filter.newest"));
-    const [loadingDone,setLoadingDone] = useState(false)
+    const [loadingDone, setLoadingDone] = useState(false)
     const handleSearchChange = (e) => {
         setKeyword(e.target.value);
     };
@@ -30,7 +30,7 @@ export function ListingsLayout() {
             params += "&";
         }
         if (keyword.length > 0) {
-           params += `&keyword=${keyword}`; 
+            params += `&keyword=${keyword}`;
         }
         let url = queryParameters.get("type") === null ? "?type=items" : "?";
         url += params;
@@ -52,15 +52,15 @@ export function ListingsLayout() {
                 })
                 .then((json) => {
                     setListingData(json);
-                    
+
                 })
                 .catch((e) => {
                     console.error(e);
                     setListingData([]);
-                    
+
                 })
-                .finally(()=>{setLoadingDone(true)});
-                
+                .finally(() => { setLoadingDone(true) });
+
         } catch (error) {
             console.log(error);
         }
@@ -115,7 +115,7 @@ export function ListingsLayout() {
 
     return (
         <div className="listings-layout">
-            
+
             {!loadingDone ? <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={400} width={400} /> :
                 <><div className="search-bar">
                     <form onSubmit={handleSearchSubmit}>
@@ -162,9 +162,9 @@ export function ListingsLayout() {
                     <div className="listings-display square">{listingJSX}</div>
                 </>
             }
-            
-          
-            
+
+
+
         </div>
     );
 }
