@@ -17,6 +17,7 @@ export function AddressTextField({setCoordinates}){
   }
 
   const checkAddress = (e) => {
+    e.preventDefault();
     setIsLoading(true);
     fetch(`/api/location/${address}`).then(resp => {
       if (!resp.ok){
