@@ -110,7 +110,6 @@ export function FullView({isCar}) {
                                     <p>{t("fullView.posted")}</p>
                                     <UserButton userID={item.ownerID} />
                                 </div>
-
                                 {isOwner &&
                                     <>
                                         <button onClick={handleDelete}>{t("fullView.delete")}</button>

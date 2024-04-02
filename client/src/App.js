@@ -16,6 +16,7 @@ function App() {
     const [pfpURL, setPfpURL] = useState('');
     const [username, setUsername] = useState("");
     const clientID = '814081120756-6v1oiqc3019b696l91gq12gikok50975.apps.googleusercontent.com';
+
     return (
         <GoogleOAuthProvider clientId={clientID}>
           <div className="App">
