@@ -19,7 +19,7 @@ export function Navbar(props) {
     const [t, i18n] = useTranslation("global");
     const [isDark, setIsDark] = useState(false);
 
-    const { height, width } = useWindowDimensions();
+    const { width } = useWindowDimensions();
     const mobileWidth = 621; //Width the window will need to be less than to go into mobile ver.
 
 
@@ -42,6 +42,12 @@ export function Navbar(props) {
     const handleChangeLanguage = (lang) => {
         i18n.changeLanguage(lang);
     };
+
+    const toggleDark = ()=>{
+        console.log('toggled dark')
+        
+        handleDarkMode(!isDark);
+    }
 
     return (
         <nav className="navbar">   
@@ -72,7 +78,7 @@ export function Navbar(props) {
                 </div>
                 </>    
         }
-        <Login setUsename={props.setUsername} pfpURL={props.pfpURL} setPfpURL={props.setPfpURL} isMobile={(width <= mobileWidth)} />
+        <Login setUsename={props.setUsername} toggleDark={toggleDark} pfpURL={props.pfpURL} setPfpURL={props.setPfpURL} isMobile={(width <= mobileWidth)} handleChangeLanguage={handleChangeLanguage}/>
         </nav>
     );
 }

@@ -72,7 +72,7 @@ export function UserPage() {
 
     // console.log(user);
     return (
-        <div classname="profile-menu-base">
+        <div className="profile-menu-base">
             {user === undefined ? (
                 loadingJSX
             ) : user !== null ? (

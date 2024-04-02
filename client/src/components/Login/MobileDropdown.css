@@ -1,0 +1,37 @@
+.navbar-drawer-pfp{
+    width:190px;
+    height:`90px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: var(--box-shadow-small);
+    margin:32px 0px 0px 0px;
+}
+
+.mobile-drawer-parent{
+    background: var(--color-background);
+}
+
+.mobile-drawer-option{
+ display:flex;
+ flex-direction: column;
+ align-content: space-evenly;
+ height: 100%;
+ 
+ 
+}
+
+.mobile-drawer-top{
+    flex-grow: 1;
+    
+}
+
+.mobile-drawer-top > *:not(img){
+  padding: 8px 0px 2px 0px;
+  border-bottom: 1px solid;
+  border-image: linear-gradient(to right, transparent, black, transparent) 1;
+}
+
+.mobile-drawer-bottom{
+   
+    
+}

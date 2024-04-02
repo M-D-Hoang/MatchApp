@@ -1,7 +1,13 @@
 {
   "nav": {
+    "profile":"Profile",
     "logout": "Logout",
-    "sell": "Sell"
+    "sell": "Sell",
+    "toggleDark": "Toggle Dark Mode",
+    "langEN": "English",
+    "langFR": "French",
+    "langRU": "Russian",
+    "closeDrawer": "Close Menu"
   },
   "user": {
     "firstName": "First Name:",
