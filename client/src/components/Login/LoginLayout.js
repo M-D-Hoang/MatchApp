@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 // import { response } from "../../../../server/server";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import ReactLoading from 'react-loading';
 
 export function Login(props) {
 
@@ -74,7 +75,7 @@ export function Login(props) {
   }
 
 
-  let displayableJSX = <LoggedInUserButton user={userInfo} onLogOut={handleLogout} pfpURL={props.pfpURL}/>
+  let displayableJSX = <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={32} width={32}/>
   if(userInfo === null){
     displayableJSX = (
       <GoogleLogin 
@@ -82,6 +83,9 @@ export function Login(props) {
         onError={() => toast.error('Login failed')}
         useOneTap={true}/>
     );
+  }
+  else{
+    displayableJSX = <LoggedInUserButton user={userInfo} onLogOut={handleLogout} pfpURL={props.pfpURL} isMobile={props.isMobile}/>
   }
 
   console.log(displayableJSX);
@@ -98,11 +102,14 @@ export function Login(props) {
 }
 
 
-function LoggedInUserButton({user, onLogOut, pfpURL}){
+function LoggedInUserButton({user, onLogOut, pfpURL, isMobile}){
 const [t] = useTranslation("global");
   return (
       //Link to User Page & Sell Button
       <div className="link-container">
+        {isMobile && "nya"}
+          {!isMobile && <>
+          
           <div className="link">
               <p
                   className="navbar-link"
@@ -117,6 +124,8 @@ const [t] = useTranslation("global");
                 {t("nav.sell")}
               </Link>
           </div>
+
+          </>}
 
           <div className="link pfp-container">
               <Link
