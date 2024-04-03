@@ -55,7 +55,7 @@
 }
 
 @media (max-width: 1000px) {
-    .detailed-view, .detailed-view > .item-info-container > * {
+    .detailed-view, .detailed-view > .item-info-container > *, .carousel-root {
         flex-direction: column;
         width:80vw;
     }
