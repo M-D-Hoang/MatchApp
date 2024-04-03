@@ -7,7 +7,8 @@
     "langEN": "Anglais",
     "langFR": "Français",
     "langRU": "Russe",
-    "closeDrawer": "Fermer le Menu"
+    "closeDrawer": "Fermer le Menu",
+    "noti":"Avis"
   },
   "user": {
     "firstName": "Prénom :",
@@ -86,6 +87,6 @@
     "full": "Vue complète"
   },
   "noti": {
-    "noti": "Your Notifications"
+    "noti": "Votre Avis"
   }
 }

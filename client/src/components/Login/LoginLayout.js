@@ -148,18 +148,14 @@ const handleNotificationsURL = () => {
       //Link to User Page & Sell Button
       <div className="link-container">
           {!isMobile && <DesktopFunctions t={t} onLogOut={onLogOut} handleNotificationsURL={handleNotificationsURL} noti={noti}/>}
-
           <Drawer
                 open={drawerOpen}
                 onClose={setDrawerOpen}
                 direction='right'
                 className='mobile-drawer-parent'
             >
-                <MobileFunctions t={t} toggleDark={toggleDark} onLogOut={onLogOut} navigate={navigate} chLang={chLang} setDrawer={setDrawerOpen} pfpURL={pfpURL} user={user}/>
+                <MobileFunctions t={t} toggleDark={toggleDark} onLogOut={onLogOut} navigate={navigate} chLang={chLang} setDrawer={setDrawerOpen} pfpURL={pfpURL} user={user} handleNotificationsURL={handleNotificationsURL} noti={noti}/>
             </Drawer>
-
-
-
           <div className="link pfp-container">
             <div className="pfp-container-link">
               <img
@@ -168,17 +164,8 @@ const handleNotificationsURL = () => {
                   src={pfpURL}
                   alt="my-account">
               </img>
-              
             </div>
-
-         
-
       </div>
-      
-      
-      
-
-      
     </div>
   );
 }
@@ -207,20 +194,28 @@ return(
 );
 }
 
-function MobileFunctions({user,onLogOut, navigate, t, chLang, setDrawer, pfpURL, toggleDark}){
+function MobileFunctions({user,onLogOut, navigate, t, chLang, setDrawer, pfpURL, toggleDark, noti, handleNotificationsURL}){
   
+  const navToProfile = ()=>{navigate(`/user/${user.username}`); setDrawer(false);}
 
   return(
     <div className='mobile-drawer-option'>
       <div className='mobile-drawer-top'>
-        <img                  
+      <p onClick={()=>{setDrawer(false)}}>{t("nav.closeDrawer")}</p> {/** <----- should be done when clicked the gray area, not in its own button */}
+      {/* <p onClick={navToProfile}>{t("nav.profile")}</p> */}
+        <img
+          onClick={navToProfile}                  
           className="navbar-drawer-pfp"
           src={pfpURL}
           alt="my-profile">
         </img>
-        <p onClick={()=>{setDrawer(false)}}>{t("nav.closeDrawer")}</p>
-        <p onClick={()=>{navigate(`/user/${user.username}`); setDrawer(false);}}>{t("nav.profile")}</p>
         
+        
+        
+      <p onClick={()=>{handleNotificationsURL(); setDrawer(false)}}>
+      <img id="notification-bell" src={require("../../assets/images/notification.png")} alt="notification bell" />
+      {" "}{t("nav.noti")} ({noti.length})</p>
+      
       <p onClick={()=>{navigate('/sell'); setDrawer(false)}}>{t("nav.sell")}</p>
       <p onClick={toggleDark}>{t("nav.toggleDark")}</p>
 

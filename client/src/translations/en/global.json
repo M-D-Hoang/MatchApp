@@ -7,7 +7,8 @@
     "langEN": "English",
     "langFR": "French",
     "langRU": "Russian",
-    "closeDrawer": "Close Menu"
+    "closeDrawer": "Close Menu",
+    "noti": "Notifications"
   },
   "user": {
     "firstName": "First Name:",
