@@ -31,8 +31,10 @@ export function ItemForm({ item }) {
         e.preventDefault();
         var formData = new FormData(e.target);
         formData.append("image", imageFiles);
-        formData.append("location",place.name)
-        formData.append("coordinates", place.coordinates)
+        if (place != null){
+            formData.append("location",place.name);
+            formData.append("coordinates", place.coordinates);
+        }
         
         var resp = undefined;
         if (item !== undefined) {
@@ -97,6 +99,7 @@ export function ItemForm({ item }) {
                     <input
                         type="number"
                         name="price"
+                        step={0.01}
                         defaultValue={
                             item !== undefined ? item.price : ""
                         }></input>
