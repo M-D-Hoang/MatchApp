@@ -64,6 +64,7 @@
     "select": "Sélectionner des fichiers",
     "extra": "Supplémentaire :",
     "category": "Catégorie :",
+    "year": "Année :",
     "location": "Emplacement"
   },
   "404": {
@@ -76,9 +77,15 @@
     "posted": "Publié par :",
     "delete": "Supprimer",
     "edit": "Modifier",
+    "contact": "Contacter l'acheteur",
+    "send": "Envoyer",
+    "enterMessage": "Entrez votre message:",
     "noLocation": "Aucun lieu de prise en charge n'a été précisé."
   },
-  "full": {
+  "detail": {
     "full": "Vue complète"
+  },
+  "noti": {
+    "noti": "Your Notifications"
   }
 }

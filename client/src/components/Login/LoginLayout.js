@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 // import { response } from "../../../../server/server";
 import { Link, useNavigate } from "react-router-dom";
+import "./LoginLayout.css";
 import { useTranslation } from "react-i18next";
 import ReactLoading from 'react-loading';
 
@@ -33,7 +34,7 @@ export function Login(props) {
         console.warn(data);
         setUserInfo(data);
         props.setPfpURL(data.picture);
-        
+
       } catch (e) {
         console.error(e)
       }
@@ -56,16 +57,16 @@ export function Login(props) {
       return
     }
     const data = await resp.json()
-    
+
     setUserInfo(data)
     props.setPfpURL(data.picture);
     toast.success('Login Successful')
   }
 
- 
+
   const handleLogout = async (response) => {
     const resp = await fetch('/api/users/logout', {
-      method: 'DELETE',      
+      method: 'DELETE',
       credentials: 'include'
     })
     if (!resp.ok) {
@@ -73,20 +74,21 @@ export function Login(props) {
       return
     }
     //const data = await resp.json()
-    
+
     setUserInfo(null)
     toast.success('Logout Successful')
     navigate('/')
   }
 
 
+
   let displayableJSX = <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={32} width={32}/>
   if(userInfo === null){
     displayableJSX = (
-      <GoogleLogin 
+      <GoogleLogin
         onSuccess={handleLogin}
         onError={() => toast.error('Login failed')}
-        useOneTap={true}/>
+        useOneTap={true} />
     );
   }
   else{
@@ -105,12 +107,9 @@ export function Login(props) {
   );
 }
 
-
-
-
 function LoggedInUserButton({user, onLogOut, pfpURL, isMobile, navigate, chLang, toggleDark}){
 const [t] = useTranslation("global");
-
+const [noti, setNoti] = useState([]);
 const [drawerOpen, setDrawerOpen] = useState(false);
 
 const onProfileImageClick = ()=>{
@@ -123,12 +122,32 @@ const onProfileImageClick = ()=>{
   }
 }
 
+useEffect(() => {
+  const fetchNotifications = async () => {
+    try {
+      const resp = await fetch(`/api/messages/${user.username}`);
+      if (!resp.ok) {
+        throw new Error('Failed to fetch notifications');
+      }
+      const json = await resp.json();
+      setNoti(json);
+    }
+    catch (error) {
+      console.error(error);
+    }
+  }
+
+  fetchNotifications();
+}, [user.username]);
+const handleNotificationsURL = () => {
+  navigate('/notifications/' + user.username);
+}
 
 
   return (
       //Link to User Page & Sell Button
       <div className="link-container">
-          {!isMobile && <DesktopFunctions t={t} onLogOut={onLogOut}/>}
+          {!isMobile && <DesktopFunctions t={t} onLogOut={onLogOut} handleNotificationsURL={handleNotificationsURL} noti={noti}/>}
 
           <Drawer
                 open={drawerOpen}
@@ -152,12 +171,19 @@ const onProfileImageClick = ()=>{
               
             </div>
 
-          </div>
+         
+
       </div>
+      
+      
+      
+
+      
+    </div>
   );
 }
 
-function DesktopFunctions({onLogOut, t}){
+function DesktopFunctions({onLogOut, t, noti, handleNotificationsURL}){
 return(
   <>
   <div className="link">
@@ -173,6 +199,10 @@ return(
         {t("nav.sell")}
       </Link>
     </div>
+    <div id="notification-button" className='navbar-link' onClick={handleNotificationsURL}>
+        <img id="notification-bell" src={require("../../assets/images/notification.png")} alt="notification bell" />
+        <p id="notification-count">{noti.length > 99 ? '99+' : noti.length}</p>
+      </div>
     </>
 );
 }

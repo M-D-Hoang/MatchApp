@@ -77,9 +77,15 @@
     "posted": "Posted by:",
     "delete": "Delete",
     "edit": "Edit",
+    "contact": "Contact Buyer",
+    "send": "Send Message",
+    "enterMessage": "Enter Message:",
     "noLocation": "No pickup location was specified."
   },
   "detail": {
     "full": "Full View"
+  },
+  "noti": {
+    "noti": "Your Notifications"
   }
 }

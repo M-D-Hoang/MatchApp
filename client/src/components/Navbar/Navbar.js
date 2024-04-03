@@ -61,9 +61,13 @@ export function Navbar(props) {
                             <h1 className="navbar-title">MatchApp</h1>
                         </Link>
                     </div><div id="language-selector">
-                        <p onClick={() => handleChangeLanguage("en")}>EN</p>
-                        <p>|</p>
-                        <p onClick={() => handleChangeLanguage("fr")}>FR</p>
+
+                      <p onClick={() => handleChangeLanguage("en")}>EN</p>
+                      <p>|</p>
+                      <p onClick={() => handleChangeLanguage("fr")}>FR</p>
+              <p>|</p>
+              <p onClick={() => handleChangeLanguage("ru")}>RU</p>
+
                     </div><Toggle
                         checked={isDark}
                         onChange={({ target }) => handleDarkMode(target.checked)}
