@@ -141,8 +141,8 @@ function LoggedInUserButton({ user, onLogOut, pfpURL }) {
           {t("nav.sell")}
         </Link>
       </div>
-      <div id="notification-button" className='navbar-link'>
-        <img id="notification-bell" src={require("../../assets/images/notification.png")} alt="notification bell" onClick={handleNotificationsURL} />
+      <div id="notification-button" className='navbar-link' onClick={handleNotificationsURL}>
+        <img id="notification-bell" src={require("../../assets/images/notification.png")} alt="notification bell" />
         <p id="notification-count">{noti.length > 99 ? '99+' : noti.length}</p>
       </div>
 
