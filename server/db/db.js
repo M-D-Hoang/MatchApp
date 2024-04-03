@@ -43,7 +43,7 @@ class DB {
     const sortObject = {};
     // TODO MAKE SURE ONLY PRICE OR DATE
     sortObject[sortField] = validSortOrder;
-    return (await CarListing.find(filter)).
+    return await CarListing.find(filter).
       sort(sortObject).
       skip(skipItems).
       limit(ITEMS_PER_PAGE);
