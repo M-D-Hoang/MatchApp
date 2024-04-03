@@ -20,7 +20,7 @@ export function Navbar(props) {
     const [isDark, setIsDark] = useState(false);
 
     const { width } = useWindowDimensions();
-    const mobileWidth = 621; //Width the window will need to be less than to go into mobile ver.
+    const mobileWidth = 680; //Width the window will need to be less than to go into mobile ver.
 
 
 
