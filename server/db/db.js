@@ -8,7 +8,7 @@ const { Listing, CarListing } = require('./model/Listing.js');
 dotenv.config();
 const dbUrl = process.env.ATLAS_URI;
 let instance = null;
-const ITEMS_PER_PAGE = 50;
+const ITEMS_PER_PAGE = 52;
 
 class DB {
   constructor() {
