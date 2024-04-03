@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 export function Contact({ onExit, item, onOverlayClick }) {
   const [t] = useTranslation("global");
   const [userInfo, setUserInfo] = useState(null);
-  const [isVisible, setIsVisible] = useState(true);
   const message = "I'm interested in this item, please contact me back.";
   const [charCount, setCharCount] = useState(message.length);
   const handleChange = (event) => {
@@ -47,7 +46,7 @@ export function Contact({ onExit, item, onOverlayClick }) {
     formDataObj.sellerID = item.ownerID;
     formDataObj.buyerID = userInfo.username;
     formDataObj.listingID = item._id;
-    formDataObj.isViewed = false;
+    formDataObj.itemImage = item.imageURIs[0];
 
     try {
       const resp = await fetch('/api/messages', {
@@ -62,14 +61,11 @@ export function Contact({ onExit, item, onOverlayClick }) {
         return;
       }
       console.log('Message submitted successfully');
-      setIsVisible(false);
+      console.log('Form Data:', formDataObj);
+      onExit();
     } catch (error) {
       console.error('Error submitting message:', error);
   }};
-
-  if (!isVisible) {
-    return null;
-  }
 
   return (
     <div className={"overlay"} onClick={onOverlayClick}>

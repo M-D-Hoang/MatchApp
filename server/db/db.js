@@ -183,7 +183,7 @@ class DB {
   }
 
   async getMessagesFromUser(username) {
-    return await Message.find({ sellerID: username, isViewed: false }).sort({ createdAt: -1 });
+    return await Message.find({ sellerID: username }).sort({ createdAt: -1 });
   }
 
   async createMessage(message) {
@@ -192,7 +192,7 @@ class DB {
       buyerID: message.buyerID,
       listingID: message.listingID,
       message: message.message,
-      isViewed: message.isViewed
+      itemImage: message.itemImage,
     });
 
     return await messageRow.save();

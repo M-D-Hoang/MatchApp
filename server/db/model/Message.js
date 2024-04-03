@@ -7,7 +7,7 @@ const messageSchema = new Schema({
   buyerID: {type: String, required: true, index: true},
   listingID: {type: String, required: true, index: true},
   message: {type: String, required: true},
-  isViewed: {type: Boolean, required: true},
+  itemImage: {type: String, required: true},
 });
 
 const Message = model('Message', messageSchema);
