@@ -159,7 +159,7 @@ export function FullView({ isCar }) {
                                     </>
                                 ) : (
                                     <div>
-                                        <button className="contact-button" onClick={showHandler}>{t("fullView.contact")}</button>
+                                        {isLoggedIn && <button className="contact-button" onClick={showHandler}>{t("fullView.contact")}</button>}
                                         {isContactView ? (
                                             <div>
                                                 <Contact item={item} onExit={forceHideContactdView} onOverlayClick={handleHideContactdView}></Contact>
