@@ -3,7 +3,7 @@ import ReactLoading from 'react-loading';
 import './AddressPicker.css'
 
 
-export function AddressTextField({setCoordinates}){
+export function AddressTextField({ setCoordinates }) {
 
   const [address, setAddress] = useState('')
   const [isLoading, setIsLoading] = useState(false);
@@ -20,33 +20,36 @@ export function AddressTextField({setCoordinates}){
     e.preventDefault();
     setIsLoading(true);
     fetch(`/api/location/${address}`).then(resp => {
-      if (!resp.ok){
+      if (!resp.ok) {
         throw new Error('Address could not be read.');
       }
       return resp.json();
     })
-    .then(json => {
-      //setCoordinates(json[0]);
-      setFetchedPlaces(json)
-    })
-    .finally(()=>{setIsLoading(false)})
+      .then(json => {
+        //setCoordinates(json[0]);
+        setFetchedPlaces(json)
+      })
+      .finally(() => { setIsLoading(false) })
   }
 
-  const onFetchedPlaceClicked = (place) =>{
+  const onFetchedPlaceClicked = (place) => {
     //sets the current map coords to the selected place
     setCoordinates(place)
   }
 
-  const fetchedPlacesJSX = fetchedPlaces.map((place)=>{
-    return(
-      <p className="location-picker-found-location" onClick={()=>{onFetchedPlaceClicked(place)}}>{place.name}</p>
+  const fetchedPlacesJSX = fetchedPlaces.map((place) => {
+    return (
+      <p className="location-picker-found-location" onClick={() => { onFetchedPlaceClicked(place) }}>{place.name}</p>
     );
   });
 
-  return(
+  return (
     <div className="address-text-box-container">
       {isLoading && <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={16} width={16} />}
-      <div className="address-text-box"><input type='text' onChange={onInputChange}></input><div onClick={checkAddress}>Check</div></div>
+      <div className="address-text-box">
+        <input type='text' onChange={onInputChange}></input>
+        <button onClick={checkAddress}>Check</button>
+      </div>
       {fetchedPlaces.length > 0 && <div>{fetchedPlacesJSX}</div>}
     </div>
   );

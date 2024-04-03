@@ -14,7 +14,6 @@ export function Sell() {
       switch (value) {
           case "Car":
               setSellJSX(<CarForm />);
-              console.log("Car");
               break;
           case "Item":
               setSellJSX(<ItemForm />);

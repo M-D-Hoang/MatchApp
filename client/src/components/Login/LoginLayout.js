@@ -85,7 +85,6 @@ export function Login(props) {
     );
   }
 
-  console.log(displayableJSX);
   return (
 
     <div className="link-container">
