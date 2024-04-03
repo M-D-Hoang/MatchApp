@@ -59,7 +59,7 @@
     "extra": "Extra:",
     "category": "Category:",
     "year": "Year:",
-    "location": "Location"
+    "location": "Location:"
   },
   "404": {
     "404": "404 - No Such Page"
@@ -71,9 +71,15 @@
     "posted": "Posted by:",
     "delete": "Delete",
     "edit": "Edit",
+    "contact": "Contact Buyer",
+    "send": "Send Message",
+    "enterMessage": "Enter Message:",
     "noLocation": "No pickup location was specified."
   },
   "detail": {
     "full": "Full View"
+  },
+  "noti": {
+    "noti": "Your Notifications"
   }
 }

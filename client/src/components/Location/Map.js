@@ -1,5 +1,6 @@
 import { MapContainer, Marker, TileLayer, Tooltip, useMap } from 'react-leaflet';
 import { useEffect } from 'react';
+import "../ImportedComponents/map.css";
 /**react leaflet map component taking a landmark object list
  * and displaying mapmarkers based on their positions.
  */
@@ -12,7 +13,6 @@ export function MapScreen({ marker }) {
 
   let mapMarkersJSX = <></>
   if(marker !== null && marker !== undefined){
-    console.log(marker);
     mapMarkersJSX = <Marker position={[marker.coordinates[0], marker.coordinates[1]]}>
     <Tooltip>{marker.name.replace(/,/g, '\n')}</Tooltip>
     </Marker>;

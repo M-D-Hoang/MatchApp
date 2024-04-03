@@ -46,6 +46,7 @@ export function ListingsLayout() {
                 ? `${queryParameters.get("type")}?`
                 : "";
             url += queryParameters.toString();
+            console.log(url);
             fetch(url)
                 .then((resp) => {
                     return resp.json();
