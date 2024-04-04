@@ -180,7 +180,6 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
     } = req.query;
 
     const filter = {};
-
     if (keyword) {
       //contains title
       filter.title = { $regex: keyword, $options: 'i' };
@@ -196,11 +195,12 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
       filter.category = category;
     }
     if (minPrice) {
-      filter.price = { $gte: minPrice };
+      filter.price = { $gte: Number(minPrice) };
     }
     if (maxPrice) {
-      filter.price = { $lte: maxPrice };
+      filter.price = { ...filter.price, $lte: Number(maxPrice) };
     }
+    
 
     const listings = await db.readAllFilteredListings(
       filter,
@@ -258,11 +258,12 @@ exports.getCarsFiltered = asyncHandler(async (req, res) => {
       filter.driveTrain = driveTrain;
     }
     if (minPrice) {
-      filter.price = { $gte: minPrice };
+      filter.price = { $gte: Number(minPrice) };
     }
     if (maxPrice) {
-      filter.price = { $lte: maxPrice };
+      filter.price = { ...filter.price, $lte: Number(maxPrice) };
     }
+    
     const carListings = await db.readAllFilteredCarListings(
       filter,
       page,
