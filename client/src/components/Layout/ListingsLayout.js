@@ -44,7 +44,7 @@ export function ListingsLayout() {
             let url = "/api/listings/";
             url += queryParameters.get("type")
                 ? `${queryParameters.get("type")}?`
-                : "";
+                : "items";
             url += queryParameters.toString();
             console.log(url);
             fetch(url)
