@@ -96,7 +96,7 @@ export function ListingsLayout() {
     };
     const handleSortByPriceDesc = () => {
         setOpen(false);
-        setSortBy("filter.highPrice");
+        setSortBy(t("filter.highPrice"));
         sortByHandler("price", "desc");
     };
     const handleSortByOldest = () => {
