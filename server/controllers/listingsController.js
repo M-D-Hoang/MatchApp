@@ -194,16 +194,11 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
     if (category) {
       filter.category = category;
     }
-    if (minPrice && maxPrice) {
-      filter.price = { $gte: minPrice, $lte: maxPrice };
-    } else {
-      filter.price = {};
-      if (minPrice) {
-        filter.price.$gte = minPrice;
-      }
-      if (maxPrice) {
-        filter.price.$lte = maxPrice;
-      }
+    if (minPrice) {
+      filter.price = { $gte: Number(minPrice) };
+    }
+    if (maxPrice) {
+      filter.price = { ...filter.price, $lte: Number(maxPrice) };
     }
     
 
@@ -262,16 +257,11 @@ exports.getCarsFiltered = asyncHandler(async (req, res) => {
     if (driveTrain) {
       filter.driveTrain = driveTrain;
     }
-    if (minPrice && maxPrice) {
-      filter.price = { $gte: minPrice, $lte: maxPrice };
-    } else {
-      filter.price = {};
-      if (minPrice) {
-        filter.price.$gte = minPrice;
-      }
-      if (maxPrice) {
-        filter.price.$lte = maxPrice;
-      }
+    if (minPrice) {
+      filter.price = { $gte: Number(minPrice) };
+    }
+    if (maxPrice) {
+      filter.price = { ...filter.price, $lte: Number(maxPrice) };
     }
     
     const carListings = await db.readAllFilteredCarListings(
