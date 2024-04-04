@@ -6,11 +6,13 @@ import { Sell } from "./pages/Sell/Sell";
 // import { YourListings } from "./pages/YourListings/YourListings";
 import { Edit } from "./pages/Edit/Edit";
 import { FullView } from "./pages/FullView/FullView";
+import { Notifications } from "./pages/Notifications/Notifications";
 import { UserPage } from "./pages/UserProfile/UserProfile";
 import {GoogleOAuthProvider} from "@react-oauth/google";
 import { useState } from "react";
 import {MissingPage} from './pages/404/404.js'
 import { UserEdit } from "./components/UserEdit/UserEdit.js";
+// import { set } from "../../server/server.js";
 
 function App() {
     const [pfpURL, setPfpURL] = useState('');
@@ -28,6 +30,7 @@ function App() {
                       <Route path="edit" element={<Edit />} />
                       <Route path="fullview/item/:id" element={<FullView isCar={false} />} />
                       <Route path="fullview/car/:id" element={<FullView isCar={true} />} />
+                      <Route path="notifications/:username" element={<Notifications username={username}/>} />
                       <Route path='my-page' element={<UserPage/>}/>
                       <Route path="fullview" element={<FullView />} />                     
                       <Route path='user/:username' element={<UserPage/>}/>

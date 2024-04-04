@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { LocationSelect } from "../Location/LocationPicker.js";
 
 export function ItemForm({ item }) {
-    const { t} = useTranslation("global");
+    const { t } = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
     const [imageFiles, setImageFiles] = useState(null);
@@ -30,12 +30,13 @@ export function ItemForm({ item }) {
     const submitItem = async (e) => {
         e.preventDefault();
         var formData = new FormData(e.target);
+        console.log(place);
         formData.append("image", imageFiles);
         if (place != null){
             formData.append("location",place.name);
             formData.append("coordinates", place.coordinates);
         }
-        
+
         var resp = undefined;
         if (item !== undefined) {
             //For editing an item
@@ -131,12 +132,12 @@ export function ItemForm({ item }) {
                 </label>
                 <label>
                     {t("form.location")}{" "}
-                    <LocationSelect coordinates={place} setCoordinates={setPlace}/>
+                    <LocationSelect coordinates={place} setCoordinates={setPlace} />
                 </label>
                 <label>
                     {t("form.images")}{" "}
                     <div className="image-input-container">
-                      {t("form.select")}
+                        {t("form.select")}
                         <input
                             className="image-input"
                             type="file"
