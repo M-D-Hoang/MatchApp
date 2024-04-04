@@ -12,7 +12,9 @@ exports.postItem = asyncHandler(async (req, res, next) => {
     
     //coordinates gets sent as a string for some reason so
     //we turn it into an array with split
-    formObj.coordinates = formObj.coordinates.split(',');
+    if(formObj.coordinates){
+      formObj.coordinates = formObj.coordinates.split(',');
+    }
 
     formObj.objectType = 'item';
     formObj.date = new Date(Date.now()).toLocaleString();
@@ -40,7 +42,10 @@ exports.postCar = asyncHandler(async (req, res, next) => {
  
     //coordinates gets sent as a string for some reason so
     //we turn it into an array with split
-    formObj.coordinates = formObj.coordinates.split(',');
+    if(formObj.coordinates) {
+      formObj.coordinates = formObj.coordinates.split(',');
+    }
+    
 
     formObj.objectType = 'cars';
     formObj.date = new Date(Date.now()).toLocaleString();
@@ -95,7 +100,9 @@ exports.editCar = asyncHandler(async (req, res, next) => {
   try {
     //coordinates gets sent as a string for some reason so
     //we turn it into an array with split
-    carObj.coordinates = carObj.coordinates.split(',');
+    if(carObj.coordinates){
+      carObj.coordinates = carObj.coordinates.split(',');
+    }
     res.locals.listing = await db.updateCarListing(carObj);
     // pass request down to image controller
     if (req.files) {
@@ -119,7 +126,9 @@ exports.editItem = asyncHandler(async (req, res, next) => {
   try {
     //coordinates gets sent as a string for some reason so
     //we turn it into an array with split
-    ItemObj.coordinates = ItemObj.coordinates.split(',');
+    if(ItemObj.coordinates){
+      ItemObj.coordinates = ItemObj.coordinates.split(',');
+    }
     res.locals.listing = await db.updateItemListing(ItemObj);
     // pass request down to image controller
     if (req.files) {
