@@ -15,9 +15,6 @@
         transform: translate(-50%, -1em);
         z-index: 1;
     }
-    .listings-display.square{
-        transform: translate(0, 4em);
-    }    
 }
 
 .search-bar {

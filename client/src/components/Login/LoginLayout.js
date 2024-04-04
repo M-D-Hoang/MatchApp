@@ -2,7 +2,6 @@
 import { GoogleLogin } from '@react-oauth/google';
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-// import { response } from "../../../../server/server";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginLayout.css";
 import { useTranslation } from "react-i18next";
@@ -162,7 +161,7 @@ const overlayClassName = 'drawer-overlay'
           <Drawer
                 overlayClassName={overlayClassName}
                 open={drawerOpen}
-                
+                zIndex={2424}
                 direction='right'
                 className='mobile-drawer-parent'
             >

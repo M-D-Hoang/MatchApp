@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-export function ListingsSidebar() {
+export function ListingsSidebar({isMobile}) {
     const navigate = useNavigate();
     const [t] = useTranslation("global");
     const [itemType, setItemType] = useState("items");

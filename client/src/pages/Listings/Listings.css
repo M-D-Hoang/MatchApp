@@ -9,6 +9,20 @@
     padding-right: 0;
     transition: padding-left 0.2s ease, padding-right 0.5s ease;
 }
+
+@media (max-width: 621px) {
+    .search-bar {
+        flex-direction:column;
+        height: 3em;
+        
+        gap: 2em;
+        padding: 1em 3em;
+    }
+    .listings-display.square{
+        padding:0px;
+    }
+}
+
 @media (max-width: 1081px) {
     .listings-page > .listings-layout {
         padding-left: 2em;

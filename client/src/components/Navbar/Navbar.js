@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import Toggle from "react-toggle";
 import "react-toggle/style.css";
 import "../ImportedComponents/toggle.css";
-
+import useWindowDimensions from "../useWindowWidth";
 
 /**
  * Renders the navigation bar component. This includes the logo, the title, and links to pages.
@@ -87,27 +87,3 @@ export function Navbar(props) {
     );
 }
 
-//Window Dimension Functions
-
-function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-        width,
-        height
-    };
-}
-
-export default function useWindowDimensions() {
-    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-
-    useEffect(() => {
-        function handleResize() {
-            setWindowDimensions(getWindowDimensions());
-        }
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    return windowDimensions;
-}
