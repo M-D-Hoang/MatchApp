@@ -8,7 +8,7 @@ const { Listing, CarListing } = require('./model/Listing.js');
 dotenv.config();
 const dbUrl = process.env.ATLAS_URI;
 let instance = null;
-const ITEMS_PER_PAGE = 50;
+const ITEMS_PER_PAGE = 52;
 
 class DB {
   constructor() {
@@ -43,7 +43,7 @@ class DB {
     const sortObject = {};
     // TODO MAKE SURE ONLY PRICE OR DATE
     sortObject[sortField] = validSortOrder;
-    return (await CarListing.find(filter)).
+    return await CarListing.find(filter).
       sort(sortObject).
       skip(skipItems).
       limit(ITEMS_PER_PAGE);
@@ -183,7 +183,7 @@ class DB {
   }
 
   async getMessagesFromUser(username) {
-    return await Message.find({ sellerID: username, isViewed: false }).sort({ createdAt: -1 });
+    return await Message.find({ sellerID: username }).sort({ createdAt: -1 });
   }
 
   async createMessage(message) {
@@ -192,7 +192,7 @@ class DB {
       buyerID: message.buyerID,
       listingID: message.listingID,
       message: message.message,
-      isViewed: message.isViewed
+      itemImage: message.itemImage,
     });
 
     return await messageRow.save();
