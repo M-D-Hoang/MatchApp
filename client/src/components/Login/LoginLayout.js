@@ -143,19 +143,33 @@ const handleNotificationsURL = () => {
   navigate('/notifications/' + user.username);
 }
 
+const checkOverlayClick = (e)=>{
+  //check for drawer dark area click
+  console.log(e.target.classList.contains(overlayClassName));
+  if(e.target.classList.contains(overlayClassName)){
+    setDrawerOpen(false);
+    console.log('close heckin drawer');
+  }
+}
+
+const overlayClassName = 'drawer-overlay'
 
   return (
       //Link to User Page & Sell Button
       <div className="link-container">
           {!isMobile && <DesktopFunctions t={t} onLogOut={onLogOut} handleNotificationsURL={handleNotificationsURL} noti={noti}/>}
+          <span onClick={checkOverlayClick}>
           <Drawer
+                overlayClassName={overlayClassName}
                 open={drawerOpen}
-                onClose={setDrawerOpen}
+                
                 direction='right'
                 className='mobile-drawer-parent'
             >
                 <MobileFunctions t={t} toggleDark={toggleDark} onLogOut={onLogOut} navigate={navigate} chLang={chLang} setDrawer={setDrawerOpen} pfpURL={pfpURL} user={user} handleNotificationsURL={handleNotificationsURL} noti={noti}/>
             </Drawer>
+          </span>
+         
           <div className="link pfp-container">
             <div className="pfp-container-link">
               <img
