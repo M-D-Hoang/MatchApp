@@ -2,6 +2,8 @@
 
 An online marketplace.
 
+The site URL is https://620fmp.azurewebsites.net/
+
 # Development Setup
 
 ## Initial Setup
