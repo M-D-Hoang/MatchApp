@@ -63,6 +63,7 @@ a {
     height: 58px;
     border-radius: 500%;
     flex-shrink: 0;
+    cursor:pointer;
 }
 
 .navbar-pfp:hover {

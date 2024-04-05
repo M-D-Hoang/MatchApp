@@ -34,12 +34,14 @@
   background: var(--color-background);
 }
 
-.mobile-drawer-top > *:not(img):not(:last-child):hover , .mobile-drawer-language-parent > *:hover, .mobile-drawer-bottom > *:hover{
-    
+.mobile-drawer-top > *, .mobile-drawer-bottom > *{
+    cursor: pointer;
+  }
+
+.mobile-drawer-top > *:not(img):hover , .mobile-drawer-language-parent > *:hover, .mobile-drawer-bottom > *:hover{   
     border-bottom: 1px solid;
     color:var(--color-text);
     border-image: linear-gradient(to right, transparent, var(--color-text), transparent) 1;
     background: var(--color-background);
-    cursor: pointer;
-  }
+}
 
