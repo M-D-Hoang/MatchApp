@@ -1,3 +1,4 @@
+/*this needs a total rewrite i'm done*/
 .notification-block {
     display: flex;
     flex-direction: row;
@@ -12,10 +13,12 @@
     border: none;
     background-color: var(--color-background-light);
     gap: 3em;
+    overflow-wrap: break-word;
 }
 .notification-block > img {
-    width: 60%;
-    height: 80%;
+    width: 320px;
+    height: 180px;
+    object-fit: cover;
     float:  right;
 }
 
@@ -33,4 +36,18 @@
 
 .user {
   min-width: 25%;
+}
+
+@media (max-width: 680px) {
+  .notification-block{
+    flex-direction:column;
+    height: auto;
+    padding: 3em 0 ;
+    width:90vw;
+  }
+
+  .notification-info > p{
+   width:100%;
+   
+  }
 }
