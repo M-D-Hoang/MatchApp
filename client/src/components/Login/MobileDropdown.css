@@ -9,6 +9,7 @@
 
 .mobile-drawer-parent{
     background: var(--color-background);
+    
 }
 
 .mobile-drawer-option{
@@ -25,6 +26,9 @@
     
 }
 
+.EZDrawer{
+    z-Index:500000000;
+}
 
 .mobile-drawer-top > *:not(img), .mobile-drawer-bottom > *{
   padding: 8px 0px 2px 0px;
@@ -38,7 +42,7 @@
     cursor: pointer;
   }
 
-.mobile-drawer-top > *:not(img):hover , .mobile-drawer-language-parent > *:hover, .mobile-drawer-bottom > *:hover{   
+.mobile-drawer-top > *:not(img):not(:last-child):hover , .mobile-drawer-language-parent > *:hover, .mobile-drawer-bottom > *:hover{   
     border-bottom: 1px solid;
     color:var(--color-text);
     border-image: linear-gradient(to right, transparent, var(--color-text), transparent) 1;

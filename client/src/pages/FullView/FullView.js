@@ -5,7 +5,7 @@ import tempImage from "../../assets/images/item-image-temp1.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
 import ReactLoading from 'react-loading';
-import { Contact } from "../Contact/Contact";
+import { Contact } from "../../components/Contact/Contact";
 import "./FullView.css";
 import { MapScreen } from "../../components/Location/Map";
 import { useTranslation } from "react-i18next";

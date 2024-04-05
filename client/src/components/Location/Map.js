@@ -1,6 +1,6 @@
 import { MapContainer, Marker, TileLayer, Tooltip, useMap } from 'react-leaflet';
 import { useEffect } from 'react';
-import "../ImportedComponents/map.css";
+import "./Map.css";
 /**react leaflet map component taking a landmark object list
  * and displaying mapmarkers based on their positions.
  */
