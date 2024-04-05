@@ -5,28 +5,27 @@ export function DropdownSort({ t, sortBy, setSortBy, sortByHandler }) {
 
   const handleOpen = () => {
     setOpen(!isMenuOpen);
-  };
-
-  const handleSortByPriceAsc = () => {
+};
+const handleSortByPriceAsc = () => {
     setOpen(false);
     setSortBy(t("filter.lowPrice"));
     sortByHandler("price", "asc");
-  };
-  const handleSortByPriceDesc = () => {
+};
+const handleSortByPriceDesc = () => {
     setOpen(false);
-    setSortBy("filter.highPrice");
+    setSortBy(t("filter.highPrice"));
     sortByHandler("price", "desc");
-  };
-  const handleSortByOldest = () => {
+};
+const handleSortByOldest = () => {
     setOpen(false);
     setSortBy(t("filter.oldest"));
     sortByHandler("date", "asc");
-  };
-  const handleSortByNewest = () => {
+};
+const handleSortByNewest = () => {
     setOpen(false);
     setSortBy(t("filter.newest"));
     sortByHandler("date", "desc");
-  };
+};
 
   return (
     <div className="dropdown">
