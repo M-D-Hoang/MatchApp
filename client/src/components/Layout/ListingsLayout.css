@@ -6,7 +6,7 @@
 }
 
 
-@media (max-width: 621px) {
+@media (max-width: 680px) {
     .search-bar {
         flex-direction:column;
     }
@@ -16,6 +16,8 @@
         z-index: 1;
     }
 }
+
+
 
 .search-bar {
     height: 3em;

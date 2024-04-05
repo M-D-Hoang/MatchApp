@@ -117,6 +117,7 @@ export function ListingsLayout({isMobile}) {
             </form>
             {isMobile && <DropdownSort t={t} sortBy={sortBy} setSortBy={setSortBy} sortByHandler={sortByHandler}/>}
           </div>
+          {!isMobile && <div><DropdownSort t={t} sortBy={sortBy} setSortBy={setSortBy} sortByHandler={sortByHandler}/></div>}
           {listingJSX.length === 0 && loadingDone ? (
             <div className="no-results">{t("filter.none")}</div>
           ) : null}
