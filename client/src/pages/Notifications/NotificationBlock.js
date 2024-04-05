@@ -4,8 +4,6 @@ import "./NotificationBlock.css";
 
 export function NotificationBlock({ notification }) {
   const [user, setUser] = useState({});
-  const [item, setItem] = useState({});
-  const [itemPicture, setItemPicture] = useState('');
 
   useEffect (() => {
     const fetchUser = async () => {
@@ -25,25 +23,6 @@ export function NotificationBlock({ notification }) {
     fetchUser();
   }, [notification.buyerID]);
 
-  useEffect (() => {
-    const fetchItem = async () => {
-      try {
-        const resp = await fetch(`/api/listings/item/${notification.listingID}`);
-        if (!resp.ok) {
-          throw new Error('Failed to fetch notifications');
-        }
-        const data = await resp.json();
-        setItem(data);
-        setItemPicture(data.imageURIs[0]);
-      }
-      catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchItem();
-   }, [notification.itemID, notification.listingID]);
-
    const handleNotificationClick = async () => {
       const resp = await fetch("/api/messages/", {
               method: "DELETE",
@@ -59,13 +38,15 @@ export function NotificationBlock({ notification }) {
   };
 
   return (
-    <div className="notification-block" onClick={handleNotificationClick}>
-      <UserButton userID={user.username}/>
+    <div className="notification-block">
+      <div className="user">
+      <UserButton userID={user.username}/>  
+      </div>
       <div className="notification-info">
-        <p className="notification-title">{item && item.title && item.title.length > 60 ? item.title.substring(0, 60) + "..." : item && item.title}</p>
         <p>{notification.message}</p>    
       </div>
-      <img src={itemPicture} alt="listing img"/>
+      <img src={notification.itemImage} alt="listing img"/>
+      <h1 className="close-button" onClick={handleNotificationClick}>x</h1>
     </div>
   );
 }

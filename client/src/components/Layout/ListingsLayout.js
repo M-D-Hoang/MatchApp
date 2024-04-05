@@ -5,7 +5,7 @@ import "./ListingsLayout.css";
 import ReactLoading from "react-loading";
 import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 import { useTranslation } from "react-i18next";
-import { DropdownSort } from "../../pages/Listings/DropdownSort/DropdownSort";
+import { DropdownSort } from "../DropdownSort/DropdownSort";
 
 export function ListingsLayout({isMobile}) {
   const [t] = useTranslation("global");
@@ -45,8 +45,9 @@ export function ListingsLayout({isMobile}) {
       let url = "/api/listings/";
       url += queryParameters.get("type")
         ? `${queryParameters.get("type")}?`
-        : "";
+        : "items";
       url += queryParameters.toString();
+            console.log(url);
       fetch(url)
         .then((resp) => {
           return resp.json();

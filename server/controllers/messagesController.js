@@ -16,6 +16,7 @@ exports.postMessage = asyncHandler(async (req, res) => {
   const messageObj = req.body;
   try {
     await db.createMessage(messageObj);
+
     return res.status(200).send(messageObj);
   } catch (e) {
     res.status = 400;

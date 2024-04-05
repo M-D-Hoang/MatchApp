@@ -16,9 +16,7 @@ export function FullView({ isCar }) {
     const itemId = useParams().id;
     const [item, setItem] = useState({ ownerID: undefined, imageURIs: [''] });
     const [isOwner, setisOwner] = useState(false);
-    //We don't use this variable even though we set it in various places. 
-    //Remove the comment here and in the setters if used.
-    //const [isLoggedIn, setLoggedIn] = useState(false);
+    const [isLoggedIn, setLoggedIn] = useState(false);
 
     const [isContactView, setContactView] = useState(false);
 
@@ -57,17 +55,17 @@ export function FullView({ isCar }) {
         }).then(resp => {
             if (!resp.ok) {
                 setisOwner(false);
-                //setLoggedIn(true);
+                setLoggedIn(true);
                 return
             }
             return resp.json();
         }).then(json => {
             setisOwner(item.ownerID === json.username)
-            //setLoggedIn(true);
+            setLoggedIn(true);
         }).catch((e) => {
             console.error(e)
             setisOwner(false);
-            //setLoggedIn(false);
+            setLoggedIn(false);
         })
     }, [item.ownerID]);
 
@@ -161,7 +159,7 @@ export function FullView({ isCar }) {
                                     </>
                                 ) : (
                                     <div>
-                                        <button className="contact-button" onClick={showHandler}>{t("fullView.contact")}</button>
+                                        {isLoggedIn && <button className="contact-button" onClick={showHandler}>{t("fullView.contact")}</button>}
                                         {isContactView ? (
                                             <div>
                                                 <Contact item={item} onExit={forceHideContactdView} onOverlayClick={handleHideContactdView}></Contact>
