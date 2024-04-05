@@ -225,7 +225,6 @@ function MobileFunctions({user,onLogOut, navigate, t, chLang, setDrawer, pfpURL,
         
         
       <p onClick={()=>{handleNotificationsURL(); setDrawer(false)}}>
-      <img id="notification-bell" src={require("../../assets/images/notification.png")} alt="notification bell" />
       {" "}{t("nav.noti")} ({noti.length})</p>
       
       <p onClick={()=>{navigate('/sell'); setDrawer(false)}}>{t("nav.sell")}</p>

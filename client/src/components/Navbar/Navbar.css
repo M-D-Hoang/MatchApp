@@ -93,3 +93,19 @@ a {
 .qJTHM {
     transform: translate(0, -5px);
 }
+
+
+/*Language Styles*/
+#language-selector > p:nth-child(odd){
+    cursor: pointer;
+}
+#language-selector > p:nth-child(even){
+    cursor:default;
+}
+
+#language-selector > p:nth-child(odd):hover{   
+    border-bottom: 1px solid;
+    color:var(--color-text);
+    border-image: linear-gradient(to right, transparent, var(--color-text), transparent) 1;
+    background: var(--color-background);
+}
