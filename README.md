@@ -4,9 +4,8 @@ An online marketplace.
 
 The site URL is https://620fmp.azurewebsites.net/
 
-# Development Setup
 
-## Initial Setup
+# Initial Setup
 To install the dependencies, run
 ```
 npm install
@@ -42,3 +41,25 @@ occupyItemDB();
 
 ## Final Preperation
 After seeding, go into the `/client/` directory and run `npm run build`. This will build a client so the server can run. After this, you are now ready to run the webserver for either development or production.
+
+# Running Unit Tests and Linting Tools
+
+**TBA**
+
+# Running for Development
+
+1. Start up the express server by going into `/server/` and running `npm run start`, or `npm run dev` if you want to run it with nodemon. 
+**MAKE SURE YOU SET YOUR ENVIRONMENT VARIABLES OR THE APP WON'T WORK**
+2. Look for the following output. If it's there, the server is up and running correctly:
+```
+Successfully conected to the DB
+Server listening on port 3000!
+```
+3. Inside the `/client/` directory, run `npm run start`. 
+4. When prompted to select a different port to run, select YES. This will run the Create-React-App's development client in port 3001.
+
+The server will now be running at port 3000, while the development client will be running at port 3001. A proxy to port 3000 is already provided so the two servers can communicate.
+
+# Running for Deployment
+
+
