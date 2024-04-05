@@ -56,9 +56,12 @@
     box-shadow: var(--box-shadow-small);
     overflow: hidden;
     translate: 0 -1.5em;
-    background-color: rgb(240, 240, 240);
+    background-color: var(--color-background-light);
+    
     position: relative;
 }
+
+
 
 .dropdown-content > button {
     height: 3em;
