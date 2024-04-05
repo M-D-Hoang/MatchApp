@@ -213,16 +213,15 @@ function MobileFunctions({user,onLogOut, navigate, t, chLang, setDrawer, pfpURL,
 
   return(
     <div className='mobile-drawer-option'>
-      <div className='mobile-drawer-top'>
-      <p onClick={()=>{setDrawer(false)}}>{t("nav.closeDrawer")}</p> {/** <----- should be done when clicked the gray area, not in its own button */}
-      {/* <p onClick={navToProfile}>{t("nav.profile")}</p> */}
+      <div className='mobile-drawer-top'>      
+      {  }
         <img
           onClick={navToProfile}                  
           className="navbar-drawer-pfp"
           src={pfpURL}
           alt="my-profile">
         </img>
-        
+        <p onClick={navToProfile}>{t("nav.profile")}</p>
         
         
       <p onClick={()=>{handleNotificationsURL(); setDrawer(false)}}>
