@@ -4,6 +4,7 @@
     text-align: center;
     min-height: 100vh;
     background-color: var(--color-background);
+    word-wrap: break-word;
 }
 
 input:focus,
