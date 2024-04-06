@@ -59,9 +59,7 @@ export function NotificationBlock({ notification }) {
       <div className="notification-info">     
       <p>{notification.message}</p>  
       </div>
-      <img onClick={handleImageClick} src={notification.itemImage} alt="listing img"/>
-      
-      
+      <img className="notification-image" onClick={handleImageClick} src={notification.itemImage} alt="listing img"/>
     </div>
   );
 }

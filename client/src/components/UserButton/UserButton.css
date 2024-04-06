@@ -6,9 +6,12 @@
     margin-right: 0;
     border-radius: 1.5em;
     padding: 8px;
-    background-color: var(--color-background-lighter);
+    background-color: var(--color-background-light);
     box-shadow: var(--box-shadow-small);
 }
+
+
+
 
 .user-button > * {
     margin: 0px 16px;
@@ -27,6 +30,7 @@
 }
 
 .user-button:hover {
-    transition: box-shadow 0.3s;
+    transition: box-shadow 0.3s, background-color 0.3s;
     box-shadow: var(--box-shadow-medium);
+    background-color: var(--color-background-lighter);
 }

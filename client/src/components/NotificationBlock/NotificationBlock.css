@@ -64,12 +64,15 @@ min-width: 25%;
   background-color: var(--color-background-light);
 }
 
-.notification-block > img{
+.notification-image {
   max-width: 284px;
   max-height: 160px;
   object-fit: cover;
   flex:1;
+  cursor:pointer;
 }
+
+
 
 .notification-info{
   flex:6;
@@ -97,12 +100,18 @@ min-width: 25%;
   }
   .notification-block > img{
     align-self: center;
-    cursor:pointer;
+   
+  }
+  .notification-first-metadata > *{
+    padding: 16px;
+  }
+  .close-button{
+    width: 50vw;
+    align-self: center;
   }
 }
 
 .notification-info{
-  
   align-self: center;
   width: 90%;
   box-shadow: var(--box-shadow-small);
@@ -119,4 +128,6 @@ min-width: 25%;
   display:flex;
   justify-content: space-evenly;
   flex-direction: column;
+  
 }
+
