@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {ItemExclusiveSearch} from './ItemExclusiveSearch'
+import { CarExclusiveSearch } from "./CarExclusiveSearch";
 
 export function ListingsSidebar() {
     const navigate = useNavigate();
@@ -61,23 +62,7 @@ export function ListingsSidebar() {
         <div className={sidebarClassname}>
             <form onSubmit={(e) => submitQueries(e)} className="filters-form">
                 <div className="form-input">
-                    <h3 className="filter-title">{t("filter.filter")}</h3>
-                    <select
-                        className="item-type-select"
-                        onChange={(e) => handleItemTypeChoice(e.target.value)}>
-                        <option value="items" defaultValue>{t("filter.items")}</option>
-                        <option value="cars">{t("filter.cars")}</option>
-                    </select>
-                    <select
-                        name="condition"
-                        className="condition-select"
-                        onChange={(e) => handleConditionChoice(e.target.value)}>
-                        <option value={""}>{t("filter.condition")}</option>
-                        <option value="new">{t("filter.new")}</option>
-                        <option value="fair">{t("filter.fair")}</option>
-                        <option value="used">{t("filter.used")}</option>
-                    </select>
-                    <h3 className="price-title">{t("filter.price")}</h3>
+                <h3 className="price-title">{t("form.price")}</h3>
                     <div className="price-filter">
                         <input
                             type="number"
@@ -95,6 +80,23 @@ export function ListingsSidebar() {
                                 setMaxPrice(e.target.value)
                             }></input>
                     </div>
+                    <h3 className="filter-title">{t("filter.filter")}</h3>
+                    <select
+                        className="item-type-select"
+                        onChange={(e) => handleItemTypeChoice(e.target.value)}>
+                        <option value="items" defaultValue>{t("filter.items")}</option>
+                        <option value="cars">{t("filter.cars")}</option>
+                    </select>
+                    <select
+                        name="condition"
+                        className="condition-select"
+                        onChange={(e) => handleConditionChoice(e.target.value)}>
+                        <option value={""}>{t("filter.condition")}</option>
+                        <option value="new">{t("form.new")}</option>
+                        <option value="fair">{t("form.fair")}</option>
+                        <option value="used">{t("form.used")}</option>
+                    </select>
+                    
                     {extraSearchTerms}
                 </div>
                 <div className="bottom-container">
@@ -109,16 +111,3 @@ export function ListingsSidebar() {
 }
 
 
-function CarExclusiveSearch({t, updateSectionQuery}){
-return(
-    <>
-    <h3 className="filter-title">{t("filter.filter")}</h3>
-                    <select
-                        className="item-type-select"
-                        >
-                        <option value="items" defaultValue>{t("filter.items")}</option>
-                        <option value="cars">{t("filter.cars")}</option>
-                    </select>
-    </>
-);
-}

@@ -36,15 +36,8 @@
     "items": "Items",
     "cars": "Cars",
     "condition": "Condition",
-    "any": "Any",
-    "new": "New",
-    "used": "Used",
-    "fair": "Fair",
-    "price": "Price",
     "min": "Min",
-    "max": "Max",
-    "category": "Category",
-    "extra": "Extra Tag"
+    "max": "Max"
   },
   "form": {
     "title": "Title:",
@@ -62,7 +55,11 @@
     "extra": "Extra Tag:",
     "category": "Category:",
     "year": "Year:",
-    "location": "Location:"
+    "location": "Location:",
+    "new": "New",
+    "used": "Used",
+    "fair": "Fair"
+    
   },
   "category":{
     "electronics":"Electronics",

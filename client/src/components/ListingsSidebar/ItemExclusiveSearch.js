@@ -24,17 +24,17 @@ export function ItemExclusiveSearch({t, updateSectionQuery}){
 
     return (
         <>
-            <h3 className="filter-title">{t("filter.category")}</h3>
+            
             <select
                 className="item-type-select"
 
                 onChange={(e) => { setCategory(e.target.value); sendUpdatedDataUp() }}>
-                <option value="">{t("filter.any")}</option>
+                <option value="">{t("form.category")}</option>
                 {categoryOptionJSX}
 
             </select>
 
-            <h3 className="filter-title">{t("filter.extra")}</h3>
+            
             <input
                 name='extra'
                 value={extra}
@@ -46,7 +46,7 @@ export function ItemExclusiveSearch({t, updateSectionQuery}){
                 }}
                 className="item-type-select"
                 type='text'
-                placeholder={t("filter.category")}
+                placeholder={t("form.extra")}
             ></input>
         </>
     );
