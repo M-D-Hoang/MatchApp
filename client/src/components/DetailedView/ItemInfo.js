@@ -29,11 +29,16 @@ export function ItemInfo({ item }) {
                         <b>{t("form.mileage")}</b> {item.mileage} km
                     </p>
                 )}
+                {item.category && (
+                    <p className="detail">
+                        <b>{t("form.category")}</b> {item.category}
+                    </p>
+                )}
                 {item.condition && (
                     <p className="detail">
                         <b>{t("form.condition")}</b> {item.condition}
                     </p>
-                )}
+                )}                
                 {item.extraField && item.extraField !== "none" && (
                     <p className="detail">
                         <b>{t("form.extra")}</b> {item.extraField}

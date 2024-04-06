@@ -36,12 +36,15 @@
     "items": "Items",
     "cars": "Cars",
     "condition": "Condition",
+    "any": "Any",
     "new": "New",
     "used": "Used",
     "fair": "Fair",
     "price": "Price",
     "min": "Min",
-    "max": "Max"
+    "max": "Max",
+    "category": "Category",
+    "extra": "Extra Tag"
   },
   "form": {
     "title": "Title:",
@@ -56,10 +59,29 @@
     "driveTrain": "Drive Train:",
     "images": "Images:",
     "select": "Select files",
-    "extra": "Extra:",
+    "extra": "Extra Tag:",
     "category": "Category:",
     "year": "Year:",
     "location": "Location:"
+  },
+  "category":{
+    "electronics":"Electronics",
+    "clothing":"Clothing",
+    "kitchen": "Kitchen",
+    "books":"Books",
+    "toys":"Toys/Games",
+    "personalCare":"Personal Care",
+    "sports":"Sports",
+    "health":"Health",
+    "pet":"Pet Supplies",
+    "jewlery":"Jewelry",
+    "baby":"Baby & Kids",
+    "office":"Office",
+    "furniture":"Furniture",
+    "movies":"Movies",
+    "music": "Music",
+    "travel":"Travel & Luggage",
+    "other":"Other"
   },
   "404": {
     "404": "404 - No Such Page"
