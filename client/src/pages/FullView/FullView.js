@@ -150,6 +150,7 @@ export function FullView({ isCar }) {
 
                                 {item.coordinates.length > 0 && item.location !== undefined ?
                                     <div className="fullview-map-parent">
+                                        <h2>{t("fullView.pickupLoc")}</h2>
                                         <MapScreen marker={{ name: item.location, coordinates: item.coordinates }} />
                                     </div> : <p>{t("fullView.noLocation")}</p>}
                                 {isOwner ? (

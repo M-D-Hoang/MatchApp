@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { UserButton } from "../../components/UserButton/UserButton";
 import "./NotificationBlock.css";
 
+
 export function NotificationBlock({ notification }) {
   const [user, setUser] = useState({});
+
+
 
   useEffect (() => {
     const fetchUser = async () => {

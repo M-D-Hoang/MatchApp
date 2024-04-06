@@ -82,6 +82,7 @@
     "send": "Envoyer",
     "enterMessage": "Entrez votre message:",
     "noLocation": "Aucun lieu de prise en charge n'a été précisé."
+    
   },
   "detail": {
     "full": "Vue complète"

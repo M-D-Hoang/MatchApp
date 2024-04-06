@@ -81,7 +81,8 @@
     "contact": "Contact Buyer",
     "send": "Send Message",
     "enterMessage": "Enter Message:",
-    "noLocation": "No pickup location was specified."
+    "noLocation": "No pickup location was specified.",
+    "pickupLoc": "Pickup Location"
   },
   "detail": {
     "full": "Full View"
