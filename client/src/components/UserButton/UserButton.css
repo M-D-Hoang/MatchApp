@@ -6,7 +6,7 @@
     margin-right: 0;
     border-radius: 1.5em;
     padding: 8px;
-    background-color: var(--color-background-light);
+    background-color: var(--color-background-lighter);
     box-shadow: var(--box-shadow-small);
 }
 

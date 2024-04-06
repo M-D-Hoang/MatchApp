@@ -7,8 +7,9 @@ body {
     -moz-osx-font-smoothing: grayscale;
     overflow-y: scroll;
     --color-text: black;
-    --color-background: rgb(248, 249, 249);
-    --color-background-light: rgb(255, 255, 255);
+    --color-background: rgb(230, 230, 230);
+    --color-background-light: rgb(240, 240, 240);
+    --color-background-lighter: rgb(255, 255, 255);
     --box-shadow-small: rgba(0, 0, 0, 0.15) 0px 0px 5px 0px;
     --box-shadow-medium: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
     --color-text-green: rgba(68, 98, 74);
@@ -24,6 +25,7 @@ body.dark {
     --color-text: rgb(224, 224, 224);
     --color-background: rgb(51, 51, 51);
     --color-background-light: rgb(56, 56, 56);
+    --color-background-lighter: rgb(70, 70, 70);
     --color-text-green: rgb(105, 151, 115);
     --color-text-green-light: rgb(105, 151, 115);
     --button-background: rgb(50, 122, 65);

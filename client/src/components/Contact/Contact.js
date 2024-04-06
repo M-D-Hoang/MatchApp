@@ -46,6 +46,11 @@ export function Contact({ onExit, item, onOverlayClick }) {
     formDataObj.sellerID = item.ownerID;
     formDataObj.buyerID = userInfo.username;
     formDataObj.listingID = item._id;
+
+    const itemType = (item && item.make !== undefined)? 'car' : 'item'
+    formDataObj.listingURL = `fullview/${itemType}/${item._id}`;
+
+
     formDataObj.itemImage = item.imageURIs[0];
 
     try {

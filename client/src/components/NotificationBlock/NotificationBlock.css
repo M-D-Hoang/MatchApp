@@ -1,53 +1,122 @@
-/*this needs a total rewrite i'm done*/
+/*this needs a total rewrite i'm done
 .notification-block {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    height: 10em;
-    min-width: 80%;
-    max-width: 80%;
-    padding: 2em;
-    box-shadow: var(--box-shadow-small);
-    border-radius: 1em;
-    border: none;
-    background-color: var(--color-background-light);
-    gap: 3em;
-    overflow-wrap: break-word;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 10em;
+  min-width: 80%;
+  max-width: 80%;
+  padding: 2em;
+  box-shadow: var(--box-shadow-small);
+  border-radius: 1em;
+  border: none;
+  background-color: var(--color-background-light);
+  gap: 3em;
+  overflow-wrap: break-word;
 }
 .notification-block > img {
-    width: 320px;
-    height: 180px;
-    object-fit: cover;
-    float:  right;
+  width: 320px;
+  height: 180px;
+  object-fit: cover;
+  float:  right;
 }
 
 .notification-block > .notification-info {
-  min-width: 45%;
-  max-width: 45%;
+min-width: 45%;
+max-width: 45%;
 }
 
 .notification-title {
-    font-weight: 600;
+  font-weight: 600;
 }
 .close-button {
-  cursor: pointer;
+cursor: pointer;
 }
 
 .user {
-  min-width: 25%;
+min-width: 25%;
 }
 
 @media (max-width: 680px) {
+.notification-block{
+  flex-direction:column;
+  height: auto;
+  padding: 3em 0 ;
+  width:90vw;
+}
+
+.notification-info > p{
+ width:100%;
+ 
+}
+}
+
+*/
+
+.notification-block{
+  width: 85vw;
+  display:flex; 
+  border-radius: 1em;
+  border: none;
+  padding:32px;
+  box-shadow: var(--box-shadow-small);
+  background-color: var(--color-background-light);
+}
+
+.notification-block > img{
+  max-width: 284px;
+  max-height: 160px;
+  object-fit: cover;
+  flex:1;
+}
+
+.notification-info{
+  flex:6;
+  padding:6px;
+  text-align: center;
+}
+
+.user-button{
+  position:relative;
+  
+}
+
+.notification-block > *{
+  margin:16px;
+}
+
+
+@media (max-width: 1100px) {
   .notification-block{
     flex-direction:column;
     height: auto;
-    padding: 3em 0 ;
-    width:90vw;
+    padding: 2em 2;
+    width:80vw;
+    margin: 0 1em;
   }
+  .notification-block > img{
+    align-self: center;
+    cursor:pointer;
+  }
+}
 
-  .notification-info > p{
-   width:100%;
-   
-  }
+.notification-info{
+  
+  align-self: center;
+  width: 90%;
+  box-shadow: var(--box-shadow-small);
+  background-color: var(--color-background-lighter);
+  border-radius: 1em;
+  border: none;
+}
+
+.notification-info > span{
+  vertical-align: middle;
+}
+
+.notification-first-metadata{
+  display:flex;
+  justify-content: space-evenly;
+  flex-direction: column;
 }
