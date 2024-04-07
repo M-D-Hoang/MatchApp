@@ -1,32 +1,34 @@
 .listings-page {
-    display: flex;
-    flex-grow: 1;
-}
-
-.listings-page > .listings-layout {
-    font-size: 15px;
-    padding-left: 22em;
-    padding-right: 0;
-    transition: padding-left 0.2s ease, padding-right 0.5s ease;
-}
-
-.search-bar-form-parent{
     display:flex;
-    flex-direction: row;
-    margin: 0px 16px;
-    width:100%;
-}
-.search-bar-form-parent > form, .search-bar-form-parent > form > input{
-    width:100%;
-}
-.search-bar-form-parent > *{
-    margin: 0px 8px;
-}
-
-@media (max-width: 1081px) {
-    .listings-page > .listings-layout {
-        padding-left: 2em;
-        padding-right: 2em;
-        transition: padding-left 0.5s ease, padding-right 0.5s ease;
+    flex-grow:1
     }
-}
+    
+    .listings-page > .listings-layout {
+    font-size:15px;
+    padding-left:22em;
+    padding-right:0;
+    transition:padding-left .2s ease,padding-right .5s ease
+    }
+    
+    .search-bar-form-parent {
+    display:flex;
+    flex-direction:row;
+    margin:0 16px;
+    width:100%
+    }
+    
+    .search-bar-form-parent > form,.search-bar-form-parent > form > input {
+    width:100%
+    }
+    
+    .search-bar-form-parent > * {
+    margin:0 8px
+    }
+    
+    @media (max-width: 1081px) {
+    .listings-page > .listings-layout {
+    padding-left:2em;
+    padding-right:2em;
+    transition:padding-left .5s ease,padding-right .5s ease
+    }
+    }
