@@ -4,7 +4,7 @@
     color: var(--color-text-green);
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 129129;
     height: 70px;
     box-shadow: var(--box-shadow-small);
     justify-content: space-between;
@@ -63,6 +63,7 @@ a {
     height: 58px;
     border-radius: 500%;
     flex-shrink: 0;
+    cursor:pointer;
 }
 
 .navbar-pfp:hover {
@@ -91,4 +92,20 @@ a {
 
 .qJTHM {
     transform: translate(0, -5px);
+}
+
+
+/*Language Styles*/
+#language-selector > p:nth-child(odd){
+    cursor: pointer;
+}
+#language-selector > p:nth-child(even){
+    cursor:default;
+}
+
+#language-selector > p:nth-child(odd):hover{   
+    border-bottom: 1px solid;
+    color:var(--color-text);
+    border-image: linear-gradient(to right, transparent, var(--color-text), transparent) 1;
+    background: var(--color-background);
 }

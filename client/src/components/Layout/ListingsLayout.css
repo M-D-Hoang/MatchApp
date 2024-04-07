@@ -5,10 +5,23 @@
     width: 100%;
 }
 
+
+@media (max-width: 680px) {
+    .search-bar {
+        flex-direction:column;
+    }
+    .dropdown{
+        left: 50%;
+        transform: translate(-50%, -1em);
+        z-index: 1;
+    }
+}
+
+
+
 .search-bar {
     height: 3em;
     display: flex;
-    justify-content: flex-end;
     gap: 2em;
     padding: 1em 3em;
 }
@@ -43,9 +56,12 @@
     box-shadow: var(--box-shadow-small);
     overflow: hidden;
     translate: 0 -1.5em;
-    background-color: rgb(240, 240, 240);
+    background-color: var(--color-background-light);
+    
     position: relative;
 }
+
+
 
 .dropdown-content > button {
     height: 3em;

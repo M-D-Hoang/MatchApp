@@ -23,7 +23,7 @@ export function DetailedView({ onExit, item }) {
     });
 
     // TODO: change this
-    const isCar = item && item.make !== undefined;
+    const isCar = item.objectType === 'car';
 
     const handleFullViewURL = () => {
         navigate(`/fullview/${isCar ? 'car' : 'item'}/` + item._id);

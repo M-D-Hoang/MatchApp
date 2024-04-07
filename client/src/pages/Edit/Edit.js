@@ -8,7 +8,7 @@ export function Edit() {
     const [t] = useTranslation("global");
     const location = useLocation();
     const item = location.state.data;
-    const isCar = item.make !== undefined;
+    const isCar = item.objectType === 'car';
     return (
         <div className="edit-page">
             <h1 className="edit-title">{t("edit.edit")}</h1>

@@ -4,12 +4,13 @@
     width: 20em;
     flex-shrink: 0;
     box-shadow: var(--box-shadow-small);
-    z-index: 1;
+    z-index: 100;
     padding: 0 1em;
     position: fixed;
     height: calc(100vh - 70px);
     transition: transform 0.5s ease;
     display: flex;
+    overflow: scroll;
 }
 
 .condition-select {
@@ -21,7 +22,12 @@
     box-shadow: var(--box-shadow-small);
     margin-bottom: 1em;
 }
-.item-type-select {
+
+.price-filter{
+    margin-bottom: 1em;
+}
+
+.item-type-select{
     padding: 0 1em;
     height: 3em;
     width: 100%;
@@ -93,7 +99,7 @@
     border: none;
     font-size: 14px;
     box-shadow: var(--box-shadow-small);
-    background-color: var(--color-background-light);
+    background-color: var(--button-background);
     background-image: url("../../assets/images/next-icon.png");
     background-size: 1.5em;
     background-position: center;
@@ -109,6 +115,7 @@
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
+    
 }
 
 @media (max-width: 1081px) {
