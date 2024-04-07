@@ -31,7 +31,7 @@ const carListingSchema = new Schema({
   driveTrain: {type: String, required: true, index: true},
   imageURIs: {type: Array, required: false},
   date: {type: String, required: true, index: true},
-  location: {type: String, required: true, index: true},
+  location: {type: String, required: false, index: true},
   coordinates: {type: [Number], required: false, index: true},
   objectType: {type: String, required: true, index: true},
 });
