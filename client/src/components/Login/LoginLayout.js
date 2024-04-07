@@ -86,8 +86,7 @@ export function Login(props) {
     displayableJSX = (
       <GoogleLogin
         onSuccess={handleLogin}
-        onError={() => toast.error('Login failed')}
-        useOneTap={true} />
+        onError={() => toast.error('Login failed')}/>
     );
   }
   else{
@@ -99,7 +98,7 @@ export function Login(props) {
     <div className="link-container">
       {displayableJSX}
       <Toaster
-        position="top-right"
+        position="top-left"
         reverseOrder={false}
       />
     </div>

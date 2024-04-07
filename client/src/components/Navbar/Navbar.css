@@ -90,10 +90,6 @@
     margin-left:10px
     }
     
-    .qJTHM {
-    transform:translate(0,-5px)
-    }
-    
     #language-selector > p:nth-child(odd) {
     cursor:pointer
     }
