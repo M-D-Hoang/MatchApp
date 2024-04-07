@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
 import { useTranslation } from "react-i18next";
 import { LocationSelect } from "../Location/LocationPicker.js";
-export function CarForm({ item }) {
+export function CarForm({ item, setSending }) {
   const { t} = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
@@ -27,6 +27,7 @@ export function CarForm({ item }) {
 
     const submitItem = async (e) => {
         e.preventDefault();
+        setSending(true);
         var formData = new FormData(e.target);
         formData.append("image", imageFiles);
         if (place != null){
@@ -50,6 +51,7 @@ export function CarForm({ item }) {
         } else {
             alert("Listing update failed.");
         }
+        setSending(false);
     };
 
     async function onImageChange(e) {
