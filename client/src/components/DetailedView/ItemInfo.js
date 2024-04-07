@@ -46,7 +46,7 @@ export function ItemInfo({ item, isFull }) {
                 )}
                 {item.category && (
                     <p className="detail">
-                        <b>{t("form.category")}</b> {item.category}
+                        <b>{t("form.category")}</b> {t(`category.${item.category}`)}
                     </p>
                 )}
                 {item.condition && (

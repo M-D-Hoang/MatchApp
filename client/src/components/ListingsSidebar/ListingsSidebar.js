@@ -92,7 +92,7 @@ export function ListingsSidebar() {
                         name="condition"
                         className="condition-select"
                         onChange={(e) => handleConditionChoice(e.target.value)}>
-                        <option value={""}>{t("filter.condition")}</option>
+                        <option value={""}>{t("form.condition")}</option>
                         <option value="new">{t("form.new")}</option>
                         <option value="fair">{t("form.fair")}</option>
                         <option value="used">{t("form.used")}</option>
