@@ -1,0 +1,21 @@
+Categories for items to be in. DO NOT PUSH THIS (It won't matter much if it is, but this is non-essential dev notes)
+
+[
+    "electronics",
+    "clothing",
+    "kitchen",
+    "books",
+    "toys",
+    "personalCare",
+    "sports",
+    "health",
+    "pet",
+    "jewlery",
+    "baby",
+    "office",
+    "furniture",
+    "movies",
+    "music",
+    "travel",
+    "other"
+]

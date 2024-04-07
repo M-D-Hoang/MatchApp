@@ -32,7 +32,7 @@
     "car": "Car"
   },
   "filter": {
-    "search": "Search ...",
+    "search": "Search",
     "sortBy": "Sort By",
     "newest": "Date: Newest",
     "oldest": "Date: Oldest",
@@ -41,12 +41,7 @@
     "none": "No results found",
     "filter": "Filters",
     "items": "Items",
-    "cars": "Cars",
-    "condition": "Condition",
-    "new": "New",
-    "used": "Used",
-    "fair": "Fair",
-    "price": "Price",
+    "cars": "Cars",    
     "min": "Min",
     "max": "Max"
   },
@@ -63,10 +58,35 @@
     "driveTrain": "Drive Train:",
     "images": "Images:",
     "select": "Select files",
-    "extra": "Extra:",
+    "extra": "Extra Tag:",
     "category": "Category:",
     "year": "Year:",
-    "location": "Location:"
+    "location": "Location:",
+    "new": "New",
+    "used": "Used",
+    "fair": "Fair"
+    
+  },
+  "category":{
+    "electronics":"Electronics",
+    "apparel":"Apparel",
+    "kitchen": "Kitchen",
+    "books":"Books",
+    "games&toys":"Toys / Games",
+    "personalCare":"Personal Care",
+    "sports":"Sports",
+    "health":"Health",
+    "pet":"Pet Supplies",
+    "jewlery":"Jewelry",
+    "baby":"Baby & Kids",
+    "office":"Office",
+    "furniture":"Furniture",
+    "movies":"Movies",
+    "music": "Music",    
+    "bag&luggage":"Travel & Luggage",
+    "tools&equipement":"Tools / Equipment",
+    "other":"Other"
+
   },
   "404": {
     "404": "404 - No Such Page"

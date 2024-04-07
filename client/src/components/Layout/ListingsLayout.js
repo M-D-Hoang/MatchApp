@@ -111,7 +111,7 @@ export function ListingsLayout({isMobile}) {
                 type="text"
                 value={keyword}
                 onChange={handleSearchChange}
-                placeholder={t("filter.search")}
+                placeholder={t("filter.search") + "..."}
               />
               
             </form>
