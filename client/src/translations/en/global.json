@@ -99,6 +99,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "contact": "Contact Buyer",
+    "defaultMessage": "I'm interested in this item, please contact me back.",
     "send": "Send Message",
     "enterMessage": "Enter Message:",
     "noLocation": "No pickup location was specified.",
