@@ -65,8 +65,8 @@ export function UserPage() {
             className="loading-bar"
             type={"spin"}
             color={"#58cc77"}
-            height={400}
-            width={400}
+            height={200}
+            width={200}
         />
     );
 

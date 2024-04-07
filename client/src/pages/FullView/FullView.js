@@ -134,7 +134,7 @@ export function FullView({ isCar }) {
             <div className={"full-view-page"}>
 
                 {item.ownerID === undefined ?
-                    <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={400} width={400} /> :
+                    <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={200} width={200} /> :
                     <><div className={"item-image"}>
                         <Carousel className="carousel" infiniteLoop={true}>
                             {images}

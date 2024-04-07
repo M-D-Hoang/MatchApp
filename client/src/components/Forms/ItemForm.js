@@ -7,12 +7,13 @@ import { useTranslation } from "react-i18next";
 import { LocationSelect } from "../Location/LocationPicker.js";
 import { itemCategories } from "../categories.js";
 
-export function ItemForm({ item }) {
+
+export function ItemForm({ item, setSending }) {
     const { t } = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
     const [imageFiles, setImageFiles] = useState(null);
-
+    
     //Coords data & address
     const [place, setPlace] = useState(null);
 
@@ -30,6 +31,7 @@ export function ItemForm({ item }) {
 
     const submitItem = async (e) => {
         e.preventDefault();
+        setSending(true);
         var formData = new FormData(e.target);
         console.log(place);
         formData.append("image", imageFiles);
@@ -53,6 +55,7 @@ export function ItemForm({ item }) {
         } else {
             alert("Listing update failed.");
         }
+        setSending(false);
     };
 
     async function onImageChange(e) {
