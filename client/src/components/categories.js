@@ -3,10 +3,10 @@
 export const itemCategories = [
     "other",
     "electronics",
-    "clothing",
+    "apparel",
     "kitchen",
     "books",
-    "toys",
+    "games&toys",
     "personalCare",
     "sports",
     "health",
@@ -17,5 +17,6 @@ export const itemCategories = [
     "furniture",
     "movies",
     "music",
-    "travel",  
+    "tools&equipement",
+    "bag&luggage",  
   ]

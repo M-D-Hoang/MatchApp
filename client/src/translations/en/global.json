@@ -62,10 +62,10 @@
   },
   "category":{
     "electronics":"Electronics",
-    "clothing":"Clothing",
+    "apparel":"Apparel",
     "kitchen": "Kitchen",
     "books":"Books",
-    "toys":"Toys/Games",
+    "games&toys":"Toys / Games",
     "personalCare":"Personal Care",
     "sports":"Sports",
     "health":"Health",
@@ -75,9 +75,11 @@
     "office":"Office",
     "furniture":"Furniture",
     "movies":"Movies",
-    "music": "Music",
-    "travel":"Travel & Luggage",
+    "music": "Music",    
+    "bag&luggage":"Travel & Luggage",
+    "tools&equipement":"Tools / Equipment",
     "other":"Other"
+
   },
   "404": {
     "404": "404 - No Such Page"
