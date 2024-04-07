@@ -25,7 +25,7 @@
     "car": "Car"
   },
   "filter": {
-    "search": "Search ...",
+    "search": "Search",
     "sortBy": "Sort By",
     "newest": "Date: Newest",
     "oldest": "Date: Oldest",

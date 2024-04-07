@@ -21,7 +21,12 @@
     box-shadow: var(--box-shadow-small);
     margin-bottom: 1em;
 }
-.item-type-select {
+
+.price-filter{
+    margin-bottom: 1em;
+}
+
+.item-type-select{
     padding: 0 1em;
     height: 3em;
     width: 100%;

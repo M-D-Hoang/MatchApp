@@ -33,6 +33,7 @@ export function ListingsSidebar() {
         queries += condition ? `condition=${condition}&` : "";
         queries += minPrice > 0 ? `minPrice=${minPrice}&` : "";
         queries += maxPrice > 0 ? `maxPrice=${maxPrice}&` : "";
+        console.log(sectionQueries);
         queries += sectionQueries;
         if (queries.endsWith('&')) {
             queries = queries.substring(0, queries.length - 1);
@@ -61,8 +62,15 @@ export function ListingsSidebar() {
     return (
         <div className={sidebarClassname}>
             <form onSubmit={(e) => submitQueries(e)} className="filters-form">
-                <div className="form-input">
-                <h3 className="price-title">{t("form.price")}</h3>
+                <div className="form-input">               
+                    <h3 className="filter-title">{t("filter.filter")}</h3>
+                    <select
+                        className="item-type-select"
+                        onChange={(e) => handleItemTypeChoice(e.target.value)}>
+                        <option value="items" defaultValue>{t("filter.items")}</option>
+                        <option value="cars">{t("filter.cars")}</option>
+                    </select>
+                    <h3 className="price-title">{t("form.price")}</h3>
                     <div className="price-filter">
                         <input
                             type="number"
@@ -80,13 +88,6 @@ export function ListingsSidebar() {
                                 setMaxPrice(e.target.value)
                             }></input>
                     </div>
-                    <h3 className="filter-title">{t("filter.filter")}</h3>
-                    <select
-                        className="item-type-select"
-                        onChange={(e) => handleItemTypeChoice(e.target.value)}>
-                        <option value="items" defaultValue>{t("filter.items")}</option>
-                        <option value="cars">{t("filter.cars")}</option>
-                    </select>
                     <select
                         name="condition"
                         className="condition-select"
@@ -103,7 +104,7 @@ export function ListingsSidebar() {
                     <div
                         onClick={toggleSidebar}
                         className={"toggle-sidebar " + isSidebarOpen}></div>
-                    <input type="submit" className="submit-filters"></input>
+                    <button className="submit-filters">{t('filter.search')}</button>
                 </div>
             </form>
         </div>

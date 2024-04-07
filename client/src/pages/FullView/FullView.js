@@ -141,7 +141,7 @@ export function FullView({ isCar }) {
                         </Carousel>
                     </div>
                         <div className="item-info-container">
-                            <ItemInfo item={item} />
+                            <ItemInfo item={item} isFull={true} />
                             <div className="action-container">
                                 <div className="user-info">
                                     <p>{t("fullView.posted")}</p>

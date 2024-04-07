@@ -124,7 +124,7 @@ export function ListingsLayout() {
                             type="text"
                             value={keyword}
                             onChange={handleSearchChange}
-                            placeholder={t("filter.search")} />
+                            placeholder={t("filter.search") + "..."} />
                     </form>
                     <div className="dropdown">
                         <button className="sort-button" onClick={handleOpen}>

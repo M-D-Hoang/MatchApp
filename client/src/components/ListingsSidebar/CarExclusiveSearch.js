@@ -3,7 +3,6 @@ export function CarExclusiveSearch({t, updateSectionQuery}){
     const [make, setMake] = useState('');
     const [model, setModel] = useState('');
     const [bodyType, setBodyType] = useState('');
-    const [mileage, setMileage] = useState('');
     const [transmission, setTransmission] = useState('');
     const [driveTrain, setDriveTrain] = useState('');
     
@@ -12,16 +11,15 @@ export function CarExclusiveSearch({t, updateSectionQuery}){
     const sendUpdatedDataUp = useCallback(() => {
         let queryString = make !== '' ? `make=${make}` : "";
         queryString += model !== '' ? `&model=${model}` : "";
-        queryString += model !== '' ? `&bodyType=${bodyType}` : "";
-        //queryString += model !== '' ? `&mol=${mileage}` : "";
-        queryString += model !== '' ? `&transmission=${transmission}` : "";
-        queryString += model !== '' ? `&driveTrain=${driveTrain}` : "";
+        queryString += bodyType !== '' ? `&bodyType=${bodyType}` : ""; 
+        queryString += transmission !== '' ? `&transmission=${transmission}` : "";
+        queryString += driveTrain !== '' ? `&driveTrain=${driveTrain}` : "";
         updateSectionQuery(queryString);
     }, [bodyType, driveTrain, make, model, transmission, updateSectionQuery]);
     
     useEffect(() => {
         sendUpdatedDataUp();
-    }, [make, model, bodyType, mileage, transmission, driveTrain, sendUpdatedDataUp]);
+    }, [make, model, bodyType, transmission, driveTrain, sendUpdatedDataUp]);
 
 
 
@@ -66,20 +64,7 @@ export function CarExclusiveSearch({t, updateSectionQuery}){
                 className="item-type-select"
                 type='text'
                 placeholder={t("form.bodyType")}
-            ></input>
-            <input
-                name='bodyType'
-                value={mileage}
-                onChange={(e) => {
-                    const newValue = e.target.value;
-                    setMileage(newValue);
-                    sendUpdatedDataUp(newValue);
-                   
-                }}
-                className="item-type-select"
-                type='text'
-                placeholder={t("form.mileage")}
-            ></input>
+            ></input> 
             <input
                 name='transmission'
                 value={transmission}
