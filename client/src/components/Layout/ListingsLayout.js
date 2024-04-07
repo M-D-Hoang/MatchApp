@@ -7,7 +7,7 @@ import { ItemCardSquare } from "../../components/ItemCard/ItemCardSquare";
 import { useTranslation } from "react-i18next";
 import { DropdownSort } from "../DropdownSort/DropdownSort";
 
-export function ListingsLayout({isMobile}) {
+export function ListingsLayout({isMobile, toggleSideBar, sidebarForce}) {
   const [t] = useTranslation("global");
   const navigate = useNavigate();
 
@@ -106,7 +106,10 @@ export function ListingsLayout({isMobile}) {
       ) : (
         <>
           <div className="search-bar">
+            <div className="search-bar-form-parent">
+            
             <form onSubmit={handleSearchSubmit}>
+              
               <input
                 type="text"
                 value={keyword}
@@ -115,6 +118,8 @@ export function ListingsLayout({isMobile}) {
               />
               
             </form>
+            {!sidebarForce && <button className="listings-sort-menu-open" onClick={toggleSideBar}>Filter</button>}
+            </div>
             {isMobile && <DropdownSort t={t} sortBy={sortBy} setSortBy={setSortBy} sortByHandler={sortByHandler}/>}
           </div>
           {!isMobile && <div><DropdownSort t={t} sortBy={sortBy} setSortBy={setSortBy} sortByHandler={sortByHandler}/></div>}

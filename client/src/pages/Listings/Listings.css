@@ -10,17 +10,17 @@
     transition: padding-left 0.2s ease, padding-right 0.5s ease;
 }
 
-@media (max-width: 621px) {
-    .search-bar {
-        flex-direction:column;
-        height: 3em;
-        
-        gap: 2em;
-        padding: 1em 3em;
-    }
-    .listings-display.square{
-        padding:0px;
-    }
+.search-bar-form-parent{
+    display:flex;
+    flex-direction: row;
+    margin: 0px 16px;
+    width:100%;
+}
+.search-bar-form-parent > form, .search-bar-form-parent > form > input{
+    width:100%;
+}
+.search-bar-form-parent > *{
+    margin: 0px 8px;
 }
 
 @media (max-width: 1081px) {

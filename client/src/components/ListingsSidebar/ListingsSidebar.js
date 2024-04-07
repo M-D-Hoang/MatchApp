@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import {ItemExclusiveSearch} from './ItemExclusiveSearch'
 import { CarExclusiveSearch } from "./CarExclusiveSearch";
 
-export function ListingsSidebar({isMobile}) {
+export function ListingsSidebar({isMobile, isSidebarOpen, setIsSidebarOpen}) {
     const navigate = useNavigate();
     const [t] = useTranslation("global");
     const [itemType, setItemType] = useState("items");
@@ -13,7 +13,7 @@ export function ListingsSidebar({isMobile}) {
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
 
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
 
     //Queries for either cars or items, a string value to append to the queries. 
     const [sectionQueries, setSectionQueries] = useState({});
@@ -103,7 +103,7 @@ export function ListingsSidebar({isMobile}) {
                 <div className="bottom-container">
                     <div
                         onClick={toggleSidebar}
-                        className={"toggle-sidebar " + isSidebarOpen}></div>
+                        className={"toggle-sidebar " + isSidebarOpen}></div>    
                     <button className="submit-filters">{t('filter.search')}</button>
                 </div>
             </form>
