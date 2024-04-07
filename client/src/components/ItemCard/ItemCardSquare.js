@@ -44,7 +44,7 @@ export function ItemCardSquare({ item }) {
             )}
             <div className="preview-text">
                 <p className="title">{item.title}</p>
-                <p className="price">{item.price} $</p>
+                <p className="price">{item.price}$</p>
             </div>
         </div>
     );

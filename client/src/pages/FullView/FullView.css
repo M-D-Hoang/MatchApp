@@ -49,6 +49,10 @@
     font-weight: 600;
 }
 
+.item-info{
+    overflow-wrap: break-word;
+}
+
 @media (max-width: 1500px) {
     .full-view-page {
         flex-direction: column;
