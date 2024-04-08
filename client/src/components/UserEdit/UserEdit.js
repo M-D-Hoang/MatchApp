@@ -52,7 +52,6 @@ const onEditSubmit = async (e) => {
       console.error(JSON.stringify(json));
   } else {
       //If post went through, navigate back to user page
-      //console.log(json);
       if (json.picture !== undefined) {
           setPfpURL(json.picture);
       } else {

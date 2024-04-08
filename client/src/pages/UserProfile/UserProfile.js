@@ -23,13 +23,9 @@ export function UserPage() {
 
     useEffect(() => {
         //Get Username from Route
-
-        //console.log(location.state)
         const username = params.username;
-        // console.log(username);
 
         //Get User
-        // console.log(`Username: ${username}`);
         fetch(`/api/users/${username}`)
             .then((resp) => {
                 return resp.json();
@@ -46,7 +42,6 @@ export function UserPage() {
                         return resp.json();
                     })
                     .then((json) => {
-                        // console.log(json);
                         setUserItems(json);
                     })
                     .catch(() => {
@@ -70,7 +65,6 @@ export function UserPage() {
         />
     );
 
-    // console.log(user);
     return (
         <div className="profile-menu-base">
             {user === undefined ? (

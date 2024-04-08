@@ -6,7 +6,7 @@ import "./Form.css";
 import { useTranslation } from "react-i18next";
 import { LocationSelect } from "../Location/LocationPicker.js";
 export function CarForm({ item, setSending }) {
-  const { t} = useTranslation("global");
+    const { t } = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
     const [imageFiles, setImageFiles] = useState(null);
@@ -18,7 +18,7 @@ export function CarForm({ item, setSending }) {
         if (item) {
             item.imageURIs.forEach((img) => {
                 setImage((images) => [
-                   ...images,
+                    ...images,
                     <img src={img} alt="preview"></img>,
                 ]);
             });
@@ -30,8 +30,8 @@ export function CarForm({ item, setSending }) {
         setSending(true);
         var formData = new FormData(e.target);
         formData.append("image", imageFiles);
-        if (place != null){
-            formData.append("location",place.name);
+        if (place != null) {
+            formData.append("location", place.name);
             formData.append("coordinates", place.coordinates);
         }
         var resp = undefined;
@@ -45,9 +45,8 @@ export function CarForm({ item, setSending }) {
         }
         if (resp.status === 201) {
             //navigate to item full view
-            console.log(
-                resp.json().then((resp) => navigate("/fullview/car/" + resp.id))
-            );
+            resp.json().then((resp) => navigate("/fullview/car/" + resp.id))
+
         } else {
             alert("Listing update failed.");
         }
@@ -107,12 +106,12 @@ export function CarForm({ item, setSending }) {
                 </label>
                 <label>
                     {t("form.condition")}{" "}
-                        <select name='condition' className="form-dropdown">                  
+                    <select name='condition' className="form-dropdown">
                         <option value="new">{t(`form.new`)}</option>
                         <option value="fair">{t(`form.fair`)}</option>
                         <option value="used">{t(`form.used`)}</option>
-                        </select>
-                </label> 
+                    </select>
+                </label>
                 <label>
                     {t("form.make")}{" "}
                     <input
@@ -175,7 +174,7 @@ export function CarForm({ item, setSending }) {
                 </label>
                 <label>
                     {t("form.location")}{" "}
-                    <LocationSelect coordinates={place} setCoordinates={setPlace}/>
+                    <LocationSelect coordinates={place} setCoordinates={setPlace} />
                 </label>
                 <label>
                     {t("form.images")}{" "}

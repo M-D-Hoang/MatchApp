@@ -33,7 +33,6 @@ export function ItemForm({ item, setSending }) {
         e.preventDefault();
         setSending(true);
         var formData = new FormData(e.target);
-        console.log(place);
         formData.append("image", imageFiles);
         if (place != null){
             formData.append("location",place.name);
@@ -51,7 +50,7 @@ export function ItemForm({ item, setSending }) {
         }
         if (resp.status === 201) {
             //navigate to item full view
-            console.log(resp.json().then((resp) => navigate("/fullview/item/" + resp.id)));
+            resp.json().then((resp) => navigate("/fullview/item/" + resp.id));
         } else {
             alert("Listing update failed.");
         }

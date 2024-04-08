@@ -33,7 +33,6 @@ export function ListingsSidebar({isMobile, isSidebarOpen, setIsSidebarOpen}) {
         queries += condition ? `condition=${condition}&` : "";
         queries += minPrice > 0 ? `minPrice=${minPrice}&` : "";
         queries += maxPrice > 0 ? `maxPrice=${maxPrice}&` : "";
-        console.log(sectionQueries);
         queries += sectionQueries;
         if (queries.endsWith('&')) {
             queries = queries.substring(0, queries.length - 1);

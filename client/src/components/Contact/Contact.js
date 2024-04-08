@@ -65,8 +65,7 @@ export function Contact({ onExit, item, onOverlayClick }) {
         console.error('Failed to submit message');
         return;
       }
-      console.log('Message submitted successfully');
-      console.log('Form Data:', formDataObj);
+
       onExit();
     } catch (error) {
       console.error('Error submitting message:', error);
