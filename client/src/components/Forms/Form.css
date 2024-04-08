@@ -91,5 +91,6 @@
     
     .form-carousel {
     width:200%;
-    margin-top:2em
+    margin-top:2em;
+    transform:translateX(-25%)
     }
