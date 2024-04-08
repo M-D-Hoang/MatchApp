@@ -90,7 +90,7 @@ export function UserPage() {
 function Display({ user, userItems, editToggle }) {
     const [t] = useTranslation("global");
     const listingJSX = userItems.map((item) => {
-        return <ItemCardSquare item={item} />;
+        return <ItemCardSquare key={item._id} item={item} />;
     });
 
     const [isUser, setIsUser] = useState(false);

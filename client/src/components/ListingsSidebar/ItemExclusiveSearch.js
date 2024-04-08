@@ -18,7 +18,7 @@ export function ItemExclusiveSearch({t, updateSectionQuery}){
 
 
     const categoryOptionJSX = itemCategories.map(cat=>{
-        return(<option value={cat}>{t(`category.${cat}`)}</option>)
+        return(<option key={cat} value={cat}>{t(`category.${cat}`)}</option>)
     })
 
 
