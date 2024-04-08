@@ -144,10 +144,8 @@ const handleNotificationsURL = () => {
 
 const checkOverlayClick = (e)=>{
   //check for drawer dark area click
-  console.log(e.target.classList.contains(overlayClassName));
   if(e.target.classList.contains(overlayClassName)){
     setDrawerOpen(false);
-    console.log('close heckin drawer');
   }
 }
 

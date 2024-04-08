@@ -47,7 +47,6 @@ export function ListingsLayout({isMobile, toggleSideBar, sidebarForce}) {
         ? `${queryParameters.get("type")}?`
         : "items";
       url += queryParameters.toString();
-            console.log(url);
       fetch(url)
         .then((resp) => {
           return resp.json();

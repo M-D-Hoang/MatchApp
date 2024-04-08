@@ -43,9 +43,7 @@ export function Navbar(props) {
         i18n.changeLanguage(lang);
     };
 
-    const toggleDark = ()=>{
-        console.log('toggled dark')
-        
+    const toggleDark = ()=>{        
         handleDarkMode(!isDark);
     }
 
