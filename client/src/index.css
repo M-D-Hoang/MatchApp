@@ -34,6 +34,9 @@ body.dark {
     --box-shadow-small: rgba(0, 0, 0, 0.4) 0px 0px 5px 0px;
     --box-shadow-medium: rgba(0, 0, 0, 0.4) 0px 0px 10px 0px;
     transition: all 0.5s ease;
+    ::placeholder {
+        color: rgb(224, 224, 224);
+    }
 }
 
 code {
