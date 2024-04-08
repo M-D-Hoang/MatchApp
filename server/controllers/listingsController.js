@@ -9,17 +9,17 @@ exports.postItem = asyncHandler(async (req, res, next) => {
   try {
     // imageURIs empty, imageUploader will update the field next
     formObj.imageURIs = [''];
-    
     formObj.ownerID = req.session.username;
-    
     //coordinates gets sent as a string for some reason so
     //we turn it into an array with split
     formObj.coordinates = formObj.coordinates.split(',');
-
     formObj.objectType = 'item';
     formObj.date = new Date(Date.now()).toLocaleString();
     // Add the listing to the DB
     res.locals.listing = await db.createListing(formObj);
+    // invalidate cache
+    cache.put(`items-by-user/${req.session.username}`, null);
+    cache.put('items', null);
     // pass request to the next middleware (image uploader)
     next();
   } catch (e) {
@@ -37,15 +37,15 @@ exports.postCar = asyncHandler(async (req, res, next) => {
     // imageURIs empty, imageUploader will update the field next
     formObj.imageURIs = [''];
     formObj.ownerID = req.session.username;
- 
     //coordinates gets sent as a string for some reason so
     //we turn it into an array with split
     formObj.coordinates = formObj.coordinates.split(',');
-
     formObj.objectType = 'cars';
     formObj.date = new Date(Date.now()).toLocaleString();
     // Add the listing to the DB
     res.locals.listing = await db.createCarListing(formObj);
+    // invalidate cache
+    cache.put('cars', null);
     // pass request to the next middleware (image uploader)
     next();
   } catch (e) {
@@ -60,10 +60,12 @@ exports.postCar = asyncHandler(async (req, res, next) => {
 exports.deleteItem = asyncHandler(async (req, res) => {
   //Needs to check if user is the owner of the item
   const itemID = req.body._id;
-
   try {
     await db.removeListingByID(itemID);
-
+    // invalidate cache
+    cache.put(`item/${itemID.toString()}`, null);
+    cache.put(`items-by-user/${req.body.ownerID}`, null);
+    cache.put('items', null);
     return res.status(204).json('Item Deleted');
   } catch (e) {
     res.status(400).json({
@@ -76,10 +78,12 @@ exports.deleteItem = asyncHandler(async (req, res) => {
 exports.deleteCar = asyncHandler(async (req, res) => {
   //Needs to check if user is the owner of the item
   const itemID = req.body._id;
-
   try {
     await db.removeCarByID(itemID);
-
+    // invalidate cache
+    cache.put(`car/${itemID.toString()}`, null);
+    cache.put(`items-by-user/${req.body.ownerID}`, null);
+    cache.put('cars', null);
     return res.status(204).json('Item Deleted');
   } catch (e) {
     res.status(400).json({
@@ -96,6 +100,8 @@ exports.editCar = asyncHandler(async (req, res, next) => {
     //we turn it into an array with split
     carObj.coordinates = carObj.coordinates.split(',');
     res.locals.listing = await db.updateCarListing(carObj);
+    // update cache
+    cache.put(`car/${res.locals.listing._id.toString()}`, res.locals.listing);
     // pass request down to image controller
     if (req.files) {
       next();
@@ -118,6 +124,10 @@ exports.editItem = asyncHandler(async (req, res, next) => {
     //we turn it into an array with split
     ItemObj.coordinates = ItemObj.coordinates.split(',');
     res.locals.listing = await db.updateItemListing(ItemObj);
+    // update cache
+    cache.put(`item/${res.locals.listing._id.toString()}`, res.locals.listing);
+    // invalidate cache
+    cache.put(`items-by-user/${res.locals.listing.ownerID}`, null);
     // pass request down to image controller
     if (req.files) {
       next();
@@ -294,15 +304,24 @@ exports.getUserItems = asyncHandler(async (req, res) => {
 
 exports.getAll = asyncHandler(async (req, res) => {
   try {
-    let combined = cache.get(`all`);
-    if (!combined) {
-      // get items and cars from the db
-      const listings = await db.readAllListings();
-      const carListings = await db.readAllCarListings();
-      // combine them
-      combined = listings.concat(carListings);
-      cache.put(`all`, combined);
+    // try to get items from cache
+    let listings = cache.get('items');
+    if (!listings) {
+      listings = await db.readAllListings();
+      cache.put('items', listings);
+    } else {
+      console.log('got cache for all items');
     }
+    // try to get cars from cache
+    let carListings = cache.get('cars');
+    if (!carListings) {
+      carListings = await db.readAllCarListings();
+      cache.put('cars', carListings);
+    } else {
+      console.log('got cache for all cars');
+    }
+    // combine items with cars
+    const combined = listings.concat(carListings);
     // send all listings
     res.status(200).json(combined);
   } catch {
