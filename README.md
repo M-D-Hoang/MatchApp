@@ -1,5 +1,5 @@
 
-![MatchApp Logo](client\build\logo192.png)
+![MatchApp Logo](./client/build/logo192.png)
 # MatchApp
 An online marketplace.
 Created by:
