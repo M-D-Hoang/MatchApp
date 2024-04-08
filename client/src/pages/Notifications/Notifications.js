@@ -6,7 +6,7 @@ import "./Notifications.css";
 
 export function Notifications() {
   const [noti, setNoti] = useState([]);
-  const [user, setUser] = useState({});
+  
   const [t] = useTranslation("global");
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ export function Notifications() {
       }
     }
     fetchNotifications();
-  }, [navigate, user.username]);
+  }, [navigate]);
 
   return (
     <div className="notifications">
