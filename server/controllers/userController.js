@@ -62,7 +62,6 @@ exports.Login = asyncHandler(async (req, res) => {
       req.session = {};
     }
 
-    // TODO: Change this to just set username
     req.session.username = payload.email.split('@')[0];
     req.session.email = payload.email;
     req.session.picture = payload.picture;
@@ -95,6 +94,12 @@ exports.Logout = asyncHandler(async (req, res) => {
 
 exports.editUser = asyncHandler(async (req, res, next) => {
   const userObj = req.body;
+  if(req.session._id !== userObj.ownerID){
+    res.status(401).json({
+      content: 'Unauthorized',
+      status: 401,
+    });
+  }
   try {
     await db.updateUser(userObj);
     next();

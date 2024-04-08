@@ -38,7 +38,9 @@ export function UserEdit({ setPfpURL }) {
 const onEditSubmit = async (e) => {
   e.preventDefault();
   var formData = new FormData(e.target);
-  formData.append("imageURIs", previewImage);
+  if(previewImage.length !== 0){
+    formData.append("imageURIs", previewImage);
+  }
   formData.append("username", user.username);
 
   const resp = await fetch("/api/users/", {
@@ -52,7 +54,6 @@ const onEditSubmit = async (e) => {
       console.error(JSON.stringify(json));
   } else {
       //If post went through, navigate back to user page
-      //console.log(json);
       if (json.picture !== undefined) {
           setPfpURL(json.picture);
       } else {
@@ -85,7 +86,7 @@ const onEditSubmit = async (e) => {
                       name="image"
                       accept="image/*"
                       onChange={onImageChange}
-                      required></input>
+                      ></input>
               </div>
             </label>
               <label>
@@ -134,7 +135,9 @@ const onEditSubmit = async (e) => {
                       name="phoneNumber"
                       defaultValue={user !== undefined ? user.phoneNumber : ""}
                       required
+                      placeholder="XXX-XXX-XXXX"
                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></input>
+                      
               </label>
               <input type="submit" className="submit-button"></input>
           </form>

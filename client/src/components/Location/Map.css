@@ -1,2 +1,4 @@
-
-  
+.map-leaflet {
+  z-index:1;
+  border-image:none
+  }

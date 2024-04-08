@@ -23,13 +23,9 @@ export function UserPage() {
 
     useEffect(() => {
         //Get Username from Route
-
-        //console.log(location.state)
         const username = params.username;
-        // console.log(username);
 
         //Get User
-        // console.log(`Username: ${username}`);
         fetch(`/api/users/${username}`)
             .then((resp) => {
                 return resp.json();
@@ -46,7 +42,6 @@ export function UserPage() {
                         return resp.json();
                     })
                     .then((json) => {
-                        // console.log(json);
                         setUserItems(json);
                     })
                     .catch(() => {
@@ -65,14 +60,13 @@ export function UserPage() {
             className="loading-bar"
             type={"spin"}
             color={"#58cc77"}
-            height={400}
-            width={400}
+            height={200}
+            width={200}
         />
     );
 
-    // console.log(user);
     return (
-        <div classname="profile-menu-base">
+        <div className="profile-menu-base">
             {user === undefined ? (
                 loadingJSX
             ) : user !== null ? (
@@ -90,7 +84,7 @@ export function UserPage() {
 function Display({ user, userItems, editToggle }) {
     const [t] = useTranslation("global");
     const listingJSX = userItems.map((item) => {
-        return <ItemCardSquare item={item} />;
+        return <ItemCardSquare key={item._id} item={item} />;
     });
 
     const [isUser, setIsUser] = useState(false);

@@ -5,13 +5,15 @@ import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
 import { useTranslation } from "react-i18next";
 import { LocationSelect } from "../Location/LocationPicker.js";
+import { itemCategories } from "../categories.js";
 
-export function ItemForm({ item }) {
-    const { t} = useTranslation("global");
+
+export function ItemForm({ item, setSending, isEdit }) {
+    const { t } = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
     const [imageFiles, setImageFiles] = useState(null);
-
+    
     //Coords data & address
     const [place, setPlace] = useState(null);
 
@@ -29,11 +31,14 @@ export function ItemForm({ item }) {
 
     const submitItem = async (e) => {
         e.preventDefault();
+        setSending(true);
         var formData = new FormData(e.target);
         formData.append("image", imageFiles);
-        formData.append("location",place.name)
-        formData.append("coordinates", place.coordinates)
-        
+        if (place != null){
+            formData.append("location",place.name);
+            formData.append("coordinates", place.coordinates);
+        }
+
         var resp = undefined;
         if (item !== undefined) {
             //For editing an item
@@ -45,10 +50,11 @@ export function ItemForm({ item }) {
         }
         if (resp.status === 201) {
             //navigate to item full view
-            console.log(resp.json().then((resp) => navigate("/fullview/item/" + resp.id)));
+            resp.json().then((resp) => navigate("/fullview/item/" + resp.id));
         } else {
             alert("Listing update failed.");
         }
+        setSending(false);
     };
 
     async function onImageChange(e) {
@@ -67,6 +73,10 @@ export function ItemForm({ item }) {
             });
         }
     }
+    
+    const categoryOptionJSX = itemCategories.map(cat=>{
+        return(<option value={cat}>{t(`category.${cat}`)}</option>)
+    })
 
     return (
         <div className="item-form">
@@ -97,17 +107,30 @@ export function ItemForm({ item }) {
                     <input
                         type="number"
                         name="price"
+                        step={0.01}
                         defaultValue={
                             item !== undefined ? item.price : ""
                         }></input>
                 </label>
                 <label>
                     {t("form.condition")}{" "}
-                    <input
-                        type="text"
-                        name="condition"
-                        defaultValue={item !== undefined ? item.condition : ""}
-                        required></input>
+                        <select 
+                        name='condition' 
+                        className="form-dropdown"
+                        defaultValue={item !== undefined ? item.condition : ""}>                  
+                        <option value="new">{t(`form.new`)}</option>
+                        <option value="fair">{t(`form.fair`)}</option>
+                        <option value="used">{t(`form.used`)}</option>
+                        </select>
+                </label>                
+                <label>
+                    {t("form.category")}{" "}
+                    <select 
+                    name='category' 
+                    className="form-dropdown"
+                    defaultValue={item !== undefined ? item.category : ""}>                  
+                    {categoryOptionJSX}
+                    </select>
                 </label>
                 <label>
                     {t("form.extra")}{" "}
@@ -119,28 +142,22 @@ export function ItemForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    {t("form.category")}{" "}
-                    <input
-                        type="text"
-                        name="category"
-                        defaultValue={item !== undefined ? item.category : ""}
-                        required></input>
-                </label>
-                <label>
                     {t("form.location")}{" "}
-                    <LocationSelect coordinates={place} setCoordinates={setPlace}/>
+                    <LocationSelect coordinates={place} setCoordinates={setPlace} />
                 </label>
                 <label>
-                    {t("form.images")}{" "}
+                    {t("form.images")}{" "}{!isEdit && "("+t("form.required")+")"}{" "}
                     <div className="image-input-container">
-                      {t("form.select")}
+                        {t("form.select")}
                         <input
                             className="image-input"
                             type="file"
                             name="image"
                             accept="image/*"
                             onChange={onImageChange}
-                            multiple="multiple"></input>
+                            multiple="multiple" 
+                            required={!isEdit}></input>
+                            
                     </div>
                 </label>
                 <Carousel className="form-carousel" infiniteLoop={true}>

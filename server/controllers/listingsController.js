@@ -12,7 +12,10 @@ exports.postItem = asyncHandler(async (req, res, next) => {
     formObj.ownerID = req.session.username;
     //coordinates gets sent as a string for some reason so
     //we turn it into an array with split
-    formObj.coordinates = formObj.coordinates.split(',');
+    if(formObj.coordinates){
+      formObj.coordinates = formObj.coordinates.split(',');
+    }
+
     formObj.objectType = 'item';
     formObj.date = new Date(Date.now()).toLocaleString();
     // Add the listing to the DB
@@ -39,7 +42,11 @@ exports.postCar = asyncHandler(async (req, res, next) => {
     formObj.ownerID = req.session.username;
     //coordinates gets sent as a string for some reason so
     //we turn it into an array with split
-    formObj.coordinates = formObj.coordinates.split(',');
+    if(formObj.coordinates) {
+      formObj.coordinates = formObj.coordinates.split(',');
+    }
+    
+
     formObj.objectType = 'cars';
     formObj.date = new Date(Date.now()).toLocaleString();
     // Add the listing to the DB
@@ -95,10 +102,18 @@ exports.deleteCar = asyncHandler(async (req, res) => {
 
 exports.editCar = asyncHandler(async (req, res, next) => {
   const carObj = req.body;
+  if(req.session._id !== carObj.ownerID){
+    res.status(401).json({
+      content: 'Unauthorized',
+      status: 401,
+    });
+  }
   try {
     //coordinates gets sent as a string for some reason so
     //we turn it into an array with split
-    carObj.coordinates = carObj.coordinates.split(',');
+    if(carObj.coordinates){
+      carObj.coordinates = carObj.coordinates.split(',');
+    }
     res.locals.listing = await db.updateCarListing(carObj);
     // update cache
     cache.put(`car/${res.locals.listing._id.toString()}`, res.locals.listing);
@@ -119,10 +134,18 @@ exports.editCar = asyncHandler(async (req, res, next) => {
 
 exports.editItem = asyncHandler(async (req, res, next) => {
   const ItemObj = req.body;
+  if(req.session._id !== ItemObj.ownerID){
+    res.status(401).json({
+      content: 'Unauthorized',
+      status: 401,
+    });
+  }
   try {
     //coordinates gets sent as a string for some reason so
     //we turn it into an array with split
-    ItemObj.coordinates = ItemObj.coordinates.split(',');
+    if(ItemObj.coordinates){
+      ItemObj.coordinates = ItemObj.coordinates.split(',');
+    }
     res.locals.listing = await db.updateItemListing(ItemObj);
     // update cache
     cache.put(`item/${res.locals.listing._id.toString()}`, res.locals.listing);
@@ -186,7 +209,6 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
     } = req.query;
 
     const filter = {};
-
     if (keyword) {
       //contains title
       filter.title = { $regex: keyword, $options: 'i' };
@@ -202,11 +224,12 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
       filter.category = category;
     }
     if (minPrice) {
-      filter.price = { $gte: minPrice };
+      filter.price = { $gte: Number(minPrice) };
     }
     if (maxPrice) {
-      filter.price = { $lte: maxPrice };
+      filter.price = { ...filter.price, $lte: Number(maxPrice) };
     }
+    
 
     // COMPRESSION STUFF
     /*let items = [];
@@ -258,18 +281,27 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
 exports.getCarsFiltered = asyncHandler(async (req, res) => {
   try {
     const {
+      keyword,
       condition,
       make,
       model,
       bodyType,
       transmission,
       driveTrain,
+      minPrice,
+      maxPrice,
       page,
       sortField,
       sortOrder,
     } = req.query;
 
     const filter = {};
+
+    if (keyword) {
+      //contains title
+      filter.title = { $regex: keyword, $options: 'i' };
+    }
+
     if (condition) {
       filter.condition = condition;
     }
@@ -317,6 +349,13 @@ exports.getCarsFiltered = asyncHandler(async (req, res) => {
     }*/
 
     // query DB without compression
+    if (minPrice) {
+      filter.price = { $gte: Number(minPrice) };
+    }
+    if (maxPrice) {
+      filter.price = { ...filter.price, $lte: Number(maxPrice) };
+    }
+    
     const carListings = await db.readAllFilteredCarListings(
       filter,
       page,

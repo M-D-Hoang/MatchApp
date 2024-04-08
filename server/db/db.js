@@ -2,12 +2,13 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const User = require('./model/User.js');
+const Message = require('./model/Message.js');
 const { Listing, CarListing } = require('./model/Listing.js');
 
 dotenv.config();
 const dbUrl = process.env.ATLAS_URI;
 let instance = null;
-const ITEMS_PER_PAGE = 50;
+const ITEMS_PER_PAGE = 52;
 
 class DB {
   constructor() {
@@ -42,7 +43,7 @@ class DB {
     const sortObject = {};
     // TODO MAKE SURE ONLY PRICE OR DATE
     sortObject[sortField] = validSortOrder;
-    return (await CarListing.find(filter)).
+    return await CarListing.find(filter).
       sort(sortObject).
       skip(skipItems).
       limit(ITEMS_PER_PAGE);
@@ -177,9 +178,29 @@ class DB {
     return await User.findOneAndUpdate({ username: user.username }, update, options);
   }
 
-
   async getItemsFromUser(username) {
     return await Listing.find({ ownerID: username });
+  }
+
+  async getMessagesFromUser(username) {
+    return await Message.find({ sellerID: username }).sort({ createdAt: -1 });
+  }
+
+  async createMessage(message) {
+    const messageRow = new Message({
+      sellerID: message.sellerID,
+      buyerID: message.buyerID,
+      listingID: message.listingID,
+      listingURL: message.listingURL,
+      message: message.message,
+      itemImage: message.itemImage,
+    });
+
+    return await messageRow.save();
+  } 
+
+  async removeMessageByID(id) {
+    return await Message.deleteOne({ _id: id});
   }
 }
 

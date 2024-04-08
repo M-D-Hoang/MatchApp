@@ -1,0 +1,10 @@
+#notification-button {
+ display: flex;
+ flex-direction: row;
+}
+#notification-count {
+    margin: 0;
+}
+.google-login{
+    display:none;
+}

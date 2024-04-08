@@ -1,7 +1,14 @@
 {
   "nav": {
+    "profile":"Profil",
     "logout": "Déconnexion",
-    "sell": "Vendre"
+    "sell": "Vendre",
+    "toggleDark": "Change Mode Nuit",
+    "langEN": "Anglais",
+    "langFR": "Français",
+    "langRU": "Russe",
+    "closeDrawer": "Fermer le Menu",
+    "noti":"Avis"
   },
   "user": {
     "firstName": "Prénom :",
@@ -25,7 +32,7 @@
     "car": "Voiture"
   },
   "filter": {
-    "search": "Rechercher ...",
+    "search": "Rechercher",
     "sortBy": "Trier par",
     "newest": "Date : Plus récent",
     "oldest": "Date : Plus ancien",
@@ -35,11 +42,6 @@
     "filter": "Filtres",
     "items": "Articles",
     "cars": "Voitures",
-    "condition": "État",
-    "new": "Neuf",
-    "used": "Usagé",
-    "fair": "Bon",
-    "price": "Prix",
     "min": "Min",
     "max": "Max"
   },
@@ -58,7 +60,32 @@
     "select": "Sélectionner des fichiers",
     "extra": "Supplémentaire :",
     "category": "Catégorie :",
-    "location": "Emplacement"
+    "year": "Année :",
+    "location": "Emplacement :",
+    "new": "Neuf",
+    "used": "Usagé",
+    "fair": "Bon",
+    "required": "Requis"
+  },
+  "category":{
+    "electronics":"Électronique",
+    "apparel":"Vêtements",
+    "kitchen": "Cuisine",
+    "books":"Livres",
+    "games&toys":"Jouets / Jeux",
+    "personalCare":"Soins Personnels",
+    "sports":"Sports",
+    "health":"Santé",
+    "pet":"Fournitures Pour Animaux",
+    "jewlery":"Bijoux",
+    "baby":"Bébé et Enfants",
+    "office":"Bureau",
+    "furniture":"Meubles",
+    "movies":"Films",
+    "music": "Musique",    
+    "bag&luggage":"Voyages et Bagages",
+    "tools&equipement":"Outils / Équipement",
+    "other":"Autre"
   },
   "404": {
     "404": "404 - Page non trouvée"
@@ -70,9 +97,17 @@
     "posted": "Publié par :",
     "delete": "Supprimer",
     "edit": "Modifier",
-    "noLocation": "Aucun lieu de prise en charge n'a été précisé."
+    "contact": "Contacter l'acheteur",
+    "defaultMessage": "Je suis intéressé par cet article. Lance-moi une message.",
+    "send": "Envoyer",
+    "enterMessage": "Entrez votre message:",
+    "noLocation": "Aucun lieu de prise en charge n'a été précisé.",
+    "pickupLoc": "Lieu de Ramassage"
   },
-  "full": {
+  "detail": {
     "full": "Vue complète"
+  },
+  "noti": {
+    "noti": "Votre Avis"
   }
 }

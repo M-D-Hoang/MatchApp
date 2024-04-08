@@ -4,39 +4,44 @@ import { ItemForm } from "../../components/Forms/ItemForm.js";
 import { CarForm } from "../../components/Forms/CarForm.js";
 import "./Sell.css";
 import { useTranslation } from "react-i18next";
+import ReactLoading from 'react-loading';
+
 export function Sell() {
-  const [t] = useTranslation("global");
-  const [sellJSX, setSellJSX] = useState(<></>);
-  
+    const [t] = useTranslation("global");
+    const [sellJSX, setSellJSX] = useState(<></>);
 
-  const handleFormChoice = (value) => {
-      
-      switch (value) {
-          case "Car":
-              setSellJSX(<CarForm />);
-              console.log("Car");
-              break;
-          case "Item":
-              setSellJSX(<ItemForm />);
-              break;
-          default:
-              break;
-      }
-  };
+    const [sending, setSending] = useState(false);
+    const handleFormChoice = (value) => {
 
-  return (
-      <div className="sell-page">
-          <h1 className="sell-title">{t("sell.sellTitle")}</h1>
+        switch (value) {
+            case "Car":
+                setSellJSX(<CarForm setSending={setSending} isEdit={false}/>);
+                break;
+            case "Item":
+                setSellJSX(<ItemForm setSending={setSending} isEdit={false}/>);
+                break;
+            default:
+                break;
+        }
+    };
 
-          <select
-              className="form-select"
-              onChange={(e) => handleFormChoice(e.target.value)}>
-              <option>{t("sell.select")}</option>
-              <option value="Item">{t("sell.item")}</option>
-              <option value="Car">{t("sell.car")}</option>
-          </select>
+    if (sending) {
+        return (<ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={400} width={400} />)
+    }
 
-          {sellJSX}
-      </div>
-  );
+    return (
+        <div className="sell-page">
+            <h1 className="sell-title">{t("sell.sellTitle")}</h1>
+
+            <select
+                className="form-select"
+                onChange={(e) => handleFormChoice(e.target.value)}>
+                <option>{t("sell.select")}</option>
+                <option value="Item">{t("sell.item")}</option>
+                <option value="Car">{t("sell.car")}</option>
+            </select>
+
+            {sellJSX}
+        </div>
+    );
 }

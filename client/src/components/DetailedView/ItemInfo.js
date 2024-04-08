@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-export function ItemInfo({ item }) {
+export function ItemInfo({ item, isFull }) {
   const [t] = useTranslation("global");
     return (
         <div className="item-info">
@@ -11,12 +11,27 @@ export function ItemInfo({ item }) {
             <div className="detail-container">
                 {item.make && (
                     <p className="detail">
-                        <b>{t("form.make")}:</b> {item.make}
+                        <b>{t("form.make")}</b> {item.make}
                     </p>
                 )}
                 {item.model && (
                     <p className="detail">
                         <b>{t("form.model")}</b> {item.model}
+                    </p>
+                )}
+                {isFull && item.bodyType && (
+                    <p className="detail">
+                        <b>{t("form.bodyType")}</b> {item.bodyType}
+                    </p>
+                )}
+                {isFull && item.transmission && (
+                    <p className="detail">
+                        <b>{t("form.transmission")}</b> {item.transmission}
+                    </p>
+                )}
+                {isFull && item.driveTrain && (
+                    <p className="detail">
+                        <b>{t("form.driveTrain")}</b> {item.driveTrain}
                     </p>
                 )}
                 {item.year && (
@@ -29,12 +44,17 @@ export function ItemInfo({ item }) {
                         <b>{t("form.mileage")}</b> {item.mileage} km
                     </p>
                 )}
-                {item.condition && (
+                {item.category && (
                     <p className="detail">
-                        <b>{t("form.condition")}</b> {item.condition}
+                        <b>{t("form.category")}</b> {t(`category.${item.category.toLowerCase()}`)}
                     </p>
                 )}
-                {item.extraField && item.extraField !== "none" && (
+                {item.condition && (
+                    <p className="detail">
+                        <b>{t("form.condition")}</b> {t(`form.${item.condition.toLowerCase()}`)}
+                    </p>
+                )}                
+                {isFull && item.extraField && item.extraField !== "none" && (
                     <p className="detail">
                         <b>{t("form.extra")}</b> {item.extraField}
                     </p>
