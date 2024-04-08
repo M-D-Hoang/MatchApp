@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "install": "cd server && npm install && cd ../client && npm install",
+    "installDeployment": "cd server && npm install --production && cd ../client && npm install --production",
     "start": "cd server && npm run start"
   },
   "author": "",

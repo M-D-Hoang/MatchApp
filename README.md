@@ -1,8 +1,14 @@
-# fmp
 
+![MatchApp Logo](client\build\logo192.png)
+# MatchApp
 An online marketplace.
+Created by:
+* Yu Hua Yang
+* Minh Duc Hoang
+* Vasilii Iurev
+* Brandon P. Olynyk
 
-The site URL is https://620fmp.azurewebsites.net/
+https://620fmp.azurewebsites.net/
 
 
 # Initial Setup
@@ -44,7 +50,11 @@ After seeding, go into the `/client/` directory and run `npm run build`. This wi
 
 # Running Unit Tests and Linting Tools
 
-**TBA**
+*  To run unit tests, run `npm run test` in the `server` directory.
+* To lint, run the following in either `server` or `client`:
+```
+node ./node_modules/eslint/bin/eslint.js --ext js,jsx,mjs,cjs --max-warnings=0
+```
 
 # Running for Development
 
@@ -62,4 +72,10 @@ The server will now be running at port 3000, while the development client will b
 
 # Running for Deployment
 
+This assumes you are runninng a clean copy of the repo.
+
+To run with just the server alone:
+1. Install all dependencies without development dependencies by running `npm run installDeployment` in the project's root folder.
+2. Rebuild the client by doing `npm run build` in the `client` directory. This will produce a minified, packed version of the react app to be served via the server.
+3. Run the server using `npm run start` in the `/server/` directory. After booting, the server will run on port 3000.
 
