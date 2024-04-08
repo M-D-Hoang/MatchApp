@@ -123,7 +123,7 @@ const onProfileImageClick = ()=>{
 useEffect(() => {
   const fetchNotifications = async () => {
     try {
-      const resp = await fetch(`/api/messages/${user.username}`);
+      const resp = await fetch(`/api/messages/`);
       if (!resp.ok) {
         throw new Error('Failed to fetch notifications');
       }
@@ -138,7 +138,7 @@ useEffect(() => {
   fetchNotifications();
 }, [user.username]);
 const handleNotificationsURL = () => {
-  navigate('/notifications/' + user.username);
+  navigate('/notifications/');
 }
 
 const checkOverlayClick = (e)=>{

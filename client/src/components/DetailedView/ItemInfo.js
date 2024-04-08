@@ -51,7 +51,7 @@ export function ItemInfo({ item, isFull }) {
                 )}
                 {item.condition && (
                     <p className="detail">
-                        <b>{t("form.condition")}</b> {item.condition}
+                        <b>{t("form.condition")}</b> {t(`form.${item.condition.toLowerCase()}`)}
                     </p>
                 )}                
                 {isFull && item.extraField && item.extraField !== "none" && (
