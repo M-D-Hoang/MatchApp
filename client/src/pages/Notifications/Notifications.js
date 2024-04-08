@@ -21,7 +21,7 @@ export function Notifications() {
         }
 
         const data = await resp.json()
-        console.warn(data);
+        
         setUser(data);        
       } catch (e) {
         console.error(e)
