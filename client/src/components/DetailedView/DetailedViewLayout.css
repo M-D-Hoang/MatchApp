@@ -24,6 +24,10 @@
     border:none;
     margin: 5em 0 0.5em 0;
     }
+
+    .item-info-container>button{
+        
+    }
     
     .item-info-container {
     display:flex;
@@ -49,13 +53,7 @@
     width:800px
     }
     }
-    
-    @media (max-width: 1000px) {
-    .detailed-view,.detailed-view > .item-info-container > *,.carousel-root {
-    flex-direction:column;
-    width:80vw
-    }
-    }
+
     
     .item-image {
     display:flex;
