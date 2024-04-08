@@ -23,7 +23,7 @@ export function Contact({ onExit, item, onOverlayClick }) {
           return
         }
         const data = await resp.json()
-        console.warn(data);
+      
         setUserInfo(data);
         
       } catch (e) {
