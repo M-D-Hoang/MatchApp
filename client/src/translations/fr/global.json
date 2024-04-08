@@ -64,7 +64,8 @@
     "location": "Emplacement :",
     "new": "Neuf",
     "used": "Usagé",
-    "fair": "Bon"
+    "fair": "Bon",
+    "required": "Requis"
   },
   "category":{
     "electronics":"Électronique",

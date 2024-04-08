@@ -64,7 +64,8 @@
     "location": "Location:",
     "new": "New",
     "used": "Used",
-    "fair": "Fair"
+    "fair": "Fair",
+    "required": "Required"
     
   },
   "category":{

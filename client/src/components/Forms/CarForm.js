@@ -177,7 +177,7 @@ export function CarForm({ item, setSending, isEdit }) {
                     <LocationSelect coordinates={place} setCoordinates={setPlace} />
                 </label>
                 <label>
-                    {t("form.images")}{" "}
+                    {t("form.images")}{" "}{!isEdit && "("+t("form.required")+")"}{" "}
                     <div className="image-input-container">
                         {t("form.select")}
                         <input

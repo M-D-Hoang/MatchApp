@@ -1,6 +1,6 @@
 .navbar-drawer-pfp{
     width:190px;
-    height:`90px;
+    height:90px;
     object-fit: cover;
     border-radius: 50%;
     box-shadow: var(--box-shadow-small);
@@ -48,4 +48,3 @@
     border-image: linear-gradient(to right, transparent, var(--color-text), transparent) 1;
     background: var(--color-background);
 }
-
