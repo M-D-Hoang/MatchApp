@@ -15,10 +15,10 @@ export function Sell() {
 
         switch (value) {
             case "Car":
-                setSellJSX(<CarForm setSending={setSending} />);
+                setSellJSX(<CarForm setSending={setSending} isEdit={false}/>);
                 break;
             case "Item":
-                setSellJSX(<ItemForm setSending={setSending} />);
+                setSellJSX(<ItemForm setSending={setSending} isEdit={false}/>);
                 break;
             default:
                 break;

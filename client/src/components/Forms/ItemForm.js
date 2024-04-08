@@ -8,7 +8,7 @@ import { LocationSelect } from "../Location/LocationPicker.js";
 import { itemCategories } from "../categories.js";
 
 
-export function ItemForm({ item, setSending }) {
+export function ItemForm({ item, setSending, isEdit }) {
     const { t } = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
@@ -150,6 +150,7 @@ export function ItemForm({ item, setSending }) {
                             accept="image/*"
                             onChange={onImageChange}
                             multiple="multiple"></input>
+                            required={!isEdit}
                     </div>
                 </label>
                 <Carousel className="form-carousel" infiniteLoop={true}>

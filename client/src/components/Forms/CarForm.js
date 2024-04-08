@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
 import { useTranslation } from "react-i18next";
 import { LocationSelect } from "../Location/LocationPicker.js";
-export function CarForm({ item, setSending }) {
+export function CarForm({ item, setSending, isEdit }) {
     const { t } = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
@@ -187,6 +187,7 @@ export function CarForm({ item, setSending }) {
                             accept="image/*"
                             onChange={onImageChange}
                             multiple="multiple"></input>
+                            required={!isEdit}
                     </div>
                 </label>
                 <Carousel className="form-carousel" infiniteLoop={true}>
