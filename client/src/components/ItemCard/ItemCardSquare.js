@@ -33,7 +33,7 @@ export function ItemCardSquare({ item }) {
         <div className="item-card" onClick={showHandler}>
             {isDeatiledView ? (
                 <div>
-                    <DetailedView item={item} onExit={handleHideDetailedView} />
+                    <DetailedView item={item} key={item._id} onExit={handleHideDetailedView} />
                 </div>
             ) : null}
             {item.imageURIs !== undefined && (
