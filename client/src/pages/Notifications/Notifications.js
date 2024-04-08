@@ -51,7 +51,7 @@ export function Notifications() {
       }
     }
     fetchNotifications();
-  }, [user.username]);
+  }, [navigate, user.username]);
 
   return (
     <div className="notifications">
