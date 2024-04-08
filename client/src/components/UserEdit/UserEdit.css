@@ -1,8 +1,8 @@
-.user-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2em 0;
-    gap: 1em;
-}
+.user-form {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:2em 0;
+    gap:1em
+    }
