@@ -94,6 +94,12 @@ exports.Logout = asyncHandler(async (req, res) => {
 
 exports.editUser = asyncHandler(async (req, res, next) => {
   const userObj = req.body;
+  if(req.session._id !== userObj.ownerID){
+    res.status(401).json({
+      content: 'Unauthorized',
+      status: 401,
+    });
+  }
   try {
     await db.updateUser(userObj);
     next();

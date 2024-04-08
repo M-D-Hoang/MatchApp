@@ -186,8 +186,9 @@ export function CarForm({ item, setSending, isEdit }) {
                             name="image"
                             accept="image/*"
                             onChange={onImageChange}
-                            multiple="multiple"></input>
-                            required={!isEdit}
+                            multiple="multiple"
+                            required={!isEdit}></input>
+                            
                     </div>
                 </label>
                 <Carousel className="form-carousel" infiniteLoop={true}>

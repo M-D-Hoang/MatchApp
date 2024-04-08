@@ -97,6 +97,12 @@ exports.deleteCar = asyncHandler(async (req, res) => {
 
 exports.editCar = asyncHandler(async (req, res, next) => {
   const carObj = req.body;
+  if(req.session._id !== carObj.ownerID){
+    res.status(401).json({
+      content: 'Unauthorized',
+      status: 401,
+    });
+  }
   try {
     //coordinates gets sent as a string for some reason so
     //we turn it into an array with split
@@ -123,6 +129,12 @@ exports.editCar = asyncHandler(async (req, res, next) => {
 
 exports.editItem = asyncHandler(async (req, res, next) => {
   const ItemObj = req.body;
+  if(req.session._id !== ItemObj.ownerID){
+    res.status(401).json({
+      content: 'Unauthorized',
+      status: 401,
+    });
+  }
   try {
     //coordinates gets sent as a string for some reason so
     //we turn it into an array with split
