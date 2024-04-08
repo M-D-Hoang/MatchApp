@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const { BlobServiceClient } = require('@azure/storage-blob');
 const DB = require('../db/db.js');
 const db = new DB();
+const sharp = require('sharp');
 
 dotenv.config();
 const AZURE_SAS = process.env.AZURE_SAS;
@@ -28,9 +29,14 @@ exports.postImage = asyncHandler(async (req, res) => {
   const urls = [];
   // create promises to upload images
   const uploadPromises = images.map(async (image) => {
-    const path = image.name;
+    // need to test with different settings to see the effect on file size
+    // try: {nearLossless: true}
+    sharp(image.data).webp({quality: 50}).toBuffer().then(buffer => {
+      image.data = buffer;
+    });
+    const path = image.name + '.webp';
     const blobClient = containerClient.getBlockBlobClient(path);
-    const options = {blobHTTPHeaders: {blobContentType: image.mimetype}};
+    const options = {blobHTTPHeaders: {blobContentType: 'image/webp'}};
     await blobClient.uploadData(image.data, options);
     const fullURL = blobPublicUrl + path;
     // add URL to the new array
