@@ -9,37 +9,11 @@ export function Notifications() {
   const [user, setUser] = useState({});
   const [t] = useTranslation("global");
   const navigate = useNavigate();
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const resp = await fetch('/api/users/check-auth', {
-          method: 'GET',
-          credentials: "include"
-        })
-
-        if (!resp.ok) {
-          return
-        }
-
-        const data = await resp.json()
-        
-        setUser(data);        
-      } catch (e) {
-        console.error(e)
-      }
-    }
-
-    checkAuth()
-  }, []);
 
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const resp = await fetch(`/api/messages/${user.username}`);
-        if(resp.status===401){
-          navigate('/')
-          return;
-        }
+        const resp = await fetch(`/api/messages/`);
         if (!resp.ok) {
           throw new Error('Failed to fetch notifications');
         }

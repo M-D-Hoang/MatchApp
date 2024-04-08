@@ -16,6 +16,7 @@ import { UserEdit } from "./components/UserEdit/UserEdit.js";
 
 function App() {
     const [pfpURL, setPfpURL] = useState('');
+    //This sends out stale data sometimes.
     const [username, setUsername] = useState("");
     const clientID = '814081120756-6v1oiqc3019b696l91gq12gikok50975.apps.googleusercontent.com';
 
@@ -30,7 +31,7 @@ function App() {
                       <Route path="edit" element={<Edit />} />
                       <Route path="fullview/item/:id" element={<FullView key={"full-view-item"} isCar={false} />} />
                       <Route path="fullview/car/:id" element={<FullView key={"full-view-car"} isCar={true} />} />
-                      <Route path="notifications/:username" element={<Notifications username={username}/>} />
+                      <Route path="notifications/" element={<Notifications/>} />
                       <Route path='my-page' element={<UserPage/>}/>
                       <Route path="fullview" element={<FullView key={"full-view"} />} />                     
                       <Route path='user/:username' element={<UserPage/>}/>
