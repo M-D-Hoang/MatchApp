@@ -23,7 +23,7 @@ exports.postImage = asyncHandler(async (req, res) => {
   //check if any images, return 400 resp if not.
   if (req.files !== null){
     // if multiple images uploaded, it's an array
-  // else it's an object
+    // else it's an object
     if (req.files.image.length) {
       images = Array.from(req.files.image);
     } else {
@@ -32,11 +32,10 @@ exports.postImage = asyncHandler(async (req, res) => {
     const urls = [];
     // create promises to upload images
     const uploadPromises = images.map(async (image) => {
-    // need to test with different settings to see the effect on file size
-    // try: {nearLossless: true}
-      sharp(image.data).webp({quality: 50}).toBuffer().then(buffer => {
-        image.data = buffer;
-      });
+      await sharp(image.data).resize(1000).webp({quality: 80, nearLossless: true}).toBuffer().
+        then(buffer => {
+          image.data = buffer;
+        });
       const path = image.name + '.webp';
       const blobClient = containerClient.getBlockBlobClient(path);
       const options = {blobHTTPHeaders: {blobContentType: 'image/webp'}};
