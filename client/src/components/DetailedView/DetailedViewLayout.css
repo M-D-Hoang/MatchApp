@@ -22,7 +22,7 @@
     gap:5em;
     border-radius:1.5em;
     border:none;
-    margin:2em
+    margin: 5em 0 0.5em 0;
     }
     
     .item-info-container {
@@ -81,7 +81,6 @@
     }
     
     .detail-container > .detail {
-    padding-right:50%;
     margin:0;
     font-size:18px;
     text-align:left;
