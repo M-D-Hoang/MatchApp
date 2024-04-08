@@ -2,12 +2,14 @@ import React from "react";
 import { ItemInfo } from "../DetailedView/ItemInfo";
 import tempImage from "../../assets/images/item-image-temp1.png";
 import { useNavigate } from "react-router-dom";
-
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./DetailedViewLayout.css";
 import { Carousel } from 'react-responsive-carousel';
+import { useTranslation } from "react-i18next";
+import "../ImportedComponents/carousel.css";
 
 export function DetailedView({ onExit, item }) {
+   const [t] = useTranslation("global");
     const navigate = useNavigate();
     // prepare images array
     const images = [];
@@ -21,10 +23,10 @@ export function DetailedView({ onExit, item }) {
     });
 
     // TODO: change this
-    const isCar = item && item.make !== undefined;
+    const isCar = item.objectType === 'car';
 
     const handleFullViewURL = () => {
-        navigate(`/fullview/${isCar ? 'car' : 'item'}/` + item._id, { state: { data: item } });
+        navigate(`/fullview/${isCar ? 'car' : 'item'}/` + item._id);
     }
     return (
         <div className={"overlay"} onClick={onExit}>
@@ -34,7 +36,7 @@ export function DetailedView({ onExit, item }) {
                 </div>
                 <div className="item-info-container">
                     <ItemInfo item={item} />
-                    <button onClick={handleFullViewURL}>Full View</button>
+                    <button onClick={handleFullViewURL}>{t("detail.full")}</button>
                 </div>
             </div>
         </div>

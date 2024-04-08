@@ -1,24 +1,80 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-.App {
-    font-family: "Inter",sans-serif;
-    text-align: center;
-    min-height: 100vh;
-    background-color: rgb(248, 249, 249);
-}
-input:focus, select:focus, textarea:focus, button:focus {
-    outline: 1px solid rgb(182, 182, 182);
-}
-img{
-    object-fit: contain;
-}
-input{
-    padding-left: 1em;
-    box-sizing: border-box;
+@import "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap";
 
+.App {
+font-family:"Inter",sans-serif;
+text-align:center;
+min-height:100vh;
+background-color:var(--color-background);
+word-wrap:break-word
 }
-.App, select, input,button{
-    font-family: "Inter",sans-serif;
+
+input:focus,select:focus,textarea:focus,button:focus {
+outline:1px solid #b6b6b6 
 }
-.loading-bar{
-    align-self: center;
+
+img {
+object-fit:contain
+}
+
+input,select {
+padding-left:1em;
+box-sizing:border-box;
+height:3em;
+border-radius:3em;
+border:none;
+box-shadow:var(--box-shadow-small);
+background-color:var(--input-background);
+color:var(--color-text)
+}
+
+input:hover,select:hover {
+box-shadow:var(--box-shadow-medium);
+transition:box-shadow .3s
+}
+
+button {
+box-shadow:var(--box-shadow-small);
+background-color:var(--button-background);
+color:var(--button-text);
+border:none;
+height:3em;
+border-radius:3em;
+font-weight:600;
+padding:0 1em
+}
+
+button:hover {
+filter:brightness(0.9);
+box-shadow:var(--box-shadow-medium);
+transition:filter .3;
+cursor:pointer
+}
+
+.App,select,input,button {
+font-family:"Inter",sans-serif
+}
+
+.loading-bar {
+align-self:center;
+margin-left:auto;
+margin-right:auto
+}
+
+.map-container {
+height:256px;
+width:100%;
+flex:3;
+border:2px solid #000;
+border-radius:16px;
+max-width:90vw
+}
+
+.map-leaflet {
+height:256px;
+width:100%;
+border-radius:16px
+}
+
+b {
+font-weight:600
 }

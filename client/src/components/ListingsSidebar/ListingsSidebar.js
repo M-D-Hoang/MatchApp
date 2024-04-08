@@ -1,17 +1,22 @@
-import React from "react";
 import "./ListingsSidebar.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import {ItemExclusiveSearch} from './ItemExclusiveSearch'
+import { CarExclusiveSearch } from "./CarExclusiveSearch";
 
-export function ListingsSidebar() {
+export function ListingsSidebar({isMobile, isSidebarOpen, setIsSidebarOpen}) {
     const navigate = useNavigate();
-
+    const [t] = useTranslation("global");
     const [itemType, setItemType] = useState("items");
     const [condition, setCondition] = useState("");
     const [minPrice, setMinPrice] = useState("");
     const [maxPrice, setMaxPrice] = useState("");
 
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+
+    //Queries for either cars or items, a string value to append to the queries. 
+    const [sectionQueries, setSectionQueries] = useState({});
 
     const handleConditionChoice = (value) => {
         setCondition(value);
@@ -28,7 +33,10 @@ export function ListingsSidebar() {
         queries += condition ? `condition=${condition}&` : "";
         queries += minPrice > 0 ? `minPrice=${minPrice}&` : "";
         queries += maxPrice > 0 ? `maxPrice=${maxPrice}&` : "";
-        queries = queries.substring(0, queries.length - 1);
+        queries += sectionQueries;
+        if (queries.endsWith('&')) {
+            queries = queries.substring(0, queries.length - 1);
+        }   
         navigate("/?"+queries);
         toggleSidebar();
     };
@@ -39,33 +47,34 @@ export function ListingsSidebar() {
         }
     };
 
+
+    function updateSectionQuery(newParams){
+        //Called when any item/car exclusive param gets changed
+        //Updates sectionQueries to then be added to the submitQueries's string
+        setSectionQueries(newParams)
+    }
+
+
+    const extraSearchTerms = itemType === 'items'? <ItemExclusiveSearch t={t} updateSectionQuery={updateSectionQuery}/> : <CarExclusiveSearch t={t} updateSectionQuery={updateSectionQuery}/>
+
     const sidebarClassname = "sidebar " + isSidebarOpen;
     return (
         <div className={sidebarClassname}>
             <form onSubmit={(e) => submitQueries(e)} className="filters-form">
-                <div className="form-input">
-                    <h3 className="filter-title">Filters</h3>
+                <div className="form-input">               
+                    <h3 className="filter-title">{t("filter.filter")}</h3>
                     <select
                         className="item-type-select"
                         onChange={(e) => handleItemTypeChoice(e.target.value)}>
-                        <option value="items" defaultValue>Items</option>
-                        <option value="cars">Cars</option>
+                        <option value="items" defaultValue>{t("filter.items")}</option>
+                        <option value="cars">{t("filter.cars")}</option>
                     </select>
-                    <select
-                        name="condition"
-                        className="condition-select"
-                        onChange={(e) => handleConditionChoice(e.target.value)}>
-                        <option value={""}>Condition</option>
-                        <option value="new">New</option>
-                        <option value="fair">Fair</option>
-                        <option value="used">Used</option>
-                    </select>
-                    <h3 className="price-title">Price</h3>
+                    <h3 className="price-title">{t("form.price")}</h3>
                     <div className="price-filter">
                         <input
                             type="number"
                             min={0}
-                            placeholder="Min"
+                            placeholder={t("filter.min")}
                             onChange={(e) =>
                                 setMinPrice(e.target.value)
                             }></input>
@@ -73,19 +82,32 @@ export function ListingsSidebar() {
                         <input
                             type="number"
                             min={minPrice || 0}
-                            placeholder="Max"
+                            placeholder={t("filter.max")}
                             onChange={(e) =>
                                 setMaxPrice(e.target.value)
                             }></input>
                     </div>
+                    <select
+                        name="condition"
+                        className="condition-select"
+                        onChange={(e) => handleConditionChoice(e.target.value)}>
+                        <option value={""}>{t("form.condition")}</option>
+                        <option value="new">{t("form.new")}</option>
+                        <option value="fair">{t("form.fair")}</option>
+                        <option value="used">{t("form.used")}</option>
+                    </select>
+                    
+                    {extraSearchTerms}
                 </div>
                 <div className="bottom-container">
                     <div
                         onClick={toggleSidebar}
-                        className={"toggle-sidebar " + isSidebarOpen}></div>
-                    <input type="submit" className="submit-filters"></input>
+                        className={"toggle-sidebar " + isSidebarOpen}></div>    
+                    <button className="submit-filters">{t('filter.search')}</button>
                 </div>
             </form>
         </div>
     );
 }
+
+

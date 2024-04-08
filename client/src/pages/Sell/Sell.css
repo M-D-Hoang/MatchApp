@@ -1,26 +1,17 @@
 .sell-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5em;
-}
-.sell-title {
-    margin: 0 0 1em 0;
-    font-weight: 600;
-}
-.form-select {
-    padding: 0 1em;
-    height: 3em;
-    width: 20em;
-    border-radius: 3em;
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
-    font-size: 16px;
-    margin-bottom: 1em;
-}
-.form-select > option {
-    height: 3em;
-}
-.form-select:hover {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
-}
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:5em
+    }
+    
+    .sell-title {
+    margin-bottom:1em;
+    font-weight:600;
+    color:var(--color-text-green)
+    }
+    
+    .form-select {
+    width:24em;
+    margin-bottom:1em
+    }

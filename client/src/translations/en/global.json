@@ -1,0 +1,114 @@
+{
+  "nav": {
+    "profile":"Profile",
+    "logout": "Logout",
+    "sell": "Sell",
+    "toggleDark": "Toggle Dark Mode",
+    "langEN": "English",
+    "langFR": "French",
+    "langRU": "Russian",
+    "closeDrawer": "Close Menu",
+    "noti": "Notifications"
+  },
+  "user": {
+    "firstName": "First Name:",
+    "lastName": "Last Name:",
+    "birthday": "Birthday:",
+    "profilePicture": "Change Picture",
+    "gender": "Gender:",
+    "email": "E-mail:",
+    "phoneNumber": "Phone Number:",
+    "personal": "Personal Info:",
+    "items": "Items",
+    "noUser": "This user does not exist.",
+    "edit": "Edit Info",
+    "welcome": "Welcome to MatchApp!",
+    "new": "Before we can let you in, we need to know a little more about you."
+  },
+  "sell": {
+    "sellTitle": "Add Your Listing",
+    "select": "Select Category",
+    "item": "Item",
+    "car": "Car"
+  },
+  "filter": {
+    "search": "Search",
+    "sortBy": "Sort By",
+    "newest": "Date: Newest",
+    "oldest": "Date: Oldest",
+    "lowPrice": "Price: Low to High",
+    "highPrice": "Price: High to Low",
+    "none": "No results found",
+    "filter": "Filters",
+    "items": "Items",
+    "cars": "Cars",    
+    "min": "Min",
+    "max": "Max"
+  },
+  "form": {
+    "title": "Title:",
+    "description": "Description:",
+    "price": "Price:",
+    "condition": "Condition:",
+    "make": "Make:",
+    "model": "Model:",
+    "bodyType": "Body Type:",
+    "transmission": "Transmission:",
+    "mileage": "Mileage:",
+    "driveTrain": "Drive Train:",
+    "images": "Images:",
+    "select": "Select files",
+    "extra": "Extra Tag:",
+    "category": "Category:",
+    "year": "Year:",
+    "location": "Location:",
+    "new": "New",
+    "used": "Used",
+    "fair": "Fair"
+    
+  },
+  "category":{
+    "electronics":"Electronics",
+    "apparel":"Apparel",
+    "kitchen": "Kitchen",
+    "books":"Books",
+    "games&toys":"Toys / Games",
+    "personalCare":"Personal Care",
+    "sports":"Sports",
+    "health":"Health",
+    "pet":"Pet Supplies",
+    "jewlery":"Jewelry",
+    "baby":"Baby & Kids",
+    "office":"Office",
+    "furniture":"Furniture",
+    "movies":"Movies",
+    "music": "Music",    
+    "bag&luggage":"Travel & Luggage",
+    "tools&equipement":"Tools / Equipment",
+    "other":"Other"
+
+  },
+  "404": {
+    "404": "404 - No Such Page"
+  },
+  "edit": {
+    "edit": "Edit Your Listing"
+  },
+  "fullView": {
+    "posted": "Posted by:",
+    "delete": "Delete",
+    "edit": "Edit",
+    "contact": "Contact Buyer",
+    "defaultMessage": "I'm interested in this item, please contact me back.",
+    "send": "Send Message",
+    "enterMessage": "Enter Message:",
+    "noLocation": "No pickup location was specified.",
+    "pickupLoc": "Pickup Location"
+  },
+  "detail": {
+    "full": "Full View"
+  },
+  "noti": {
+    "noti": "Your Notifications"
+  }
+}

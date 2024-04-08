@@ -5,13 +5,48 @@ import tempImage from "../../assets/images/item-image-temp1.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
 import ReactLoading from 'react-loading';
+import { Contact } from "../../components/Contact/Contact";
 import "./FullView.css";
+import { MapScreen } from "../../components/Location/Map";
+import { useTranslation } from "react-i18next";
 
-export function FullView({isCar}) {
+export function FullView({ isCar }) {
+    const [t] = useTranslation("global");
     const navigate = useNavigate();
     const itemId = useParams().id;
-    const [item, setItem] = useState({ownerID:undefined, imageURIs:['']});
+    const [item, setItem] = useState({ ownerID: undefined, imageURIs: [''] });
     const [isOwner, setisOwner] = useState(false);
+    const [isLoggedIn, setLoggedIn] = useState(false);
+
+    const [isContactView, setContactView] = useState(false);
+
+    useEffect(() => {
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, []);
+
+    const handleHideContactdView = (e) => {
+        if (e.target.className === "overlay") {
+            setContactView(false);
+        }
+    };
+
+    const forceHideContactdView = () => {
+        setContactView(false);
+    };
+
+    const showHandler = (e) => {
+        if (e.target.className !== "overlay") {
+            setContactView(true);
+        }
+    };
+
+    if (isContactView) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "auto";
+    }
 
     useEffect(() => {
         fetch('/api/users/check-auth', {
@@ -20,14 +55,17 @@ export function FullView({isCar}) {
         }).then(resp => {
             if (!resp.ok) {
                 setisOwner(false);
+                setLoggedIn(true);
                 return
             }
             return resp.json();
         }).then(json => {
             setisOwner(item.ownerID === json.username)
+            setLoggedIn(true);
         }).catch((e) => {
             console.error(e)
             setisOwner(false);
+            setLoggedIn(false);
         })
     }, [item.ownerID]);
 
@@ -94,31 +132,47 @@ export function FullView({isCar}) {
     if (item) {
         return (
             <div className={"full-view-page"}>
-                
-                {item.ownerID === undefined ? 
-                <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={400} width={400} />:
-                <><div className={"item-image"}>
+
+                {item.ownerID === undefined ?
+                    <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={200} width={200} /> :
+                    <><div className={"item-image"}>
                         <Carousel className="carousel" infiniteLoop={true}>
                             {images}
                         </Carousel>
-                    </div><div className="item-info-container">
-                            <ItemInfo item={item} />
+                    </div>
+                        <div className="item-info-container">
+                            <ItemInfo item={item} isFull={true} />
                             <div className="action-container">
                                 <div className="user-info">
-                                    <p>Posted by:</p>
+                                    <p>{t("fullView.posted")}</p>
                                     <UserButton userID={item.ownerID} />
                                 </div>
 
-                                {isOwner &&
+                                {item.coordinates.length > 0 && item.location !== undefined ?
+                                    <div className="fullview-map-parent">
+                                        <h2>{t("fullView.pickupLoc")}</h2>
+                                        <MapScreen marker={{ name: item.location, coordinates: item.coordinates }} />
+                                    </div> : <p>{t("fullView.noLocation")}</p>}
+                                {isOwner ? (
                                     <>
-                                        <button onClick={handleDelete}>Delete</button>
-                                        <button onClick={handleEdit}>Edit</button>
-                                    </>}
+                                        <button onClick={handleDelete}>{t("fullView.delete")}</button>
+                                        <button onClick={handleEdit}>{t("fullView.edit")}</button>
+                                    </>
+                                ) : (
+                                    <div>
+                                        {isLoggedIn && <button className="contact-button" onClick={showHandler}>{t("fullView.contact")}</button>}
+                                        {isContactView ? (
+                                            <div>
+                                                <Contact item={item} onExit={forceHideContactdView} onOverlayClick={handleHideContactdView}></Contact>
+                                            </div>
+                                        ) : null}
+                                    </div>
+                                )}
                             </div>
                         </div></>
                 }
 
-                
+
             </div>
         );
     }

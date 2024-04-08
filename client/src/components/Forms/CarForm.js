@@ -3,11 +3,15 @@ import { editListing, updateListing } from "./FormSubmit.js";
 import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
-
-export function CarForm({ item }) {
+import { useTranslation } from "react-i18next";
+import { LocationSelect } from "../Location/LocationPicker.js";
+export function CarForm({ item, setSending }) {
+    const { t } = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
     const [imageFiles, setImageFiles] = useState(null);
+
+    const [place, setPlace] = useState(null);
 
     useEffect(() => {
         // create images slides
@@ -23,8 +27,13 @@ export function CarForm({ item }) {
 
     const submitItem = async (e) => {
         e.preventDefault();
+        setSending(true);
         var formData = new FormData(e.target);
         formData.append("image", imageFiles);
+        if (place != null) {
+            formData.append("location", place.name);
+            formData.append("coordinates", place.coordinates);
+        }
         var resp = undefined;
         if (item !== undefined) {
             //For editing an item
@@ -36,12 +45,12 @@ export function CarForm({ item }) {
         }
         if (resp.status === 201) {
             //navigate to item full view
-            console.log(
-                resp.json().then((resp) => navigate("/fullview/car/" + resp.id))
-            );
+            resp.json().then((resp) => navigate("/fullview/car/" + resp.id))
+
         } else {
             alert("Listing update failed.");
         }
+        setSending(false);
     };
 
     async function onImageChange(e) {
@@ -65,7 +74,7 @@ export function CarForm({ item }) {
         <div className="item-form">
             <form onSubmit={submitItem}>
                 <label>
-                    Title:{" "}
+                    {t("form.title")}{" "}
                     <input
                         type="text"
                         name="title"
@@ -73,7 +82,7 @@ export function CarForm({ item }) {
                         required></input>
                 </label>
                 <label>
-                    Description:{" "}
+                    {t("form.description")}{" "}
                     <textarea
                         type="text"
                         name="description"
@@ -86,24 +95,25 @@ export function CarForm({ item }) {
                         }></textarea>
                 </label>
                 <label>
-                    Price:{" "}
+                    {t("form.price")}{" "}
                     <input
                         type="number"
                         name="price"
+                        step={0.01}
                         defaultValue={
                             item !== undefined ? item.price : ""
                         }></input>
                 </label>
                 <label>
-                    Condition:{" "}
-                    <input
-                        type="text"
-                        name="condition"
-                        defaultValue={item !== undefined ? item.condition : ""}
-                        required></input>
+                    {t("form.condition")}{" "}
+                    <select name='condition' className="form-dropdown">
+                        <option value="new">{t(`form.new`)}</option>
+                        <option value="fair">{t(`form.fair`)}</option>
+                        <option value="used">{t(`form.used`)}</option>
+                    </select>
                 </label>
                 <label>
-                    Make:{" "}
+                    {t("form.make")}{" "}
                     <input
                         type="text"
                         name="make"
@@ -113,7 +123,7 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Model:{" "}
+                    {t("form.model")}{" "}
                     <input
                         type="text"
                         name="model"
@@ -123,7 +133,7 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Body Type:{" "}
+                    {t("form.bodyType")}{" "}
                     <input
                         type="text"
                         name="bodyType"
@@ -133,7 +143,7 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Mileage:{" "}
+                    {t("form.mileage")}{" "}
                     <input
                         type="number"
                         name="mileage"
@@ -143,7 +153,7 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Transmission:{" "}
+                    {t("form.transmission")}{" "}
                     <input
                         type="text"
                         name="transmission"
@@ -153,7 +163,7 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    DriveTrain:{" "}
+                    {t("form.driveTrain")}{" "}
                     <input
                         type="text"
                         name="driveTrain"
@@ -163,9 +173,13 @@ export function CarForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Images:{" "}
+                    {t("form.location")}{" "}
+                    <LocationSelect coordinates={place} setCoordinates={setPlace} />
+                </label>
+                <label>
+                    {t("form.images")}{" "}
                     <div className="image-input-container">
-                        Select files
+                        {t("form.select")}
                         <input
                             className="image-input"
                             type="file"

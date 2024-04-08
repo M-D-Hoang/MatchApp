@@ -1,134 +1,96 @@
 .overlay {
-    position: fixed;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 2;
-    overflow-x: hidden;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.detailed-view {
-    background-color: rgb(248, 249, 249);
-    padding: 2em;
-    display: flex;
-    gap: 5em;
-    border-radius: 1.5em;
-    border: none;
-}
-
-button:hover {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
-    filter: brightness(0.9);
-    transition: box-shadow 0.3s;
-    cursor: pointer;
-    transition: brightness 0.3s;
-}
-
-.item-info-container > button {
-    height: 3em;
-    border-radius: 3em;
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
-    background-color: rgb(50, 122, 65);
-    color: white;
-    font-weight: 600;
-    z-index: 1;
-    position: relative;
-}
-.item-info-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1em;
-}
-.item-info {
-    display: flex;
-    flex-direction: column;
-    width: 30em;
-    gap: 0.5em;
-}
-@media (max-width: 1500px) {
+    position:fixed;
+    display:flex;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:#0009;
+    z-index:2;
+    overflow-x:hidden;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap
+    }
+    
     .detailed-view {
-        flex-direction: column;
+    background-color:var(--color-background-light);
+    padding:2em;
+    display:flex;
+    gap:5em;
+    border-radius:1.5em;
+    border:none;
+    margin:2em
     }
+    
+    .item-info-container {
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:5em
+    }
+    
+    .item-info {
+    display:flex;
+    flex-direction:column;
+    width:30em;
+    gap:.5em
+    }
+    
+    @media (max-width: 1500px) {
+    .detailed-view,.detailed-view > .item-info-container {
+    flex-direction:column
+    }
+    
     .detailed-view > .item-info {
-        flex-grow: 1;
-        width: 800px;
+    flex-grow:1;
+    width:800px
     }
-}
-
-.item-image {
-    display: flex;
-    flex-direction: row;
-    width: 700px;
-    height: 600px;
-}
-
-.item-info > .price,
-.item-info > .title,
-.item-info > .description,
-.item-info > .description-title {
-    text-align: left;
-    margin: 0;
-}
-.item-info > .title,
-.item-info > .price,
-.item-info > .description-title {
-    font-weight: 600;
-}
-.detail-container {
-    padding: 1em 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-}
-.detail-container > .detail {
-    padding-right: 50%;
-    margin: 0;
-    font-size: 18px;
-    text-align: left;
-    font-weight: 400;
-    display: flex;
-    gap: 0.5em;
-    justify-content: space-between;
-}
-b {
-    font-weight: 600;
-}
-.price {
-    color: rgb(50, 122, 65);
-}
-
-.carousel-slider,
-.slide,
-.slide img {
-    width: 700px;
-    height: 500px;
-}
-
-.control-arrow {
-    width: 10%;
-}
-
-.carousel-status {
-    display: none;
-}
-
-.control-arrow {
-    filter: brightness(0.5);
-}
-
-.carousel .carousel .thumbs-wrapper {
-    margin: 0;
-}
-.control-dots {
-    display: none;
-}
+    }
+    
+    @media (max-width: 1000px) {
+    .detailed-view,.detailed-view > .item-info-container > *,.carousel-root {
+    flex-direction:column;
+    width:80vw
+    }
+    }
+    
+    .item-image {
+    display:flex;
+    flex-direction:row;
+    width:800px;
+    height:600px
+    }
+    
+    .item-info > .price,.item-info > .title,.item-info > .description,.item-info > .description-title {
+    text-align:left;
+    margin:0
+    }
+    
+    .item-info > .title,.item-info > .price,.item-info > .description-title {
+    font-weight:600
+    }
+    
+    .detail-container {
+    padding:1em 0;
+    display:flex;
+    flex-direction:column;
+    gap:.5em
+    }
+    
+    .detail-container > .detail {
+    padding-right:50%;
+    margin:0;
+    font-size:18px;
+    text-align:left;
+    font-weight:400;
+    display:flex;
+    width:75%;
+    justify-content:space-between
+    }
+    
+    .price {
+    color:var(--color-text-green-light)
+    }

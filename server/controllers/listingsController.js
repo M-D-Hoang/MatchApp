@@ -9,7 +9,12 @@ exports.postItem = asyncHandler(async (req, res, next) => {
     formObj.imageURIs = [''];
     
     formObj.ownerID = req.session.username;
-    formObj.location = 'H0H0H0';
+    
+    //coordinates gets sent as a string for some reason so
+    //we turn it into an array with split
+    if(formObj.coordinates){
+      formObj.coordinates = formObj.coordinates.split(',');
+    }
 
     formObj.objectType = 'item';
     formObj.date = new Date(Date.now()).toLocaleString();
@@ -34,8 +39,13 @@ exports.postCar = asyncHandler(async (req, res, next) => {
     formObj.imageURIs = [''];
     // TODO: TEMPORARY VALUE PLEASE CHANGE FOR THE FINAL!!!
     formObj.ownerID = req.session.username;
-    formObj.location = 'H0H0H0';
-
+ 
+    //coordinates gets sent as a string for some reason so
+    //we turn it into an array with split
+    if(formObj.coordinates) {
+      formObj.coordinates = formObj.coordinates.split(',');
+    }
+    
 
     formObj.objectType = 'cars';
     formObj.date = new Date(Date.now()).toLocaleString();
@@ -88,6 +98,11 @@ exports.deleteCar = asyncHandler(async (req, res) => {
 exports.editCar = asyncHandler(async (req, res, next) => {
   const carObj = req.body;
   try {
+    //coordinates gets sent as a string for some reason so
+    //we turn it into an array with split
+    if(carObj.coordinates){
+      carObj.coordinates = carObj.coordinates.split(',');
+    }
     res.locals.listing = await db.updateCarListing(carObj);
     // pass request down to image controller
     if (req.files) {
@@ -104,9 +119,16 @@ exports.editCar = asyncHandler(async (req, res, next) => {
   }
 });
 
+
+
 exports.editItem = asyncHandler(async (req, res, next) => {
   const ItemObj = req.body;
   try {
+    //coordinates gets sent as a string for some reason so
+    //we turn it into an array with split
+    if(ItemObj.coordinates){
+      ItemObj.coordinates = ItemObj.coordinates.split(',');
+    }
     res.locals.listing = await db.updateItemListing(ItemObj);
     // pass request down to image controller
     if (req.files) {
@@ -158,7 +180,6 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
     } = req.query;
 
     const filter = {};
-
     if (keyword) {
       //contains title
       filter.title = { $regex: keyword, $options: 'i' };
@@ -174,11 +195,12 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
       filter.category = category;
     }
     if (minPrice) {
-      filter.price = { $gte: minPrice };
+      filter.price = { $gte: Number(minPrice) };
     }
     if (maxPrice) {
-      filter.price = { $lte: maxPrice };
+      filter.price = { ...filter.price, $lte: Number(maxPrice) };
     }
+    
 
     const listings = await db.readAllFilteredListings(
       filter,
@@ -196,18 +218,27 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
 exports.getCarsFiltered = asyncHandler(async (req, res) => {
   try {
     const {
+      keyword,
       condition,
       make,
       model,
       bodyType,
       transmission,
       driveTrain,
+      minPrice,
+      maxPrice,
       page,
       sortField,
       sortOrder,
     } = req.query;
 
     const filter = {};
+
+    if (keyword) {
+      //contains title
+      filter.title = { $regex: keyword, $options: 'i' };
+    }
+
     if (condition) {
       filter.condition = condition;
     }
@@ -226,6 +257,13 @@ exports.getCarsFiltered = asyncHandler(async (req, res) => {
     if (driveTrain) {
       filter.driveTrain = driveTrain;
     }
+    if (minPrice) {
+      filter.price = { $gte: Number(minPrice) };
+    }
+    if (maxPrice) {
+      filter.price = { ...filter.price, $lte: Number(maxPrice) };
+    }
+    
     const carListings = await db.readAllFilteredCarListings(
       filter,
       page,

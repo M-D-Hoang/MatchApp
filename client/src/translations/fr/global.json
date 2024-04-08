@@ -1,0 +1,112 @@
+{
+  "nav": {
+    "profile":"Profil",
+    "logout": "Déconnexion",
+    "sell": "Vendre",
+    "toggleDark": "Change Mode Nuit",
+    "langEN": "Anglais",
+    "langFR": "Français",
+    "langRU": "Russe",
+    "closeDrawer": "Fermer le Menu",
+    "noti":"Avis"
+  },
+  "user": {
+    "firstName": "Prénom :",
+    "lastName": "Nom de famille :",
+    "birthday": "Date de naissance :",
+    "profilePicture": "Changer la photo de profil",
+    "gender": "Genre :",
+    "email": "E-mail :",
+    "phoneNumber": "Numéro de téléphone :",
+    "personal": "Informations personnelles :",
+    "items": "Articles",
+    "edit": "Modifier les informations",
+    "noUser": "Cet utilisateur n'existe pas.",
+    "welcome": "Bienvenue sur MatchApp !",
+    "new": "Avant de vous laisser entrer, nous avons besoin d'en savoir un peu plus sur vous."
+  },
+  "sell": {
+    "sellTitle": "Ajouter votre annonce",
+    "select": "Sélectionner la catégorie",
+    "item": "Article",
+    "car": "Voiture"
+  },
+  "filter": {
+    "search": "Rechercher",
+    "sortBy": "Trier par",
+    "newest": "Date : Plus récent",
+    "oldest": "Date : Plus ancien",
+    "lowPrice": "Prix : Bas à élevé",
+    "highPrice": "Prix : Élevé à bas",
+    "none": "Aucun résultat trouvé",
+    "filter": "Filtres",
+    "items": "Articles",
+    "cars": "Voitures",
+    "min": "Min",
+    "max": "Max"
+  },
+  "form": {
+    "title": "Titre :",
+    "description": "Description :",
+    "price": "Prix :",
+    "condition": "État :",
+    "make": "Marque :",
+    "model": "Modèle :",
+    "bodyType": "Type de carrosserie :",
+    "transmission": "Transmission :",
+    "mileage": "Kilométrage :",
+    "driveTrain": "Transmission :",
+    "images": "Images :",
+    "select": "Sélectionner des fichiers",
+    "extra": "Supplémentaire :",
+    "category": "Catégorie :",
+    "year": "Année :",
+    "location": "Emplacement :",
+    "new": "Neuf",
+    "used": "Usagé",
+    "fair": "Bon"
+  },
+  "category":{
+    "electronics":"Électronique",
+    "apparel":"Vêtements",
+    "kitchen": "Cuisine",
+    "books":"Livres",
+    "games&toys":"Jouets / Jeux",
+    "personalCare":"Soins Personnels",
+    "sports":"Sports",
+    "health":"Santé",
+    "pet":"Fournitures Pour Animaux",
+    "jewlery":"Bijoux",
+    "baby":"Bébé et Enfants",
+    "office":"Bureau",
+    "furniture":"Meubles",
+    "movies":"Films",
+    "music": "Musique",    
+    "bag&luggage":"Voyages et Bagages",
+    "tools&equipement":"Outils / Équipement",
+    "other":"Autre"
+  },
+  "404": {
+    "404": "404 - Page non trouvée"
+  },
+  "edit": {
+    "edit": "Modifier votre annonce"
+  },
+  "fullView": {
+    "posted": "Publié par :",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "contact": "Contacter l'acheteur",
+    "defaultMessage": "Je suis intéressé par cet article. Lance-moi une message.",
+    "send": "Envoyer",
+    "enterMessage": "Entrez votre message:",
+    "noLocation": "Aucun lieu de prise en charge n'a été précisé.",
+    "pickupLoc": "Lieu de Ramassage"
+  },
+  "detail": {
+    "full": "Vue complète"
+  },
+  "noti": {
+    "noti": "Votre Avis"
+  }
+}

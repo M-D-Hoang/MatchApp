@@ -1,10 +1,15 @@
-import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DetailedView } from "../DetailedView/DetailedViewLayout";
 import "./ItemCardSquare.css";
 
 export function ItemCardSquare({ item }) {
     const [isDeatiledView, setDetailedView] = useState(false);
+
+    useEffect(() => {
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, []);
 
     const handleHideDetailedView = (e) => {
         if (e.target.className === "overlay") {
@@ -39,7 +44,7 @@ export function ItemCardSquare({ item }) {
             )}
             <div className="preview-text">
                 <p className="title">{item.title}</p>
-                <p className="price">{item.price} $</p>
+                <p className="price">{item.price}$</p>
             </div>
         </div>
     );

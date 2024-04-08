@@ -62,7 +62,6 @@ exports.Login = asyncHandler(async (req, res) => {
       req.session = {};
     }
 
-    // TODO: Change this to just set username
     req.session.username = payload.email.split('@')[0];
     req.session.email = payload.email;
     req.session.picture = payload.picture;

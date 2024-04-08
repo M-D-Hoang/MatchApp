@@ -3,11 +3,19 @@ import { editListing, updateListing } from "./FormSubmit.js";
 import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
+import { useTranslation } from "react-i18next";
+import { LocationSelect } from "../Location/LocationPicker.js";
+import { itemCategories } from "../categories.js";
 
-export function ItemForm({ item }) {
+
+export function ItemForm({ item, setSending }) {
+    const { t } = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
     const [imageFiles, setImageFiles] = useState(null);
+    
+    //Coords data & address
+    const [place, setPlace] = useState(null);
 
     useEffect(() => {
         // create images slides
@@ -23,8 +31,14 @@ export function ItemForm({ item }) {
 
     const submitItem = async (e) => {
         e.preventDefault();
+        setSending(true);
         var formData = new FormData(e.target);
         formData.append("image", imageFiles);
+        if (place != null){
+            formData.append("location",place.name);
+            formData.append("coordinates", place.coordinates);
+        }
+
         var resp = undefined;
         if (item !== undefined) {
             //For editing an item
@@ -36,10 +50,11 @@ export function ItemForm({ item }) {
         }
         if (resp.status === 201) {
             //navigate to item full view
-            console.log(resp.json().then((resp) => navigate("/fullview/item/" + resp.id)));
+            resp.json().then((resp) => navigate("/fullview/item/" + resp.id));
         } else {
             alert("Listing update failed.");
         }
+        setSending(false);
     };
 
     async function onImageChange(e) {
@@ -58,12 +73,16 @@ export function ItemForm({ item }) {
             });
         }
     }
+    
+    const categoryOptionJSX = itemCategories.map(cat=>{
+        return(<option value={cat}>{t(`category.${cat}`)}</option>)
+    })
 
     return (
         <div className="item-form">
             <form onSubmit={submitItem}>
                 <label>
-                    Title:{" "}
+                    {t("form.title")}{" "}
                     <input
                         type="text"
                         name="title"
@@ -71,7 +90,7 @@ export function ItemForm({ item }) {
                         required></input>
                 </label>
                 <label>
-                    Description:{" "}
+                    {t("form.description")}{" "}
                     <textarea
                         type="text"
                         name="description"
@@ -84,24 +103,31 @@ export function ItemForm({ item }) {
                         }></textarea>
                 </label>
                 <label>
-                    Price:{" "}
+                    {t("form.price")}{" "}
                     <input
                         type="number"
                         name="price"
+                        step={0.01}
                         defaultValue={
                             item !== undefined ? item.price : ""
                         }></input>
                 </label>
                 <label>
-                    Condition:{" "}
-                    <input
-                        type="text"
-                        name="condition"
-                        defaultValue={item !== undefined ? item.condition : ""}
-                        required></input>
+                    {t("form.condition")}{" "}
+                        <select name='condition' className="form-dropdown">                  
+                        <option value="new">{t(`form.new`)}</option>
+                        <option value="fair">{t(`form.fair`)}</option>
+                        <option value="used">{t(`form.used`)}</option>
+                        </select>
+                </label>                
+                <label>
+                    {t("form.category")}{" "}
+                    <select name='category' className="form-dropdown">                  
+                    {categoryOptionJSX}
+                    </select>
                 </label>
                 <label>
-                    Extra:{" "}
+                    {t("form.extra")}{" "}
                     <input
                         type="text"
                         name="extraField"
@@ -110,17 +136,13 @@ export function ItemForm({ item }) {
                         }></input>
                 </label>
                 <label>
-                    Category:{" "}
-                    <input
-                        type="text"
-                        name="category"
-                        defaultValue={item !== undefined ? item.category : ""}
-                        required></input>
+                    {t("form.location")}{" "}
+                    <LocationSelect coordinates={place} setCoordinates={setPlace} />
                 </label>
                 <label>
-                    Images:{" "}
+                    {t("form.images")}{" "}
                     <div className="image-input-container">
-                        Select files
+                        {t("form.select")}
                         <input
                             className="image-input"
                             type="file"
