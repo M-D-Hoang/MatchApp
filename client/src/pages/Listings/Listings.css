@@ -5,6 +5,7 @@
     
     .listings-page > .listings-layout {
     font-size:15px;
+    padding-left:22em;
     padding-right:0;
     transition:padding-left .2s ease,padding-right .5s ease
     }
@@ -25,7 +26,9 @@
     }
     
     @media (max-width: 1081px) {
-    .listings-page > .listings-layout {   
+    .listings-page > .listings-layout {
+    padding-left:0;
+    padding-right:0;
     transition:padding-left .5s ease,padding-right .5s ease
     }
     }
