@@ -5,7 +5,7 @@ const db = new DB();
 exports.getMessages = asyncHandler(async (req, res) => {
   const username = req.params.username;
   if(req.session.username !== username){
-    res.status(401).send('Unauthorized.');
+    return res.status(401).send('Unauthorized.');
   }
   try {
     const messages = await db.getMessagesFromUser(username);
