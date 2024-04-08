@@ -1,13 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { NotificationBlock } from "../../components/NotificationBlock/NotificationBlock";
+import { useNavigate } from "react-router-dom";
 import "./Notifications.css";
 
 export function Notifications() {
   const [noti, setNoti] = useState([]);
   const [user, setUser] = useState({});
   const [t] = useTranslation("global");
-
+  const navigate = useNavigate();
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -35,6 +36,10 @@ export function Notifications() {
     const fetchNotifications = async () => {
       try {
         const resp = await fetch(`/api/messages/${user.username}`);
+        if(resp.status===401){
+          navigate('/')
+          return;
+        }
         if (!resp.ok) {
           throw new Error('Failed to fetch notifications');
         }
@@ -46,7 +51,7 @@ export function Notifications() {
       }
     }
     fetchNotifications();
-  }, [user.username]);
+  }, [navigate, user.username]);
 
   return (
     <div className="notifications">

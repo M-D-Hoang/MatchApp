@@ -8,7 +8,7 @@ import { LocationSelect } from "../Location/LocationPicker.js";
 import { itemCategories } from "../categories.js";
 
 
-export function ItemForm({ item, setSending }) {
+export function ItemForm({ item, setSending, isEdit }) {
     const { t } = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
@@ -114,7 +114,10 @@ export function ItemForm({ item, setSending }) {
                 </label>
                 <label>
                     {t("form.condition")}{" "}
-                        <select name='condition' className="form-dropdown">                  
+                        <select 
+                        name='condition' 
+                        className="form-dropdown"
+                        defaultValue={item !== undefined ? item.condition : ""}>                  
                         <option value="new">{t(`form.new`)}</option>
                         <option value="fair">{t(`form.fair`)}</option>
                         <option value="used">{t(`form.used`)}</option>
@@ -122,7 +125,10 @@ export function ItemForm({ item, setSending }) {
                 </label>                
                 <label>
                     {t("form.category")}{" "}
-                    <select name='category' className="form-dropdown">                  
+                    <select 
+                    name='category' 
+                    className="form-dropdown"
+                    defaultValue={item !== undefined ? item.category : ""}>                  
                     {categoryOptionJSX}
                     </select>
                 </label>
@@ -140,7 +146,7 @@ export function ItemForm({ item, setSending }) {
                     <LocationSelect coordinates={place} setCoordinates={setPlace} />
                 </label>
                 <label>
-                    {t("form.images")}{" "}
+                    {t("form.images")}{" "}{!isEdit && "("+t("form.required")+")"}{" "}
                     <div className="image-input-container">
                         {t("form.select")}
                         <input
@@ -149,7 +155,9 @@ export function ItemForm({ item, setSending }) {
                             name="image"
                             accept="image/*"
                             onChange={onImageChange}
-                            multiple="multiple"></input>
+                            multiple="multiple" 
+                            required={!isEdit}></input>
+                            
                     </div>
                 </label>
                 <Carousel className="form-carousel" infiniteLoop={true}>

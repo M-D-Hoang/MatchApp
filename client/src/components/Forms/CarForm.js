@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
 import { useTranslation } from "react-i18next";
 import { LocationSelect } from "../Location/LocationPicker.js";
-export function CarForm({ item, setSending }) {
+export function CarForm({ item, setSending, isEdit }) {
     const { t } = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
@@ -106,12 +106,15 @@ export function CarForm({ item, setSending }) {
                 </label>
                 <label>
                     {t("form.condition")}{" "}
-                    <select name='condition' className="form-dropdown">
+                        <select 
+                        name='condition' 
+                        className="form-dropdown"
+                        defaultValue={item !== undefined ? item.condition : ""}>                  
                         <option value="new">{t(`form.new`)}</option>
                         <option value="fair">{t(`form.fair`)}</option>
                         <option value="used">{t(`form.used`)}</option>
-                    </select>
-                </label>
+                        </select>
+                </label>  
                 <label>
                     {t("form.make")}{" "}
                     <input
@@ -177,7 +180,7 @@ export function CarForm({ item, setSending }) {
                     <LocationSelect coordinates={place} setCoordinates={setPlace} />
                 </label>
                 <label>
-                    {t("form.images")}{" "}
+                    {t("form.images")}{" "}{!isEdit && "("+t("form.required")+")"}{" "}
                     <div className="image-input-container">
                         {t("form.select")}
                         <input
@@ -186,7 +189,9 @@ export function CarForm({ item, setSending }) {
                             name="image"
                             accept="image/*"
                             onChange={onImageChange}
-                            multiple="multiple"></input>
+                            multiple="multiple"
+                            required={!isEdit}></input>
+                            
                     </div>
                 </label>
                 <Carousel className="form-carousel" infiniteLoop={true}>
