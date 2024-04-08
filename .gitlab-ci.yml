@@ -86,6 +86,8 @@ deploy-azure:
     - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
       --settings SESSION_SECRET=$SESSION_SECRET
     - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
+      --settings LOCATION_SECRET=$LOCATION_SECRET
+    - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
       --settings GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID
     - az webapp config appsettings set --resource-group $RESOURCE_GROUP_NAME --name $APP_NAME
       --settings GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET
