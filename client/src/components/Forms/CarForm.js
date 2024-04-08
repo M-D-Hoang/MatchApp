@@ -106,12 +106,15 @@ export function CarForm({ item, setSending, isEdit }) {
                 </label>
                 <label>
                     {t("form.condition")}{" "}
-                    <select name='condition' className="form-dropdown">
+                        <select 
+                        name='condition' 
+                        className="form-dropdown"
+                        defaultValue={item !== undefined ? item.condition : ""}>                  
                         <option value="new">{t(`form.new`)}</option>
                         <option value="fair">{t(`form.fair`)}</option>
                         <option value="used">{t(`form.used`)}</option>
-                    </select>
-                </label>
+                        </select>
+                </label>  
                 <label>
                     {t("form.make")}{" "}
                     <input

@@ -114,7 +114,10 @@ export function ItemForm({ item, setSending, isEdit }) {
                 </label>
                 <label>
                     {t("form.condition")}{" "}
-                        <select name='condition' className="form-dropdown">                  
+                        <select 
+                        name='condition' 
+                        className="form-dropdown"
+                        defaultValue={item !== undefined ? item.condition : ""}>                  
                         <option value="new">{t(`form.new`)}</option>
                         <option value="fair">{t(`form.fair`)}</option>
                         <option value="used">{t(`form.used`)}</option>
@@ -122,7 +125,10 @@ export function ItemForm({ item, setSending, isEdit }) {
                 </label>                
                 <label>
                     {t("form.category")}{" "}
-                    <select name='category' className="form-dropdown">                  
+                    <select 
+                    name='category' 
+                    className="form-dropdown"
+                    defaultValue={item !== undefined ? item.category : ""}>                  
                     {categoryOptionJSX}
                     </select>
                 </label>
