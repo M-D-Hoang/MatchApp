@@ -99,10 +99,7 @@ export function ListingsSidebar({isMobile, isSidebarOpen, setIsSidebarOpen}) {
                     
                     {extraSearchTerms}
                 </div>
-                <div className="bottom-container">
-                    <div
-                        onClick={toggleSidebar}
-                        className={"toggle-sidebar " + isSidebarOpen}></div>    
+                <div className="bottom-container">                
                     <button className="submit-filters">{t('filter.search')}</button>
                 </div>
             </form>
