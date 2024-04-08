@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler');
 const DB = require('../db/db.js');
 const db = new DB();
 const cache = require('memory-cache');
-const hash = require('object-hash');
+// const hash = require('object-hash');
 
 exports.postItem = asyncHandler(async (req, res, next) => {
   const formObj = req.body;
@@ -208,6 +208,17 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
       filter.price = { $lte: maxPrice };
     }
 
+    // COMPRESSION STUFF
+    /*let items = [];
+    items.push(cache.get('items'));
+
+    // add items hash to be able to invalidate cache
+    console.log('now');
+    console.log(items);
+
+    // TODO: try to just put items in filter obj
+    filter.items = hash(Array.from(items));
+
     // hash filter object
     let params = hash(filter);
     params += page ? `/${page}` : '';
@@ -222,8 +233,21 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
         sortField,
         sortOrder
       );
-      cache.put(`items/${params}`, listings);
-    }
+      // params account for filters by user and items currently in db
+      // shall the filters or items in db change for next request, a new cache entry will be saved
+      // cache for 5 mins because this cache is never cleared otherwise
+      cache.put(`items/${params}`, listings, 300000);
+    } else {
+      console.log('got cache for ur specific filters: ITEM');
+    }*/
+
+    // query DB without compression
+    const listings = await db.readAllFilteredListings(
+      filter,
+      page,
+      sortField,
+      sortOrder
+    );
     res.status(200).json(listings);
   } catch (error) {
     console.error(error);
@@ -265,6 +289,11 @@ exports.getCarsFiltered = asyncHandler(async (req, res) => {
       filter.driveTrain = driveTrain;
     }
 
+    // COMPRESSION STUFF
+    /*
+    // add cars hash to be able to invalidate cache
+    filter.hash = hash(cache.get('cars'));
+
     // hash filter object
     let params = hash(filter);
     params += page ? `/${page}` : '';
@@ -279,8 +308,21 @@ exports.getCarsFiltered = asyncHandler(async (req, res) => {
         sortField,
         sortOrder
       );
-      cache.put(`cars/${params}`, carListings);
-    }
+      // params account for filters by user and cars currently in db
+      // shall the filters or cars in db change for next request, a new cache entry will be saved
+      // cache for 5 mins because this cache is never cleared otherwise
+      cache.put(`cars/${params}`, carListings, 300000);
+    } else {
+      console.log('got cache for ur specific filters: CAR');
+    }*/
+
+    // query DB without compression
+    const carListings = await db.readAllFilteredCarListings(
+      filter,
+      page,
+      sortField,
+      sortOrder
+    );
     res.status(200).json(carListings);
   } catch (error) {
     console.error(error);
@@ -309,16 +351,12 @@ exports.getAll = asyncHandler(async (req, res) => {
     if (!listings) {
       listings = await db.readAllListings();
       cache.put('items', listings);
-    } else {
-      console.log('got cache for all items');
     }
     // try to get cars from cache
     let carListings = cache.get('cars');
     if (!carListings) {
       carListings = await db.readAllCarListings();
       cache.put('cars', carListings);
-    } else {
-      console.log('got cache for all cars');
     }
     // combine items with cars
     const combined = listings.concat(carListings);
