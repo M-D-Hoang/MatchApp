@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const { BlobServiceClient } = require('@azure/storage-blob');
 const DB = require('../db/db.js');
 const db = new DB();
+const sharp = require('sharp');
 
 dotenv.config();
 const AZURE_SAS = process.env.AZURE_SAS;
@@ -22,7 +23,7 @@ exports.postImage = asyncHandler(async (req, res) => {
   //check if any images, return 400 resp if not.
   if (req.files !== null){
     // if multiple images uploaded, it's an array
-  // else it's an object
+    // else it's an object
     if (req.files.image.length) {
       images = Array.from(req.files.image);
     } else {
@@ -31,9 +32,13 @@ exports.postImage = asyncHandler(async (req, res) => {
     const urls = [];
     // create promises to upload images
     const uploadPromises = images.map(async (image) => {
-      const path = image.name;
+      await sharp(image.data).resize(1000).webp({quality: 80, nearLossless: true}).toBuffer().
+        then(buffer => {
+          image.data = buffer;
+        });
+      const path = image.name + '.webp';
       const blobClient = containerClient.getBlockBlobClient(path);
-      const options = {blobHTTPHeaders: {blobContentType: image.mimetype}};
+      const options = {blobHTTPHeaders: {blobContentType: 'image/webp'}};
       await blobClient.uploadData(image.data, options);
       const fullURL = blobPublicUrl + path;
       // add URL to the new array
