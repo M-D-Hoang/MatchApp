@@ -4,12 +4,16 @@ const db = new DB();
 
 exports.getMessages = asyncHandler(async (req, res) => {
   const username = req.params.username;
+  if(req.session.username !== username){
+    res.status(401).send('Unauthorized.');
+  }
   try {
     const messages = await db.getMessagesFromUser(username);
     res.status(200).json(messages);
   } catch (e) {
     res.status(500).send('Internal DB error. Could not read messages');
   }
+  
 });
 
 exports.postMessage = asyncHandler(async (req, res) => {
