@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const compression = require('compression');
 const app = express();
 //Middleware imports
 const locationRouter = require('./routes/location.js');
@@ -16,7 +15,6 @@ if (!process.env.TEST){
   STATIC_FILES = fs.readdirSync('../client/build/');
 }
 
-// Register middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(session({
@@ -24,13 +22,10 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
-app.use(compression());
-app.use(function (req, res, next) {
-  res.set('Cache-control', 'public, max-age=31536000');
-  next();
-});
 
-// Register routes
+//for testing only, we will remove it eventually
+//app.use('/test-api', helloRouter);
+
 app.use('/api/listings', listingsRouter);
 app.use('/api/users', userRouter);
 app.use('/api/messages', messageRouter);
