@@ -65,7 +65,8 @@
     "new": "New",
     "used": "Used",
     "fair": "Fair",
-    "required": "Required"
+    "required": "Required",
+    "check": "Check"
     
   },
   "category":{
@@ -104,7 +105,8 @@
     "send": "Send Message",
     "enterMessage": "Enter Message:",
     "noLocation": "No pickup location was specified.",
-    "pickupLoc": "Pickup Location"
+    "pickupLoc": "Pickup Location",
+    "fullView.charsLeft": "Characters left:"
   },
   "detail": {
     "full": "Full View"
