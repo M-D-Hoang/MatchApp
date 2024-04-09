@@ -87,6 +87,7 @@ export function ListingsLayout({isMobile, toggleSideBar, sidebarForce}) {
     url += params;
     navigate(url);
   };
+
   const listingJSX = listingData.map((item) => {
     return <ItemCardSquare key={item._id} item={item}></ItemCardSquare>;
   });

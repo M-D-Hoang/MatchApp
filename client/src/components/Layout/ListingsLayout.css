@@ -20,7 +20,6 @@
     .search-bar {
     height:3em;
     display:flex;
-    gap:2em;
     padding:1em 3em
     }
     
@@ -42,7 +41,7 @@
     }
     
     .dropdown {
-    width:10em;
+    width: 15em;
     position:relative;
     vertical-align:top
     }
@@ -71,7 +70,8 @@
     }
     
     .dropdown-content > button,.sort-button {
-    width:100%
+    width:100%;
+    padding: 0;
     }
     
     .listings-display {
