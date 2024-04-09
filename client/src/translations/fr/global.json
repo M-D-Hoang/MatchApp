@@ -65,7 +65,8 @@
     "new": "Neuf",
     "used": "Usagé",
     "fair": "Bon",
-    "required": "Requis"
+    "required": "Requis",
+    "check": "Vérifier"
   },
   "category":{
     "electronics":"Électronique",
@@ -102,7 +103,8 @@
     "send": "Envoyer",
     "enterMessage": "Entrez votre message:",
     "noLocation": "Aucun lieu de prise en charge n'a été précisé.",
-    "pickupLoc": "Lieu de Ramassage"
+    "pickupLoc": "Lieu de Ramassage",
+    "charsLeft": "Caractères restants:"
   },
   "detail": {
     "full": "Vue complète"

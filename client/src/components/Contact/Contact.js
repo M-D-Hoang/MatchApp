@@ -87,7 +87,7 @@ export function Contact({ onExit, item, onOverlayClick }) {
             onChange={handleChange}
             defaultValue={t('fullView.defaultMessage')}>
             </textarea>
-            <p>Characters left: {200 - charCount}</p>
+            <p>{t('fullView.charsLeft')} {200 - charCount}</p>
           <button type="submit" className="submit-button">{t("fullView.send")}</button>
         </form>
       </div>
