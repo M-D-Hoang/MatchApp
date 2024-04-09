@@ -13,7 +13,6 @@
     .search-bar-form-parent {
     display:flex;
     flex-direction:row;
-    margin:0 16px;
     width:100%
     }
     
