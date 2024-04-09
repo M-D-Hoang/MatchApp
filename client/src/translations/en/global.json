@@ -106,7 +106,7 @@
     "enterMessage": "Enter Message:",
     "noLocation": "No pickup location was specified.",
     "pickupLoc": "Pickup Location",
-    "fullView.charsLeft": "Characters left:"
+    "charsLeft": "Characters left:"
   },
   "detail": {
     "full": "Full View"

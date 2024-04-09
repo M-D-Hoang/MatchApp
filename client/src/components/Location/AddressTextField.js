@@ -49,7 +49,7 @@ export function AddressTextField({ setCoordinates }) {
       {isLoading && <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={16} width={16} />}
       <div className="address-text-box">
         <input type='text' onChange={onInputChange}></input>
-        <button onClick={checkAddress}>{t["form.check"]}</button>
+        <button onClick={checkAddress}>{t("form.check")}</button>
       </div>
       {fetchedPlaces.length > 0 && <div>{fetchedPlacesJSX}</div>}
     </div>
