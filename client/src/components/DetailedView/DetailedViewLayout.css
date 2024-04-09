@@ -25,9 +25,7 @@
     margin: 5em 0 0.5em 0;
     }
 
-    .item-info-container>button{
-        
-    }
+   
     
     .item-info-container {
     display:flex;
@@ -46,6 +44,10 @@
     @media (max-width: 1500px) {
     .detailed-view,.detailed-view > .item-info-container {
     flex-direction:column
+    }
+
+    .detailed-view{
+        margin: 12em 0 8em 0;
     }
     
     .detailed-view > .item-info {
