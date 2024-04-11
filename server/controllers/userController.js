@@ -5,7 +5,9 @@ const User = require('../db/model/User.js');
 const db = new DB();
 
 
-
+/**
+ * Gets a user
+ */
 exports.getUser = asyncHandler(async (req, res) => {
   try {
     const filter = {};
@@ -18,6 +20,9 @@ exports.getUser = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Posts a user
+ */
 exports.postUser = asyncHandler(async (req, res) => {
   const userObj = req.body;
   try {
@@ -32,6 +37,9 @@ exports.postUser = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Logins a user
+ */
 exports.Login = asyncHandler(async (req, res) => {
   const { credential, clientId } = req.body;
 
@@ -77,6 +85,9 @@ exports.Login = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Verifies if user is authenticated
+ */
 // TODO: just check username then use getUser(username) to return user object for you to return
 exports.verifyAuth = asyncHandler(async (req, res) => {
   if(req.session && req.session.username) {
@@ -87,11 +98,17 @@ exports.verifyAuth = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Logs out a user
+ */
 exports.Logout = asyncHandler(async (req, res) => {
   await req.session.destroy();
   res.status(200).send('Logout successful');
 });
 
+/**
+ * Edits a user
+ */
 exports.editUser = asyncHandler(async (req, res, next) => {
   const userObj = req.body;
   try {

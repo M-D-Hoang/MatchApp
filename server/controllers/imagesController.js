@@ -16,6 +16,9 @@ const blobService = new BlobServiceClient(
 // Get Container
 const containerClient = blobService.getContainerClient(containerName);
 
+/**
+ * Uploads an image to Azure Storage
+ */
 exports.postImage = asyncHandler(async (req, res) => {
   let images = [];
   // if multiple images uploaded, it's an array

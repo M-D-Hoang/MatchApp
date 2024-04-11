@@ -2,6 +2,9 @@ const asyncHandler = require('express-async-handler');
 const DB = require('../db/db.js');
 const db = new DB();
 
+/**
+ * Gets all messages
+ */
 exports.getMessages = asyncHandler(async (req, res) => {
   const username = req.params.username;
   try {
@@ -12,6 +15,9 @@ exports.getMessages = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Posts a message
+ */
 exports.postMessage = asyncHandler(async (req, res) => {
   const messageObj = req.body;
   try {
@@ -27,6 +33,9 @@ exports.postMessage = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Deletes a message
+ */
 exports.deleteMessage = asyncHandler(async (req, res) => {
   const messageID = req.body._id;
 

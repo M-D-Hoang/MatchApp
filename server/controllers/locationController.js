@@ -1,5 +1,8 @@
 const asyncHandler = require('express-async-handler');
 
+/**
+ * Converts an address to coordinates
+ */
 exports.addressToCoordinates = asyncHandler(async (req, res) => {
   
   try {

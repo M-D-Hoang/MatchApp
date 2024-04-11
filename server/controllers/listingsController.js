@@ -2,6 +2,9 @@ const asyncHandler = require('express-async-handler');
 const DB = require('../db/db.js');
 const db = new DB();
 
+/**
+ * Posts an item to the database
+ */
 exports.postItem = asyncHandler(async (req, res, next) => {
   const formObj = req.body;
   try {
@@ -32,6 +35,9 @@ exports.postItem = asyncHandler(async (req, res, next) => {
   }
 });
 
+/**
+ * Posts a car to the database
+ */
 exports.postCar = asyncHandler(async (req, res, next) => {
   const formObj = req.body;
   try {
@@ -63,6 +69,9 @@ exports.postCar = asyncHandler(async (req, res, next) => {
   }
 });
 
+/**
+ * Deletes an item
+ */
 exports.deleteItem = asyncHandler(async (req, res) => {
   //Needs to check if user is the owner of the item
   const itemID = req.body._id;
@@ -79,6 +88,9 @@ exports.deleteItem = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Deletes a car
+ */
 exports.deleteCar = asyncHandler(async (req, res) => {
   //Needs to check if user is the owner of the item
   const itemID = req.body._id;
@@ -95,6 +107,9 @@ exports.deleteCar = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Edits an item
+ */
 exports.editCar = asyncHandler(async (req, res, next) => {
   const carObj = req.body;
   try {
@@ -119,8 +134,9 @@ exports.editCar = asyncHandler(async (req, res, next) => {
   }
 });
 
-
-
+/**
+ * Edits an item
+ */
 exports.editItem = asyncHandler(async (req, res, next) => {
   const ItemObj = req.body;
   try {
@@ -145,6 +161,9 @@ exports.editItem = asyncHandler(async (req, res, next) => {
   }
 });
 
+/**
+ * Gets a single item
+ */
 exports.getSingleItem = asyncHandler(async (req, res) => {
   const id = req.params.id;
   try {
@@ -155,6 +174,9 @@ exports.getSingleItem = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Gets a single car
+ */
 exports.getSingleCar = asyncHandler(async (req, res) => {
   const id = req.params.id;
   try {
@@ -165,6 +187,9 @@ exports.getSingleCar = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Gets all items
+ */
 exports.getItemsFiltered = asyncHandler(async (req, res) => {
   try {
     const {
@@ -215,6 +240,9 @@ exports.getItemsFiltered = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Gets all cars
+ */
 exports.getCarsFiltered = asyncHandler(async (req, res) => {
   try {
     const {
@@ -277,6 +305,9 @@ exports.getCarsFiltered = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Gets all items from a user
+ */
 exports.getUserItems = asyncHandler(async (req, res) => {
   const username = req.params.username;
   try {
@@ -287,6 +318,9 @@ exports.getUserItems = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Gets all items
+ */
 exports.getAll = asyncHandler(async (req, res) => {
   try {
     // get items and cars from the db
