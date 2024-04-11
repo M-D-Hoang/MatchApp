@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const app = express();
+const compression = require('compression');
 //Middleware imports
 const locationRouter = require('./routes/location.js');
 const listingsRouter = require('./routes/listings.js');
@@ -17,6 +18,7 @@ if (!process.env.TEST){
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(compression());
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,

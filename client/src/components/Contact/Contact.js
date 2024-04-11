@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export function Contact({ onExit, item, onOverlayClick }) {
   const [t] = useTranslation("global");
   const [userInfo, setUserInfo] = useState(null);
-  const message = "I'm interested in this item, please contact me back.";
+  const message = t('fullView.defaultMessage');
   const [charCount, setCharCount] = useState(message.length);
   const handleChange = (event) => {
     const inputMessage = event.target.value;
@@ -23,7 +23,7 @@ export function Contact({ onExit, item, onOverlayClick }) {
           return
         }
         const data = await resp.json()
-        console.warn(data);
+      
         setUserInfo(data);
         
       } catch (e) {
@@ -46,6 +46,11 @@ export function Contact({ onExit, item, onOverlayClick }) {
     formDataObj.sellerID = item.ownerID;
     formDataObj.buyerID = userInfo.username;
     formDataObj.listingID = item._id;
+
+    const itemType = (item && item.make !== undefined)? 'car' : 'item'
+    formDataObj.listingURL = `fullview/${itemType}/${item._id}`;
+
+
     formDataObj.itemImage = item.imageURIs[0];
 
     try {
@@ -60,8 +65,7 @@ export function Contact({ onExit, item, onOverlayClick }) {
         console.error('Failed to submit message');
         return;
       }
-      console.log('Message submitted successfully');
-      console.log('Form Data:', formDataObj);
+
       onExit();
     } catch (error) {
       console.error('Error submitting message:', error);
@@ -81,9 +85,9 @@ export function Contact({ onExit, item, onOverlayClick }) {
             maxLength={200}
             required
             onChange={handleChange}
-            defaultValue={"I'm interested in this item, please contact me back."}>
+            defaultValue={t('fullView.defaultMessage')}>
             </textarea>
-            <p>Characters left: {200 - charCount}</p>
+            <p>{t('fullView.charsLeft')} {200 - charCount}</p>
           <button type="submit" className="submit-button">{t("fullView.send")}</button>
         </form>
       </div>

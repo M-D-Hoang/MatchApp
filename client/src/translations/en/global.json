@@ -1,7 +1,14 @@
 {
   "nav": {
+    "profile":"Profile",
     "logout": "Logout",
-    "sell": "Sell"
+    "sell": "Sell",
+    "toggleDark": "Toggle Dark Mode",
+    "langEN": "English",
+    "langFR": "French",
+    "langRU": "Russian",
+    "closeDrawer": "Close Menu",
+    "noti": "Notifications"
   },
   "user": {
     "firstName": "First Name:",
@@ -25,7 +32,7 @@
     "car": "Car"
   },
   "filter": {
-    "search": "Search ...",
+    "search": "Search",
     "sortBy": "Sort By",
     "newest": "Date: Newest",
     "oldest": "Date: Oldest",
@@ -34,12 +41,7 @@
     "none": "No results found",
     "filter": "Filters",
     "items": "Items",
-    "cars": "Cars",
-    "condition": "Condition",
-    "new": "New",
-    "used": "Used",
-    "fair": "Fair",
-    "price": "Price",
+    "cars": "Cars",    
     "min": "Min",
     "max": "Max"
   },
@@ -56,10 +58,37 @@
     "driveTrain": "Drive Train:",
     "images": "Images:",
     "select": "Select files",
-    "extra": "Extra:",
+    "extra": "Extra Tag:",
     "category": "Category:",
     "year": "Year:",
-    "location": "Location:"
+    "location": "Location:",
+    "new": "New",
+    "used": "Used",
+    "fair": "Fair",
+    "required": "Required",
+    "check": "Check"
+    
+  },
+  "category":{
+    "electronics":"Electronics",
+    "apparel":"Apparel",
+    "kitchen": "Kitchen",
+    "books":"Books",
+    "games&toys":"Toys / Games",
+    "personalCare":"Personal Care",
+    "sports":"Sports",
+    "health":"Health",
+    "pet":"Pet Supplies",
+    "jewlery":"Jewelry",
+    "baby":"Baby & Kids",
+    "office":"Office",
+    "furniture":"Furniture",
+    "movies":"Movies",
+    "music": "Music",    
+    "bag&luggage":"Travel & Luggage",
+    "tools&equipement":"Tools / Equipment",
+    "other":"Other"
+
   },
   "404": {
     "404": "404 - No Such Page"
@@ -72,9 +101,12 @@
     "delete": "Delete",
     "edit": "Edit",
     "contact": "Contact Buyer",
+    "defaultMessage": "I'm interested in this item, please contact me back.",
     "send": "Send Message",
     "enterMessage": "Enter Message:",
-    "noLocation": "No pickup location was specified."
+    "noLocation": "No pickup location was specified.",
+    "pickupLoc": "Pickup Location",
+    "charsLeft": "Characters left:"
   },
   "detail": {
     "full": "Full View"

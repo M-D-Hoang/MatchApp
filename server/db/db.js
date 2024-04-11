@@ -312,6 +312,7 @@ class DB {
       sellerID: message.sellerID,
       buyerID: message.buyerID,
       listingID: message.listingID,
+      listingURL: message.listingURL,
       message: message.message,
       itemImage: message.itemImage,
     });

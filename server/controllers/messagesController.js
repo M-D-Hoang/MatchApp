@@ -6,13 +6,16 @@ const db = new DB();
  * Gets all messages
  */
 exports.getMessages = asyncHandler(async (req, res) => {
-  const username = req.params.username;
+  if(!req.session){
+    res.status(401).send('Unauthorized');
+  }
   try {
-    const messages = await db.getMessagesFromUser(username);
+    const messages = await db.getMessagesFromUser(req.session.username);
     res.status(200).json(messages);
   } catch (e) {
     res.status(500).send('Internal DB error. Could not read messages');
   }
+  
 });
 
 /**

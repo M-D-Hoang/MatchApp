@@ -5,7 +5,7 @@ import tempImage from "../../assets/images/item-image-temp1.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { Carousel } from 'react-responsive-carousel';
 import ReactLoading from 'react-loading';
-import { Contact } from "../Contact/Contact";
+import { Contact } from "../../components/Contact/Contact";
 import "./FullView.css";
 import { MapScreen } from "../../components/Location/Map";
 import { useTranslation } from "react-i18next";
@@ -134,14 +134,14 @@ export function FullView({ isCar }) {
             <div className={"full-view-page"}>
 
                 {item.ownerID === undefined ?
-                    <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={400} width={400} /> :
+                    <ReactLoading className="loading-bar" type={"spin"} color={"#58cc77"} height={200} width={200} /> :
                     <><div className={"item-image"}>
                         <Carousel className="carousel" infiniteLoop={true}>
                             {images}
                         </Carousel>
                     </div>
                         <div className="item-info-container">
-                            <ItemInfo item={item} />
+                            <ItemInfo item={item} isFull={true} />
                             <div className="action-container">
                                 <div className="user-info">
                                     <p>{t("fullView.posted")}</p>
@@ -150,6 +150,7 @@ export function FullView({ isCar }) {
 
                                 {item.coordinates.length > 0 && item.location !== undefined ?
                                     <div className="fullview-map-parent">
+                                        <h2>{t("fullView.pickupLoc")}</h2>
                                         <MapScreen marker={{ name: item.location, coordinates: item.coordinates }} />
                                     </div> : <p>{t("fullView.noLocation")}</p>}
                                 {isOwner ? (

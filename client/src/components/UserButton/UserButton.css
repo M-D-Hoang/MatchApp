@@ -1,32 +1,30 @@
 .user-button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: auto;
-    margin-right: 0;
-    border-radius: 1.5em;
-    padding: 8px;
-    background-color: var(--color-background-light);
-    box-shadow: var(--box-shadow-small);
-}
-
-.user-button > * {
-    margin: 0px 16px;
-}
-
-.user-button-image {
-    border-radius: 50%;
-    width: 58px;
-    height: 58px;
-}
-
-.user-button-image {
-    object-fit: cover;
-    border-radius: 500%;
-    flex-shrink: 0;
-}
-
-.user-button:hover {
-    transition: box-shadow 0.3s;
-    box-shadow: var(--box-shadow-medium);
-}
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    margin-left:auto;
+    margin-right:0;
+    border-radius:1.5em;
+    padding:8px;
+    background-color:var(--color-background-light);
+    box-shadow:var(--box-shadow-small)
+    }
+    
+    .user-button > * {
+    margin:0 16px
+    }
+    
+    .user-button-image {
+    border-radius:50%;
+    width:58px;
+    height:58px;
+    object-fit:cover;
+    border-radius:500%;
+    flex-shrink:0
+    }
+    
+    .user-button:hover {
+    transition:box-shadow 0.3s,background-color .3s;
+    box-shadow:var(--box-shadow-medium);
+    background-color:var(--color-background-lighter)
+    }

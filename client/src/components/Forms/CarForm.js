@@ -5,8 +5,8 @@ import { Carousel } from "react-responsive-carousel";
 import "./Form.css";
 import { useTranslation } from "react-i18next";
 import { LocationSelect } from "../Location/LocationPicker.js";
-export function CarForm({ item }) {
-  const { t} = useTranslation("global");
+export function CarForm({ item, setSending, isEdit }) {
+    const { t } = useTranslation("global");
     const navigate = useNavigate();
     const [images, setImage] = useState([]);
     const [imageFiles, setImageFiles] = useState(null);
@@ -18,7 +18,7 @@ export function CarForm({ item }) {
         if (item) {
             item.imageURIs.forEach((img) => {
                 setImage((images) => [
-                   ...images,
+                    ...images,
                     <img src={img} alt="preview"></img>,
                 ]);
             });
@@ -27,10 +27,11 @@ export function CarForm({ item }) {
 
     const submitItem = async (e) => {
         e.preventDefault();
+        setSending(true);
         var formData = new FormData(e.target);
         formData.append("image", imageFiles);
-        if (place != null){
-            formData.append("location",place.name);
+        if (place != null) {
+            formData.append("location", place.name);
             formData.append("coordinates", place.coordinates);
         }
         var resp = undefined;
@@ -44,12 +45,12 @@ export function CarForm({ item }) {
         }
         if (resp.status === 201) {
             //navigate to item full view
-            console.log(
-                resp.json().then((resp) => navigate("/fullview/car/" + resp.id))
-            );
+            resp.json().then((resp) => navigate("/fullview/car/" + resp.id))
+
         } else {
             alert("Listing update failed.");
         }
+        setSending(false);
     };
 
     async function onImageChange(e) {
@@ -105,12 +106,15 @@ export function CarForm({ item }) {
                 </label>
                 <label>
                     {t("form.condition")}{" "}
-                    <input
-                        type="text"
-                        name="condition"
-                        defaultValue={item !== undefined ? item.condition : ""}
-                        required></input>
-                </label>
+                        <select 
+                        name='condition' 
+                        className="form-dropdown"
+                        defaultValue={item !== undefined ? item.condition : ""}>                  
+                        <option value="new">{t(`form.new`)}</option>
+                        <option value="fair">{t(`form.fair`)}</option>
+                        <option value="used">{t(`form.used`)}</option>
+                        </select>
+                </label>  
                 <label>
                     {t("form.make")}{" "}
                     <input
@@ -173,10 +177,10 @@ export function CarForm({ item }) {
                 </label>
                 <label>
                     {t("form.location")}{" "}
-                    <LocationSelect coordinates={place} setCoordinates={setPlace}/>
+                    <LocationSelect coordinates={place} setCoordinates={setPlace} />
                 </label>
                 <label>
-                    {t("form.images")}{" "}
+                    {t("form.images")}{" "}{!isEdit && "("+t("form.required")+")"}{" "}
                     <div className="image-input-container">
                         {t("form.select")}
                         <input
@@ -185,7 +189,9 @@ export function CarForm({ item }) {
                             name="image"
                             accept="image/*"
                             onChange={onImageChange}
-                            multiple="multiple"></input>
+                            multiple="multiple"
+                            required={!isEdit}></input>
+                            
                     </div>
                 </label>
                 <Carousel className="form-carousel" infiniteLoop={true}>

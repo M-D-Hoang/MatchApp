@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { UserButton } from "../../components/UserButton/UserButton";
 import "./NotificationBlock.css";
+import { useNavigate } from "react-router-dom";
+
 
 export function NotificationBlock({ notification }) {
   const [user, setUser] = useState({});
+  const navigate = useNavigate();
+
 
   useEffect (() => {
     const fetchUser = async () => {
@@ -37,16 +41,25 @@ export function NotificationBlock({ notification }) {
       }
   };
 
+  const handleImageClick = ()=>{
+    if(notification.listingURL){
+      navigate(`/${notification.listingURL}`)
+    }
+   
+  };
+
   return (
     <div className="notification-block">
-      <div className="user">
-      <UserButton userID={user.username}/>  
+      <div className="notification-first-metadata">
+        <div className="user">
+        <UserButton userID={user.username}/>    
+        </div>
+        <button className="close-button" onClick={handleNotificationClick}>Remove Notification</button>
       </div>
-      <div className="notification-info">
-        <p>{notification.message}</p>    
+      <div className="notification-info">     
+      <p>{notification.message}</p>  
       </div>
-      <img src={notification.itemImage} alt="listing img"/>
-      <h1 className="close-button" onClick={handleNotificationClick}>x</h1>
+      <img className="notification-image" onClick={handleImageClick} src={notification.itemImage} alt="listing img"/>
     </div>
   );
 }
